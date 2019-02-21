@@ -10,15 +10,22 @@ namespace VidCat_Tool.Controllers
 {
     public class AccountController : Controller
     {
+
+        #region Fields
+
         public string key = "";
         public string hashtotal;
         private string result;
+
+        #endregion
 
         [HttpGet]
         public IActionResult Login()
         {
             return View();
         }
+
+        #region Hasher met salt
 
         public void HashWithSalt(string password) // nieuw wachtwoord hashen
         {
@@ -47,9 +54,6 @@ namespace VidCat_Tool.Controllers
             return randomBytes;
         }
 
-
-
-
-
+        #endregion
     }
 }
