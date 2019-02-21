@@ -18,8 +18,9 @@ namespace VidCat_Tool.Controllers
 
         #endregion
 
-        public IActionResult Index()
-        {
+        [HttpGet]
+        public IActionResult Login()
+        { 
             return View();
         }
 
