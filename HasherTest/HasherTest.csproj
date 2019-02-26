@@ -16,10 +16,4 @@
     <ProjectReference Include="..\VidCat_Tool\VidCat_Tool.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="Microsoft.AspNetCore.Mvc.Analyzers">
-      <HintPath>C:\Users\dunca\.nuget\packages\microsoft.aspnetcore.mvc.analyzers\2.1.3\analyzers\dotnet\cs\Microsoft.AspNetCore.Mvc.Analyzers.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
 </Project>
