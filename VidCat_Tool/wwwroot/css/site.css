@@ -44,10 +44,12 @@ body {
 
 .maincontainer {
     width: 75%;
-    margin-left: 450px;
-    margin-right: 100px;
     margin-top: 25px;
     padding: 10px;
+    margin-right:  2.5%;
+    float: right;
+    height: 100%;
+    margin-bottom: 2.5%;
 }
 
 .contentcontainer {
@@ -78,6 +80,19 @@ body {
     line-height: 80px;
 }
 
+.mainRow {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+@media (max-width: 767px) {
+    .pageTitleAndUser {
+        display: none;
+    }
+}
+
+
+
 /* --- Sign In Page --- */
 .signInContainer {
     width: 50%;
@@ -103,7 +118,7 @@ body {
     background-color: #ffffff;
     position: fixed;
     top: 0px;
-    width: 400px;
+    width: 20%;
     height: 100%;
     color: #e1ffff;
 }
@@ -266,18 +281,45 @@ body {
 
 /* --- Dashboard CSS --- */
 .dashboardContent {
-    height: 600px;
+    height: auto;
     width: 100%;
     border: 1px solid #bdbdbd;
     margin-top: 100px;
     background-color: #f9f9f9;
-    padding-right: 10px;
 }
 
 .userImage img {
-    position: absolute;
-    top: 110px;
-    left: 50%;
-    width: 250px;
-    height: 250px;
+    width: 15%;
+    height: auto;
+    margin-left: 42.5%;
+    margin-top: -10%;
 }
+
+.statsColumn {
+    height: 700px;
+    border: 1px solid #bdbdbd;
+    width: 32%;
+}
+
+.statsRow {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.statsTitle {
+    text-align: center;
+    width: 32%;
+}
+
+.statsContainer {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2%;
+}
+
+#middleStatsBox {
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+

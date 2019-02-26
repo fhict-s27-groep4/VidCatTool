@@ -18,34 +18,37 @@
     </environment>
 </head>
 <body>
-    <div class="nav-side-menu">
-        <div class="brand">VidCat Tool</div>
-        <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+    <div class="row mainRow">
+        <div class="nav-side-menu col-3">
+            <div class="brand">VidCat Tool</div>
+            <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
 
-        <div class="menu-list">
+            <div class="menu-list">
 
-            <ul id="menu-content" class="menu-content collapse out">
-                <li>
-                    <a asp-controller="Home" asp-action="Index">Dashboard</a>
-                </li>
-                <li>
-                    <a asp-controller="Home" asp-action="About">About</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="maincontainer">
-        <div class="pageTitleAndUser">
-            <div class="pageTitle">@ViewData["Title"]</div>
-            <div class="pageUser">
-                Session User <img src="~/images/user-placeholder.png" />
+                <ul id="menu-content" class="menu-content collapse out">
+                    <li>
+                        <a asp-controller="Home" asp-action="Index">Dashboard</a>
+                    </li>
+                    <li>
+                        <a asp-controller="Home" asp-action="About">About</a>
+                    </li>
+                </ul>
             </div>
         </div>
-        <div class="contentcontainer">
-            @RenderBody()
-         </div>
+            <div class="maincontainer col-9">
+                <div class="pageTitleAndUser">
+                    <div class="pageTitle">@ViewData["Title"]</div>
+                    <div class="pageUser">
+                        Session User <img src="~/images/user-placeholder.png" />
+                    </div>
+                </div>
+                <div class="contentcontainer">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
     </div>
+
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
