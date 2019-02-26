@@ -52,6 +52,13 @@ body {
     margin-bottom: 2.5%;
 }
 
+.mainLogo {
+    margin: auto;
+    width: 200px;
+    height: auto;
+    margin-top: 3%;
+}
+
 .contentcontainer {
     padding: 10px;
 }
