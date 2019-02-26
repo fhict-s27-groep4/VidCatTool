@@ -4,7 +4,23 @@
     ViewData["Title"] = "Login";
     Layout = "~/Views/Shared/_SignInLayout.cshtml";
 }
-<div class="signInTitle">
-    <h2>Login</h2>
+
+<div class="loginBox text-center">
+    <div class="loginElements">
+        <h1 style="color: #e91e63">Login</h1><br />
+        <input id="username1" type="text" style="width: 60%; margin: 2%; height: 5%; padding: 1%; font-size: 16px" />
+        <input id="password1" type="password" style="width: 60%; margin: 2%; height: 5%; padding: 1%; font-size: 16px;" />
+    </div>
+    <div class="forgotLinks">
+        <h3 style="font-size: 12px; text-decoration: underline;">Forgot Username / Password?</h3>
+    </div>
+    <div class="enterButton">
+        <input id="loginButton1" type="button" value="Login" style="margin: 5%; background-color: #e91e63; color: white; font-size: 16px; border: none; padding: 2%; padding-left: 5%; padding-right: 5%;" />
+    </div>
 </div>
+
+@*<div class="signInTitle">
+    <h2>Login</h2>
+    <h3>Test</h3>
+</div>*@
 
