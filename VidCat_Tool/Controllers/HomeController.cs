@@ -10,7 +10,7 @@ namespace VidCat_Tool.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Dashboard()
         {
             return View();
         }
