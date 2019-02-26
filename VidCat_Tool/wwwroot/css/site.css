@@ -44,7 +44,7 @@ body {
 
 .maincontainer {
     width: 75%;
-    margin-left: 500px;
+    margin-left: 450px;
     margin-right: 100px;
     margin-top: 25px;
     padding: 10px;
@@ -266,7 +266,7 @@ body {
 
 /* --- Dashboard CSS --- */
 .dashboardContent {
-    height: 800px;
+    height: 600px;
     width: 100%;
     border: 1px solid #bdbdbd;
     margin-top: 100px;
