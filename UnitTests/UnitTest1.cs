@@ -1,7 +1,9 @@
 using System;
 using Xunit;
-using VidCat_Tool.Controllers;
-using Microsoft.AspNetCore;
+using VidCat_Tool;
+using System.Security.Authentication;
+using NuGet.Frameworks;
+
 
 namespace UnitTests
 {
