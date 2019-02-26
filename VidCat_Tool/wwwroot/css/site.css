@@ -94,18 +94,86 @@ body {
 
 
 /* --- Sign In Page --- */
+.headerImage {
+    margin-left: 3%;
+    margin-top: 2%;
+}
+
 .signInContainer {
     width: 50%;
     height: auto;
     margin: auto;
     padding: 10px;
-    margin-top: 25%;
+    margin-top: 15%;
     background-color: white;
     border: 1px solid #bdbdbd;
 }
 
-.signInTitle h2 {
+.loginContainer {
+    padding: 10%;
     text-align: center;
+}
+
+    .loginContainer h2 {
+        color: #e91e63;
+        margin-bottom: 8%;
+    }
+
+.forgetLinks a {
+    font-size: 14px;
+    text-decoration: underline;
+    color: #bdbdbd;
+}
+
+.forgetLinks {
+    margin-top: 5%;
+}
+
+.loginInput {
+    margin-top: 3%;
+    width: 60%;
+    font-size: 16px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.loginButton {
+    background-color: #e91e63;
+    color: white;
+    margin: 5%;
+    font-size: 16px;
+    border: none;
+    padding: 2%;
+    padding-left: 5%;
+    padding-right: 5%
+}
+
+    .loginButton:hover {
+        background-color: #97052d;
+        color: white;
+    }
+
+.loginContainer h2 {
+    text-align: center;
+}
+
+input[type=text]:focus, textarea:focus,
+input[type=email]:focus, textarea:focus,
+input[type=password]:focus, textarea:focus {
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;
+    outline: none;
+    border: 1px solid #f23777;
+}
+
+input[type=text]:focus, textarea:focus,
+input[type=email]:focus, textarea:focus,
+input[type=password]:focus, textarea:focus {
+    box-shadow: 0 0 5px rgba(242, 55, 119, 1);
+    border: 1px solid rgba(242, 55, 119, 1);
 }
 
 /* --- Navigation Bar --- */
