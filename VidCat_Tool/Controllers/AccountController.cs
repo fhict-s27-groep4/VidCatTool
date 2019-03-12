@@ -32,6 +32,11 @@ namespace VidCat_Tool.Controllers
             return View();
         }
 
+        public IActionResult ResetCredentials()
+        {
+            return View();
+        }
+
         #region Hasher met salt
 
         public void HashWithSalt(string password) // nieuw wachtwoord hashen
