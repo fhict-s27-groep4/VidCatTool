@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\VidCat_Tool\VidCat_Tool.csproj" />
+    <ProjectReference Include="..\BusinessLogicLibrary\BusinessLogicLibrary.csproj" />
   </ItemGroup>
 
 </Project>

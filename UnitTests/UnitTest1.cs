@@ -1,19 +1,19 @@
 using System;
 using Xunit;
-using VidCat_Tool.Controllers;
 using System.Security.Authentication;
-using NuGet.Frameworks;
+using BusinessLogicLibrary.PassHasher;
+
 
 
 namespace UnitTests
 {
     public class HasherUnitTest
     {
-        private readonly VidCat_Tool.Controllers.AccountController vidcat;
+        private readonly PasswordHasher vidcat;
 
         public HasherUnitTest()
         {
-            vidcat = new VidCat_Tool.Controllers.AccountController();
+            vidcat = new PasswordHasher();
         }
 
         [Fact]
