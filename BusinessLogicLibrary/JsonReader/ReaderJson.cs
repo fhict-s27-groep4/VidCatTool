@@ -4,7 +4,7 @@ using System.IO;
 
 namespace BusinessLogicLibrary.JsonReader
 {
-    class ReaderJson
+    public class ReaderJson
     {
         public ReaderJson()
         {//make sure you're using this nuget package Newtonsoft.Json and using Newtonsoft.Json.Linq;
@@ -45,12 +45,7 @@ namespace BusinessLogicLibrary.JsonReader
 
         public string GetVideoUrl(string _mediaID)
         {
-            return FindVidUrl(_mediaID, "jsonLink.json");
-        }
-
-        public string GetVideoUrl(string _mediaID, string _jsonFilePath)
-        {
-            return FindVidUrl(_mediaID, _jsonFilePath);
+            return FindVidUrl(_mediaID, @"..\..\..\..\BusinessLogicLibrary\JsonReader\VideoFeed.json");
         }
     }
 }
