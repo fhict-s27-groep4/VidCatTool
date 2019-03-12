@@ -157,10 +157,12 @@ body {
     padding-right: 5%
 }
 
-    .loginButton:hover {
-        background-color: #97052d;
-        color: white;
-    }
+
+
+.loginButton:hover {
+    background-color: #97052d;
+    color: white;
+}
 
 .loginContainer h2 {
     text-align: center;
@@ -199,117 +201,103 @@ input[type=password]:focus, textarea:focus {
     color: #e1ffff;
 }
 
-    .nav-side-menu .brand {
-        background-color: #ffffff;
-        line-height: 75px;
-        display: block;
-        text-align: center;
-        font-size: 16px;
-        color: #e91e63;
-        padding: 3px;
-        margin-right: 1px;
-    }
+.nav-side-menu .brand {
+    background-color: #ffffff;
+    line-height: 75px;
+    display: block;
+    text-align: center;
+    font-size: 16px;
+    color: #e91e63;
+    padding: 3px;
+    margin-right: 1px;
+}
 
-    .nav-side-menu .toggle-btn {
-        display: none;
-    }
+.nav-side-menu .toggle-btn {
+    display: none;
+}
 
-    .nav-side-menu ul,
-    .nav-side-menu li {
-        list-style: none;
-        padding: 0px;
-        margin: 0px;
-        line-height: 35px;
-        cursor: pointer;
-        text-align: center;
-        /*    
-    .collapsed{
-       .arrow:before{
-                 font-family: FontAwesome;
-                 content: "\f053";
-                 display: inline-block;
-                 padding-left:10px;
-                 padding-right: 10px;
-                 vertical-align: middle;
-                 float:right;
-            }
-     }
-*/
-    }
+.nav-side-menu ul,
+.nav-side-menu li {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+    line-height: 35px;
+    cursor: pointer;
+    text-align: center;
+}
 
-        .nav-side-menu ul :not(collapsed) .arrow:before,
-        .nav-side-menu li :not(collapsed) .arrow:before {
-            font-family: FontAwesome;
-            content: "\f078";
-            display: inline-block;
-            padding-left: 10px;
-            padding-right: 10px;
-            vertical-align: middle;
-            float: right;
-        }
+.nav-side-menu ul :not(collapsed) .arrow:before,
+.nav-side-menu li :not(collapsed) .arrow:before {
+    font-family: FontAwesome;
+    content: "\f078";
+    display: inline-block;
+    padding-left: 10px;
+    padding-right: 10px;
+    vertical-align: middle;
+}
 
-        .nav-side-menu ul .active,
-        .nav-side-menu li .active {
-            color: #e91e63;
-        }
+.nav-side-menu ul .active,
+.nav-side-menu li .active {
+    color: #e91e63;
+}
 
-        .nav-side-menu ul .sub-menu li.active,
-        .nav-side-menu li .sub-menu li.active {
-            color: #e91e63;
-        }
+.nav-side-menu ul .sub-menu li.active,
+.nav-side-menu li .sub-menu li.active {
+    color: #e91e63;
+}
 
-            .nav-side-menu ul .sub-menu li.active a,
-            .nav-side-menu li .sub-menu li.active a {
-                color: #e91e63;
-            }
+.nav-side-menu ul .sub-menu li.active a,
+.nav-side-menu li .sub-menu li.active a {
+    color: #e91e63;
+}
 
-        .nav-side-menu ul .sub-menu li,
-        .nav-side-menu li .sub-menu li {
-            border: none;
-            line-height: 28px;
-            margin-left: 0px;
-        }
+.nav-side-menu ul .sub-menu li,
+.nav-side-menu li .sub-menu li {
+    border: none;
+    line-height: 28px;
+    margin-left: 0px;
+}
 
-            .nav-side-menu ul .sub-menu ul:hover,
-            .nav-side-menu li .sub-menu li:hover {
-                color: #e91e63;
-            }
+.nav-side-menu ul .sub-menu ul:hover,
+.nav-side-menu li .sub-menu li:hover {
+    color: #e91e63;
+}
 
-            .nav-side-menu ul .sub-menu li:before,
-            .nav-side-menu li .sub-menu li:before {
-                font-family: FontAwesome;
-                content: "\f105";
-                display: inline-block;
-                padding-left: 10px;
-                padding-right: 10px;
-                vertical-align: middle;
-            }
+.nav-side-menu ul .sub-menu li:before,
+.nav-side-menu li .sub-menu li:before {
+    font-family: FontAwesome;
+    content: "\f105";
+    display: inline-block;
+    padding-left: 10px;
+    padding-right: 10px;
+    vertical-align: middle;
+}
 
-    .nav-side-menu li {
-        padding-left: 0px;
-        text-align: center;
-    }
+.nav-side-menu li {
+    padding-left: 0px;
+    text-align: center;
+}
 
-        .nav-side-menu li a {
-            text-decoration: none;
-            color: #9e9e9e;
-            display: block;
-        }
+.nav-side-menu li a {
+    text-decoration: none;
+    color: #9e9e9e;
+    display: block;
+}
 
-            .nav-side-menu li a:hover {
-                text-decoration: none;
-                color: #e91e63;
-                display: block;
-            }
+.nav-side-menu li a:hover {
+    text-decoration: none;
+    color: #e91e63;
+    display: block;
+}
 
-        .nav-side-menu li:hover {
-            color: #e91e63;
-            -webkit-transition: all 1s ease;
-            -moz-transition: all 1s ease;
-            -o-transition: all 1s ease;
-            -ms-transition: all 1s ease;
-            transition: all 1s ease;
-        }
+.nav-side-menu li:hover {
+    color: #e91e63;
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    transition: all 1s ease;
+}
 
 @media (max-width: 767px) {
     .nav-side-menu {
@@ -320,19 +308,19 @@ input[type=password]:focus, textarea:focus {
         border-bottom: 1px solid #bdbdbd;
     }
 
-        .nav-side-menu .toggle-btn {
-            display: block;
-            cursor: pointer;
-            position: absolute;
-            right: 10px;
-            top: 10px;
-            z-index: 10 !important;
-            padding: 3px;
-            background-color: #ffffff;
-            color: #000;
-            width: 40px;
-            text-align: center;
-        }
+    .nav-side-menu .toggle-btn {
+        display: block;
+        cursor: pointer;
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        z-index: 10 !important;
+        padding: 3px;
+        background-color: #ffffff;
+        color: #000;
+        width: 40px;
+        text-align: center;
+    }
 
     .brand {
         text-align: left !important;
@@ -364,6 +352,12 @@ body {
     background-color: #f9f9f9;
 }
 
+.ProfileContent {
+    height: auto;
+    width: 100%;
+    margin-top: 40px;
+}
+
 .userImage img {
     width: 15%;
     height: auto;
@@ -375,6 +369,25 @@ body {
     height: 700px;
     border: 1px solid #bdbdbd;
     width: 32%;
+}
+
+.UserProfColumn{
+    margin-right: 3%;
+}
+
+.UserColumn.UserprofColumn {
+    width: 24%;
+    background-color: #ffffff;
+}
+
+.UserColumn.UserinfoColumn {
+    margin-left: 1%;
+    background-color: #ffffff;
+}
+
+.UserColumn {
+    height: 600px;
+    border: 1px solid #bdbdbd;
 }
 
 .statsRow {
@@ -398,4 +411,72 @@ body {
     margin-right: 2%;
 }
 
+/*---USERPROFILE PAGE CSS---*/
+.ProfileContent{
+    width: 100%;
+
+}
+
+.userProfileRow{
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.userProfileColumn {
+    height: 600px;
+    width: 25%;
+    background-color: white;
+    border: 1px solid #bdbdbd;
+}
+
+.userInformationColumn {
+    height: 600px;
+    width: 73%;
+    background-color: white;
+    border: 1px solid #bdbdbd;
+    margin-left: 2%;
+    padding: 2.5%;
+}
+
+.userInformationColumn input{
+    margin-top: 2%;
+}
+
+.NumberInput{
+    margin-top: 2%;
+}
+
+.col-lg-3.NumberInput {
+    margin-top: 1%;
+}
+
+#rofileInfoTitle{
+    margin-top: 2%;
+}
+
+div#profileInfoTitle {
+    margin-top: 2%;
+}
+
+.userProfileImage {
+    width: 84%;
+    height: auto;
+    margin-left: 8%;
+    margin-right: 8%;
+    margin-top: 13%;
+}
+
+button.btn.editButton {
+    position: absolute;
+    bottom: 2%;
+    width: 80%;
+    margin: 6%;
+    background-color: #e91e63;
+    color: white;
+}
+
+    button.btn.editButton:hover {
+    background-color: #97052d;
+    color: white;
+}
 
