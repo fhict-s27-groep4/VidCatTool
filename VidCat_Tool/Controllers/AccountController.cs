@@ -34,6 +34,7 @@ namespace VidCat_Tool.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult ResetCredentials()
         {
             return View();
@@ -41,7 +42,8 @@ namespace VidCat_Tool.Controllers
 
         /*________________________________________*/
 
-        public IActionResult ResetCredentials(string EMail)
+        //Resetting Credentials method ! TYPE NOT IMPLEMENTED YET
+        public void Reset(string EMail)
         {
             //Verify that address exists
             var account = "";
@@ -69,7 +71,7 @@ namespace VidCat_Tool.Controllers
             }
             //Send error....
 
-            return View(); //Return
+            //return View(); //Return
         }
 
         /*____________________________________________________________________-*/
@@ -138,5 +140,7 @@ namespace VidCat_Tool.Controllers
         }
 
         #endregion
+
+        /*____________________________________________________________*/
     }
 }
