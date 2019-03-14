@@ -10,8 +10,8 @@ namespace BusinessLogicLibrary.Hasher
 
         #region Fields
 
-        public string key = "";
-        public string hashtotal;
+        private string key = "";
+        private string hashtotal;
         private string result;
 
         #endregion
@@ -37,12 +37,21 @@ namespace BusinessLogicLibrary.Hasher
         {
             return Convert.ToBase64String(GenerateRandomCryptographicBytes(keyLength)); //lengte van key
         }
-        public byte[] GenerateRandomCryptographicBytes(int keyLength)
+        private byte[] GenerateRandomCryptographicBytes(int keyLength)
         {
             RNGCryptoServiceProvider rngCryptoServiceProvider = new RNGCryptoServiceProvider(); // aanmaken van random bytes
             byte[] randomBytes = new byte[keyLength];
             rngCryptoServiceProvider.GetBytes(randomBytes);
             return randomBytes;
+        }
+
+        public string GetKey()
+        {
+            return key;
+        }
+        public string GetHashTotal()
+        {
+            return hashtotal;
         }
 
         #endregion
