@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
+using Data_Layer.Repository;
+using Data_Layer.Interface;
 
 namespace VidCat_Tool
 {
@@ -34,6 +36,12 @@ namespace VidCat_Tool
             });
 
             services.AddDbContext<VidCatToolContext>(options => options.UseMySql(Configuration["ConnectionStrings:MYSQLConnection"]));
+
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IRatingRepository, RatingRepository>();
+            services.AddTransient<IRoleRepository, RoleRepository>();
+            services.AddTransient<IVideoRepository, VideoRepository>();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
