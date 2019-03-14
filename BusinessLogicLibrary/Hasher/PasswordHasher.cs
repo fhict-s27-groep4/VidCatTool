@@ -33,7 +33,7 @@ namespace BusinessLogicLibrary.Hasher
             byte[] hash = SHA256.Create().ComputeHash(textData); // hashen van salt en wachtwoord
             return result = BitConverter.ToString(hash); // omzetten van bytes naar string en terugsturen om te checken
         }
-        private string GenerateRandomCryptographicKey(int keyLength)
+        public string GenerateRandomCryptographicKey(int keyLength)
         {
             return Convert.ToBase64String(GenerateRandomCryptographicBytes(keyLength)); //lengte van key
         }
@@ -45,7 +45,7 @@ namespace BusinessLogicLibrary.Hasher
             return randomBytes;
         }
 
-        public string Returnkey()
+        public string GetKey()
         {
             return key;
         }

@@ -21,8 +21,8 @@ namespace UnitTests
         {
             string password = "henk";
             PassHash.HashWithSalt(password);
-            string first = PassHash.hashtotal;
-            string key = PassHash.key;
+            string first = PassHash.GetHashTotal();
+            string key = PassHash.GetKey();
             var result = PassHash.CheckPassword(password, key);
             Assert.Equal(first, result);
         }
