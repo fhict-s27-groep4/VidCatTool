@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Data_Layer.Repository;
 using Data_Layer.Interface;
+using BusinessLogicLibrary;
 
 namespace VidCat_Tool
 {
@@ -41,6 +42,8 @@ namespace VidCat_Tool
             services.AddTransient<IRatingRepository, RatingRepository>();
             services.AddTransient<IRoleRepository, RoleRepository>();
             services.AddTransient<IVideoRepository, VideoRepository>();
+
+            services.AddTransient<ILoginHandler, LoginHandler>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
