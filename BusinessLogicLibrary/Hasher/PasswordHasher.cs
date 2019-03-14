@@ -10,8 +10,8 @@ namespace BusinessLogicLibrary.Hasher
 
         #region Fields
 
-        public string key = "";
-        public string hashtotal;
+        private string key = "";
+        private string hashtotal;
         private string result;
 
         #endregion
@@ -33,16 +33,25 @@ namespace BusinessLogicLibrary.Hasher
             byte[] hash = SHA256.Create().ComputeHash(textData); // hashen van salt en wachtwoord
             return result = BitConverter.ToString(hash); // omzetten van bytes naar string en terugsturen om te checken
         }
-        public string GenerateRandomCryptographicKey(int keyLength)
+        private string GenerateRandomCryptographicKey(int keyLength)
         {
             return Convert.ToBase64String(GenerateRandomCryptographicBytes(keyLength)); //lengte van key
         }
-        public byte[] GenerateRandomCryptographicBytes(int keyLength)
+        private byte[] GenerateRandomCryptographicBytes(int keyLength)
         {
             RNGCryptoServiceProvider rngCryptoServiceProvider = new RNGCryptoServiceProvider(); // aanmaken van random bytes
             byte[] randomBytes = new byte[keyLength];
             rngCryptoServiceProvider.GetBytes(randomBytes);
             return randomBytes;
+        }
+
+        public string Returnkey()
+        {
+            return key;
+        }
+        public string GetHashTotal()
+        {
+            return hashtotal;
         }
 
         #endregion
