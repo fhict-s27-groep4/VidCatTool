@@ -3,35 +3,35 @@ using Xunit;
 using VidCat_Tool.Controllers;
 using System.Security.Authentication;
 using NuGet.Frameworks;
-
+using BusinessLogicLibrary.PasswordHasher.BusinessLogicLibrary.PassHasher;
 
 namespace UnitTests
 {
     public class HasherUnitTest
     {
-        private readonly VidCat_Tool.Controllers.AccountController vidcat;
+        private readonly PasswordHasher PassHash;
 
         public HasherUnitTest()
         {
-            vidcat = new VidCat_Tool.Controllers.AccountController();
+            PassHash = new PasswordHasher();
         }
 
         [Fact]
         public void Hasher_Met_Salt_Twee_Keer_Hetzelfde()
         {
             string password = "henk";
-            vidcat.HashWithSalt(password);
-            string first = vidcat.hashtotal;
-            string key = vidcat.key;
-            var result = vidcat.checkpassword(password, key);
+            PassHash.HashWithSalt(password);
+            string first = PassHash.hashtotal;
+            string key = PassHash.key;
+            var result = PassHash.checkpassword(password, key);
             Assert.Equal(first, result);
         }
 
         [Fact]
         public void Twee_Keer_Niet_Dezelfde_Key()
         {
-            string een = vidcat.GenerateRandomCryptographicKey(64);
-            string twee = vidcat.GenerateRandomCryptographicKey(64);
+            string een = PassHash.GenerateRandomCryptographicKey(64);
+            string twee = PassHash.GenerateRandomCryptographicKey(64);
             Assert.NotEqual(een, twee);
         }
     }
