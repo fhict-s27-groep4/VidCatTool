@@ -4,30 +4,31 @@
     ViewData["Title"] = "Profile";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link href="~/css/Profile.css" rel="stylesheet" />
 
 <div class="ProfileContent">
     <div class="row userProfileRow">
-        <div class="col-sm-2 userProfileColumn">
+        <div class="col-sm-3 userProfileColumn">
             <div class="">
                 <img class="userProfileImage" src="~/images/user-placeholder.png" />
             </div>
             <button class="btn editButton">Edit</button>
         </div>
-        <div class="col-sm-10 userInformationColumn">
+        <div class="col-sm-9 userInformationColumn">
             <form method="post">
                 <div id="profileInfoTitle"><b>User information</b></div>
-                <input asp-for="Firstname" class="form-control">
-                <input asp-for="Lastname" class="form-control">
-                <div id="profileInfoTitle"><b>Address information</b></div>
-                <input asp-for="Country" class="form-control">
+                <input asp-for="Firstname" class="form-control inputField">
+                <input asp-for="Lastname" class="form-control inputField">
+                <div id="profileInfoTitle"><b>Address information inputField</b></div>
+                <input asp-for="Country" class="form-control inputField">
                 <div class="row">
-                    <div class="col-lg-9"><input asp-for="Streetname" class="form-control"></div>
-                    <div class="col-lg-3 NumberInput"><input asp-for="Housenumber" class="form-control"></div>
+                    <div class="col-lg-9"><input asp-for="Streetname" class="form-control inputField"></div>
+                    <div class="col-lg-3 NumberInput"><input asp-for="Housenumber" class="form-control inputFieldHouse"></div>
                 </div>
-                <input asp-for="Zip" class="form-control">
+                <input asp-for="Zip" class="form-control inputField">
                 <div id="profileInfoTitle"><b>Contact information</b></div>
-                <input asp-for="Phonenumber" class="form-control">
-                <input asp-for="Email" class="form-control">
+                <input asp-for="Phonenumber" class="form-control inputField">
+                <input asp-for="Email" class="form-control inputField">
             </form>
         </div>
     </div>
