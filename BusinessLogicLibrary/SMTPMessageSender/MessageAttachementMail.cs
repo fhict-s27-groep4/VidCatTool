@@ -5,10 +5,10 @@ using System.Text;
 
 namespace BusinessLogicLibrary.SMTPMessageSender
 {
-    class MessageMail
+    class MessageAttachementMail : IMessageAttachementMail
     {
         private MailMessage mailMessage;
-        public MessageMail(MailMessage _mailMessage)
+        public MessageAttachementMail(MailMessage _mailMessage)
         {
             mailMessage = _mailMessage;
         }
@@ -35,7 +35,7 @@ namespace BusinessLogicLibrary.SMTPMessageSender
 
         public void SetMessageAttachment(string _filePath)
         {
-            mailMessage.Attachments.Add(InstanceFactory.GetNewMailAttachement(_filePath));
+            MailMessage.Attachments.Add(InstanceFactory.GetNewMailAttachement(_filePath));
         }
     }
 }

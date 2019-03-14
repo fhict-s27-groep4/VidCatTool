@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BusinessLogicLibrary.SMTPMessageSender;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -14,6 +15,16 @@ namespace BusinessLogicLibrary
         public static System.Net.Mail.Attachment GetNewMailAttachement(string _filePath)
         {
             return new System.Net.Mail.Attachment(_filePath);
+        }
+
+        public static EMailSender GetNewEMailSender()
+        {
+            return new EMailSender();
+        }
+
+        public static IMessageAttachementMail GetNewMessageAttachementmail()
+        {
+            return new MessageAttachementMail(GetNewMailMessage());
         }
     }
 }

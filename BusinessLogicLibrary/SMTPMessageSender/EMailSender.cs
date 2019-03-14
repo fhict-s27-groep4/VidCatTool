@@ -7,23 +7,14 @@ namespace BusinessLogicLibrary.SMTPMessageSender
 {
     public class EMailSender
     {
-        public void Send(IList<string> _mailAddresses)
+        public void Send(IMessageMail _messageMail)
         {
-            MailMessage mail = new MailMessage();
             SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
-
-            mail.From = new MailAddress("jw.player.vidcattool.pt@gmail.com");
-            mail.To.Add("niek.sleddens@gmail.com");
-            mail.Subject = "Spam";
-            mail.Body = "This is for testing SMTP mail";
-            Attachment attachment = new Attachment(@"..\..\..\..\BusinessLogicLibrary\JsonReader\VideoFeed.json");
-            mail.Attachments.Add(attachment);
-
+            _messageMail.MailMessage.From = new MailAddress("jw.player.vidcattool.pt@gmail.com");
             SmtpServer.Port = 587;
             SmtpServer.Credentials = new System.Net.NetworkCredential("jw.player.vidcattool.pt@gmail.com", "Vliegende25Pinguin$");
             SmtpServer.EnableSsl = true;
-
-            SmtpServer.Send(mail);
+            SmtpServer.Send(_messageMail.MailMessage);
         }
     }
 }
