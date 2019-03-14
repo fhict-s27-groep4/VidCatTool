@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VidCat_Tool", "VidCat_Tool\VidCat_Tool.csproj", "{A67C86B4-547B-4A0F-8E1F-231D310BCF17}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{E614900E-486A-422F-B37A-30EE4C7A6698}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "UnitTests\UnitTests.csproj", "{E614900E-486A-422F-B37A-30EE4C7A6698}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
