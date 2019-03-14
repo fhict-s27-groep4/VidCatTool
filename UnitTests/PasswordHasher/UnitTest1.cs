@@ -3,7 +3,7 @@ using Xunit;
 using VidCat_Tool.Controllers;
 using System.Security.Authentication;
 using NuGet.Frameworks;
-using BusinessLogicLibrary.PasswordHasher.BusinessLogicLibrary.PassHasher;
+using BusinessLogicLibrary.Hasher;
 
 namespace UnitTests
 {
@@ -23,7 +23,7 @@ namespace UnitTests
             PassHash.HashWithSalt(password);
             string first = PassHash.hashtotal;
             string key = PassHash.key;
-            var result = PassHash.checkpassword(password, key);
+            var result = PassHash.CheckPassword(password, key);
             Assert.Equal(first, result);
         }
 
