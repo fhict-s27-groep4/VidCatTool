@@ -33,9 +33,10 @@ namespace VidCat_Tool.Controllers
             {
                 if(_loginHandler.ValidateUser(vm.UserName, vm.Password))
                 {
-                    return View("Dashboard");
+                    return View("../Home/Dashboard");
                 }
             }
+            TempData["FailedLoginAttempt"] = "The username or password were incorrect";
             return View();
         }        
     }

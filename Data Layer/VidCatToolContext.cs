@@ -27,9 +27,9 @@ namespace Data_Layer
                 .WithMany(r => r.Ratings);
         }
 
-        public DbSet<Video> Videos { get; set; }
-        public DbSet<Rating> Ratings { get; set; }
-        public DbSet<Role> Roles { get; set; }
-        public DbSet<User> Users { get; set; }
+        public DbSet<Video> Video { get; set; }
+        public DbSet<Rating> Rating { get; set; }
+        public DbSet<Role> Role { get; set; }
+        public DbSet<User> User { get; set; }
     }
 }
