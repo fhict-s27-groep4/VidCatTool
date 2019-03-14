@@ -17,12 +17,12 @@ namespace Data_Layer.Repository
 
         public IEnumerable<User> GetAllUsers()
         {
-            return _context.Users.Include(r => r.Role);
+            return _context.User.Include(r => r.Role);
         }
 
         public IEnumerable<User> GetUserByID(int id)
         {
-            return _context.Users.Include(r => r.Role).Where(i => i.RoleID == id);
+            return _context.User.Include(r => r.Role).Where(i => i.RoleID == id);
         }
     }
 }
