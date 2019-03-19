@@ -7,11 +7,11 @@ using System.Text;
 
 namespace BusinessLogicLibrary
 {
-    public class LoginHandler : ILoginHandler
+    public class AccountHandler : IAccountHandler
     {
         private readonly IUserRepository _userRepo;
 
-        public LoginHandler(IUserRepository userRepo)
+        public AccountHandler(IUserRepository userRepo)
         {
             _userRepo = userRepo;
         }

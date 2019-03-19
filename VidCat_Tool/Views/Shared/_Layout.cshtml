@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -38,18 +39,18 @@
                 </ul>
             </div>
         </div>
-            <div class="maincontainer col-9">
-                <div class="pageTitleAndUser">
-                    <div class="pageTitle">@ViewData["Title"]</div>
-                    <div class="pageUser">
-                        Session User <img src="~/images/user-placeholder.png" />
-                    </div>
-                </div>
-                <div class="contentcontainer">
-                    @RenderBody()
+        <div class="maincontainer col-9">
+            <div class="pageTitleAndUser">
+                <div class="pageTitle">@ViewData["Title"]</div>
+                <div class="pageUser">
+                    @Context.Session.GetString("Username")<img src="~/images/user-placeholder.png" />
                 </div>
             </div>
+            <div class="contentcontainer">
+                @RenderBody()
+            </div>
         </div>
+    </div>
     </div>
 
 

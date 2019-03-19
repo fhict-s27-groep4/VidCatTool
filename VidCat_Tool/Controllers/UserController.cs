@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace VidCat_Tool.Controllers
 {
+    [SessionCheck]
     public class UserController : Controller
     {
         public IActionResult Userprofile()
