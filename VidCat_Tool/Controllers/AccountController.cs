@@ -15,9 +15,9 @@ namespace VidCat_Tool.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly ILoginHandler _loginHandler;
+        private readonly IAccountHandler _loginHandler;
 
-        public AccountController(ILoginHandler loginHandler)
+        public AccountController(IAccountHandler loginHandler)
         {
             _loginHandler = loginHandler;
         }

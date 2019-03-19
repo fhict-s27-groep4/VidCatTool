@@ -43,7 +43,7 @@ namespace VidCat_Tool
             services.AddTransient<IRoleRepository, RoleRepository>();
             services.AddTransient<IVideoRepository, VideoRepository>();
 
-            services.AddTransient<ILoginHandler, LoginHandler>();
+            services.AddTransient<IAccountHandler, AccountHandler>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
