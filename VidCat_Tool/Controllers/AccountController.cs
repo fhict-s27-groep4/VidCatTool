@@ -42,6 +42,17 @@ namespace VidCat_Tool.Controllers
             }
             TempData["FailedLoginAttempt"] = "The username or password were incorrect";
             return View();
-        }        
+        }   
+        
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return View("../Account/Login");
+        }
+
+        public IActionResult ResetCredentials()
+        {
+            return View();
+        }
     }
 }
