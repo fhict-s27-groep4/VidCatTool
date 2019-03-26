@@ -47,7 +47,7 @@ namespace VidCat_Tool.Controllers
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
-            return View("../Account/Login");
+            return View();
         }
 
         public IActionResult ResetCredentials()
