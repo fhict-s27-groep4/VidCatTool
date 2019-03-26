@@ -10,16 +10,17 @@ using BusinessLogicLibrary;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using VidCat_Tool.ViewModels;
+using Microsoft.AspNetCore.Http;
 
 namespace VidCat_Tool.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly ILoginHandler _loginHandler;
+        private readonly IAccountHandler _accountHandler;
 
-        public AccountController(ILoginHandler loginHandler)
+        public AccountController(IAccountHandler accountHandler)
         {
-            _loginHandler = loginHandler;
+            _accountHandler = accountHandler;
         }
 
         [HttpGet]
@@ -33,13 +34,25 @@ namespace VidCat_Tool.Controllers
         {
             if (ModelState.IsValid)
             {
-                if(_loginHandler.ValidateUser(vm.UserName, vm.Password))
+                if(_accountHandler.ValidateUser(vm.UserName, vm.Password))
                 {
+                    HttpContext.Session.SetString("Username", vm.UserName);
                     return View("../Home/Dashboard");
                 }
             }
             TempData["FailedLoginAttempt"] = "The username or password were incorrect";
             return View();
-        }        
+        }   
+        
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return Redirect("../Account/Login");
+        }
+
+        public IActionResult ResetCredentials()
+        {
+            return View();
+        }
     }
 }

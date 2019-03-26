@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BusinessLogicLibrary
 {
-    public interface ILoginHandler
+    public interface IAccountHandler
     {
         bool ValidateUser(string username, string password);
     }

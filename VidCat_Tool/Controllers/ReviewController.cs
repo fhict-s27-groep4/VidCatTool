@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace VidCat_Tool.Controllers
 {
+    [SessionCheck]
     public class ReviewController : Controller
     {
         public IActionResult Review()

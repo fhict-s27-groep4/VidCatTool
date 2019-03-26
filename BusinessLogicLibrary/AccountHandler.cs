@@ -7,11 +7,11 @@ using System.Text;
 
 namespace BusinessLogicLibrary
 {
-    public class LoginHandler : ILoginHandler
+    public class AccountHandler : IAccountHandler
     {
         private readonly IUserRepository _userRepo;
 
-        public LoginHandler(IUserRepository userRepo)
+        public AccountHandler(IUserRepository userRepo)
         {
             _userRepo = userRepo;
         }
@@ -22,7 +22,7 @@ namespace BusinessLogicLibrary
             PasswordHasher hasher = new PasswordHasher();
 
             var users = _userRepo.GetAllUsers();
-            var loginUser = users.Where(u => u.Username.ToLower() == username.ToLower()).FirstOrDefault();
+            var loginUser = users.Where(u => u.Username == username).FirstOrDefault();
 
             if(loginUser.Password == hasher.CheckPassword(password, loginUser.PasswordSalt))
             {

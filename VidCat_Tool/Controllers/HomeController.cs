@@ -8,6 +8,7 @@ using VidCat_Tool.Models;
 
 namespace VidCat_Tool.Controllers
 {
+    [SessionCheck]
     public class HomeController : Controller
     {
         public IActionResult Dashboard()

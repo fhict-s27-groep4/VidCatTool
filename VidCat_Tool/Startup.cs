@@ -43,8 +43,10 @@ namespace VidCat_Tool
             services.AddTransient<IRoleRepository, RoleRepository>();
             services.AddTransient<IVideoRepository, VideoRepository>();
 
-            services.AddTransient<ILoginHandler, LoginHandler>();
+            services.AddTransient<IAccountHandler, AccountHandler>();
 
+            services.AddDistributedMemoryCache();
+            services.AddSession();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -65,6 +67,7 @@ namespace VidCat_Tool
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
+            app.UseSession();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
