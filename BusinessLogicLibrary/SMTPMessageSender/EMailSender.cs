@@ -7,13 +7,17 @@ namespace BusinessLogicLibrary.SMTPMessageSender
 {
     public class EMailSender
     {
-        public void Send(IMessageMail _messageMail)
+        private SmtpClient SmtpServer;
+        public EMailSender()
         {
-            SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
-            _messageMail.MailMessage.From = new MailAddress("jw.player.vidcattool.pt@gmail.com");
+            SmtpServer = new SmtpClient("smtp.gmail.com");
             SmtpServer.Port = 587;
             SmtpServer.Credentials = new System.Net.NetworkCredential("jw.player.vidcattool.pt@gmail.com", "Vliegende25Pinguin$");
             SmtpServer.EnableSsl = true;
+        }
+        public void Send(IMessageMail _messageMail)
+        {
+            _messageMail.MailMessage.From = new MailAddress("jw.player.vidcattool.pt@gmail.com");
             SmtpServer.Send(_messageMail.MailMessage);
         }
     }
