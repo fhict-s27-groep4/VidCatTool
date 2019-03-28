@@ -40,8 +40,8 @@ namespace VidCat_Tool
 
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IRatingRepository, RatingRepository>();
-            services.AddTransient<IRoleRepository, RoleRepository>();
             services.AddTransient<IVideoRepository, VideoRepository>();
+            services.AddTransient<ICategoryRepository, CategoryRepository>();
 
             services.AddTransient<IAccountHandler, AccountHandler>();
 

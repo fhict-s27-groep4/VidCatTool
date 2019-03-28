@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Data_Layer.Interface
 {
-    public interface IRoleRepository : IRepository<Role>
+    public interface ICategoryRepository : IRepository<Category>
     {
     }
 }
