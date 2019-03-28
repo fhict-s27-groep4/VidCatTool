@@ -6,10 +6,23 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace VidCat_Tool.Controllers
 {
-    [SessionCheck]
+    // [SessionCheck]
     public class ReviewController : Controller
     {
+        public IActionResult Info()
+        {
+            return View();
+        }
+
+        [HttpGet]
         public IActionResult Review()
+        {
+            // Hier moet de code komen om een random video te sturen naar de pagina voor een video te revieuwen.
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Review(int id)
         {
             return View();
         }

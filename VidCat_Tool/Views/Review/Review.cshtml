@@ -19,40 +19,25 @@
             <div class="row padmodelItem">
                 <div class="col-sm-4">Pleasure</div>
                 <div class="slidecontainer col-sm-4">
-                    <input type="range" min="1" max="5" value="1" class="slider" id="pleasureSlider">
+                    <input onclick="SliderClick()" type="range" min="0" max="5" value="0" class="slider" id="pleasureSlider">
                 </div>
                 <div class="col-sm-4" id="pleasureValue">Value</div>
             </div>
             <div class="row padmodelItem">
                 <div class="col-sm-4">Arrousal</div>
                 <div class="slidecontainer col-sm-4">
-                    <input type="range" min="1" max="5" value="1" class="slider" id="arrousalSlider">
+                    <input onclick="SliderClick()" type="range" min="0" max="5" value="0" class="slider" id="arrousalSlider">
                 </div>
                 <div class="col-sm-4" id="arrousalValue">Value</div>
             </div>
             <div class="row padmodelItem">
                 <div class="col-sm-4">Dominance</div>
                 <div class="slidecontainer col-sm-4">
-                    <input type="range" min="1" max="5" value="1" class="slider" id="dominanceSlider">
+                    <input onclick="SliderClick()" type="range" min="0" max="5" value="0" class="slider" id="dominanceSlider">
                 </div>
                 <div class="col-sm-4" id="dominanceValue">Value</div>
             </div>
         </div>
-        <script>
-            function SliderValue(nameOfSlider, value) {
-                var slider = document.getElementById(nameOfSlider);
-                var output = document.getElementById(value);
-                output.innerHTML = slider.value;
-
-                slider.oninput = function () {
-                    output.innerHTML = this.value;
-                }
-            }
-            SliderValue("pleasureSlider", "pleasureValue");
-            SliderValue("arrousalSlider", "arrousalValue");
-            SliderValue("dominanceSlider", "dominanceValue");
-        </script>
-
 
         <div class="reviewPart col-sm-6" id="Category">
             <h1>Category</h1>
@@ -72,7 +57,32 @@
             </div>
         </div>
     </div>
-    <div><button type="submit" class="btn prim-btn btn-submit disabled">Submit & Next Video</button></div>
+    <div><button type="submit" class="btn prim-btn btn-submit disabled" id="submitNextBtn">Submit & Next Video</button></div>
+    <div><button type="submit" class="btn prim-btn btn-submit-close disabled" id="submitCloseBtn">Submit & Close</button></div>
 
 </div>
+
+<script>
+    function SliderValue(nameOfSlider, value) {
+        var slider = document.getElementById(nameOfSlider);
+        var output = document.getElementById(value);
+        output.innerHTML = slider.value;
+
+        slider.oninput = function () {
+            output.innerHTML = this.value;
+        }
+    }
+    SliderValue("pleasureSlider", "pleasureValue");
+    SliderValue("arrousalSlider", "arrousalValue");
+    SliderValue("dominanceSlider", "dominanceValue");
+
+    function SliderClick() {
+        var submitNextBtn = document.getElementById("submitNextBtn").classList;
+        var submitCloseButton = document.getElementById("submitCloseBtn").classList;
+        submitCloseButton.remove("disabled");
+        submitCloseButton.add("active");
+        submitNextBtn.remove("disabled");
+        submitNextBtn.add("active");
+    }
+</script>
 
