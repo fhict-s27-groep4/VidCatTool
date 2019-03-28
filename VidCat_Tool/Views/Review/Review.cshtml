@@ -1,8 +1,11 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Review";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+@using VidCat_Tool.ViewModels;
+@model ReviewViewModel
+
 <link href="~/css/review.css" rel="stylesheet" />
 
 <div class="reviewContainer">
@@ -21,21 +24,21 @@
                 <div class="slidecontainer col-sm-4">
                     <input onclick="SliderClick()" type="range" min="0" max="5" value="0" class="slider" id="pleasureSlider">
                 </div>
-                <div class="col-sm-4" id="pleasureValue">Value</div>
+                <label asp-for="Pleasure" class="col-sm-4" id="pleasureValue">Value</label>
             </div>
             <div class="row padmodelItem">
                 <div class="col-sm-4">Arrousal</div>
                 <div class="slidecontainer col-sm-4">
                     <input onclick="SliderClick()" type="range" min="0" max="5" value="0" class="slider" id="arrousalSlider">
                 </div>
-                <div class="col-sm-4" id="arrousalValue">Value</div>
+                <label asp-for="Arousal" class="col-sm-4" id="arrousalValue">Value</label>
             </div>
             <div class="row padmodelItem">
                 <div class="col-sm-4">Dominance</div>
                 <div class="slidecontainer col-sm-4">
                     <input onclick="SliderClick()" type="range" min="0" max="5" value="0" class="slider" id="dominanceSlider">
                 </div>
-                <div class="col-sm-4" id="dominanceValue">Value</div>
+                <label asp-for="Dominance" class="col-sm-4" id="dominanceValue">Value</label>
             </div>
         </div>
 
