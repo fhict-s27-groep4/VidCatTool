@@ -21,7 +21,7 @@ namespace BusinessLogicLibrary
             bool attempt = false;
             PasswordHasher hasher = new PasswordHasher();
 
-            var users = _userRepo.GetAllUsers();
+            var users = _userRepo.GetAll();
             var loginUser = users.Where(u => u.Username == username).FirstOrDefault();
 
             if(loginUser.Password == hasher.CheckPassword(password, loginUser.PasswordSalt))
