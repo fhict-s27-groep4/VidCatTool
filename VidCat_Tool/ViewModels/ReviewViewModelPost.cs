@@ -13,10 +13,13 @@ namespace VidCat_Tool.ViewModels
         [Required]
         public int IABID { get; set; }
         [Required]
+        [Range(1, 5)]
         public int Pleasure { get; set; }
         [Required]
+        [Range(1, 5)]
         public int Arrousal { get; set; }
         [Required]
+        [Range(1, 5)]
         public int Dominance { get; set; }
     }
 }

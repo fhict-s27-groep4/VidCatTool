@@ -80,12 +80,24 @@
     SliderValue("dominanceSlider", "dominanceValue");
 
     function SliderClick() {
+        var pleasureIndex = document.getElementById("pleasureValue").innerHTML;
+        var arrousalIndex = document.getElementById("arrousalValue").innerHTML;
+        var domincaneIndex = document.getElementById("dominanceValue").innerHTML;
         var submitNextBtn = document.getElementById("submitNextBtn").classList;
         var submitCloseButton = document.getElementById("submitCloseBtn").classList;
-        submitCloseButton.remove("disabled");
-        submitCloseButton.add("active");
-        submitNextBtn.remove("disabled");
-        submitNextBtn.add("active");
+        
+        if (pleasureIndex == 0 || arrousalIndex == 0 || domincaneIndex == 0) {
+            submitCloseButton.remove("active");
+            submitCloseButton.add("disabled");
+            submitNextBtn.remove("active");
+            submitNextBtn.add("disabled");
+        }
+        else {
+            submitCloseButton.remove("disabled");
+            submitCloseButton.add("active");
+            submitNextBtn.remove("disabled");
+            submitNextBtn.add("active");
+        }
     }
 </script>
 
