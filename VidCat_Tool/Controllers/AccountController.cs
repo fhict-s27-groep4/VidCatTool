@@ -30,11 +30,11 @@ namespace VidCat_Tool.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(LoginViewModel vm)
+        public async Task<IActionResult> Login(LoginViewModel vm)
         {
             if (ModelState.IsValid)
             {
-                if(_accountHandler.ValidateUser(vm.UserName, vm.Password))
+                if(await _accountHandler.ValidateUser(vm.UserName, vm.Password))
                 {
                     HttpContext.Session.SetString("Username", vm.UserName);
                     return View("../Home/Dashboard");

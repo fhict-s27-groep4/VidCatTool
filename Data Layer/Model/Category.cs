@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace Data_Layer.Model
 {
     public class Category
     {
+        [Key]
         public int UniqueID { get; set; }
         public int ParentID { get; set; }
         public string Name { get; set; }

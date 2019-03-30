@@ -6,17 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace VidCat_Tool.Controllers
 {
-    // [SessionCheck]
+    [SessionCheck]
     public class UserController : Controller
     {
         public IActionResult Userprofile()
         {
             return View();
-        }
-
-        public void GetFirstName(string FirstName) // nieuw wachtwoord hashen
-        {
-
         }
     }
 }

@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace BusinessLogicLibrary
 {
     public interface IAccountHandler
     {
-        bool ValidateUser(string username, string password);
+        Task<bool> ValidateUser(string username, string password);
     }
 }
