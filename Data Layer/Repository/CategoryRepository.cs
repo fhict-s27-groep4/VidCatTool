@@ -6,9 +6,9 @@ using System.Text;
 
 namespace Data_Layer.Repository
 {
-    public class RoleRepository : Repository<Role>, IRoleRepository
+    public class CategoryRepository : Repository<Category>, ICategoryRepository
     {
-        public RoleRepository(VidCatToolContext context) : base(context)
+        public CategoryRepository(VidCatToolContext context) : base(context)
         {
 
         }

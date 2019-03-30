@@ -20,8 +20,7 @@ namespace Data_Layer.Model
         public string City { get; set; }
         public string Streetaddress { get; set; }
         public string Zipcode { get; set; }
-        public int RoleID { get; set; }
-        public Role Role { get; set; }
+        public bool IsAdmin { get; set; }
         public ICollection<Rating> Ratings { get; set; }
     }
 }
