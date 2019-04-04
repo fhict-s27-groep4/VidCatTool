@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Data_Layer.Interface
 {
     public interface IRepository<T> where T : class
     {
-        IEnumerable<T> GetAll();
+        Task<IEnumerable<T>> GetAll();
 
-        IEnumerable<T> Find(Func<T, bool> predicate);
-
-        T GetByID(int id);
+        Task<T> GetByID(int id);
 
         void Create(T entity);
 
@@ -18,6 +17,6 @@ namespace Data_Layer.Interface
 
         void Delete(T entity);
 
-        int Count(Func<T, bool> predicate);
+        Task<int> Count();
     }
 }

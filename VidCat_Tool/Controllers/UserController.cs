@@ -13,10 +13,5 @@ namespace VidCat_Tool.Controllers
         {
             return View();
         }
-
-        public void GetFirstName(string FirstName) // nieuw wachtwoord hashen
-        {
-
-        }
     }
 }

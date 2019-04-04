@@ -1,0 +1,152 @@
+﻿.reviewContainer {
+    width: 75%;
+    background-color: white;
+    border: 1px solid #bdbdbd;
+    height: auto;
+    margin: auto;
+    margin-top: 50px;
+    padding: 2.5%;
+    overflow: hidden;
+}
+
+.reviewPart {
+    width: 48.75%;
+    background-color: white;
+    border: 1px solid #bdbdbd;
+    min-height: 260px;
+    height: auto;
+    padding: 2.5%;
+}
+
+.reviewRow {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+#Category {
+    margin-left: 2.5%;
+}
+
+.reviewPart h1 {
+    padding-bottom: 2%;
+    border-bottom: 1px solid #bdbdbd;
+    color: #bdbdbd;
+    margin-bottom: 4%;
+}
+
+.padmodelItem {
+    margin-top: 1%;
+}
+
+.slider {
+    margin-top: 5%;
+    -webkit-appearance: none;
+    width: 32%;
+    height: 5px;
+    border-radius: 5px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+    .slider:hover {
+        opacity: 1;
+    }
+
+    .slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #bdbdbd;
+        cursor: pointer;
+    }
+
+    .slider::-moz-range-thumb {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background: #bdbdbd;
+        cursor: pointer;
+    }
+
+.custom-select {
+    width: 48.75%;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-left: 0px;
+}
+
+#subCategory {
+    margin-left: 2.5%;
+}
+
+.custom-select select {
+    width: 100%;
+    height: 50px;
+    padding: 2%;
+    border-radius: 5px;
+}
+
+.custom-select select:focus {
+    outline: none;
+}
+
+.reviewVideo {
+    width: 100%;
+    height: auto;
+    padding: 2.5%;
+    border: 1px solid #bdbdbd;
+    margin-bottom: 2.5%;
+}
+
+.reviewVideo video {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+}
+
+.btn-submit {
+    float: right;
+    padding: 1%;
+    position: relative;
+    margin: 2.5%;
+    margin-right: 0px;
+    margin-left: auto;
+    width: auto;
+    margin-bottom: 0%;
+}
+
+.btn-submit-close {
+    float: right;
+    padding: 1%;
+    position: relative;
+    margin: 2.5%;
+    margin-right: 0px;
+    margin-left: auto;
+    width: auto;
+    margin-bottom: 0%;
+    margin-right: 1%;
+}
+
+.btn-startcontainer {
+    width: 65%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+}
+
+.btn-start-review {
+    width: 100%;
+    padding: 5px;
+}
+
+input[type=range]::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #bdbdbd;
+}

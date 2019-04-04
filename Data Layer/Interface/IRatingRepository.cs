@@ -2,13 +2,16 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Data_Layer.Interface
 {
     public interface IRatingRepository : IRepository<Rating>
     {
-        IEnumerable<Rating> GetAllRatings();
+        Task<IEnumerable<Rating>> GetAllRatings();
 
-        IEnumerable<Rating> GetRatingByID();
+        Task<Rating> GetRatingByID(int id);
+
+        Task<IEnumerable<Rating>> GetRatingsFromUser(string username);
     }
 }

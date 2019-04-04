@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Data_Layer.Repository
 {
@@ -16,11 +17,11 @@ namespace Data_Layer.Repository
             _context = context;
         }
 
-        protected void Save() => _context.SaveChanges();
+        protected async void Save() => await _context.SaveChangesAsync();
 
-        public int Count(Func<T, bool> predicate)
+        public async Task<int> Count()
         {
-            return _context.Set<T>().Where(predicate).Count();
+            return await _context.Set<T>().CountAsync();
         }
 
         public void Create(T entity)
@@ -35,19 +36,14 @@ namespace Data_Layer.Repository
             Save();
         }
 
-        public IEnumerable<T> Find(Func<T, bool> predicate)
+        public async Task<IEnumerable<T>> GetAll()
         {
-            return _context.Set<T>().Where(predicate);
+            return await _context.Set<T>().ToListAsync();
         }
 
-        public IEnumerable<T> GetAll()
+        public async Task<T> GetByID(int id)
         {
-            return _context.Set<T>();
-        }
-
-        public T GetByID(int id)
-        {
-            return _context.Set<T>().Find(id);
+            return await _context.Set<T>().FindAsync(id);
         }
 
         public void Update(T entity)

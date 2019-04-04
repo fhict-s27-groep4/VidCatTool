@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace BusinessLogicLibrary
 {
@@ -16,12 +17,12 @@ namespace BusinessLogicLibrary
             _userRepo = userRepo;
         }
 
-        public bool ValidateUser(string username, string password)
+        public async Task<bool> ValidateUser(string username, string password)
         {
             bool attempt = false;
             PasswordHasher hasher = new PasswordHasher();
 
-            var users = _userRepo.GetAll();
+            var users = await _userRepo.GetAll();
             var loginUser = users.Where(u => u.Username == username).FirstOrDefault();
 
             if(loginUser.Password == hasher.CheckPassword(password, loginUser.PasswordSalt))

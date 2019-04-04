@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewData["Title"] = "Review Information";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/css/review.css" rel="stylesheet" />
+
+<div class="reviewContainer">
+    <div class="row noMarginRow">
+        <div class="padInfo col-sm-6">
+            <h1>PAD-Model</h1>
+            <p>
+                PAD uses three numerical dimensions, Pleasure, Arousal and Dominance to represent all emotions.
+                These three numerical dimensions are categoriserd from 1 to 5. A video cannot contain one of these three numerical dimensions with a number of 0.
+            </p>
+        </div>
+        <div class="iabInfo col-sm-6">
+            <h1>IAB Taxonomy</h1>
+            <p>The IAB Content Taxonomy is used to categorise the video in its category. The taxonomy uses a couple of tier categories.</p>
+        </div>
+    </div>
+    <div class="btn-startcontainer">
+        <a asp-controller="Review" asp-action="Review" class="btn prim-btn btn-start-review">Start Reviewing</a>
+    </div>
+</div>
+
+
