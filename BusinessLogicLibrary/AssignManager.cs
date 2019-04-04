@@ -18,10 +18,10 @@ namespace BusinessLogicLibrary
         public Video AssignRandomVideo()
         {
             //JSON File de link van de video uithalen en het video id samen returnen in een viewmodel
-            ReaderJson jason = new ReaderJson();
+            ReaderJson json = new ReaderJson();
             var video = ConvertHandler.ConvertTo<Video>(videoRepo.GetRandomVideo());
-            jason.GetVideoUrl(video.UrlIdentity);
-            
+            video.VideoURL = json.GetVideoUrl(video.UrlIdentity);
+            return video;
         }
     }
 }

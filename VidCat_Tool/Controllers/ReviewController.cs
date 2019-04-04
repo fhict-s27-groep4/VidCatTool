@@ -21,8 +21,11 @@ namespace VidCat_Tool.Controllers
         [HttpGet]
         public IActionResult Review()
         {
-            // Hier moet de code komen om een random video te sturen naar de pagina voor een video te revieuwen.
-            return View();
+            ReviewViewModel vm = new ReviewViewModel();
+            var video = assignManager.AssignRandomVideo();
+            vm.ReviewGetInfo.VideoIdentity = video.UrlIdentity;
+            vm.ReviewGetInfo.Videolink = video.VideoURL;
+            return View(vm);
         }
 
         [HttpPost]

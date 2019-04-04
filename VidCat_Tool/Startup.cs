@@ -44,6 +44,7 @@ namespace VidCat_Tool
             services.AddTransient<ICategoryRepository, CategoryRepository>();
 
             services.AddTransient<IAccountHandler, AccountHandler>();
+            services.AddTransient<IAssignManager, AssignManager>();
 
             services.AddDistributedMemoryCache();
             services.AddSession();
