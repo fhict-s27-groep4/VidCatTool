@@ -7,5 +7,6 @@ namespace Data_Layer.Interface
 {
     public interface IVideoRepository : IRepository<Video>
     {
+        Video GetRandomVideo();
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BusinessLogicLibrary;
 using Microsoft.AspNetCore.Mvc;
 using VidCat_Tool.ViewModels;
 
@@ -10,16 +11,21 @@ namespace VidCat_Tool.Controllers
     // [SessionCheck]
     public class ReviewController : Controller
     {
-        public IActionResult Info()
+        private readonly IAssignManager assignManager;
+
+        public ReviewController(IAssignManager assignManager)
         {
-            return View();
+            this.assignManager = assignManager;
         }
 
         [HttpGet]
         public IActionResult Review()
         {
-            // Hier moet de code komen om een random video te sturen naar de pagina voor een video te revieuwen.
-            return View();
+            ReviewViewModel vm = new ReviewViewModel();
+            var video = assignManager.AssignRandomVideo();
+            vm.ReviewGetInfo.VideoIdentity = video.UrlIdentity;
+            vm.ReviewGetInfo.Videolink = video.VideoURL;
+            return View(vm);
         }
 
         [HttpPost]
