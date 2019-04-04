@@ -11,10 +11,12 @@ namespace BusinessLogicLibrary
     public class AccountHandler : IAccountHandler
     {
         private readonly IUserRepository _userRepo;
+        private ApplicationUser _appUser;
 
-        public AccountHandler(IUserRepository userRepo)
+        public AccountHandler(IUserRepository userRepo, ApplicationUser appUser)
         {
             _userRepo = userRepo;
+            _appUser = appUser;
         }
 
         public async Task<bool> ValidateUser(string username, string password)
@@ -28,6 +30,7 @@ namespace BusinessLogicLibrary
             if(loginUser.Password == hasher.CheckPassword(password, loginUser.PasswordSalt))
             {
                 attempt = true;
+                _appUser = ConvertHandler.ConvertTo<ApplicationUser>(loginUser);
             }
             else
             {
