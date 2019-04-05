@@ -21,7 +21,6 @@ namespace BusinessLogicLibrary
 
         public async Task<bool> ValidateUser(string username, string password)
         {
-            bool attempt = false;
             PasswordHasher hasher = new PasswordHasher();
 
             var users = await _userRepo.GetAll();
@@ -29,15 +28,18 @@ namespace BusinessLogicLibrary
 
             if(loginUser.Password == hasher.CheckPassword(password, loginUser.PasswordSalt))
             {
-                attempt = true;
                 _appUser = ConvertHandler.ConvertTo<ApplicationUser>(loginUser);
+                return true;
             }
             else
             {
-                attempt = false;
+                return false;
             }
+        }
 
-            return attempt;
+        public ApplicationUser ReturnValidatedUser()
+        {
+            return this._appUser;
         }
     }
 }

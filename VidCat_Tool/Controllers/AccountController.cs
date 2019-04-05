@@ -17,13 +17,11 @@ namespace VidCat_Tool.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly IAccountHandler _accountHandler;
-        private readonly IServiceProvider appUserService;
+        private readonly IAccountHandler accountHandler;
 
-        public AccountController(IAccountHandler accountHandler, IServiceProvider appUserService)
+        public AccountController(IAccountHandler accountHandler)
         {
-            _accountHandler = accountHandler;
-            this.appUserService = appUserService;
+            this.accountHandler = accountHandler;
         }
 
         [HttpGet]
@@ -37,9 +35,9 @@ namespace VidCat_Tool.Controllers
         {
             if (ModelState.IsValid)
             {
-                if(await _accountHandler.ValidateUser(vm.UserName, vm.Password))
+                if(await accountHandler.ValidateUser(vm.UserName, vm.Password))
                 {
-                    var appUser = (ApplicationUser)appUserService.GetRequiredService(typeof(ApplicationUser)); // Is null
+                    var appUser = accountHandler.ReturnValidatedUser();
                     HttpContext.Session.SetString("Username", appUser.Username);
                     HttpContext.Session.SetString("UserID", appUser.UserID);
                     HttpContext.Session.SetString("IsAdmin", appUser.IsAdmin.ToString());
@@ -53,7 +51,7 @@ namespace VidCat_Tool.Controllers
         
         public IActionResult Logout()
         {
-            var appUser = (ApplicationUser)appUserService.GetService(typeof(ApplicationUser));
+            var appUser = accountHandler.ReturnValidatedUser();
             HttpContext.Session.Clear();
             appUser.Reset();
 

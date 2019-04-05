@@ -8,5 +8,7 @@ namespace BusinessLogicLibrary
     public interface IAccountHandler
     {
         Task<bool> ValidateUser(string username, string password);
+
+        ApplicationUser ReturnValidatedUser();
     }
 }

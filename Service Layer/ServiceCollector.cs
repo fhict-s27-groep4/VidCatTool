@@ -20,9 +20,10 @@ namespace Service_Layer
             services.AddTransient<IRatingRepository, RatingRepository>();
             services.AddTransient<IVideoRepository, VideoRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
-            services.AddSingleton<ApplicationUser>();
 
+            services.AddSingleton<ApplicationUser>();
             services.AddTransient<IAccountHandler, AccountHandler>();
+            services.AddTransient<IAssignManager, AssignManager>();
             return services;
         }
 

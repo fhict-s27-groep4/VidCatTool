@@ -8,7 +8,7 @@ using VidCat_Tool.ViewModels;
 
 namespace VidCat_Tool.Controllers
 {
-    // [SessionCheck]
+    [SessionCheck]
     public class ReviewController : Controller
     {
         private readonly IAssignManager assignManager;
@@ -22,6 +22,7 @@ namespace VidCat_Tool.Controllers
         public IActionResult Review()
         {
             ReviewViewModel vm = new ReviewViewModel();
+            vm.ReviewGetInfo = new ReviewViewModelGet();
             var video = assignManager.AssignRandomVideo();
             vm.ReviewGetInfo.VideoIdentity = video.UrlIdentity;
             vm.ReviewGetInfo.Videolink = video.VideoURL;
@@ -30,6 +31,11 @@ namespace VidCat_Tool.Controllers
 
         [HttpPost]
         public IActionResult Review(ReviewViewModelPost vm)
+        {
+            return View();
+        }
+
+        public IActionResult Info()
         {
             return View();
         }
