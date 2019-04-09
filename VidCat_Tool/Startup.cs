@@ -35,7 +35,9 @@ namespace VidCat_Tool
             services.RegisterRepositoryServices(Configuration);
 
             services.AddDistributedMemoryCache();
-            services.AddSession();
+            services.AddSession(options =>
+                options.Cookie.IsEssential = true
+            );
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 

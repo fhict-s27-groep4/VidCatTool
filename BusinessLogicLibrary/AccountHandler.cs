@@ -8,15 +8,13 @@ using System.Threading.Tasks;
 
 namespace BusinessLogicLibrary
 {
-    public class AccountHandler : IAccountHandler
+    public class AccountHandler
     {
         private readonly IUserRepository _userRepo;
-        private ApplicationUser _appUser;
 
-        public AccountHandler(IUserRepository userRepo, ApplicationUser appUser)
+        public AccountHandler(IUserRepository userRepo)
         {
             _userRepo = userRepo;
-            _appUser = appUser;
         }
 
         public async Task<bool> ValidateUser(string username, string password)
@@ -28,18 +26,12 @@ namespace BusinessLogicLibrary
 
             if(loginUser.Password == hasher.CheckPassword(password, loginUser.PasswordSalt))
             {
-                _appUser = ConvertHandler.ConvertTo<ApplicationUser>(loginUser);
                 return true;
             }
             else
             {
                 return false;
             }
-        }
-
-        public ApplicationUser ReturnValidatedUser()
-        {
-            return this._appUser;
         }
     }
 }

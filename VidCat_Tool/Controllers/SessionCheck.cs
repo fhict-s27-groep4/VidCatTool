@@ -14,8 +14,9 @@ namespace VidCat_Tool.Controllers
     {
         public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
-            if (filterContext.HttpContext.Session.GetString("Username") == null)
+            if (string.IsNullOrEmpty(filterContext.HttpContext.Session.GetString("Username")))
             {
+                var test = filterContext.HttpContext.Session.GetString("Username");
                 filterContext.Result = new RedirectToRouteResult(
                     new RouteValueDictionary {
                                 { "Controller", "Account" },

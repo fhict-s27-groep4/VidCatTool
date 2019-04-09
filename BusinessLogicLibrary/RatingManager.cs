@@ -4,8 +4,7 @@ using System.Text;
 
 namespace BusinessLogicLibrary
 {
-    public interface IAssignManager
+    public class RatingManager
     {
-        Video AssignRandomVideo();
     }
 }

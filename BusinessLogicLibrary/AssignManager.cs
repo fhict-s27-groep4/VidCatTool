@@ -6,7 +6,7 @@ using System.Text;
 
 namespace BusinessLogicLibrary
 {
-    public class AssignManager : IAssignManager
+    public class AssignManager
     {
         private readonly IVideoRepository videoRepo;
 
@@ -15,11 +15,11 @@ namespace BusinessLogicLibrary
             this.videoRepo = videoRepo;
         }
 
-        public Video AssignRandomVideo()
+        public Video AssignRandomVideo(string username)
         {
             //JSON File de link van de video uithalen en het video id samen returnen in een viewmodel
             ReaderJson json = new ReaderJson();
-            var video = ConvertHandler.ConvertTo<Video>(videoRepo.GetRandomVideo());
+            var video = ConvertHandler.ConvertTo<Video>(videoRepo.GetRandomVideo(username));
             video.VideoURL = json.GetVideoUrl(video.UrlIdentity);
             return video;
         }

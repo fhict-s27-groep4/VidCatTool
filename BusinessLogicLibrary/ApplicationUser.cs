@@ -8,35 +8,19 @@ namespace BusinessLogicLibrary
 {
     public class ApplicationUser
     {
-        public string UserID { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public string PasswordSalt { get; set; }
-        public string Email { get; set; }
-        public string Firstname { get; set; }
-        public string Lastname { get; set; }
-        public string Phonenumber { get; set; }
-        public string Country { get; set; }
-        public string City { get; set; }
-        public string Streetaddress { get; set; }
-        public string Zipcode { get; set; }
-        public bool? IsAdmin { get; set; }
-
-        public void Reset()
-        {
-            UserID = string.Empty;
-            Username = string.Empty;
-            Password = string.Empty;
-            PasswordSalt = string.Empty;
-            Firstname = string.Empty;
-            Lastname = string.Empty;
-            Phonenumber = string.Empty;
-            Country = string.Empty;
-            City = string.Empty;
-            Streetaddress = string.Empty;
-            Zipcode = string.Empty;
-            IsAdmin = null;
-
-        }
+        public string UserID { get; private set; }
+        public string Username { get; private set; }
+        public string Password { get; private set; }
+        public string PasswordSalt { get; private set; }
+        public string Email { get; private set; }
+        public string Firstname { get; private set; }
+        public string Lastname { get; private set; }
+        public string Phonenumber { get; private set; }
+        public string Country { get; private set; }
+        public string City { get; private set; }
+        public string Streetaddress { get; private set; }
+        public string Zipcode { get; private set; }
+        public bool IsAdmin { get; private set; }
+        
     }
 }

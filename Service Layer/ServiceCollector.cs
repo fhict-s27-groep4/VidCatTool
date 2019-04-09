@@ -20,20 +20,10 @@ namespace Service_Layer
             services.AddTransient<IRatingRepository, RatingRepository>();
             services.AddTransient<IVideoRepository, VideoRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
-
-            services.AddSingleton<ApplicationUser>();
-            services.AddTransient<IAccountHandler, AccountHandler>();
-            services.AddTransient<IAssignManager, AssignManager>();
-            return services;
-        }
-
-        public static IServiceCollection RenewSingletonService<T>(this IServiceCollection services)
-        {
-            var serviceDescriptor = services.FirstOrDefault(descriptor => descriptor.ServiceType == typeof(T));
-            if (serviceDescriptor != null) services.Remove(serviceDescriptor);
-
-            services.AddSingleton<ApplicationUser>();
-
+            
+            services.AddTransient<AccountHandler>();
+            services.AddTransient<AssignManager>();
+            services.AddTransient<UserManager>();
             return services;
         }
     }

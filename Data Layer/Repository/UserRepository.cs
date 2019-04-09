@@ -14,5 +14,10 @@ namespace Data_Layer.Repository
         {
 
         }
+
+        public User GetUserByName(string username)
+        {
+            return _context.User.Where(user => user.Username == username).FirstOrDefault();
+        }
     }
 }

@@ -15,9 +15,9 @@ namespace Data_Layer.Repository
 
         }
 
-        public Video GetRandomVideo()
+        public Video GetRandomVideo(string username)
         {
-           var videos = _context.Video.Include(x => x.Ratings);
+           var videos = _context.Video.Include(x => x.Ratings).ThenInclude(u => u.User);
            return videos.Where(count => count.Ratings.Count < 3).OrderByDescending(count => count.Ratings.Count).FirstOrDefault();
         }
     }
