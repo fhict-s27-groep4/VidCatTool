@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
+using MySql.Data.MySqlClient;
 using System.Linq;
 
 namespace Data_Layer.Repository
@@ -17,8 +18,8 @@ namespace Data_Layer.Repository
 
         public Video GetRandomVideo(string username)
         {
-           var videos = _context.Video.Include(x => x.Ratings).ThenInclude(u => u.User);
-           return videos.Where(count => count.Ratings.Count < 3).OrderByDescending(count => count.Ratings.Count).FirstOrDefault();
+            var randomvid = _context.Video.FromSql("CALL GetRandomVideo(@username)", new MySqlParameter("@username", username));
+            return randomvid.FirstOrDefault();
         }
     }
 }
