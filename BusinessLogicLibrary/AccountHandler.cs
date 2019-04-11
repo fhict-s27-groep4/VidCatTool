@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLogicLibrary
 {
-    public class AccountHandler : IAccountHandler
+    public class AccountHandler
     {
         private readonly IUserRepository _userRepo;
 
@@ -19,7 +19,6 @@ namespace BusinessLogicLibrary
 
         public async Task<bool> ValidateUser(string username, string password)
         {
-            bool attempt = false;
             PasswordHasher hasher = new PasswordHasher();
 
             var users = await _userRepo.GetAll();
@@ -27,14 +26,12 @@ namespace BusinessLogicLibrary
 
             if(loginUser.Password == hasher.CheckPassword(password, loginUser.PasswordSalt))
             {
-                attempt = true;
+                return true;
             }
             else
             {
-                attempt = false;
+                return false;
             }
-
-            return attempt;
         }
     }
 }

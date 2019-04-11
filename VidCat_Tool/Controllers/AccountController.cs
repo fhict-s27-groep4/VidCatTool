@@ -11,16 +11,19 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using VidCat_Tool.ViewModels;
 using Microsoft.AspNetCore.Http;
+using Service_Layer;
 
 namespace VidCat_Tool.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly IAccountHandler _accountHandler;
+        private readonly AccountHandler accountHandler;
+        private readonly UserManager userManager;
 
-        public AccountController(IAccountHandler accountHandler)
+        public AccountController(AccountHandler accountHandler, UserManager userManager)
         {
-            _accountHandler = accountHandler;
+            this.accountHandler = accountHandler;
+            this.userManager = userManager;
         }
 
         [HttpGet]
@@ -34,9 +37,13 @@ namespace VidCat_Tool.Controllers
         {
             if (ModelState.IsValid)
             {
-                if(await _accountHandler.ValidateUser(vm.UserName, vm.Password))
+                if(await accountHandler.ValidateUser(vm.UserName, vm.Password))
                 {
-                    HttpContext.Session.SetString("Username", vm.UserName);
+                    ApplicationUser appUser = userManager.GetLoginUser(vm.UserName);
+                    HttpContext.Session.SetString("Username", appUser.Username);
+                    HttpContext.Session.SetString("UserID", appUser.UserID);
+                    HttpContext.Session.SetString("IsAdmin", appUser.IsAdmin.ToString());
+
                     return View("../Home/Dashboard");
                 }
             }

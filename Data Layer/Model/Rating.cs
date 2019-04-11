@@ -9,7 +9,7 @@ namespace Data_Layer.Model
     {
         [Key]
         public int RatingID { get; set; }
-        public int UserID { get; set; }
+        public string UserID { get; set; }
         public User User { get; set; }
         public int VideoID { get; set; }
         public Video Video { get; set; }

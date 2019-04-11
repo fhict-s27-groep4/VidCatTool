@@ -45,7 +45,7 @@ namespace BusinessLogicLibrary.JsonReader
 
         public string GetVideoUrl(string _mediaID)
         {
-            return FindVidUrl(_mediaID, @"..\..\..\..\BusinessLogicLibrary\JsonReader\VideoFeed.json");
+            return FindVidUrl(_mediaID, @"..\BusinessLogicLibrary\JsonReader\VideoFeed.json");
         }
     }
 }

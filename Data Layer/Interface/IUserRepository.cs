@@ -7,5 +7,6 @@ namespace Data_Layer.Interface
 {
     public interface IUserRepository : IRepository<User>
     {
+        User GetUserByName(string username);
     }
 }
