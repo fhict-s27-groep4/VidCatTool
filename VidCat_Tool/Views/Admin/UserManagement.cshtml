@@ -1,21 +1,108 @@
-﻿
+﻿@model VidCat_Tool.ViewModels.AdminViewModel
+
 @{
     ViewData["Title"] = "UserManagement";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<!doctype html>
+<html lang="en">
 <head>
+    <meta charset="utf-8">
+    @*<script type="text/javascript" src="~/js/site.js"></script>
+        <script type="text/javascript" src="~/js/site.min.js"></script>*@
+    @*<link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/flick/jquery-ui.css">
+        <link rel="stylesheet" href="https://simeydotme.github.io/jQuery-ui-Slider-Pips/dist/css/jqueryui.min.css" />
+        <link rel="stylesheet" href="https://simeydotme.github.io/jQuery-ui-Slider-Pips/dist/css/jquery-ui-slider-pips.min.css" />*@
+    @*<link rel="stylesheet" href="https://simeydotme.github.io/jQuery-ui-Slider-Pips/dist/css/app.min.css" />*@
+
+    @*<script type="text/javascript" src="~/lib/jquery/dist/jquery.js"></script>
+        <script type="text/javascript" src="https://simeydotme.github.io/jQuery-ui-Slider-Pips/dist/js/jquery-plus-ui.min.js"></script>
+        <script type="text/javascript" src="https://simeydotme.github.io/jQuery-ui-Slider-Pips/dist/js/jquery-ui-slider-pips.js"></script>*@
+
+
+
+    @*<link rel="stylesheet" href="~/lib/jquery-ui/dist/css/jquery-ui.css" />
+    <link rel="stylesheet" href="~/lib/jquery-ui/dist/css/jquery-ui.min.css" />*@
+
+    <script type="text/javascript" src="~/lib/jquery/dist/jquery.js"></script>
+    @*<script type="text/javascript" src="~/lib/jquery-ui/dist/js/jquery-ui.js"></script>*@
+
     <link href="~/css/UserManagement.css" rel="stylesheet" />
+
+    @*<script type="text/javascript" src="~/js/elements/multirange.js"></script>*@
+
+    @*---------------------------------------------------*@
+
+    @*<script>
+        var sliderA = new Slider("#slider1a", { min: 0, max: 10, value: [3, 9], focus: true });
+    </script>*@
+
+    @*------------------------------------------------------------*@
+
 </head>
+<body>
+    <div class="ProfileContent">
+        <div class="row userProfileRow">
+            <div class="col-sm-3 userProfileColumn">
+                <h3 class="text-center" style="color: #e91e63">Filters</h3>
 
-<div class="ProfileContent">
-    <div class="row userProfileRow">
-        <div class="col-sm-3 userProfileColumn">
-            <button class="btn editButton">Edit</button>
-        </div>
-        <div class="col-sm-9 userInformationColumn">
+                <div class="horizontal-line center-block"></div>
+
+                @*<input id="slider1a" type="text" /><br/>*@
+
+                @*<div id="flat-slider" class="slider_element"></div>*@
+
+                <div class="user-filter-box">
+                    <h4>Betrouwbaarheid</h4>
+                    <input type="range" multiple min="1" max="100" value="70,100" class="slider int-slider" />
+                </div>
+                <div class="user-filter-box">
+                    <h4>Aantal Video's bekeken</h4>
+                    <input type="range" multiple min="1" max="100" value="10,60" class="slider int-slider" />
+                </div>
+                <div class="horizontal-line center-block"></div>
+                <div class="user-filter-box">
+                    <h4>Laatst Online</h4>
+                    <h5>Tussen</h5><input type="datetime" />
+                    <h5>en</h5><input type="datetime" />
+                </div>
+                <div class="user-filter-box">
+                    <h4>Actief sinds</h4>
+                    <input type="datetime" />
+                </div>
+                <div class="horizontal-line center-block"></div>
+                <div class="user-filter-box">
+                    <h4>Video's per</h4>
+                    <input type="range" min="1" max="100" value="10" class="slider int-slider" />
+                </div>
+            </div>
+            
+            <div class="col-sm-7 userProfileColumn" style="margin-left: 5%; padding: 1%; background-color: #ffffff">               
+                <h3 class="text-right" style="color: #e91e63">Search Results</h3>
+                <div class="userSearchResults">
+                    @foreach(var user in Model.SelectedUsers(string? filter))
+                    {
+
+                    }
+                </div>
+            </div>
         </div>
     </div>
-    <div class="row">
 
-    </div>
-</div>
+    @*<div class="user-filter-box">*@
+
+    @*<h4>Betrouwbaarheid</h4>*@
+
+    @*<input type="range" min="30" max="100" value="70" class="slider int-slider " />*@
+
+    @*</div>*@
+
+</body>
+</html>
+
+@*<script>
+    $(function () {
+        $("#new-slider").slider();
+    });
+</script>*@
