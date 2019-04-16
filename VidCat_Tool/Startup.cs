@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Data_Layer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -10,10 +9,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.EntityFrameworkCore;
-using Data_Layer.Repository;
-using Data_Layer.Interface;
-using BusinessLogicLibrary;
+using Service_Layer;
 
 namespace VidCat_Tool
 {
@@ -36,17 +32,12 @@ namespace VidCat_Tool
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddDbContext<VidCatToolContext>(options => options.UseMySql(Configuration["ConnectionStrings:MYSQLConnection"]));
-
-            services.AddTransient<IUserRepository, UserRepository>();
-            services.AddTransient<IRatingRepository, RatingRepository>();
-            services.AddTransient<IVideoRepository, VideoRepository>();
-            services.AddTransient<ICategoryRepository, CategoryRepository>();
-
-            services.AddTransient<IAccountHandler, AccountHandler>();
+            services.RegisterRepositoryServices(Configuration);
 
             services.AddDistributedMemoryCache();
-            services.AddSession();
+            services.AddSession(options =>
+                options.Cookie.IsEssential = true
+            );
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace VidCat_Tool.Controllers
 {
-    // [SessionCheck]
+    [SessionCheck]
     public class AdminController : Controller
     {
         public IActionResult UserManagement()

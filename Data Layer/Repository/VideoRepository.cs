@@ -3,6 +3,8 @@ using Data_Layer.Model;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
+using MySql.Data.MySqlClient;
 using System.Linq;
 
 namespace Data_Layer.Repository
@@ -12,6 +14,12 @@ namespace Data_Layer.Repository
         public VideoRepository(VidCatToolContext context) : base(context)
         {
 
+        }
+
+        public Video GetRandomVideo(string username)
+        {
+            var randomvid = _context.Video.FromSql("CALL GetRandomVideo(@username)", new MySqlParameter("@username", username));
+            return randomvid.FirstOrDefault();
         }
     }
 }
