@@ -36,9 +36,9 @@ namespace Data_Layer.Repository
             Save();
         }
 
-        public async Task<IEnumerable<T>> GetAll()
+        public IEnumerable<T> GetAll()
         {
-            return await _context.Set<T>().ToListAsync();
+            return _context.Set<T>().ToList();
         }
 
         public async Task<T> GetByID(int id)

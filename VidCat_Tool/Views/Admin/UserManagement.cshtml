@@ -1,7 +1,7 @@
 ﻿@model VidCat_Tool.ViewModels.AdminViewModel
 
 @{
-    ViewData["Title"] = "UserManagement";
+    ViewData["Title"] = "User Management";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -43,8 +43,10 @@
 </head>
 <body>
     <div class="ProfileContent">
+
         <div class="row userProfileRow">
-            <div class="col-sm-3 userProfileColumn">
+
+            <div class="col-sm-3 userFilterColumn">
                 <h3 class="text-center" style="color: #e91e63">Filters</h3>
 
                 <div class="horizontal-line center-block"></div>
@@ -78,16 +80,49 @@
                 </div>
             </div>
             
-            <div class="col-sm-7 userProfileColumn" style="margin-left: 5%; padding: 1%; background-color: #ffffff">               
+            @*if(User has selected a user)*@
+            <div class="col-sm-7 userActionsColumn" style="margin-left: 5%; height: 6%; margin-top: 1%; border-color: #e91e63;">
+                
+                <div class="col-sm-10 userSelActionsContainer" style="background-color: #ffffff; color: #707070; height: 100%;">
+                    <a class="btn btn-default" asp-controller="" asp-action="" style="height: 70%; font-size: 14px; vertical-align: middle; margin-top: 0.9%; margin-left: -1%; padding-top: 0.7%;">
+                        <i class="fas fa-times"></i>&nbsp Ban
+                    </a>
+                    <a class="btn btn-default" asp-controller="" asp-action="" style="height: 70%; font-size: 14px; vertical-align: middle; margin-top: 0.9%; margin-left: 0.7%; padding-top: 0.7%;">
+                        <i class="fas fa-user-check"></i>&nbsp Check Ratings
+                    </a>
+                    <a class="btn btn-default" asp-controller="" asp-action="" style="height: 70%; font-size: 14px; vertical-align: middle; margin-top: 0.9%; margin-left: 0.7%; padding-top: 0.7%;">
+                        <i class="far fa-comment-dots"></i>&nbsp Send Message
+                    </a>
+                    <a class="btn btn-default" asp-controller="" asp-action="" style="height: 70%; font-size: 14px; vertical-align: middle; margin-top: 0.9%; margin-left: 0.7%; padding-top: 0.7%;">
+                        <i class="fas fa-exclamation-circle"></i>&nbsp Warn User
+                    </a>
+                </div>
+
+                <div class="col-sm-1 userAddContainer" style="margin-left: 8%; margin-top: 0.4%; height: 85%; line-height: 100%;">
+                    <a class="btn userAddButton" asp-controller="Admin" asp-action="AddUser"
+                       style="height: 100%; float: right; background-color: #e91e63; color: #ffffff; font-weight: 200; vertical-align: middle;">
+                        <i class="fas fa-plus"></i>&nbsp Add User
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="col-sm-7 userResultsColumn" style="margin-left: 5%; padding: 1%; background-color: #ffffff; margin-top: 1%; margin-bottom: 1%;">               
                 <h3 class="text-right" style="color: #e91e63">Search Results</h3>
                 <div class="userSearchResults">
-                    @foreach(var user in Model.SelectedUsers(string? filter))
+                    @foreach(var user in Model.SelectedUsers)
                     {
-
+                    <div class="userSearchItem" style="background-color: #F1F1F1;">
+                        <h3>@user.Firstname @user.Lastname</h3>
+                        <h6>@user.City, @user.Country (@user.Streetaddress, @user.Zipcode)</h6>
+                        <h6>@user.Phonenumber</h6>
+                    </div>
                     }
                 </div>
             </div>
+
         </div>
+
     </div>
 
     @*<div class="user-filter-box">*@

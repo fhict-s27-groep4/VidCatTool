@@ -72,7 +72,7 @@ namespace BusinessLogicLibrary.AlgoritmRatings
             {
                 return;
             }
-            foreach()
+            //foreach()
         }
     }
 }
