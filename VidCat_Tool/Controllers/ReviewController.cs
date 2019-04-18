@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Threading.Tasks;
 using BusinessLogicLibrary;
@@ -14,29 +15,39 @@ namespace VidCat_Tool.Controllers
     {
         private readonly AssignManager assignManager;
         private readonly UserManager userManager;
+        private readonly RatingManager ratingManager;
 
-        public ReviewController(AssignManager assignManager, UserManager userManager)
+        public ReviewController(AssignManager assignManager, UserManager userManager, RatingManager ratingManager)
         {
             this.assignManager = assignManager;
             this.userManager = userManager;
+            this.ratingManager = ratingManager;
         }
 
         [HttpGet]
         public IActionResult Review()
         {
             ApplicationUser appUser = userManager.GetLoginUser(HttpContext.Session.GetString("Username"));
-            ReviewViewModel vm = new ReviewViewModel();
-            vm.ReviewGetInfo = new ReviewViewModelGet();
             var video = assignManager.AssignRandomVideo(appUser.Username);
-            vm.ReviewGetInfo.VideoIdentity = video.UrlIdentity;
-            vm.ReviewGetInfo.Videolink = video.VideoURL;
-            return View(vm);
+            ViewBag.VideoIdentity = video.UrlIdentity;
+            ViewBag.VideoLink = video.VideoURL;
+            return View();
         }
 
         [HttpPost]
-        public IActionResult Review(ReviewViewModelPost vm)
+        public IActionResult Review(ReviewViewModelPost postModel, bool next)
         {
-            return View();
+            ApplicationUser appUser = userManager.GetLoginUser(HttpContext.Session.GetString("Username"));
+            Video vid = assignManager.GetVideo(postModel.VideoIdentity);
+            ratingManager.AddRating(appUser.UserID, vid.VideoID, 1, postModel.Pleasure, postModel.Arrousal, postModel.Dominance);
+            if (next == true)
+            {
+                return RedirectToAction("Review");
+            }
+            else
+            {
+                return RedirectToAction("Dashboard", "Home");
+            }
         }
 
         public IActionResult Info()

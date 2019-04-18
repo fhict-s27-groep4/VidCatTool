@@ -4,7 +4,7 @@
 }
 
 @using VidCat_Tool.ViewModels;
-@model ReviewViewModel
+@model ReviewViewModelPost
 
 <link href="~/css/review.css" rel="stylesheet" />
 
@@ -12,67 +12,65 @@
 
     <div class="reviewVideo">
         <video controls>
-            <source src="@Html.Raw(Model.ReviewGetInfo.Videolink)" />
+            <source src="@Html.Raw(ViewBag.VideoLink)" />
         </video>
     </div>
+    <form method="post">
+        <div class="row reviewRow">
+            <input asp-for="VideoIdentity" type="hidden" value="@ViewBag.VideoIdentity" />
+            <div class="reviewPart col-sm-6" id="Pad-Model">
+                <h1>PAD-Model</h1>
+                <div class="row padmodelItem">
+                    <div class="col-sm-4">Pleasure</div>
+                    <div class="slidecontainer col-sm-4">
+                        <input onclick="SliderClick()" type="range" min="0" max="5" value="0" class="slider" id="pleasureSlider">
+                    </div>
+                    <input asp-for="Pleasure" class="col-sm-4 padInput" id="pleasureValue" value="0" readonly/>
+                </div>
+                <div class="row padmodelItem">
+                    <div class="col-sm-4">Arrousal</div>
+                    <div class="slidecontainer col-sm-4">
+                        <input onclick="SliderClick()" type="range" min="0" max="5" value="0" class="slider" id="arrousalSlider">
+                    </div>
+                    <input asp-for="Arrousal" class="col-sm-4 padInput" id="arrousalValue" value="0" readonly />
+                </div>
+                <div class="row padmodelItem">
+                    <div class="col-sm-4">Dominance</div>
+                    <div class="slidecontainer col-sm-4">
+                        <input onclick="SliderClick()" type="range" min="0" max="5" value="0" class="slider" id="dominanceSlider">
+                    </div>
+                    <input asp-for="Dominance" class="col-sm-4 padInput" id="dominanceValue" value="0" readonly  />
+                </div>
+            </div>
 
-    <div class="row reviewRow">
-        <div class="reviewPart col-sm-6" id="Pad-Model">
-            <h1>PAD-Model</h1>
-            <div class="row padmodelItem">
-                <div class="col-sm-4">Pleasure</div>
-                <div class="slidecontainer col-sm-4">
-                    <input onclick="SliderClick()" type="range" min="0" max="5" value="0" class="slider" id="pleasureSlider">
+            <div class="reviewPart col-sm-6" id="Category">
+                <h1>Category</h1>
+                <div class="row reviewRow">
+                    <div class="custom-select col-sm-6">
+                        <select></select>
+                    </div>
+                    <div class="custom-select col-sm-6" id="subCategory">
+                        <select>
+                            <option value="0">Sub-Category</option>
+                            <option value="1">VidCat Tool</option>
+                        </select>
+                    </div>
                 </div>
-                <label asp-for="ReviewPostInfo.Pleasure" class="col-sm-4" id="pleasureValue">Value</label>
-            </div>
-            <div class="row padmodelItem">
-                <div class="col-sm-4">Arrousal</div>
-                <div class="slidecontainer col-sm-4">
-                    <input onclick="SliderClick()" type="range" min="0" max="5" value="0" class="slider" id="arrousalSlider">
-                </div>
-                <label asp-for="ReviewPostInfo.Arrousal" class="col-sm-4" id="arrousalValue">Value</label>
-            </div>
-            <div class="row padmodelItem">
-                <div class="col-sm-4">Dominance</div>
-                <div class="slidecontainer col-sm-4">
-                    <input onclick="SliderClick()" type="range" min="0" max="5" value="0" class="slider" id="dominanceSlider">
-                </div>
-                <label asp-for="ReviewPostInfo.Dominance" class="col-sm-4" id="dominanceValue">Value</label>
             </div>
         </div>
-
-        <div class="reviewPart col-sm-6" id="Category">
-            <h1>Category</h1>
-            <div class="row reviewRow">
-                <div class="custom-select col-sm-6">
-                    <select>
-                        <option value="0">Category</option>
-                        <option value="1">VidCat Tool</option>
-                    </select>
-                </div>
-                <div class="custom-select col-sm-6" id="subCategory">
-                    <select>
-                        <option value="0">Sub-Category</option>
-                        <option value="1">VidCat Tool</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div><button type="submit" class="btn prim-btn btn-submit disabled" id="submitNextBtn">Submit & Next Video</button></div>
-    <div><button type="submit" class="btn prim-btn btn-submit-close disabled" id="submitCloseBtn">Submit & Close</button></div>
-
+        <div><button name="next" value="true" type="submit" class="btn prim-btn btn-submit disabled" id="submitNextBtn">Submit & Next Video</button></div>
+        <div><button name="next" value="false" type="submit" class="btn prim-btn btn-submit-close disabled" id="submitCloseBtn">Submit & Close</button></div>
+    </form>
 </div>
 
 <script>
-    function SliderValue(nameOfSlider, value) {
+    function SliderValue(nameOfSlider, nameOfValue) {
         var slider = document.getElementById(nameOfSlider);
-        var output = document.getElementById(value);
-        output.innerHTML = slider.value;
+        var output = document.getElementById(nameOfValue);
+        output.value = slider.value;
 
         slider.oninput = function () {
-            output.innerHTML = this.value;
+            output.value = this.value;
         }
     }
     SliderValue("pleasureSlider", "pleasureValue");
@@ -80,12 +78,12 @@
     SliderValue("dominanceSlider", "dominanceValue");
 
     function SliderClick() {
-        var pleasureIndex = document.getElementById("pleasureValue").innerHTML;
-        var arrousalIndex = document.getElementById("arrousalValue").innerHTML;
-        var domincaneIndex = document.getElementById("dominanceValue").innerHTML;
+        var pleasureIndex = document.getElementById("pleasureValue").value;
+        var arrousalIndex = document.getElementById("arrousalValue").value;
+        var domincaneIndex = document.getElementById("dominanceValue").value;
         var submitNextBtn = document.getElementById("submitNextBtn").classList;
         var submitCloseButton = document.getElementById("submitCloseBtn").classList;
-        
+
         if (pleasureIndex == 0 || arrousalIndex == 0 || domincaneIndex == 0) {
             submitCloseButton.remove("active");
             submitCloseButton.add("disabled");
