@@ -27,8 +27,10 @@ namespace BusinessLogicLibrary.AlgoritmRatings
                 if (_categoryList[i].Object1 == _categoryID)
                 {
                     _categoryList[i].Object2 += 1;
+                    return _categoryList;
                 }
             }
+            _categoryList.Add(new ObjectPair<int, int>() {Object1 = _categoryID, Object2 = 0 });
             return _categoryList;
         }
 
