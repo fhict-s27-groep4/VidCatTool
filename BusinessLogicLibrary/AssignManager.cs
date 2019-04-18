@@ -23,5 +23,10 @@ namespace BusinessLogicLibrary
             video.VideoURL = json.GetVideoUrl(video.UrlIdentity);
             return video;
         }
+
+        public Video GetVideo(string videourl)
+        {
+            return ConvertHandler.ConvertTo<Video>(videoRepo.GetVideoByUrlIdentity(videourl));
+        }
     }
 }

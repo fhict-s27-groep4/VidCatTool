@@ -33,11 +33,11 @@ namespace VidCat_Tool.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(LoginViewModel vm)
+        public IActionResult Login(LoginViewModel vm)
         {
             if (ModelState.IsValid)
             {
-                if(await accountHandler.ValidateUser(vm.UserName, vm.Password))
+                if(accountHandler.ValidateUser(vm.UserName, vm.Password))
                 {
                     ApplicationUser appUser = userManager.GetLoginUser(vm.UserName);
                     HttpContext.Session.SetString("Username", appUser.Username);
