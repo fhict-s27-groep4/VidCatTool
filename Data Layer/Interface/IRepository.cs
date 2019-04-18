@@ -7,7 +7,7 @@ namespace Data_Layer.Interface
 {
     public interface IRepository<T> where T : class
     {
-        Task<IEnumerable<T>> GetAll();
+        IEnumerable<T> GetAll();
 
         Task<T> GetByID(int id);
 
