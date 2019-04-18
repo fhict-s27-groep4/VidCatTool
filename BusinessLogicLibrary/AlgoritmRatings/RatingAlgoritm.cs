@@ -88,7 +88,7 @@ namespace BusinessLogicLibrary.AlgoritmRatings
                 {// video's with less tha 3 can't be checked
                     return;
                 }
-                if (!CatagoryBigEnough(countCatagorie1, iabToleranceTier1 * count) || !CatagoryBigEnough(countCatagorie1, iabToleranceTier2 * count))
+                if (CatagoryBigEnough(countCatagorie1, iabToleranceTier1 * count) || CatagoryBigEnough(countCatagorie1, iabToleranceTier2 * count))
                 {//video's that don't have polarized category ratings can be finished early
                     return;
                 }
