@@ -12,6 +12,7 @@ namespace BusinessLogicLibrary.AlgoritmRatings
         private double iabToleranceTier2 = 0.75;
         private double biggestPercentIAB = 0.9;
         private double padTolerance = 1.5;
+        private int maximumRatings = 80;
         public event EventHandler<DivergentRatings> DivergentRatings;
 
         public RatingAlgoritm()
@@ -19,21 +20,21 @@ namespace BusinessLogicLibrary.AlgoritmRatings
 
         }
 
-        private IList<IObjectPair<int, int>> CatagorieInList(IList<IObjectPair<int, int>> _catagoryList, int _catagoryID)
+        private IList<IObjectPair<int, int>> CatagoryInList(IList<IObjectPair<int, int>> _categoryList, int _categoryID)
         {
-            for (int i = 0; i < _catagoryList.Count; i++)
+            for (int i = 0; i < _categoryList.Count; i++)
             {
-                if (_catagoryList[i].Object1 == _catagoryID)
+                if (_categoryList[i].Object1 == _categoryID)
                 {
-                    _catagoryList[i].Object2 += 1;
+                    _categoryList[i].Object2 += 1;
                 }
             }
-            return _catagoryList;
+            return _categoryList;
         }
 
-        private bool CatagorieBigEnough(IList<IObjectPair<int, int>> _countCatagorie, double _passAmount)
+        private bool CatagoryBigEnough(IList<IObjectPair<int, int>> _countCategorie, double _passAmount)
         {
-            foreach (IObjectPair<int, int> pair in _countCatagorie)
+            foreach (IObjectPair<int, int> pair in _countCategorie)
             {
                 if (pair.Object2 >= _passAmount)
                 {
@@ -43,14 +44,14 @@ namespace BusinessLogicLibrary.AlgoritmRatings
             return false;
         }
 
-        private IEnumerable<int> BiggestCategories(IEnumerable<IObjectPair<int, int>> _countCatagories, int _count)
+        private IEnumerable<int> BiggestCategories(IEnumerable<IObjectPair<int, int>> _countCategories, int _count)
         {
-            int currCount = _countCatagories.Max(x => x.Object2);
-            while (_countCatagories.Where(x => x.Object2 >= currCount).Sum(x => x.Object2) > biggestPercentIAB * _count)
+            int currCount = _countCategories.Max(x => x.Object2);
+            while (_countCategories.Where(x => x.Object2 >= currCount).Sum(x => x.Object2) > biggestPercentIAB * _count)
             {
                 currCount--;
             }
-            return _countCatagories.Where(x => x.Object2 > currCount).Select(x => x.Object1);
+            return _countCategories.Where(x => x.Object2 > currCount).Select(x => x.Object1);
         }
 
         protected virtual void OnDivergentRatings(IEnumerable<IRating> _ratings)
@@ -71,22 +72,22 @@ namespace BusinessLogicLibrary.AlgoritmRatings
             int dominance = 0;
             int arrousel = 0;
             foreach (IRating rating in _ratings)
-            {
+            {//generates count, total PAD, Counts catagories
                 count++;
-                countCatagorie1 = CatagorieInList(countCatagorie1, rating.Category1);
-                countCatagorie2 = CatagorieInList(countCatagorie2, rating.Category2);
+                countCatagorie1 = CatagoryInList(countCatagorie1, rating.Category1);
+                countCatagorie2 = CatagoryInList(countCatagorie2, rating.Category2);
                 pleassure += rating.Pleasure;
                 dominance += rating.Dominance;
                 arrousel += rating.Arrousel;
             }
-            if (count >= 80)
-            {
+            if (count <= maximumRatings)
+            {//prevents video from getting more ratings
                 if (count <= 3)
-                {
+                {// video's with less tha 3 can't be checked
                     return;
                 }
-                if (!CatagorieBigEnough(countCatagorie1, iabToleranceTier1 * count) || !CatagorieBigEnough(countCatagorie1, iabToleranceTier2 * count))
-                {
+                if (!CatagoryBigEnough(countCatagorie1, iabToleranceTier1 * count) || !CatagoryBigEnough(countCatagorie1, iabToleranceTier2 * count))
+                {//video's that don't have polarized category ratings can be finished early
                     return;
                 }
             }
@@ -95,7 +96,7 @@ namespace BusinessLogicLibrary.AlgoritmRatings
             double averageA = arrousel / count;
             double averageD = dominance / count;
             foreach (IRating rating in _ratings)
-            {
+            {//2 of 3 divergent pads>>>pad is divergent, tier2 is not in the list with biggest catagories>>>iabdivergent
                 int divergentCount = 0;
                 if ((rating.Pleasure + averageP) % averageP > padTolerance)
                 {
@@ -127,7 +128,7 @@ namespace BusinessLogicLibrary.AlgoritmRatings
                 }
             }
             if (divergentRatings != null)
-            {
+            {//outputs only the ratings where something is divergent
                 OnDivergentRatings(divergentRatings);
             }
         }
