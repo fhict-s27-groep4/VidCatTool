@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using MySql.Data.MySqlClient;
 
 namespace Data_Layer.Repository
 {
@@ -32,6 +33,14 @@ namespace Data_Layer.Repository
         public async Task<IEnumerable<Rating>> GetRatingsFromUser(string username)
         {
             return await _context.Rating.Where(u => u.User.Username == username).ToListAsync();
+        }
+
+        public void AddRating(string userid, int videoid, int categoryid, int pleasure, int arrousal, int dominance)
+        {
+            _context.Database.ExecuteSqlCommand("CALL AddRating(@userid, @videoid, @categoryid, @pleasure, @arrousal, @dominance)", new MySqlParameter("@userid", userid), 
+                new MySqlParameter("@videoid", videoid), new MySqlParameter("@categoryid", categoryid), new MySqlParameter("@pleasure", pleasure),
+                new MySqlParameter("@arrousal", arrousal), new MySqlParameter("@dominance", dominance));
+            
         }
     }
 }

@@ -9,7 +9,7 @@ namespace VidCat_Tool.ViewModels
     public class ReviewViewModelPost
     {
         [Required]
-        public int VideoID { get; set; }
+        public string VideoIdentity { get; set; }
         [Required]
         public int IABID { get; set; }
         [Required]

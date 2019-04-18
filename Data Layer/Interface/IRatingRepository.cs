@@ -13,5 +13,7 @@ namespace Data_Layer.Interface
         Task<Rating> GetRatingByID(int id);
 
         Task<IEnumerable<Rating>> GetRatingsFromUser(string username);
+
+        void AddRating(string userid, int videoid, int categoryid, int pleasure, int arrousal, int dominance);
     }
 }

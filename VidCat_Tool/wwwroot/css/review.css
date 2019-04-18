@@ -150,3 +150,13 @@ input[type=range]::-moz-range-thumb {
     border-radius: 50%;
     background: #bdbdbd;
 }
+
+.padInput {
+    border: 0;
+    background-color: white;
+    pointer-events: none;
+}
+
+input[type=number] {
+    -moz-appearance: textfield; /* Firefox */
+}

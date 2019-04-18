@@ -22,16 +22,22 @@ namespace BusinessLogicLibrary.AlgoritmRatings
 
         private IList<IObjectPair<int, int>> CatagoryInList(IList<IObjectPair<int, int>> _categoryList, int _categoryID)
         {
+            IList<IObjectPair<int, int>> categoryList = new List<IObjectPair<int, int>>();
+            foreach(IObjectPair<int, int> pair in _categoryList)
+            {
+                categoryList.Add(pair);
+            }
             for (int i = 0; i < _categoryList.Count; i++)
             {
-                if (_categoryList[i].Object1 == _categoryID)
+                if (categoryList[i].Object1 == _categoryID)
                 {
-                    _categoryList[i].Object2 += 1;
-                    return _categoryList;
+                    categoryList[i].Object2 += 1;
+                    return categoryList;
                 }
+
             }
-            _categoryList.Add(new ObjectPair<int, int>() {Object1 = _categoryID, Object2 = 0 });
-            return _categoryList;
+            categoryList.Add(new ObjectPair<int, int>() {Object1 = _categoryID, Object2 = 0 });
+            return categoryList;
         }
 
         private bool CatagoryBigEnough(IList<IObjectPair<int, int>> _countCategorie, double _passAmount)

@@ -17,11 +17,11 @@ namespace BusinessLogicLibrary
             _userRepo = userRepo;
         }
 
-        public async Task<bool> ValidateUser(string username, string password)
+        public bool ValidateUser(string username, string password)
         {
             PasswordHasher hasher = new PasswordHasher();
 
-            var users = await _userRepo.GetAll();
+            var users = _userRepo.GetAll();
             var loginUser = users.Where(u => u.Username == username).FirstOrDefault();
 
             if(loginUser.Password == hasher.CheckPassword(password, loginUser.PasswordSalt))

@@ -24,6 +24,7 @@ namespace Service_Layer
             services.AddTransient<AccountHandler>();
             services.AddTransient<AssignManager>();
             services.AddTransient<UserManager>();
+            services.AddTransient<RatingManager>();
             return services;
         }
     }

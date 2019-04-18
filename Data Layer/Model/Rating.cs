@@ -15,9 +15,10 @@ namespace Data_Layer.Model
         public Video Video { get; set; }
         public int CategoryID { get; set; }
         public Category Category { get; set; }
-        public bool IsDivergent { get; set; }
+        public bool IsIABDivergent { get; set; }
         public int PleasureIndex { get; set; }
         public int ArrousalIndex { get; set; }
         public int DominanceIndex { get; set; }
+        public bool IsPADDivergent { get; set; }
     }
 }

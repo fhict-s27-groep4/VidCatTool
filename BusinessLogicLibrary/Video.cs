@@ -6,6 +6,7 @@ namespace BusinessLogicLibrary
 {
     public class Video
     {
+        public int VideoID { get; set; }
         public string  UrlIdentity { get; set; }
         public string VideoURL { get; set; }
     }
