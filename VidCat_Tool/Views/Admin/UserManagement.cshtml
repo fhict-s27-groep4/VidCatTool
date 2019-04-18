@@ -46,9 +46,15 @@
 
         <div class="row userProfileRow">
 
+
             @* ------------------------------------------------------------------- *@
 
-            <div class="col-sm-3 userFilterColumn" style="background-color: #ffffff;">
+                        @* THE LEFT SIDE COLUMN WITH FILTERS TO APPLY *@
+
+            @* ------------------------------------------------------------------- *@
+
+
+            <div class="col-sm-3 userFilterColumn" style="background-color: #ffffff; border: 1px solid #bdbdbd">
                 <h3 class="text-center" style="color: #e91e63">Filters</h3>
 
                 <div class="horizontal-line center-block"></div>
@@ -110,12 +116,19 @@
 
             </div>
 
-            @* ------------------------------------------------------------------- *@
 
-            @*if(User has selected a user)*@
-            <div class="col-sm-7 userActionsColumn" style="margin-left: 5%; height: 6%; margin-top: 1%; border-color: #e91e63;">
+            @* ------------------------------------------------------------------------------------ *@
 
-                <div class="col-sm-10 userSelActionsContainer" style="background-color: #ffffff; color: #707070; height: 100%;">
+            @* THE USER ACTIONS BOX WITH POSSIBLE BUTTONS SUCH AS *@
+            @* DISABLING ACCOUNTS AND REFERENCES TO OTHER PAGES (VIDEO'S RATED FOR EXAMPLE)*@
+
+            @* ------------------------------------------------------------------- -----------------*@
+
+
+            <div class="col-sm-7 userActionsColumn" style="margin-left: 5%; height: 6%; margin-top: 1%;">
+
+                @* All buttons in the menu *@
+                <div class="col-sm-10 userSelActionsContainer" style="background-color: #ffffff; color: #707070; height: 100%; border: 1px solid #bdbdbd">
                     <a class="btn btn-default" asp-controller="" asp-action="" style="height: 70%; font-size: 14px; vertical-align: middle; margin-top: 0.9%; margin-left: -1%; padding-top: 0.7%;">
                         <i class="fas fa-times"></i>&nbsp Ban
                     </a>
@@ -130,6 +143,7 @@
                     </a>
                 </div>
 
+                @* The "Add User" Button, which is outside the other box *@
                 <div class="col-sm-1 userAddContainer" style="margin-left: 8%; margin-top: 0.4%; height: 85%; line-height: 100%;">
                     <a class="btn userAddButton" asp-controller="Admin" asp-action="AddUser"
                        style="height: 100%; float: right; background-color: #e91e63; color: #ffffff; font-weight: 200; vertical-align: middle;">
@@ -139,10 +153,18 @@
 
             </div>
 
+
             @* ------------------------------------------------------------------- *@
 
-            <div class="col-sm-7 userResultsColumn" style="margin-left: 5%; padding: 1.6%; padding-top: 0.5%; background-color: #ffffff; margin-top: 1%; margin-bottom: 1%;">
+            @* RESULTS BOX WITH THE SEARCH RESULTS AFTER FILTERING THEM OUT *@
+
+            @* ------------------------------------------------------------------- *@
+
+
+            <div class="col-sm-7 userResultsColumn" style="margin-left: 5%; padding: 1.6%; padding-top: 0.5%; background-color: #ffffff; margin-top: 1%; margin-bottom: 1%; border: 1px solid #bdbdbd">
                 <h3 class="text-center" style="color: #e91e63; margin: 3%;">Search Results</h3>
+                
+                @* The List of Search Results, looping users *@
                 <div class="userSearchResults">
                     @foreach (var user in Model.SelectedUsers)
                     {
@@ -158,6 +180,8 @@
                         </div>
                     }
                 </div>
+
+                @* Bottom text and actions, such as the amount of pages. *@
                 <div class="userSearchCount" style="margin: 4%;">
                     <h6 class="text-center" style="width: 100%; color: #707070;">@Model.SelectedUsers.Count Results found.</h6>
                 </div>
@@ -165,17 +189,15 @@
 
         </div>
 
+
         @* ------------------------------------------------------------------- *@
 
+                    @* THE END OF THE HTML. HET WERD TIJD. *@
+
+        @* ------------------------------------------------------------------- *@
+
+
     </div>
-
-    @*<div class="user-filter-box">*@
-
-    @*<h4>Betrouwbaarheid</h4>*@
-
-    @*<input type="range" min="30" max="100" value="70" class="slider int-slider " />*@
-
-    @*</div>*@
 
 </body>
 </html>
