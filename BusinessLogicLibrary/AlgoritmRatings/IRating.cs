@@ -6,8 +6,8 @@ namespace BusinessLogicLibrary.AlgoritmRatings
 {
     public interface IRating
     {
-        int Catagory1 { get; }
-        int Catagory2 { get; }
+        int Category1 { get; }
+        int Category2 { get; }
         bool IABIsDivergent { get; set; }
         int Pleasure { get; }
         int Arrousel { get; }

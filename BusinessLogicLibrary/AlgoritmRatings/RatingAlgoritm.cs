@@ -73,19 +73,22 @@ namespace BusinessLogicLibrary.AlgoritmRatings
             foreach (IRating rating in _ratings)
             {
                 count++;
-                countCatagorie1 = CatagorieInList(countCatagorie1, rating.Catagory1);
-                countCatagorie2 = CatagorieInList(countCatagorie2, rating.Catagory2);
+                countCatagorie1 = CatagorieInList(countCatagorie1, rating.Category1);
+                countCatagorie2 = CatagorieInList(countCatagorie2, rating.Category2);
                 pleassure += rating.Pleasure;
                 dominance += rating.Dominance;
                 arrousel += rating.Arrousel;
             }
-            if (count <= 3)
+            if (count >= 80)
             {
-                return;
-            }
-            if (!CatagorieBigEnough(countCatagorie1, iabToleranceTier1 * count) || !CatagorieBigEnough(countCatagorie1, iabToleranceTier2 * count))
-            {
-                return;
+                if (count <= 3)
+                {
+                    return;
+                }
+                if (!CatagorieBigEnough(countCatagorie1, iabToleranceTier1 * count) || !CatagorieBigEnough(countCatagorie1, iabToleranceTier2 * count))
+                {
+                    return;
+                }
             }
             IEnumerable<int> biggestCatagories = BiggestCategories(countCatagorie2, count);
             double averageP = pleassure / count;
@@ -110,7 +113,7 @@ namespace BusinessLogicLibrary.AlgoritmRatings
                 {
                     rating.PADIsDivergent = true;
                 }
-                if (!biggestCatagories.Contains(rating.Catagory2))
+                if (!biggestCatagories.Contains(rating.Category2))
                 {
                     rating.IABIsDivergent = true;
                 }
