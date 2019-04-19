@@ -19,14 +19,8 @@ namespace BusinessLogicLibrary
 
         public bool IABIsDivergent
         {
-            get
-            {
-                return IABIsDivergent;
-            }
-            set
-            {
-                IABIsDivergent = value;
-            }
+            get;
+            set;
         }
 
         public int Pleasure => ples;
@@ -37,14 +31,8 @@ namespace BusinessLogicLibrary
 
         public bool PADIsDivergent
         {
-            get
-            {
-                return PADIsDivergent;
-            }
-            set
-            {
-                PADIsDivergent = value;
-            }
+            get;
+            set;
         }
 
         public void setAll(int Cat1, int Cat2, int Ples, int Arro, int Domi)

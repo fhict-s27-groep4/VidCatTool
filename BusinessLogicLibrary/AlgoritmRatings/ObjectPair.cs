@@ -8,14 +8,14 @@ namespace BusinessLogicLibrary.AlgoritmRatings
     {
         public T1 Object1
         {
-            get { return Object1; }
-            set { Object1 = value; }
+            get;
+            set;
         }
 
         public T2 Object2
         {
-            get { return Object2; }
-            set { Object2 = value; }
+            get;
+            set;
         }
     }
 }

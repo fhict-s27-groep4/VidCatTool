@@ -36,7 +36,7 @@ namespace BusinessLogicLibrary.AlgoritmRatings
                 }
 
             }
-            categoryList.Add(new ObjectPair<int, int>() {Object1 = _categoryID, Object2 = 0 });
+            categoryList.Add(new ObjectPair<int, int>() { Object1 = _categoryID, Object2 = 0 });
             return categoryList;
         }
 
