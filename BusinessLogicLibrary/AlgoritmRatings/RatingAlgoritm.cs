@@ -75,13 +75,12 @@ namespace BusinessLogicLibrary.AlgoritmRatings
         {
             IList<IObjectPair<int, int>> countCatagorie1 = new List<IObjectPair<int, int>>();
             IList<IObjectPair<int, int>> countCatagorie2 = new List<IObjectPair<int, int>>();
-            int count = 0;
+            int count = _ratings.Count();
             int pleassure = 0;
             int dominance = 0;
             int arrousel = 0;
             foreach (IRating rating in _ratings)
             {//generates count, total PAD, Counts catagories
-                count++;
                 countCatagorie1 = CatagoryInList(countCatagorie1, rating.Category1);
                 countCatagorie2 = CatagoryInList(countCatagorie2, rating.Category2);
                 pleassure += rating.Pleasure;
