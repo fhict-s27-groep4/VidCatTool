@@ -13,19 +13,16 @@
     margin-bottom: 10%;
 }
 
-.user-filter-box {
+/*.user-filter-box {
     margin-bottom: 12%;
     margin-top: 12%;
-}
-
-/*.int-slider {
-    color: #e91e63;
-}
-
-.slider_element {
-    width: 70%;
-    height: 100px;
 }*/
+
+.userSelActionsContainer {
+    background-color: #ffffff;
+    color: #707070;
+    border: 1px solid #bdbdbd;
+}
 
 
 
