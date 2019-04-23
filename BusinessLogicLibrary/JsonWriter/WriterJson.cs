@@ -24,7 +24,7 @@ namespace BusinessLogicLibrary.JsonWriter
         private async Task<JObject> PADScore(IEnumerable<int> _padScores)
         {
             JObject padScore = new JObject();
-            Task<double> deviation = new Task<double>(() => Deviation(_padScores));
+            Task<double> deviation = Task.Run(() => Deviation(_padScores));
             padScore.Add("average", Math.Round(_padScores.Average(), 1, MidpointRounding.AwayFromZero));
             await deviation;
             padScore.Add("deviation", deviation.Result);
@@ -34,9 +34,9 @@ namespace BusinessLogicLibrary.JsonWriter
         {
             JObject padscores = new JObject();
             Task<JObject>[] padScoreTasks = new Task<JObject>[3];
-            padScoreTasks[0] = PADScore(_ratings.Select(x => x.Pleasure));
-            padScoreTasks[1] = PADScore(_ratings.Select(x => x.Arrousel));
-            padScoreTasks[2] = PADScore(_ratings.Select(x => x.Dominance));
+            padScoreTasks[0] = Task.Run(() => PADScore(_ratings.Select(x => x.Pleasure)));
+            padScoreTasks[1] = Task.Run(() => PADScore(_ratings.Select(x => x.Arrousel)));
+            padScoreTasks[2] = Task.Run(() => PADScore(_ratings.Select(x => x.Dominance)));
             await Task.WhenAll(padScoreTasks);
             padscores.Add("pleasure", padScoreTasks[0].Result);
             padscores.Add("arousel", padScoreTasks[1].Result);
@@ -58,13 +58,13 @@ namespace BusinessLogicLibrary.JsonWriter
             Task<JObject>[] tier2Tasks = new Task<JObject>[_ratings.Select(x => x.UniqueCategory2).Distinct().Count()];
             JArray tier2s = new JArray();
             int index = 0;
-            tier1.Add("category_id", _ratings.First().UniqueCategory1);
-            tier1.Add("percentage", (int)Math.Round(_percentage, MidpointRounding.AwayFromZero));
             foreach (int category in _ratings.Select(x => x.UniqueCategory2).Distinct())
             {
-                tier2Tasks[index] = new Task<JObject>(() => Tier2Category(_ratings.Where(x => x.UniqueCategory2 == category), _percentage: ((double)_ratings.Where(x => x.UniqueCategory2 == category).Count() / _ratings.Count() * 100)));
+                tier2Tasks[index] = Task.Run(() => Tier2Category(_ratings.Where(x => x.UniqueCategory2 == category), _percentage: ((double)_ratings.Where(x => x.UniqueCategory2 == category).Count() / _ratings.Count() * 100)));
                 index++;
             }
+            tier1.Add("category_id", _ratings.First().UniqueCategory1);
+            tier1.Add("percentage", (int)Math.Round(_percentage, MidpointRounding.AwayFromZero));
             await Task.WhenAll(tier2Tasks);
             foreach (JObject category in tier2Tasks.Select(x => x.Result))
             {
@@ -81,7 +81,8 @@ namespace BusinessLogicLibrary.JsonWriter
             int index = 0;
             foreach (int category in _ratings.Select(x => x.UniqueCategory1).Distinct().OrderBy(x => x))
             {
-                categoryTasks[index] = Tier1Category(_ratings.Where(x => x.UniqueCategory1 == category), ((double)_ratings.Where(x => x.UniqueCategory1 == category).Count() / _ratings.Count()) * 100);
+                categoryTasks[index] = Task.Run(() => Tier1Category(_ratings.Where(x => x.UniqueCategory1 == category), ((double)_ratings.Where(x => x.UniqueCategory1 == category).Count() / _ratings.Count()) * 100));
+                index++;
             }
             await Task.WhenAll(categoryTasks);
             foreach (JObject category in categoryTasks.Select(x => x.Result))
@@ -93,18 +94,17 @@ namespace BusinessLogicLibrary.JsonWriter
         private async Task<JObject> Video(IEnumerable<IRating> _ratings)
         {
             JObject video = new JObject();
-            Task<JObject> padScores = PADScores(_ratings);
-            Task<JArray> categories = Categories(_ratings);
-            padScores.Start();
-            await padScores;
-            await categories;
+            Task<JArray> categories = Task.Run(() => Categories(_ratings));
+            Task<JObject> padScores = Task.Run(() => PADScores(_ratings));
             video.Add("id", _ratings.First().MediaID);
+            await padScores;
             video.Add("pad", padScores.Result);
+            await categories;
             video.Add("iad", categories.Result);
             return video;
         }
 
-        public async void Write(IEnumerable<IRating> _ratings)
+        public async Task Write(IEnumerable<IRating> _ratings)
         {
             Task<JObject>[] taskArray = new Task<JObject>[_ratings.Select(x => x.MediaID).Distinct().Count()];
             JObject jObject = new JObject();
@@ -114,8 +114,7 @@ namespace BusinessLogicLibrary.JsonWriter
             int index = 0;
             foreach (string s in _ratings.Select(x => x.MediaID).Distinct())
             {
-                taskArray[index] = Video(_ratings.Where(x => x.MediaID == s));
-                taskArray[index].Start();
+                taskArray[index] = Task.Run(() => Video(_ratings.Where(x => x.MediaID == s)));
                 index++;
             }
             await Task.WhenAll(taskArray);
