@@ -138,6 +138,7 @@ namespace BusinessLogicLibrary.AlgoritmRatings
             {//outputs only the ratings where something is divergent
                 OnDivergentRatings(divergentRatings);
             }
+            foreach()
         }
     }
 }
