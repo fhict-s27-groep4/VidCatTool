@@ -25,21 +25,21 @@ namespace VidCat_Tool.Controllers
         public IActionResult UserManagement()
         {
             List<User> users = new List<User>();
-            foreach (var user in userManager.GetAllUsers()) {
-                users.Add(new User() {
-                    UserID = user.UserID,
-                    Username = user.Username,
-                    Email = user.Email,
-                    Firstname = user.Firstname,
-                    Lastname = user.Lastname,
-                    Phonenumber = user.Phonenumber,
-                    Country = user.Country,
-                    City = user.City,
-                    Streetaddress = user.Streetaddress,
-                    Zipcode = user.Zipcode,
-                    IsAdmin = user.IsAdmin
-                });
-            }
+            //foreach (var user in userManager.GetAllUsers()) {
+            //    users.Add(new User() {
+            //        UserID = user.UserID,
+            //        Username = user.Username,
+            //        Email = user.Email,
+            //        Firstname = user.Firstname,
+            //        Lastname = user.Lastname,
+            //        Phonenumber = user.Phonenumber,
+            //        Country = user.Country,
+            //        City = user.City,
+            //        Streetaddress = user.Streetaddress,
+            //        Zipcode = user.Zipcode,
+            //        IsAdmin = user.IsAdmin
+            //    });
+            //}
 
             var viewModel = new AdminViewModel()
             {
