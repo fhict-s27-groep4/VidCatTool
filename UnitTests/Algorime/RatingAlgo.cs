@@ -162,5 +162,41 @@ namespace UnitTests.Algorime
             Assert.False(rating4.IABIsDivergent);
             Assert.False(rating5.IABIsDivergent);
         }
+        [Fact]
+        public void AlotofCategories()
+        {
+            List<IRating> test = new List<IRating>();
+            Rating rating1 = new Rating();
+            rating1.setAll(1, 2, 4, 4, 4);
+            Rating rating2 = new Rating();
+            rating2.setAll(3, 4, 4, 4, 4);
+            Rating rating3 = new Rating();
+            rating3.setAll(5, 6, 4, 4, 4);
+            Rating rating4 = new Rating();
+            rating4.setAll(7, 8, 4, 4, 4);
+            Rating rating5 = new Rating();
+            rating5.setAll(9, 10, 4, 4, 4);
+            Rating rating6 = new Rating();
+            rating6.setAll(11, 12, 4, 4, 4);
+            Rating rating7 = new Rating();
+            rating7.setAll(13, 14, 4, 4, 4);
+            Rating rating8 = new Rating();
+            rating8.setAll(15, 16, 4, 4, 4);
+            Rating rating9 = new Rating();
+            rating9.setAll(17, 18, 4, 4, 4);
+            Rating rating10 = new Rating();
+            rating10.setAll(19, 20, 1, 1, 1);
+            test.Add(rating1);
+            test.Add(rating2);
+            test.Add(rating3);
+            test.Add(rating4);
+            test.Add(rating5);
+            test.Add(rating6);
+            test.Add(rating7);
+            test.Add(rating8);
+            test.Add(rating9);
+            test.Add(rating10);
+            ratalgo.FindDivergents(test);
+        }
     }
 }
