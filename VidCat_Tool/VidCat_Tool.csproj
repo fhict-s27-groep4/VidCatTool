@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <UserSecretsId>c9565cf6-7596-4374-a044-e4d217d3690d</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,6 +17,10 @@
   <ItemGroup>
     <ProjectReference Include="..\BusinessLogicLibrary\BusinessLogicLibrary.csproj" />
     <ProjectReference Include="..\Service Layer\Service Layer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\lib\jquery-ui\dist\" />
   </ItemGroup>
 
 </Project>
