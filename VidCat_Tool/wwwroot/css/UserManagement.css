@@ -1,4 +1,51 @@
-﻿.contentcontainer {
+﻿
+/*_______________________________________________________________________*/
+/*                                                                       */
+/*             CSS CODE FOR ELEMENTS, CODED BY @MARTIN                   */
+/*_______________________________________________________________________*/
+
+
+.horizontal-line {
+    height: 1px;
+    background-color: rgba(70, 70, 70, 0.25);
+    width: 90%;
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+/*.user-filter-box {
+    margin-bottom: 12%;
+    margin-top: 12%;
+}*/
+
+.userSelActionsContainer {
+    background-color: #ffffff;
+    color: #707070;
+    border: 1px solid #bdbdbd;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*_______________________________________________________________________*/
+/*                                                                       */
+/*             OLD BASIC CODE FOR THE TABLES AND ROWS                    */
+/*_______________________________________________________________________*/
+
+.contentcontainer {
     margin-top: 2%;
 }
 

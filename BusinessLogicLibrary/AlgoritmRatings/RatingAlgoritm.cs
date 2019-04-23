@@ -11,7 +11,7 @@ namespace BusinessLogicLibrary.AlgoritmRatings
         private double iabToleranceTier1 = 0.85;
         private double iabToleranceTier2 = 0.75;
         private double biggestPercentIAB = 0.9;
-        private double padTolerance = 1.5;
+        private double padTolerance = 0.7;
         private int maximumRatings = 80;
         public event EventHandler<DivergentRatings> DivergentRatings;
 
@@ -99,9 +99,9 @@ namespace BusinessLogicLibrary.AlgoritmRatings
                 }
             }
             IEnumerable<int> biggestCatagories = BiggestCategories(countCatagorie2, count);
-            double averageP = pleassure / count;
-            double averageA = arrousel / count;
-            double averageD = dominance / count;
+            double averageP = (double)pleassure / count;
+            double averageA = (double)arrousel / count;
+            double averageD = (double)dominance / count;
             foreach (IRating rating in _ratings)
             {//2 of 3 divergent pads>>>pad is divergent, tier2 is not in the list with biggest catagories>>>iabdivergent
                 int divergentCount = 0;
@@ -138,6 +138,7 @@ namespace BusinessLogicLibrary.AlgoritmRatings
             {//outputs only the ratings where something is divergent
                 OnDivergentRatings(divergentRatings);
             }
+            foreach()
         }
     }
 }

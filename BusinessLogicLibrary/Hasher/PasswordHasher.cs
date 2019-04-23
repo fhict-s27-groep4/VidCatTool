@@ -18,13 +18,13 @@ namespace BusinessLogicLibrary.Hasher
 
         #region Methodes
 
-        public void HashWithSalt(string password) // nieuw wachtwoord hashen
+        public string HashWithSalt(string password) // nieuw wachtwoord hashen
         {
             key = GenerateRandomCryptographicKey(64); // maak een random salt aan
             string total = password + key; // voeg salt en password samen
             byte[] textData = System.Text.Encoding.UTF8.GetBytes(total); // zet het om naar bytes
             byte[] hash = SHA256.Create().ComputeHash(textData); // creer de hash
-            hashtotal = BitConverter.ToString(hash); // zet bytes om naar string
+            return BitConverter.ToString(hash); // zet bytes om naar string
         }
         public string CheckPassword(string password, string salt) // ingevulde wachtwoord checken
         {
