@@ -11,15 +11,18 @@ namespace BusinessLogicLibrary.JsonWriter
 {
     class WriterJson
     {
-        private double Deviation(IEnumerable<int> _scores)
+        private Task<double> Deviation(IEnumerable<int> _scores)
         {
-            double average = _scores.Average();
-            IList<double> squareRoots = new List<double>();
-            foreach (int score in _scores)
+            return Task.Run(() =>
             {
-                squareRoots.Add(Math.Pow((average + score) % score, 2));
-            }
-            return Math.Round(Math.Pow(squareRoots.Average(), 0.5), 1, MidpointRounding.AwayFromZero);
+                double average = _scores.Average();
+                IList<double> squareRoots = new List<double>();
+                foreach (int score in _scores)
+                {
+                    squareRoots.Add(Math.Pow((average + score) % score, 2));
+                }
+                return Math.Round(Math.Pow(squareRoots.Average(), 0.5), 1, MidpointRounding.AwayFromZero);
+            });
         }
         private async Task<JObject> PADScore(IEnumerable<int> _padScores)
         {
@@ -44,12 +47,15 @@ namespace BusinessLogicLibrary.JsonWriter
             return padscores;
         }
 
-        private JObject Tier2Category(IEnumerable<IRating> _ratings, double _percentage)
+        private Task<JObject> Tier2Category(IEnumerable<IRating> _ratings, double _percentage)
         {
-            JObject tier2 = new JObject();
-            tier2.Add("category_id", _ratings.First().UniqueCategory2);
-            tier2.Add("percentage", (int)Math.Round(_percentage, MidpointRounding.AwayFromZero));
-            return tier2;
+            return Task.Run(() =>
+            {
+                JObject tier2 = new JObject();
+                tier2.Add("category_id", _ratings.First().UniqueCategory2);
+                tier2.Add("percentage", (int)Math.Round(_percentage, MidpointRounding.AwayFromZero));
+                return tier2;
+            });
         }
 
         private async Task<JObject> Tier1Category(IEnumerable<IRating> _ratings, double _percentage)
