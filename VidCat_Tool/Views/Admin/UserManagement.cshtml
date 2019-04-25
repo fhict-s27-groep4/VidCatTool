@@ -66,11 +66,11 @@
 
 
                 <div class="user-filter-box">
-                    <h4 style="text-decoration: underline; color: #707070;">Afwijking PAD-Score</h4>
+                    <h4 class="text-center" style="color: #707070;">Afwijking PAD-Score</h4>
                     <input type="range" multiple min="1" max="100" value="70,100" class="slider int-slider" />
                 </div>
-                <div class="user-filter-box">
-                    <h4 style="text-decoration: underline; color: #707070;">Afwijking IAB-Score</h4>
+                <div class="user-filter-box" style="margin-top: 8%;">
+                    <h4 class="text-center" style="color: #707070;">Afwijking IAB-Score</h4>
                     <input type="range" multiple min="1" max="100" value="70,100" class="slider int-slider" />
                 </div>
 
@@ -78,10 +78,10 @@
                 <div class="horizontal-line center-block"></div>
 
                 <div class="user-filter-box">
-                    <h4 style="text-decoration: underline; color: #707070;">Aantal Bekeken</h4>
+                    <h4 class="text-center" style="color: #707070;">Aantal Bekeken</h4>
                     <div class="row" style="width: 100%; min-height: 28px; max-height: 28px;">
                         <div style="margin-left: 5%; margin-right: 5%;">
-                            <div style="float: left; width: 25%; overflow: hidden;">
+                            <div style="float: left; width: 25%; overflow: hidden; margin-left: 11%;">
                                 <input type="number" style="width: 100%; border: none; outline: none; background: transparent; border-bottom: 1px solid #707070;" />
                             </div>
                             <div style="float: left; margin-left: 4%; margin-right: 4%; margin-top: 1%;">T/M</div>
@@ -97,10 +97,10 @@
                 <div class="horizontal-line center-block"></div>
 
                 <div class="user-filter-box">
-                    <h4 style="text-decoration: underline; color: #707070;">Leeftijd Account</h4>
-                    <div class="row" style="width: 100%; min-height: 28px; max-height: 28px;">
-                        <div style="margin-left: 5%; margin-right: 5%;">
-                            <div style="float: left; width: 20%; overflow: hidden;">
+                    <h4 class="text-center" style="color: #707070;">Leeftijd Account</h4>
+                    <div style="padding-top: 0px; width: 100%; min-height: 28px; max-height: 28px;">
+                        <div style="margin-left: auto; margin-right: auto; height: 28px;">
+                            <div style="float: left; width: 20%; overflow: hidden; margin-left: 15%;">
                                 <input type="number" style="width: 100%; border: none; outline: none; background: transparent; border-bottom: 1px solid #707070;" />
                             </div>
                             <div style="float: left; width: 30%; overflow: hidden; margin-left: 4%; margin-top: 1%;">
@@ -130,30 +130,32 @@
             @* ------------------------------------------------------------------- -----------------*@
 
 
-            <div class="col-sm-7 userActionsColumn" style="margin-left: 4%;">
+            <div class="col-sm-7 userActionsColumn" style="margin-left: 4%; padding-right: 0;">
 
                 @* All buttons in the menu *@
                 <div class="col-sm-10 userSelActionsContainer">
-                    <a class="btn btn-default" asp-controller="" asp-action="" style="font-size: 14px; margin: 5px 2px 5px -9px;">
+                    <a class="btn btn-default" asp-controller="" asp-action="" style="font-size: 14px; margin: 7px 3px 7px -7px;">
                         <i class="fas fa-times"></i>&nbsp Ban
                     </a>
-                    <a class="btn btn-default" asp-controller="" asp-action="" style="font-size: 14px; margin: 5px 2px 5px 0px;">
+                    <a class="btn btn-default" asp-controller="" asp-action="" style="font-size: 14px; margin: 7px 3px 7px 0px;">
                         <i class="fas fa-user-check"></i>&nbsp Check Ratings
                     </a>
-                    <a class="btn btn-default" asp-controller="" asp-action="" style="font-size: 14px; margin: 5px 2px 5px 0px;">
+                    <a class="btn btn-default" asp-controller="" asp-action="" style="font-size: 14px; margin: 7px 3px 7px 0px;">
                         <i class="far fa-comment-dots"></i>&nbsp Send Message
                     </a>
-                    <a class="btn btn-default" asp-controller="" asp-action="" style="font-size: 14px; margin: 5px -9px 5px 0px;">
+                    <a class="btn btn-default" asp-controller="" asp-action="" style="font-size: 14px; margin: 7px -7px 7px 0px;">
                         <i class="fas fa-exclamation-circle"></i>&nbsp Warn User
                     </a>
                 </div>
 
                 @* The "Add User" Button, which is outside the other box *@
-                <div class="col-sm-1 userAddContainer" style="margin-left: 6.2%; padding: 5px 0px 5px 0px;">
-                    <a class="btn userAddButton" asp-controller="Admin" asp-action="AddUser"
-                       style="background-color: #e91e63; color: #ffffff; font-weight: 200;">
-                        <i class="fas fa-plus"></i>&nbsp Add User
-                    </a>
+                <div class="col-sm-2 userAddContainer" style="display: flex; justify-content: flex-end; align-items: center; float: right; overflow: hidden; height: 50px; padding: 1px 0px 1px 30px;">
+                    <div style="width: 100%;">
+                        <a class="btn userAddButton" asp-controller="Admin" asp-action="AddUser"
+                           style="background-color: #e91e63; color: #ffffff; font-weight: 200; width: 100%;">
+                            <i class="fas fa-plus"></i>&nbsp Add User
+                        </a>
+                    </div>
                 </div>
 
             </div>
