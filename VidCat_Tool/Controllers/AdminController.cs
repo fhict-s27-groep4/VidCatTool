@@ -62,6 +62,12 @@ namespace VidCat_Tool.Controllers
             return View();
         }
 
+        public IActionResult ExportToJSON()
+        {
+            
+            return View();
+        }
+
         [HttpPost]
         public IActionResult AddUser(AddUserViewModel vm)
         {

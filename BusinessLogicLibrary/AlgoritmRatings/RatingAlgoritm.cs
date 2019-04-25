@@ -23,7 +23,7 @@ namespace BusinessLogicLibrary.AlgoritmRatings
         private IList<IObjectPair<int, int>> CatagoryInList(IList<IObjectPair<int, int>> _categoryList, int _categoryID)
         {
             IList<IObjectPair<int, int>> categoryList = new List<IObjectPair<int, int>>();
-            foreach(IObjectPair<int, int> pair in _categoryList)
+            foreach (IObjectPair<int, int> pair in _categoryList)
             {
                 categoryList.Add(pair);
             }
@@ -134,10 +134,7 @@ namespace BusinessLogicLibrary.AlgoritmRatings
                     divergentRatings.Add(rating);
                 }
             }
-            if (divergentRatings != null)
-            {//outputs only the ratings where something is divergent
-                OnDivergentRatings(divergentRatings);
-            }
+            OnDivergentRatings(divergentRatings);
         }
     }
 }
