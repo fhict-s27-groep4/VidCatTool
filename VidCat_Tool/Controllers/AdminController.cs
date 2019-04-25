@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using BusinessLogicLibrary;
 using BusinessLogicLibrary.JsonWriter;
@@ -62,10 +63,13 @@ namespace VidCat_Tool.Controllers
             return View();
         }
 
-        public IActionResult ExportToJSON()
+        public FileResult ExportToJSON()
         {
-            
-            return View();
+            Thread json = new Thread(new ThreadStart(() => writerJson.Write(new List<IRating>())));
+            string fileName = "JSONExport.json";
+            string filePath = $"Downloads/{fileName}";
+            byte[] fileBytes = System.IO.File.ReadAllBytes(filePath);
+            return File(fileBytes, "application/x-msdownload", fileName);
         }
 
         [HttpPost]
