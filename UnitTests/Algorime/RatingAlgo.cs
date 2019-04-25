@@ -227,9 +227,11 @@ namespace UnitTests.Algorime
             ratalgo.DivergentRatings += Ratalgo_DivergentRatings;
             ratalgo.FindDivergents(test);
 
-            Assert.
-
-
+            Assert.True(rating1.IABIsDivergent);
+            Assert.True(rating2.IABIsDivergent);
+            Assert.True(rating3.IABIsDivergent);
+            Assert.True(rating4.IABIsDivergent);
+            Assert.True(rating5.IABIsDivergent);
         }
     }
 }
