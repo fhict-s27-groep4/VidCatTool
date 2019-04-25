@@ -11,7 +11,6 @@ namespace BusinessLogicLibrary.Hasher
         #region Fields
 
         private string key = "";
-        private string hashtotal;
         private string result;
 
         #endregion
@@ -48,10 +47,6 @@ namespace BusinessLogicLibrary.Hasher
         public string GetKey()
         {
             return key;
-        }
-        public string GetHashTotal()
-        {
-            return hashtotal;
         }
 
         #endregion
