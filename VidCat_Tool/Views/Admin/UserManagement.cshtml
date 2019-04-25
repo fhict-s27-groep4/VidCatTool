@@ -173,15 +173,22 @@
                 <div class="userSearchResults">
                     @foreach (var user in Model.SelectedUsers)
                     {
-                        <div class="userSearchItem" style="border: 1px solid #e91e63; padding: 1.8%;">
-                            <div class="row" style="height: 25%; max-height: 50px;">
-                                <div class="col-md-11"><h3 style="margin: 0%;">@user.Firstname @user.Lastname</h3></div>
-                                <div class="col-md-1"><img height="64" width="64" src="~/images/user-placeholder.png" style="float: right;" /></div>
+                        <div class="userSearchItem" style="border: 1px solid #e91e63; padding: 1.8%; margin-bottom: 2.5%;">
+                            <div style="">
+                                <div style="margin-bottom: 1%; height: 26px;">
+                                    <div style="float: left;"><h3 style="margin: 0;">@user.Username</h3></div>
+                                    <div style="float: left; margin-left: 2%; line-height: 26px; height: 26px; font-size: 16px;">(@user.Firstname @user.Lastname)</div>
+                                    @*<div class="col-md-1"><img height="64" width="64" src="~/images/user-placeholder.png" style="float: right;" /></div>*@
+                                </div>
+                                <div style="color: #707070;">
+                                    <i class="fas fa-envelope"></i> @user.Email
+                                    <i class="fas fa-video" style="margin-left: 3%;"></i> ???
+                                    <i class="fas fa-user-clock" style="margin-left: 3%;"></i> 6 Days
+                                </div>
                             </div>
-                            <div class="row" style="height: 20%; max-height: 32px;">
-                                <h6>@user.City, @user.Country (@user.Streetaddress, @user.Zipcode)</h6>
-                            </div>
-                            <h6>@user.Phonenumber</h6>
+                            @*<div style="width: 15%;">
+                                <img src="~/images/user-placeholder.png" width="64" height="64"/>
+                            </div>*@
                         </div>
                     }
                 </div>

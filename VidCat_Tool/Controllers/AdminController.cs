@@ -25,21 +25,38 @@ namespace VidCat_Tool.Controllers
         public IActionResult UserManagement()
         {
             List<User> users = new List<User>();
-            //foreach (var user in userManager.GetAllUsers()) {
-            //    users.Add(new User() {
-            //        UserID = user.UserID,
-            //        Username = user.Username,
-            //        Email = user.Email,
-            //        Firstname = user.Firstname,
-            //        Lastname = user.Lastname,
-            //        Phonenumber = user.Phonenumber,
-            //        Country = user.Country,
-            //        City = user.City,
-            //        Streetaddress = user.Streetaddress,
-            //        Zipcode = user.Zipcode,
-            //        IsAdmin = user.IsAdmin
-            //    });
-            //}
+            users.Add(new User()
+            {
+                Username = "MartinaeyNL",
+                Email = "MartinBlabla@gmail.com",
+                Firstname = "Martin",
+                Lastname = "Peeters",
+                IsAdmin = true
+            });
+            users.Add(new User()
+            {
+                Username = "Farloc",
+                Email = "Twan_Rooijackers_BusinessMail@student.business.nl",
+                Firstname = "Twan",
+                Lastname = "Rooijackers",
+                IsAdmin = false
+            });
+            users.Add(new User()
+            {
+                Username = "BlackMania_Vincent123",
+                Email = "Vincent@studentplus.fontys.nl",
+                Firstname = "Vincent",
+                Lastname = "Muijtjens",
+                IsAdmin = true
+            });
+            users.Add(new User()
+            {
+                Username = "Arometiz",
+                Email = "Rico@outsourcingVanS27.nl",
+                Firstname = "Rico",
+                Lastname = "Muijtjens",
+                IsAdmin = false
+            });
 
             var viewModel = new AdminViewModel()
             {
@@ -47,6 +64,11 @@ namespace VidCat_Tool.Controllers
             };
 
             return View(viewModel);
+        }
+
+        public IActionResult VideoManagement()
+        {
+            return View();
         }
 
         /*____________________________________________________*/
