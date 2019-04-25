@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BusinessLogicLibrary;
+using BusinessLogicLibrary.JsonWriter;
 using Microsoft.AspNetCore.Mvc;
 using VidCat_Tool.Models;
 using VidCat_Tool.ViewModels;
@@ -13,10 +14,12 @@ namespace VidCat_Tool.Controllers
     public class AdminController : Controller
     {
         private readonly UserManager userManager;
+        private readonly WriterJson writerJson;
         private readonly AccountHandler accountHandler;
 
         public AdminController(UserManager userManager, AccountHandler accountHandler)
         {
+            this.writerJson = new WriterJson();
             this.userManager = userManager;
             this.accountHandler = accountHandler;
         }
@@ -24,32 +27,32 @@ namespace VidCat_Tool.Controllers
         /*___________________________________________________________*/
 
         //When opening the overview of all users
-        public IActionResult UserManagement()
-        {
-            List<User> users = new List<User>();
-            //foreach (var user in userManager.GetAllUsers()) {
-            //    users.Add(new User() {
-            //        UserID = user.UserID,
-            //        Username = user.Username,
-            //        Email = user.Email,
-            //        Firstname = user.Firstname,
-            //        Lastname = user.Lastname,
-            //        Phonenumber = user.Phonenumber,
-            //        Country = user.Country,
-            //        City = user.City,
-            //        Streetaddress = user.Streetaddress,
-            //        Zipcode = user.Zipcode,
-            //        IsAdmin = user.IsAdmin
-            //    });
-            //}
+        //public IActionResult UserManagement()
+        //{
+        //    List<User> users = new List<User>();
+        //    //foreach (var user in userManager.GetAllUsers()) {
+        //    //    users.Add(new User() {
+        //    //        UserID = user.UserID,
+        //    //        Username = user.Username,
+        //    //        Email = user.Email,
+        //    //        Firstname = user.Firstname,
+        //    //        Lastname = user.Lastname,
+        //    //        Phonenumber = user.Phonenumber,
+        //    //        Country = user.Country,
+        //    //        City = user.City,
+        //    //        Streetaddress = user.Streetaddress,
+        //    //        Zipcode = user.Zipcode,
+        //    //        IsAdmin = user.IsAdmin
+        //    //    });
+        //    //}
 
-            var viewModel = new AdminViewModel()
-            {
-                SelectedUsers = users
-            };
+        //    var viewModel = new AdminViewModel()
+        //    {
+        //        SelectedUsers = users
+        //    };
 
-            return View(viewModel);
-        }
+        //    return View(viewModel);
+        //}
 
         /*____________________________________________________*/
 
