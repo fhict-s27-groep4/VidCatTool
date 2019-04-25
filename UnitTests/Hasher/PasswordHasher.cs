@@ -20,8 +20,7 @@ namespace UnitTests
         public void Hasher_Met_Salt_Twee_Keer_Hetzelfde()
         {
             string password = "henk";
-            PassHash.HashWithSalt(password);
-            string first = PassHash.GetHashTotal();
+            string first = PassHash.HashWithSalt(password);
             string key = PassHash.GetKey();
             var result = PassHash.CheckPassword(password, key);
             Assert.Equal(first, result);
