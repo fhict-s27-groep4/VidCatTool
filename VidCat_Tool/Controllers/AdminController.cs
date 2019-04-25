@@ -65,10 +65,9 @@ namespace VidCat_Tool.Controllers
 
         public FileResult ExportToJSON()
         {
-            Thread json = new Thread(new ThreadStart(() => writerJson.Write(new List<IRating>())));
-            string fileName = "JSONExport.json";
-            string filePath = $"Downloads/{fileName}";
-            byte[] fileBytes = System.IO.File.ReadAllBytes(filePath);
+            Task<string> json = Task.Run(() => writerJson.Write(new List<IRating>()));
+            string fileName = "JSON_Export.json";
+            byte[] fileBytes = System.IO.File.ReadAllBytes(json.Result);
             return File(fileBytes, fileName);
         }
 
