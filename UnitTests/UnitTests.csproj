@@ -22,8 +22,4 @@
     <ProjectReference Include="..\VidCat_Tool\VidCat_Tool.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="RandomPassword\" />
-  </ItemGroup>
-
 </Project>
