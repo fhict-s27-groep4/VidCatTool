@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLogicLibrary.JsonWriter
 {
-    class WriterJson
+    public class WriterJson
     {
         private Task<double> Deviation(IEnumerable<int> _scores)
         {
@@ -110,7 +110,7 @@ namespace BusinessLogicLibrary.JsonWriter
             return video;
         }
 
-        public async Task Write(IEnumerable<IRating> _ratings)
+        public async Task<string> Write(IEnumerable<IRating> _ratings)
         {
             Task<JObject>[] taskArray = new Task<JObject>[_ratings.Select(x => x.MediaID).Distinct().Count()];
             JObject jObject = new JObject();
@@ -131,6 +131,7 @@ namespace BusinessLogicLibrary.JsonWriter
             jObject.Add("videos", videos);
             stream.Write(JsonConvert.SerializeObject(jObject, Formatting.Indented));
             stream.Close();
+            return filename;
         }
     }
 

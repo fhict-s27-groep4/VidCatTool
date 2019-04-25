@@ -40,6 +40,10 @@ namespace VidCat_Tool.Controllers
             ApplicationUser appUser = userManager.GetLoginUser(HttpContext.Session.GetString("Username"));
             Video vid = assignManager.GetVideo(postModel.VideoIdentity);
             ratingManager.AddRating(appUser.UserID, vid.VideoID, 1, postModel.Pleasure, postModel.Arrousal, postModel.Dominance);
+            if(DateTime.Now.TimeOfDay.Hours > 15)
+            {
+                return StatusCode(StatusCodes.Status418ImATeapot);
+            }
             if (next == true)
             {
                 return RedirectToAction("Review");

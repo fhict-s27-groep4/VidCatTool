@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BusinessLogicLibrary;
+using BusinessLogicLibrary.JsonWriter;
 using Microsoft.AspNetCore.Mvc;
 using VidCat_Tool.Models;
 using VidCat_Tool.ViewModels;
@@ -13,9 +14,11 @@ namespace VidCat_Tool.Controllers
     public class AdminController : Controller
     {
         private readonly UserManager userManager;
+        private readonly WriterJson writerJson;
 
         public AdminController(UserManager userManager)
         {
+            this.writerJson = new WriterJson();
             this.userManager = userManager;
         }
 
