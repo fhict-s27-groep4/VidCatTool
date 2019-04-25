@@ -22,32 +22,32 @@ namespace VidCat_Tool.Controllers
         /*___________________________________________________________*/
 
         //When opening the overview of all users
-        public IActionResult UserManagement()
-        {
-            List<User> users = new List<User>();
-            //foreach (var user in userManager.GetAllUsers()) {
-            //    users.Add(new User() {
-            //        UserID = user.UserID,
-            //        Username = user.Username,
-            //        Email = user.Email,
-            //        Firstname = user.Firstname,
-            //        Lastname = user.Lastname,
-            //        Phonenumber = user.Phonenumber,
-            //        Country = user.Country,
-            //        City = user.City,
-            //        Streetaddress = user.Streetaddress,
-            //        Zipcode = user.Zipcode,
-            //        IsAdmin = user.IsAdmin
-            //    });
-            //}
+        //public IActionResult UserManagement()
+        //{
+        //    List<User> users = new List<User>();
+        //    //foreach (var user in userManager.GetAllUsers()) {
+        //    //    users.Add(new User() {
+        //    //        UserID = user.UserID,
+        //    //        Username = user.Username,
+        //    //        Email = user.Email,
+        //    //        Firstname = user.Firstname,
+        //    //        Lastname = user.Lastname,
+        //    //        Phonenumber = user.Phonenumber,
+        //    //        Country = user.Country,
+        //    //        City = user.City,
+        //    //        Streetaddress = user.Streetaddress,
+        //    //        Zipcode = user.Zipcode,
+        //    //        IsAdmin = user.IsAdmin
+        //    //    });
+        //    //}
 
-            var viewModel = new AdminViewModel()
-            {
-                SelectedUsers = users
-            };
+        //    var viewModel = new AdminViewModel()
+        //    {
+        //        SelectedUsers = users
+        //    };
 
-            return View(viewModel);
-        }
+        //    return View(viewModel);
+        //}
 
         /*____________________________________________________*/
 

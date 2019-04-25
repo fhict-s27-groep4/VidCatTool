@@ -224,9 +224,12 @@ namespace UnitTests.Algorime
             test.Add(rating8);
             test.Add(rating9);
             test.Add(rating10);
-
-            //assert
+            ratalgo.DivergentRatings += Ratalgo_DivergentRatings;
             ratalgo.FindDivergents(test);
+
+            Assert.
+
+
         }
     }
 }
