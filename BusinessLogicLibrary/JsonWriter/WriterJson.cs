@@ -115,13 +115,14 @@ namespace BusinessLogicLibrary.JsonWriter
             Task<JObject>[] taskArray = new Task<JObject>[_ratings.Select(x => x.MediaID).Distinct().Count()];
             JObject jObject = new JObject();
             JArray videos = new JArray();
+            string filename = "../../JsonExport" + DateTime.Now.ToString("dd-mm-yyyy hh-mm-ss") + ".json";
             int index = 0;
             foreach (string s in _ratings.Select(x => x.MediaID).Distinct())
             {
                 taskArray[index] = Task.Run(() => Video(_ratings.Where(x => x.MediaID == s)));
                 index++;
             }
-            string filename = "../../JsonExport" + DateTime.Now.ToString("dd-mm-yyyy hh-mm-ss") + ".json";
+
             StreamWriter stream = new StreamWriter(File.Create(filename));
             await Task.WhenAll(taskArray);
             foreach (JObject video in taskArray.Select(x => x.Result))
@@ -131,7 +132,7 @@ namespace BusinessLogicLibrary.JsonWriter
             jObject.Add("videos", videos);
             stream.Write(JsonConvert.SerializeObject(jObject, Formatting.Indented));
             stream.Close();
-            return filename;
+            return Path.GetFullPath(filename);
         }
     }
 

@@ -69,7 +69,7 @@ namespace VidCat_Tool.Controllers
             string fileName = "JSONExport.json";
             string filePath = $"Downloads/{fileName}";
             byte[] fileBytes = System.IO.File.ReadAllBytes(filePath);
-            return File(fileBytes, "application/x-msdownload", fileName);
+            return File(fileBytes, fileName);
         }
 
         [HttpPost]
