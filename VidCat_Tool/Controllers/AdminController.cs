@@ -15,11 +15,13 @@ namespace VidCat_Tool.Controllers
     {
         private readonly UserManager userManager;
         private readonly WriterJson writerJson;
+        private readonly AccountHandler accountHandler;
 
-        public AdminController(UserManager userManager)
+        public AdminController(UserManager userManager, AccountHandler accountHandler)
         {
             this.writerJson = new WriterJson();
             this.userManager = userManager;
+            this.accountHandler = accountHandler;
         }
 
         /*___________________________________________________________*/
@@ -57,6 +59,22 @@ namespace VidCat_Tool.Controllers
         //When wanting to add a new user, this page opens
         public IActionResult AddUser()
         {
+            return View();
+        }
+
+        public IActionResult ExportToJSON()
+        {
+            
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddUser(AddUserViewModel vm)
+        {
+            if (ModelState.IsValid)
+            {
+                accountHandler.CreateUser(vm.Firstname, vm.Lastname, vm.Email, vm.Phonenumber, vm.Country, null, vm.Streetname, vm.Zip);
+            }
             return View();
         }
     }
