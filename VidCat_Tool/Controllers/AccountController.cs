@@ -6,7 +6,6 @@ using System.Net;
 using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
-using BusinessLogicLibrary;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using VidCat_Tool.ViewModels;
@@ -16,11 +15,9 @@ namespace VidCat_Tool.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly IAccountHandler _accountHandler;
 
-        public AccountController(IAccountHandler accountHandler)
+        public AccountController()
         {
-            _accountHandler = accountHandler;
         }
 
         [HttpGet]
@@ -32,15 +29,6 @@ namespace VidCat_Tool.Controllers
         [HttpPost]
         public IActionResult Login(LoginViewModel vm)
         {
-            if (ModelState.IsValid)
-            {
-                if(_accountHandler.ValidateUser(vm.UserName, vm.Password))
-                {
-                    HttpContext.Session.SetString("Username", vm.UserName);
-                    return View("../Home/Dashboard");
-                }
-            }
-            TempData["FailedLoginAttempt"] = "The username or password were incorrect";
             return View();
         }   
         

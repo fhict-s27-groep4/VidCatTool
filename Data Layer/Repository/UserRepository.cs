@@ -1,6 +1,6 @@
 ﻿using Data_Layer.Interface;
-using Data_Layer.Model;
 using Microsoft.EntityFrameworkCore;
+using Model_Layer.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,14 +15,9 @@ namespace Data_Layer.Repository
 
         }
 
-        public IEnumerable<User> GetAllUsers()
+        public User GetUserByName(string username)
         {
-            return _context.User.Include(r => r.Role);
-        }
-
-        public IEnumerable<User> GetUserByID(int id)
-        {
-            return _context.User.Include(r => r.Role).Where(i => i.RoleID == id);
+            return _context.User.Where(user => user.Username == username).FirstOrDefault();
         }
     }
 }

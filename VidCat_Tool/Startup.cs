@@ -13,7 +13,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Data_Layer.Repository;
 using Data_Layer.Interface;
-using BusinessLogicLibrary;
 
 namespace VidCat_Tool
 {
@@ -36,17 +35,10 @@ namespace VidCat_Tool
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddDbContext<VidCatToolContext>(options => options.UseMySql(Configuration["ConnectionStrings:MYSQLConnection"]));
-
-            services.AddTransient<IUserRepository, UserRepository>();
-            services.AddTransient<IRatingRepository, RatingRepository>();
-            services.AddTransient<IRoleRepository, RoleRepository>();
-            services.AddTransient<IVideoRepository, VideoRepository>();
-
-            services.AddTransient<IAccountHandler, AccountHandler>();
-
             services.AddDistributedMemoryCache();
-            services.AddSession();
+            services.AddSession(options => 
+                options.Cookie.IsEssential = true
+            );
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
