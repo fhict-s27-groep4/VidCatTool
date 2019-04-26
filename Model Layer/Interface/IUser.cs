@@ -11,6 +11,5 @@ namespace Model_Layer.Interface
         string Password { get; set; }
         string PasswordSalt { get; set; }
         bool IsAdmin { get; set; }
-
     }
 }

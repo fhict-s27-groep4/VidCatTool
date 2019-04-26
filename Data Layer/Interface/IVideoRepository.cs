@@ -9,5 +9,6 @@ namespace Data_Layer.Interface
     public interface IVideoRepository : IRepository<Video>
     {
         Video GetRandomVideo(string username);
+        int GetVideoID(string urlIdentity);
     }
 }

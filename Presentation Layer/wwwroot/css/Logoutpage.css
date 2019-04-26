@@ -1,0 +1,9 @@
+﻿.logoutContainer {
+    padding: 10%;
+    text-align: center;
+}
+
+    .logoutContainer h2 {
+        color: #e91e63;
+        margin-bottom: 8%;
+    }

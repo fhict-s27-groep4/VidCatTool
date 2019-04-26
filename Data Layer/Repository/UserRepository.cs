@@ -19,5 +19,10 @@ namespace Data_Layer.Repository
         {
             return _context.User.Where(user => user.Username == username).FirstOrDefault();
         }
+
+        public User GetByUUID(string uid)
+        {
+            return _context.User.Where(user => user.UserID == uid).FirstOrDefault();
+        }
     }
 }

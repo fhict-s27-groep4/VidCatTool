@@ -22,5 +22,10 @@ namespace Data_Layer.Repository
             var randomvid = _context.Video.FromSql("CALL GetRandomVideo(@username)", new MySqlParameter("@username", username));
             return randomvid.FirstOrDefault();
         }
+
+        public int GetVideoID(string urlIdentity)
+        {
+            return _context.Video.Where(videoIdentity => videoIdentity.UrlIdentity == urlIdentity).Select(id => id.VideoID).FirstOrDefault();
+        }
     }
 }

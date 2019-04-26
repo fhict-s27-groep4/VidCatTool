@@ -1,8 +1,6 @@
 ﻿using Data_Layer.Interface;
+using Logic_Layer.JsonReader;
 using Model_Layer.Interface;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Service_Layer.RequestHandlers
 {
@@ -14,9 +12,16 @@ namespace Service_Layer.RequestHandlers
             this.videoRepo = videoRepo;
         }
 
-        public IAssignVideo GetRandomVideo(string username)
+        // Return een ViewModel die deze informatie bevat
+        public IVideo AssignRandomVideo(string username)
         {
-            return (IAssignVideo)videoRepo.GetRandomVideo(username);
+            return videoRepo.GetRandomVideo(username);
+        }
+
+        public string GetVideoLink(string videoIdentity)
+        {
+            ReaderJson reader = new ReaderJson();
+            return reader.GetVideoUrl(videoIdentity);
         }
     }
 }

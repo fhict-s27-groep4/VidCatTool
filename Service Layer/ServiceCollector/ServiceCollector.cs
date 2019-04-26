@@ -6,6 +6,8 @@ using Logic_Layer.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Service_Layer.RequestHandlers;
+using Service_Layer.SessionExtension;
 using System;
 
 namespace Service_Layer.ServiceCollector
@@ -23,6 +25,12 @@ namespace Service_Layer.ServiceCollector
 
             services.AddTransient<ILogin, AccountHandler>();
             services.AddTransient<IRegister, AccountHandler>();
+
+            services.AddTransient<RatingHandler>();
+            services.AddTransient<SessionHandler>();
+            services.AddTransient<UserHandler>();
+            services.AddTransient<VideoAssignHandler>();
+
             return services;
         }
     }

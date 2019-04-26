@@ -1,0 +1,40 @@
+﻿@using System.Linq
+@{
+    ViewData["Title"] = "Logout";
+    Layout = "~/Views/Shared/_SignInLayout.cshtml";
+}
+<head>
+    <link href="~/css/Logoutpage.css" rel="stylesheet" />
+</head>
+
+<div class="logoutContainer">
+    <h2>@ViewData["Title"]</h2>
+    <p>You succesfully logged out. You will be redirected to the login page in: <span id="countDown">5</span></p>
+</div>
+
+<script>
+window.onload = function(){
+
+(function(){
+  var counter = 5;
+
+  setInterval(function() {
+    counter--;
+    if (counter >= 0) {
+      span = document.getElementById("countDown");
+      span.innerHTML = counter;
+    }
+    // Display 'counter' wherever you want to display it.
+    if (counter === 0) {
+        clearInterval(counter);
+        var url = '@Url.Action("Login", "Account")';
+        window.location.href = url;
+        }
+
+        }, 1000);
+
+        })();
+
+    }
+</script>
+
