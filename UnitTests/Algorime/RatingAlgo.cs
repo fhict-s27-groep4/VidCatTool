@@ -21,45 +21,34 @@ namespace UnitTests.Algorime
         {
             ////arrange
             List<IRating> test = new List<IRating>();
-            Rating rating1 = new Rating { RatingID = 5, CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 5 }
-            
-            //Rating rating1 = new Rating();
-            //rating1.setAll(5, 5, 4, 4, 4);
-            //Rating rating2 = new Rating();
-            //rating2.setAll(6, 5, 4, 4, 4);
-            //Rating rating3 = new Rating();
-            //rating3.setAll(7, 5, 4, 4, 4);
-            //Rating rating4 = new Rating();
-            //rating4.setAll(4, 5, 4, 4, 4);
-            //Rating rating5 = new Rating();
-            //rating5.setAll(5, 5, 4, 4, 4);
-            //Rating rating6 = new Rating();
-            //rating6.setAll(5, 5, 4, 4, 4);
-            //Rating rating7 = new Rating();
-            //rating7.setAll(6, 5, 4, 4, 4);
-            //Rating rating8 = new Rating();
-            //rating8.setAll(5, 5, 4, 4, 4);
-            //Rating rating9 = new Rating();
-            //rating9.setAll(5, 5, 4, 4, 4);
-            //Rating rating10 = new Rating();
-            //rating10.setAll(5, 5, 1, 1, 1);
 
-            ////act
-            //test.Add(rating1);
-            //test.Add(rating2);
-            //test.Add(rating3);
-            //test.Add(rating4);
-            //test.Add(rating5);
-            //test.Add(rating6);
-            //test.Add(rating7);
-            //test.Add(rating8);
-            //test.Add(rating9);
-            //test.Add(rating10);
-            //ratalgo.DivergentRatings += Ratalgo_DivergentRatings;
-            //ratalgo.FindDivergents(test);
+            Rating rating1 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating2 = new Rating { CategoryID = 8, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating3 = new Rating { CategoryID = 6, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating4 = new Rating { CategoryID = 7, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating5 = new Rating { CategoryID = 4, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating6 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating7 = new Rating { CategoryID = 6, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating8 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating9 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating10 = new Rating { CategoryID = 5, DominanceIndex = 1, PleasureIndex = 1, ArrousalIndex = 1 };
+
+            //act
+            test.Add(rating1 as IRating);
+            test.Add(rating2 as IRating);
+            test.Add(rating3 as IRating);
+            test.Add(rating4 as IRating);
+            test.Add(rating5 as IRating);
+            test.Add(rating6 as IRating);
+            test.Add(rating7 as IRating);
+            test.Add(rating8 as IRating);
+            test.Add(rating9 as IRating);
+            test.Add(rating10 as IRating);
+            ratalgo.DivergentRatings += Ratalgo_DivergentRatings;
+            ratalgo.FindDivergents(test);
 
             //assert
-            Assert.True(rating10.PADIsDivergent);
+            Assert.True(rating10.IsPADDivergent);
         }
 
         private void Ratalgo_DivergentRatings(object sender, DivergentRatings e)
@@ -72,52 +61,45 @@ namespace UnitTests.Algorime
         {
             //arrange
             List<IRating> test = new List<IRating>();
-            Rating rating1 = new Rating();
-            rating1.setAll(5, 5, 4, 4, 4);
-            Rating rating2 = new Rating();
-            rating2.setAll(6, 5, 4, 4, 4);
-            Rating rating3 = new Rating();
-            rating3.setAll(7, 5, 4, 4, 4);
-            Rating rating4 = new Rating();
-            rating4.setAll(4, 5, 4, 4, 4);
-            Rating rating5 = new Rating();
-            rating5.setAll(5, 5, 4, 4, 4);
+            Rating rating1 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating2 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating3 = new Rating { CategoryID = 6, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating4 = new Rating { CategoryID = 7, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating5 = new Rating { CategoryID = 4, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
 
             //act
-            test.Add(rating1);
-            test.Add(rating2);
-            test.Add(rating3);
-            test.Add(rating4);
-            test.Add(rating5);
+            test.Add(rating1 as IRating);
+            test.Add(rating2 as IRating);
+            test.Add(rating3 as IRating);
+            test.Add(rating4 as IRating);
+            test.Add(rating5 as IRating);
             ratalgo.DivergentRatings += Ratalgo_DivergentRatings;
             ratalgo.FindDivergents(test);
 
             //assert
-            Assert.False(rating1.PADIsDivergent);
-            Assert.False(rating2.PADIsDivergent);
-            Assert.False(rating3.PADIsDivergent);
-            Assert.False(rating4.PADIsDivergent);
-            Assert.False(rating5.PADIsDivergent);
+            Assert.False(rating1.IsPADDivergent);
+            Assert.False(rating2.IsPADDivergent);
+            Assert.False(rating3.IsPADDivergent);
+            Assert.False(rating4.IsPADDivergent);
+            Assert.False(rating5.IsPADDivergent);
         }
         [Fact]
         public void NoServiceDone()
         {
             //arrange
             List<IRating> test = new List<IRating>();
-            Rating rating1 = new Rating();
-            rating1.setAll(5, 5, 4, 4, 4);
-            Rating rating2 = new Rating();
-            rating2.setAll(6, 5, 4, 4, 4);
-            Rating rating4 = new Rating();
-            rating4.setAll(4, 5, 4, 4, 4);
-            Rating rating5 = new Rating();
-            rating5.setAll(5, 5, 4, 4, 4);
+            Rating rating1 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating2 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating3 = new Rating { CategoryID = 6, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating4 = new Rating { CategoryID = 7, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating5 = new Rating { CategoryID = 4, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
 
             //act
-            test.Add(rating1);
-            test.Add(rating2);
-            test.Add(rating4);
-            test.Add(rating5);
+            test.Add(rating1 as IRating);
+            test.Add(rating2 as IRating);
+            test.Add(rating3 as IRating);
+            test.Add(rating4 as IRating);
+            test.Add(rating5 as IRating);
             Action act = () => ratalgo.FindDivergents(test);
 
             //assert
@@ -129,18 +111,16 @@ namespace UnitTests.Algorime
         {
             //arrange
             List<IRating> test = new List<IRating>();
-            Rating rating1 = new Rating();
-            rating1.setAll(5, 5, 5, 5, 5);
-            Rating rating2 = new Rating();
-            rating2.setAll(6, 5, 1, 1, 1);
+            Rating rating1 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating2 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
 
             //act
-            test.Add(rating1);
-            test.Add(rating2);
+            test.Add(rating1 as IRating);
+            test.Add(rating2 as IRating);
             ratalgo.FindDivergents(test);
 
             //assert
-            Assert.False(rating1.PADIsDivergent);
+            Assert.False(rating1.IsPADDivergent);
 
         }
         [Fact]
@@ -148,92 +128,72 @@ namespace UnitTests.Algorime
         {
             //arrange
             List<IRating> test = new List<IRating>();
-            Rating rating1 = new Rating();
-            rating1.setAll(5, 5, 4, 4, 4);
-            Rating rating2 = new Rating();
-            rating2.setAll(5, 5, 4, 4, 4);
-            Rating rating3 = new Rating();
-            rating3.setAll(5, 5, 4, 4, 4);
-            Rating rating4 = new Rating();
-            rating4.setAll(5, 5, 4, 4, 4);
-            Rating rating5 = new Rating();
-            rating5.setAll(5, 5, 4, 4, 4);
-            Rating rating6 = new Rating();
-            rating6.setAll(5, 5, 4, 4, 4);
-            Rating rating7 = new Rating();
-            rating7.setAll(5, 5, 4, 4, 4);
-            Rating rating8 = new Rating();
-            rating8.setAll(5, 5, 4, 4, 4);
-            Rating rating9 = new Rating();
-            rating9.setAll(5, 5, 4, 4, 4);
-            Rating rating10 = new Rating();
-            rating10.setAll(5, 5, 1, 1, 1);
+            Rating rating1 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating2 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating3 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating4 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating5 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating6 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating7 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating8 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating9 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating10 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
 
             //act
-            test.Add(rating1);
-            test.Add(rating2);
-            test.Add(rating3);
-            test.Add(rating4);
-            test.Add(rating5);
-            test.Add(rating6);
-            test.Add(rating7);
-            test.Add(rating8);
-            test.Add(rating9);
-            test.Add(rating10);
+            test.Add(rating1 as IRating);
+            test.Add(rating2 as IRating);
+            test.Add(rating3 as IRating);
+            test.Add(rating4 as IRating);
+            test.Add(rating5 as IRating);
+            test.Add(rating6 as IRating);
+            test.Add(rating7 as IRating);
+            test.Add(rating8 as IRating);
+            test.Add(rating9 as IRating);
+            test.Add(rating10 as IRating);
             ratalgo.FindDivergents(test);
 
             //assert
-            Assert.False(rating1.IABIsDivergent);
-            Assert.False(rating2.IABIsDivergent);
-            Assert.False(rating3.IABIsDivergent);
-            Assert.False(rating4.IABIsDivergent);
-            Assert.False(rating5.IABIsDivergent);
+            Assert.False(rating1.IsIABDivergent);
+            Assert.False(rating2.IsIABDivergent);
+            Assert.False(rating3.IsIABDivergent);
+            Assert.False(rating4.IsIABDivergent);
+            Assert.False(rating5.IsIABDivergent);
         }
         [Fact]
         public void AlotofCategories()
         {
             //arrange
             List<IRating> test = new List<IRating>();
-            Rating rating1 = new Rating();
-            rating1.setAll(1, 2, 4, 4, 4);
-            Rating rating2 = new Rating();
-            rating2.setAll(3, 4, 4, 4, 4);
-            Rating rating3 = new Rating();
-            rating3.setAll(5, 6, 4, 4, 4);
-            Rating rating4 = new Rating();
-            rating4.setAll(7, 8, 4, 4, 4);
-            Rating rating5 = new Rating();
-            rating5.setAll(9, 10, 4, 4, 4);
-            Rating rating6 = new Rating();
-            rating6.setAll(11, 12, 4, 4, 4);
-            Rating rating7 = new Rating();
-            rating7.setAll(13, 14, 4, 4, 4);
-            Rating rating8 = new Rating();
-            rating8.setAll(15, 16, 4, 4, 4);
-            Rating rating9 = new Rating();
-            rating9.setAll(17, 18, 4, 4, 4);
-            Rating rating10 = new Rating();
-            rating10.setAll(19, 20, 1, 1, 1);
+            Rating rating1 = new Rating { CategoryID = 1, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating2 = new Rating { CategoryID = 2, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating3 = new Rating { CategoryID = 3, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating4 = new Rating { CategoryID = 4, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating5 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating6 = new Rating { CategoryID = 6, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating7 = new Rating { CategoryID = 7, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating8 = new Rating { CategoryID = 8, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating9 = new Rating { CategoryID = 9, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating10 = new Rating { CategoryID = 10, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
 
             //act
-            test.Add(rating1);
-            test.Add(rating2);
-            test.Add(rating3);
-            test.Add(rating4);
-            test.Add(rating5);
-            test.Add(rating6);
-            test.Add(rating7);
-            test.Add(rating8);
-            test.Add(rating9);
-            test.Add(rating10);
+            test.Add(rating1 as IRating);
+            test.Add(rating2 as IRating);
+            test.Add(rating3 as IRating);
+            test.Add(rating4 as IRating);
+            test.Add(rating5 as IRating);
+            test.Add(rating6 as IRating);
+            test.Add(rating7 as IRating);
+            test.Add(rating8 as IRating);
+            test.Add(rating9 as IRating);
+            test.Add(rating10 as IRating);
             ratalgo.DivergentRatings += Ratalgo_DivergentRatings;
             ratalgo.FindDivergents(test);
 
-            Assert.True(rating1.IABIsDivergent);
-            Assert.True(rating2.IABIsDivergent);
-            Assert.True(rating3.IABIsDivergent);
-            Assert.True(rating4.IABIsDivergent);
-            Assert.True(rating5.IABIsDivergent);
+            Assert.True(rating1.IsIABDivergent);
+            Assert.True(rating2.IsIABDivergent);
+            Assert.True(rating3.IsIABDivergent);
+            Assert.True(rating4.IsIABDivergent);
+            Assert.True(rating5.IsIABDivergent);
         }
     }
 }
