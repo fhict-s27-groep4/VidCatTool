@@ -1,4 +1,4 @@
-﻿ @model VidCat_Tool.ViewModels.AdminViewModel
+﻿@model  Service_Layer.ViewModels.UserManagementViewModel
 
 @{
     ViewData["Title"] = "User Management";
@@ -171,7 +171,7 @@
                 
                 @* The List of Search Results, looping users *@
                 <div class="userSearchResults">
-                    @foreach (var user in Model.SelectedUsers)
+                    @foreach (var user in Model.AllUsers)
                     {
                         <div class="userSearchItem" style="border: 1px solid #e91e63; padding: 1.8%;">
                             <div class="row" style="height: 25%; max-height: 50px;">
@@ -188,7 +188,7 @@
 
                 @* Bottom text and actions, such as the amount of pages. *@
                 <div class="userSearchCount" style="margin: 4%;">
-                    <h6 class="text-center" style="width: 100%; color: #707070;">@Model.SelectedUsers.Count Results found.</h6>
+                    <h6 class="text-center" style="width: 100%; color: #707070;">@Model.AllUsers.Count Results found.</h6>
                 </div>
             </div>
 
