@@ -53,11 +53,9 @@ namespace BusinessLogicLibrary
             if (zipcode != null) newUser.Zipcode = zipcode;
 
 
-            EMailSender eMailer = InstanceFactory.GetNewEMailSender();
-            IMessageAttachementMail mail = InstanceFactory.GetNewMessageAttachementmail();
-            mail.SetSubject("Account Verification");
-            mail.SetMessageContent(string.Format("Dear Sir/Madam, \n\n An account has been created with this specific e-mail address. Please login with the following credentials: \n Username: {0} \n Password: {1} \n\n Kind regards, \n The staff of JWPlayer", newUser.Username, generatedPassword));
-            mail.AddMailAddress(email);
+            EMailSender eMailer = new EMailSender();
+            IMessageSettableMail mail = new MessageMail(new System.Net.Mail.MailMessage());
+            mail.MakeMail("Account Verification", String.Format("Dear Sir/Madam, \n\n An account has been created with this specific e-mail address. Please login with the following credentials: \n Username: {0} \n Password: {1} \n\n Kind regards, \n The staff of JWPlayer", newUser.Username, generatedPassword), email);
             eMailer.Send(mail);
 
             return true;
