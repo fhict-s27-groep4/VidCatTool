@@ -6,6 +6,7 @@ using Service_Layer.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace Service_Layer.RequestHandlers
 {
@@ -51,7 +52,7 @@ namespace Service_Layer.RequestHandlers
         {
             UserManagementViewModel vm = new UserManagementViewModel
             {
-                AllUsers = userRepo.GetAll() as IReadOnlyCollection<IUser>
+                AllUsers = userRepo.GetAll().Cast<IUser>().ToList() as IReadOnlyCollection<IUser>
             };   
             return vm;
         }
