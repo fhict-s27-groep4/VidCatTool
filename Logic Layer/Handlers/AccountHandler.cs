@@ -1,4 +1,5 @@
-﻿using Logic_Layer.Hasher;
+﻿using Logic_Layer;
+using Logic_Layer.Hasher;
 using Logic_Layer.Interfaces;
 using Logic_Layer.SMTPMessageSender;
 using Model_Layer.Interface;

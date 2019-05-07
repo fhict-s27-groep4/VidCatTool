@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BusinessLogicLibrary
+namespace Logic_Layer
 {
     public static class PasswordGenerator
     {

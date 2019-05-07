@@ -1,6 +1,9 @@
 ﻿using Logic_Layer.SMTPMessageSender;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace BusinessLogicLibrary
+namespace Logic_Layer
 {
     public static class InstanceFactory
     {
