@@ -1,9 +1,7 @@
 using System;
 using Xunit;
-using VidCat_Tool.Controllers;
 using System.Security.Authentication;
-using NuGet.Frameworks;
-using BusinessLogicLibrary.Hasher;
+using Logic_Layer.Hasher;
 
 namespace UnitTests
 {
@@ -21,7 +19,7 @@ namespace UnitTests
         {
             string password = "henk";
             string first = PassHash.HashWithSalt(password);
-            string key = PassHash.GetKey();
+            string key = PassHash.Key;
             var result = PassHash.CheckPassword(password, key);
             Assert.Equal(first, result);
         }
