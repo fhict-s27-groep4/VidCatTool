@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Logic_Layer.AlgoritmRatings
+namespace Logic_Layer
 {
     public class ObjectPair<T1, T2> : IObjectPair<T1, T2>
     {
