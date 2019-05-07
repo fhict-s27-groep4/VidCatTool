@@ -74,5 +74,17 @@ namespace BusinessLogicLibrary
             }
             return generatedUsername;
         }
+
+        public bool ValidateAccountDisabled(IUser queryUser)
+        {
+            if(queryUser.IsDisabled)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

@@ -29,6 +29,10 @@ namespace Service_Layer.RequestHandlers
             IUser loggedInUser = userRepo.GetUserByName(vm.Username);
             if(loginHandler.ValidateUser(vm.Username, vm.Password, loggedInUser))
             {
+                if(loginHandler.ValidateAccountDisabled(loggedInUser))
+                {
+                    return false;
+                }
                 sessionHandler.SetIDKey(loggedInUser.UserID);
                 sessionHandler.SetUsernameKey(loggedInUser.Username);
                 sessionHandler.SetAdminKey(loggedInUser.IsAdmin.ToString());
