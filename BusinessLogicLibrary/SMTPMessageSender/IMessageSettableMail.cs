@@ -1,11 +1,12 @@
-﻿using System.Net.Mail;
+﻿using System.Collections.Generic;
 
 namespace BusinessLogicLibrary.SMTPMessageSender
 {
     public interface IMessageSettableMail : IMessageMail
     {
-        void AddMailAddress(string _address);
-        void SetMessageContent(string _content);
-        void SetSubject(string _subject);
+        void MakeMail(string _subject, string _content, string _address);
+        void MakeMail(string _subject, string _content, IEnumerable<string> _addresses);
+        void MakeMail(string _subject, string _content, string _address, string _attachmentPath);
+        void MakeMail(string _subject, string _content, IEnumerable<string> _addresses, IEnumerable<string> _attachmentPaths);
     }
 }
