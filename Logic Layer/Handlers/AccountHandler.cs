@@ -19,7 +19,7 @@ namespace BusinessLogicLibrary
         {
         }
 
-        public bool ValidateUser(string username, string password, IUser queryUser)
+        public bool ValidateUser(string username, string password, ILoginUser queryUser)
         {
             PasswordHasher hasher = new PasswordHasher();
             
@@ -74,7 +74,7 @@ namespace BusinessLogicLibrary
             return generatedUsername;
         }
 
-        public bool ValidateAccountDisabled(IUser queryUser)
+        public bool ValidateAccountDisabled(ILoginUser queryUser)
         {
             if(queryUser.IsDisabled)
             {
