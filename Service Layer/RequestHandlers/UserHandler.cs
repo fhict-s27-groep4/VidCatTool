@@ -26,7 +26,7 @@ namespace Service_Layer.RequestHandlers
 
         public bool ValidateLoginAttempt(LoginViewModel vm)
         {
-            IUser loggedInUser = userRepo.GetUserByName(vm.Username);
+            ILoginUser loggedInUser = userRepo.GetUserByName(vm.Username) as ILoginUser;
             if(loginHandler.ValidateUser(vm.Username, vm.Password, loggedInUser))
             {
                 if(loginHandler.ValidateAccountDisabled(loggedInUser))
