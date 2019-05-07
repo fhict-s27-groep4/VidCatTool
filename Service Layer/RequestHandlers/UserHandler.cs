@@ -46,5 +46,14 @@ namespace Service_Layer.RequestHandlers
         {
             registerHandler.CreateUser(userRepo.GetAll(), vm.Firstname, vm.Lastname, vm.Email, vm.Phonenumber, vm.Country, null, vm.Streetname, vm.Zip);
         }
+
+        public UserManagementViewModel GetUserManagementViewModel()
+        {
+            UserManagementViewModel vm = new UserManagementViewModel
+            {
+                AllUsers = userRepo.GetAll() as IReadOnlyCollection<IUser>
+            };   
+            return vm;
+        }
     }
 }
