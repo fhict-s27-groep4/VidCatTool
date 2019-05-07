@@ -21,6 +21,7 @@ namespace Model_Layer.Models
         public string Streetaddress { get; set; }
         public string Zipcode { get; set; }
         public bool IsAdmin { get; set; }
+        public bool IsDisabled { get; set; }
         public ICollection<Rating> Ratings { get; set; }
     }
 }
