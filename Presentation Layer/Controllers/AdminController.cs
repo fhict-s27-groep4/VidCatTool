@@ -39,7 +39,7 @@ namespace VidCat_Tool.Controllers
         [HttpGet]
         public IActionResult UserManagement()
         {
-            return View();
+            return View(userHandler.GetUserManagementViewModel());
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using BusinessLogicLibrary;
-using BusinessLogicLibrary.SMTPMessageSender;
+﻿using Logic_Layer.SMTPMessageSender;
 using System;
 using System.Collections.Generic;
 using System.Text;
