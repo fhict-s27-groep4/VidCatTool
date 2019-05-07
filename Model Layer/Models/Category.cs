@@ -10,7 +10,7 @@ namespace Model_Layer.Models
     {
         [Key]
         public int UniqueID { get; set; }
-        public int ParentID { get; set; }
+        public int? ParentID { get; set; }
         public string Name { get; set; }
         public ICollection<Rating> Ratings { get; set; }
     }

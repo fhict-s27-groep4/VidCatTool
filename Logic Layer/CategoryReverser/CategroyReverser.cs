@@ -16,8 +16,8 @@ namespace Logic_Layer.CategoryReverser
             IObjectPair<int, int> parentTiers = new ObjectPair<int, int>();
             parentTiers.Object1 = _category.ParentID;
             parentTiers.Object1 = _category.UniqueID;
-            ICategory current = 
-            while()
+            ICategory current = _category;
+            while(current.ParentID)
             return parentTiers;
         }
     }
