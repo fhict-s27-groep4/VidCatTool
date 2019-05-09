@@ -12,7 +12,7 @@ namespace Model_Layer.Models
         public int RatingID { get; set; }
         public string UserID { get; set; }
         public User User { get; set; }
-        public int VideoID { get; set; }
+        public string VideoIdentity { get; set; }
         public Video Video { get; set; }
         public int CategoryID { get; set; }
         public Category Category { get; set; }

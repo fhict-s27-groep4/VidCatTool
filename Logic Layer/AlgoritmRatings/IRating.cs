@@ -8,10 +8,10 @@ namespace Logic_Layer.AlgoritmRatings
     {
         int Category1 { get; }
         int Category2 { get; }
-        bool IABIsDivergent { get; set; }
-        int Pleasure { get; }
-        int Arrousel { get; }
-        int Dominance { get; }
-        bool PADIsDivergent { get; set; }
+        bool IsIABDivergent { get; set; }
+        int PleasureIndex { get; }
+        int ArrousalIndex { get; }
+        int DominanceIndex { get; }
+        bool IsPADDivergent { get; set; }
     }
 }

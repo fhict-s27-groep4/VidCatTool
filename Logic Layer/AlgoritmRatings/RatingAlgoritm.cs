@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model_Layer.Interface;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -86,9 +87,9 @@ namespace Logic_Layer.AlgoritmRatings
                 {//generates count, total PAD, Counts catagories
                     countCatagorie1 = CatagoryInList(countCatagorie1, rating.Category1);
                     countCatagorie2 = CatagoryInList(countCatagorie2, rating.Category2);
-                    pleassure += rating.Pleasure;
-                    dominance += rating.Dominance;
-                    arrousel += rating.Arrousel;
+                    pleassure += rating.PleasureIndex;
+                    dominance += rating.DominanceIndex;
+                    arrousel += rating.ArrousalIndex;
                 }
                 if (count <= maximumRatings)
                 {//prevents video from getting more ratings
@@ -108,31 +109,31 @@ namespace Logic_Layer.AlgoritmRatings
                 foreach (IRating rating in _ratings)
                 {//2 of 3 divergent pads>>>pad is divergent, tier2 is not in the list with biggest catagories>>>iabdivergent
                     int divergentCount = 0;
-                    if ((rating.Pleasure + averageP) % averageP > padTolerance)
+                    if ((rating.PleasureIndex + averageP) % averageP > padTolerance)
                     {
                         divergentCount++;
                     }
-                    if ((rating.Arrousel + averageA) % averageA > padTolerance)
+                    if ((rating.ArrousalIndex + averageA) % averageA > padTolerance)
                     {
                         divergentCount++;
                     }
-                    if ((rating.Dominance + averageD) % averageD > padTolerance)
+                    if ((rating.DominanceIndex + averageD) % averageD > padTolerance)
                     {
                         divergentCount++;
                     }
                     if (divergentCount >= 2)
                     {
-                        rating.PADIsDivergent = true;
+                        rating.IsPADDivergent = true;
                     }
                     if (!biggestCatagories.Contains(rating.Category2))
                     {
-                        rating.IABIsDivergent = true;
+                        rating.IsIABDivergent = true;
                     }
                 }
                 IList<IRating> divergentRatings = new List<IRating>();
                 foreach (IRating rating in _ratings)
                 {
-                    if (rating.IABIsDivergent || rating.PADIsDivergent)
+                    if (rating.IsIABDivergent || rating.IsPADDivergent)
                     {
                         divergentRatings.Add(rating);
                     }

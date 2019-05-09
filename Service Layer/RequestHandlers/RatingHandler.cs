@@ -21,14 +21,18 @@ namespace Service_Layer.RequestHandlers
             this.videoRepo = videoRepo;
             this.sessionHandler = sessionHandler;
             ratingAlgoritm = _ratingAlgoritm;
-            ratingAlgoritm.DivergentRatings += 
+            ratingAlgoritm.DivergentRatings += this.OnDivergentRatings;
+        }
+
+        private void OnDivergentRatings(object sender, DivergentRatings e)
+        {
+            
         }
 
         public void AddRating(ReviewViewModel vm)
         {
             ratingRepo.AddRating(sessionHandler.Session.GetUserIDKey(), videoRepo.GetVideoID(vm.VideoIdentity), 5, vm.Pleasure, vm.Arrousal, vm.Dominance);
-            Task.Run(() => ratingAlgoritm.FindDivergents());
-            IEnumerable<IRating> ratings = ratingRepo.GetRatingsByVideoID(11).Cast<IRating>().ToList();
+            Task.Run(() => ratingAlgoritm.FindDivergents(ratingRepo.GetRatingsByVideoID(vm.)));
         }
     }
 }
