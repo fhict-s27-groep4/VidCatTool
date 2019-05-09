@@ -23,7 +23,7 @@ namespace Service_Layer.RequestHandlers
             this.videoRepo = videoRepo;
             this.sessionHandler = sessionHandler;
             this.categoryRepo = categoryRepo;
-            ratingAlgoritm = new RatingAlgoritm(new CategoryReverser(categoryRepo.GetAll()));
+            ratingAlgoritm = new RatingAlgoritm(new CategroyReverser(categoryRepo.GetAll()));
             ratingAlgoritm.DivergentRatings += this.OnDivergentRatings;
         }
 
@@ -32,10 +32,10 @@ namespace Service_Layer.RequestHandlers
             
         }
 
-        public async void AddRating(ReviewViewModel vm)
+        public void AddRating(ReviewViewModel vm)
         {
-                ratingRepo.AddRating(sessionHandler.Session.GetUserIDKey(), vm.VideoIdentity, 5, vm.Pleasure, vm.Arrousal, vm.Dominance);
-                ratingAlgoritm.FindDivergents(await ratingRepo.GetRatingsByVideoID(vm.VideoIdentity).Result));
+            ratingRepo.AddRating(sessionHandler.Session.GetUserIDKey(), vm.VideoIdentity, 5, vm.Pleasure, vm.Arrousal, vm.Dominance);
+            ratingAlgoritm.FindDivergents(ratingRepo.GetRatingsByVideoID(vm.VideoIdentity).Result);
         }
     }
 }

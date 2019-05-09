@@ -15,10 +15,10 @@ namespace Logic_Layer.AlgoritmRatings
         private double biggestPercentIAB = 0.9;
         private double padTolerance = 0.7;
         private int maximumRatings = 80;
-        private readonly CategoryReverser.CategoryReverser categoryReverser;
+        private readonly CategoryReverser.CategroyReverser categoryReverser;
         public event EventHandler<DivergentRatings> DivergentRatings;
 
-        public RatingAlgoritm(CategoryReverser.CategoryReverser _categroyReverser)
+        public RatingAlgoritm(CategoryReverser.CategroyReverser _categroyReverser)
         {
             categoryReverser = _categroyReverser;
         }

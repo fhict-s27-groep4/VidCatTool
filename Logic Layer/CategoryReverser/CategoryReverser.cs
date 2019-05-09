@@ -4,10 +4,10 @@ using System.Linq;
 
 namespace Logic_Layer.CategoryReverser
 {
-    public class CategoryReverser
+    public class CategroyReverser
     {
         IEnumerable<ICategory> categories;
-        public CategoryReverser(IEnumerable<ICategory> _categories)
+        public CategroyReverser(IEnumerable<ICategory> _categories)
         {
             categories = _categories;
         }
