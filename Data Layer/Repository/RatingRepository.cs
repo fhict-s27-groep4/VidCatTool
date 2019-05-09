@@ -39,7 +39,11 @@ namespace Data_Layer.Repository
             _context.Database.ExecuteSqlCommand("CALL AddRating(@userid, @videoid, @categoryid, @pleasure, @arrousal, @dominance)", new MySqlParameter("@userid", userid),
                 new MySqlParameter("@videoid", videoid), new MySqlParameter("@categoryid", categoryid), new MySqlParameter("@pleasure", pleasure),
                 new MySqlParameter("@arrousal", arrousal), new MySqlParameter("@dominance", dominance));
+        }
 
+        public IEnumerable<Rating> GetRatingsByVideoID(int videoid)
+        {
+            return _context.Rating.Where(video => video.VideoID == videoid).ToList();
         }
     }
 }

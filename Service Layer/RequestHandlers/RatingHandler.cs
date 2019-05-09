@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Service_Layer.SessionExtension;
+using Model_Layer.Interface;
+using System.Linq;
 
 namespace Service_Layer.RequestHandlers
 {
@@ -23,6 +25,7 @@ namespace Service_Layer.RequestHandlers
         public void AddRating(ReviewViewModel vm)
         {
             ratingRepo.AddRating(sessionHandler.Session.GetUserIDKey(), videoRepo.GetVideoID(vm.VideoIdentity), 5, vm.Pleasure, vm.Arrousal, vm.Dominance);
+            IEnumerable<IRating> ratings = ratingRepo.GetRatingsByVideoID(11).Cast<IRating>().ToList();
         }
     }
 }
