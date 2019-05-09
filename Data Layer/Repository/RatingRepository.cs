@@ -19,7 +19,7 @@ namespace Data_Layer.Repository
 
         public async Task<IEnumerable<Rating>> GetAllRatings()
         {
-            return await _context.Rating.Include(x => x.Category).ThenInclude(x => x.UniqueID).Include(x => x.User).ThenInclude(x => x.UserID).Include(v => v.Video).ThenInclude(v => v.VideoID).ToListAsync();
+            return await _context.Rating.Include(x => x.Category).ThenInclude(x => x.UniqueID).Include(x => x.User).ThenInclude(x => x.UserID).Include(v => v.Video).ThenInclude(v => v.UrlIdentity).ToListAsync();
         }
 
         // Untested
@@ -34,16 +34,16 @@ namespace Data_Layer.Repository
             return await _context.Rating.Where(u => u.User.Username == username).ToListAsync();
         }
 
-        public void AddRating(string userid, int videoid, int categoryid, int pleasure, int arrousal, int dominance)
+        public void AddRating(string userid, string videoidentity, int categoryid, int pleasure, int arrousal, int dominance)
         {
             _context.Database.ExecuteSqlCommand("CALL AddRating(@userid, @videoid, @categoryid, @pleasure, @arrousal, @dominance)", new MySqlParameter("@userid", userid),
-                new MySqlParameter("@videoid", videoid), new MySqlParameter("@categoryid", categoryid), new MySqlParameter("@pleasure", pleasure),
+                new MySqlParameter("@videoid", videoidentity), new MySqlParameter("@categoryid", categoryid), new MySqlParameter("@pleasure", pleasure),
                 new MySqlParameter("@arrousal", arrousal), new MySqlParameter("@dominance", dominance));
         }
 
-        public IEnumerable<Rating> GetRatingsByVideoID(int videoid)
+        public IEnumerable<Rating> GetRatingsByVideoID(string videoid)
         {
-            return _context.Rating.Where(video => video.VideoID == videoid).ToList();
+            return _context.Rating.Where(video => video.VideoIdentity == videoid).ToList();
         }
     }
 }

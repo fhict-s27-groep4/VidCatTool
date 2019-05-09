@@ -31,8 +31,8 @@ namespace Service_Layer.RequestHandlers
 
         public void AddRating(ReviewViewModel vm)
         {
-            ratingRepo.AddRating(sessionHandler.Session.GetUserIDKey(), videoRepo.GetVideoID(vm.VideoIdentity), 5, vm.Pleasure, vm.Arrousal, vm.Dominance);
-            Task.Run(() => ratingAlgoritm.FindDivergents(ratingRepo.GetRatingsByVideoID(vm.)));
+            ratingRepo.AddRating(sessionHandler.Session.GetUserIDKey(), vm.VideoIdentity, 5, vm.Pleasure, vm.Arrousal, vm.Dominance);
+            Task.Run(() => ratingAlgoritm.FindDivergents(ratingRepo.GetRatingsByVideoID(vm.VideoIdentity)));
         }
     }
 }

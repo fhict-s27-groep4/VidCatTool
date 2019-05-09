@@ -9,7 +9,6 @@ namespace Model_Layer.Models
     public class Video : IVideo
     {
         [Key]
-        public int VideoID { get; set; }
         public string UrlIdentity { get; set; }
         public bool Finished { get; set; }
         public ICollection<Rating> Ratings { get; set; }

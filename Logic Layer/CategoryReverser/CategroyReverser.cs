@@ -12,10 +12,10 @@ namespace Logic_Layer.CategoryReverser
             categories = _categories;
         }
 
-        public IObjectPair<int, int> GetParentTiers(ICategory _category)
+        public IObjectPair<int, int> GetParentTiers(int _categoryID)
         {
             IObjectPair<int, int> parentTiers = new ObjectPair<int, int>();
-            ICategory current = _category;
+            ICategory current = categories.Where(x => x.UniqueID == _categoryID).First();
             while(current.ParentID != null)
             {
                 parentTiers.Object1 = (int)current.ParentID;
