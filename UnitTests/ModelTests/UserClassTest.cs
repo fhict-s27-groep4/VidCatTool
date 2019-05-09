@@ -100,7 +100,7 @@ namespace UnitTests.SmallTests
             rating1.PleasureIndex = 4;
             rating1.RatingID = 5;
             rating1.UserID = "15";
-            rating1.VideoID = 140;
+            rating1.VideoIdentity = "ABCDEFG";
 
             //act
             Ratinglist.Add(rating1);
