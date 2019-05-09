@@ -5,6 +5,7 @@ using Model_Layer.Interface;
 using System.Linq;
 using Logic_Layer.AlgoritmRatings;
 using System.Threading.Tasks;
+using Logic_Layer.CategoryReverser;
 
 namespace Service_Layer.RequestHandlers
 {
@@ -13,14 +14,16 @@ namespace Service_Layer.RequestHandlers
         private readonly IRatingRepository ratingRepo;
         private readonly IVideoRepository videoRepo;
         private readonly SessionHandler sessionHandler;
+        private readonly ICategoryRepository categoryRepo;
         private readonly RatingAlgoritm ratingAlgoritm;
 
-        public RatingHandler(IRatingRepository ratingRepo, IVideoRepository videoRepo, SessionHandler sessionHandler, RatingAlgoritm _ratingAlgoritm)
+        public RatingHandler(IRatingRepository ratingRepo, IVideoRepository videoRepo, ICategoryRepository categoryRepo, SessionHandler sessionHandler)
         {
             this.ratingRepo = ratingRepo;
             this.videoRepo = videoRepo;
             this.sessionHandler = sessionHandler;
-            ratingAlgoritm = _ratingAlgoritm;
+            this.categoryRepo = categoryRepo;
+            ratingAlgoritm = new RatingAlgoritm(new CategoryReverser(categoryRepo.GetAll()));
             ratingAlgoritm.DivergentRatings += this.OnDivergentRatings;
         }
 
@@ -29,10 +32,10 @@ namespace Service_Layer.RequestHandlers
             
         }
 
-        public void AddRating(ReviewViewModel vm)
+        public async void AddRating(ReviewViewModel vm)
         {
-            ratingRepo.AddRating(sessionHandler.Session.GetUserIDKey(), vm.VideoIdentity, 5, vm.Pleasure, vm.Arrousal, vm.Dominance);
-            Task.Run(() => ratingAlgoritm.FindDivergents(ratingRepo.GetRatingsByVideoID(vm.VideoIdentity)));
+                ratingRepo.AddRating(sessionHandler.Session.GetUserIDKey(), vm.VideoIdentity, 5, vm.Pleasure, vm.Arrousal, vm.Dominance);
+                ratingAlgoritm.FindDivergents(await ratingRepo.GetRatingsByVideoID(vm.VideoIdentity).Result));
         }
     }
 }

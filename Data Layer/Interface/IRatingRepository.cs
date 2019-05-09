@@ -16,6 +16,6 @@ namespace Data_Layer.Interface
 
         void AddRating(string userid, string videoidentity, int categoryid, int pleasure, int arrousal, int dominance);
 
-        IEnumerable<Rating> GetRatingsByVideoID(string videoid);
+        Task<IEnumerable<Rating>> GetRatingsByVideoID(string videoid);
     }
 }
