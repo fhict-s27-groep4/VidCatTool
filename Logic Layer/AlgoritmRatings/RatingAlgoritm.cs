@@ -15,11 +15,12 @@ namespace Logic_Layer.AlgoritmRatings
         private double biggestPercentIAB = 0.9;
         private double padTolerance = 0.7;
         private int maximumRatings = 80;
+        private readonly CategoryReverser.CategroyReverser categoryReverser;
         public event EventHandler<DivergentRatings> DivergentRatings;
 
-        public RatingAlgoritm()
+        public RatingAlgoritm(CategoryReverser.CategroyReverser _categroyReverser)
         {
-
+            categoryReverser = _categroyReverser;
         }
 
         private IList<IObjectPair<int, int>> CatagoryInList(IList<IObjectPair<int, int>> _categoryList, int _categoryID)
@@ -85,8 +86,9 @@ namespace Logic_Layer.AlgoritmRatings
                 int arrousel = 0;
                 foreach (IRating rating in _ratings)
                 {//generates count, total PAD, Counts catagories
-                    countCatagorie1 = CatagoryInList(countCatagorie1, rating.Category1);
-                    countCatagorie2 = CatagoryInList(countCatagorie2, rating.Category2);
+                    IObjectPair<int, int> categoryIDs = categoryReverser.GetParentTiers(rating.CategoryID);
+                    countCatagorie1 = CatagoryInList(countCatagorie1, categoryIDs.Object1);
+                    countCatagorie2 = CatagoryInList(countCatagorie2, categoryIDs.Object2);
                     pleassure += rating.PleasureIndex;
                     dominance += rating.DominanceIndex;
                     arrousel += rating.ArrousalIndex;
@@ -125,7 +127,7 @@ namespace Logic_Layer.AlgoritmRatings
                     {
                         rating.IsPADDivergent = true;
                     }
-                    if (!biggestCatagories.Contains(rating.Category2))
+                    if (!biggestCatagories.Contains(categoryReverser.GetParentTiers(rating.CategoryID).Object2))
                     {
                         rating.IsIABDivergent = true;
                     }
