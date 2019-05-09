@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Xunit;
 using System.Text;
-using BusinessLogicLibrary;
+using Logic_Layer;
 
 namespace UnitTests.RandomPassword
 {

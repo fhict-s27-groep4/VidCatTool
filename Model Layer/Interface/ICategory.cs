@@ -7,7 +7,7 @@ namespace Model_Layer.Interface
     public interface ICategory
     {
         int UniqueID { get; set; }
-        int ParentID { get; set; }
+        int? ParentID { get; set; }
         string Name { get; set; }
     }
 }
