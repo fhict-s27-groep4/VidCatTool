@@ -19,7 +19,7 @@ namespace Logic_Layer.CategoryReverser
             while(current.ParentID != null)
             {
                 parentTiers.Object1 = (int)current.ParentID;
-                parentTiers.Object1 = current.UniqueID;
+                parentTiers.Object2 = current.UniqueID;
                 current = categories.Where(x => x.UniqueID == parentTiers.Object1).First();
             }
             return parentTiers;
