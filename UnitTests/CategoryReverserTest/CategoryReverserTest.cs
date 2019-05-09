@@ -6,11 +6,11 @@ using System.Collections.Generic;
 using System.Text;
 using Xunit;
 
-namespace UnitTests.CategoryReverser
+namespace UnitTests.CategoryReverserTest
 {
     public class CategoryReverserTest
     {
-        CategroyReverser category;
+        CategoryReverser category;
         public CategoryReverserTest()
         {
             //arrange
@@ -41,7 +41,7 @@ namespace UnitTests.CategoryReverser
             categories.Add(category3);
             categories.Add(category4);
 
-            category = new CategroyReverser(categories);
+            category = new CategoryReverser(categories);
         }
 
         [Fact]
