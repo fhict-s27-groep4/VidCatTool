@@ -53,10 +53,9 @@ namespace UnitTests.SmallTests
 
             //act
             Ratinglist.Add(rating1);
-            vid.Ratings = Ratinglist;
 
             //assert
-            Assert.NotEmpty(vid.Ratings);
+            throw new NotImplementedException();
 
         }
     }

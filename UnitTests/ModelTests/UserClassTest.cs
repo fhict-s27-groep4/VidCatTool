@@ -104,10 +104,9 @@ namespace UnitTests.SmallTests
 
             //act
             Ratinglist.Add(rating1);
-            user.Ratings = Ratinglist;
 
             //assert
-            Assert.NotEmpty(user.Ratings);
+            throw new NotImplementedException();
         }
 
     }

@@ -83,23 +83,22 @@ namespace UnitTests.ModelTests
             user1.ZipCode = "5068RE";
             user1.IsDisabled = true;
             user1.UserID = "16";
-            rating.User = user1;
 
-            User user2 = rating.User;
             //assert
-            Assert.NotEqual("Paris", user2.City);
-            Assert.NotEqual("France", user2.Country);
-            Assert.NotEqual("SiasPLoit@gmail.com", user2.Email);
-            Assert.NotEqual("Jan", user2.FirstName);
-            Assert.NotEqual("Qu're", user2.LastName);
-            Assert.NotEqual("NotActuallyAPasswords", user2.PassWord);
-            Assert.NotEqual("NotActuallyASalts", user2.PassWordSalt);
-            Assert.NotEqual("0651418554", user2.PhoneNumber);
-            Assert.NotEqual("Prinses Willem Straat", user2.StreetAddress);
-            Assert.NotEqual("2nowa", user2.UserName);
-            Assert.NotEqual("5068GE", user2.ZipCode);
-            Assert.NotEqual("15", user2.UserID);
-            Assert.True(user2.IsDisabled);
+            //Assert.NotEqual("Paris", user2.City);
+            //Assert.NotEqual("France", user2.Country);
+            //Assert.NotEqual("SiasPLoit@gmail.com", user2.Email);
+            //Assert.NotEqual("Jan", user2.FirstName);
+            //Assert.NotEqual("Qu're", user2.LastName);
+            //Assert.NotEqual("NotActuallyAPasswords", user2.PassWord);
+            //Assert.NotEqual("NotActuallyASalts", user2.PassWordSalt);
+            //Assert.NotEqual("0651418554", user2.PhoneNumber);
+            //Assert.NotEqual("Prinses Willem Straat", user2.StreetAddress);
+            //Assert.NotEqual("2nowa", user2.UserName);
+            //Assert.NotEqual("5068GE", user2.ZipCode);
+            //Assert.NotEqual("15", user2.UserID);
+            //Assert.True(user2.IsDisabled);
+            throw new NotImplementedException();
         }
         [Fact]
         public void CheckvideoRating()
@@ -109,11 +108,9 @@ namespace UnitTests.ModelTests
             vid1.UrlIdentity = "Tester123";
             vid1.Finished = true;
 
-            rating.Video = vid1;
 
             //assert
-            Assert.Equal("Tester123", rating.Video.UrlIdentity);
-            Assert.True(rating.Video.Finished);
+            throw new NotImplementedException();
         }
         [Fact]
         public void CheckCategoryRating()
@@ -123,11 +120,7 @@ namespace UnitTests.ModelTests
             cat1.Name = "Honda";
             cat1.UniqueID = 10;
 
-            rating.Category = cat1;
-
-            Assert.Equal(5, rating.Category.ParentID);
-            Assert.Equal("Honda", rating.Category.Name);
-            Assert.Equal(10, rating.Category.UniqueID);
+            throw new NotImplementedException();
         }
     }
 }

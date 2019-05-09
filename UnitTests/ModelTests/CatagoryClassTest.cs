@@ -43,7 +43,6 @@ namespace UnitTests.ModelTests
         public void CheckRatingCategory()
         {
             //arrange
-            List<Rating> Ratinglist = new List<Rating>();
             Rating rating1 = new Rating();
             rating1.ArrousalIndex = 1;
             rating1.CategoryID = 4;
@@ -56,11 +55,9 @@ namespace UnitTests.ModelTests
             rating1.VideoIdentity = "ABCDEFG";
 
             //act
-            Ratinglist.Add(rating1);
-            catagory.Ratings = Ratinglist;
 
             //assert
-            Assert.NotEmpty(catagory.Ratings);
+            throw new NotImplementedException();
         }
     }
 }
