@@ -49,7 +49,7 @@ namespace UnitTests.ModelTests
             rating1.CategoryID = 4;
             rating1.DominanceIndex = 4;
             rating1.IsIABDivergent = false;
-            rating1.IsPADDivergent = true;
+            rating1.IsPADDivergentt = true;
             rating1.PleasureIndex = 4;
             rating1.RatingID = 5;
             rating1.UserID = "15";
