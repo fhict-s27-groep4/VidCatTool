@@ -12,38 +12,29 @@ namespace Data_Layer.Repository
 {
     public class RatingRepository : Repository<Rating>, IRatingRepository
     {
-        public RatingRepository(VidCatToolContext context) : base(context)
-        {
-
-        }
-
-        public async Task<IEnumerable<Rating>> GetAllRatings()
-        {
-            return await _context.Rating.Include(x => x.Category).ThenInclude(x => x.UniqueID).Include(x => x.User).ThenInclude(x => x.UserID).Include(v => v.Video).ThenInclude(v => v.UrlIdentity).ToListAsync();
-        }
-
-        // Untested
-        public async Task<Rating> GetRatingByID(int id)
-        {
-            return await _context.Rating.FindAsync(id);
-        }
-
-        // Untested
-        public async Task<IEnumerable<Rating>> GetRatingsFromUser(string username)
-        {
-            return await _context.Rating.Where(u => u.User.Username == username).ToListAsync();
-        }
-
         public void AddRating(string userid, string videoidentity, int categoryid, int pleasure, int arrousal, int dominance)
         {
-            _context.Database.ExecuteSqlCommand("CALL AddRating(@userid, @videoid, @categoryid, @pleasure, @arrousal, @dominance)", new MySqlParameter("@userid", userid),
-                new MySqlParameter("@videoid", videoidentity), new MySqlParameter("@categoryid", categoryid), new MySqlParameter("@pleasure", pleasure),
-                new MySqlParameter("@arrousal", arrousal), new MySqlParameter("@dominance", dominance));
+            throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<Rating>> GetRatingsByVideoID(string videoid)
+        public Task<IEnumerable<Rating>> GetAllRatings()
         {
-            return await _context.Rating.Where(video => video.VideoIdentity == videoid).ToListAsync();
+            throw new NotImplementedException();
+        }
+
+        public Task<Rating> GetRatingByID(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<Rating>> GetRatingsByVideoID(string videoid)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<Rating>> GetRatingsFromUser(string username)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -12,15 +12,9 @@ namespace Data_Layer.Repository
 {
     public class VideoRepository : Repository<Video>, IVideoRepository
     {
-        public VideoRepository(VidCatToolContext context) : base(context)
-        {
-        }
-
-
         public Video GetRandomVideo(string username)
         {
-            var randomvid = _context.Video.FromSql("CALL GetRandomVideo(@username)", new MySqlParameter("@username", username));
-            return randomvid.FirstOrDefault();
+            throw new NotImplementedException();
         }
     }
 }

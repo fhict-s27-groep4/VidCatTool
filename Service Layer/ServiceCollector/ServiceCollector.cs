@@ -3,7 +3,6 @@ using Data_Layer;
 using Data_Layer.Interface;
 using Data_Layer.Repository;
 using Logic_Layer.Interfaces;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Service_Layer.RequestHandlers;
@@ -16,8 +15,6 @@ namespace Service_Layer.ServiceCollector
     {
         public static IServiceCollection RegisterRepositoryServices(this IServiceCollection services, IConfiguration config)
         {
-            services.AddDbContext<VidCatToolContext>(options => options.UseMySql(config["ConnectionStrings:MYSQLConnection"]));
-
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IRatingRepository, RatingRepository>();
             services.AddTransient<IVideoRepository, VideoRepository>();

@@ -8,9 +8,5 @@ namespace Data_Layer.Repository
 {
     public class CategoryRepository : Repository<Category>, ICategoryRepository
     {
-        public CategoryRepository(VidCatToolContext context) : base(context)
-        {
-
-        }
     }
 }

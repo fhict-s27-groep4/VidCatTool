@@ -9,51 +9,39 @@ namespace Data_Layer.Repository
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        protected readonly VidCatToolContext _context;
-
-        public Repository(VidCatToolContext context)
-        {
-            _context = context;
-        }
-
-        protected void Save() => _context.SaveChanges();
-
         public int Count(Func<T, bool> predicate)
         {
-            return _context.Set<T>().Where(predicate).Count();
+            throw new NotImplementedException();
         }
 
         public void Create(T entity)
         {
-            _context.Add(entity);
-            Save();
+            throw new NotImplementedException();
         }
 
         public void Delete(T entity)
         {
-            _context.Remove(entity);
-            Save();
+            throw new NotImplementedException();
         }
 
         public IEnumerable<T> Find(Func<T, bool> predicate)
         {
-            return _context.Set<T>().Where(predicate);
+            throw new NotImplementedException();
         }
 
         public IEnumerable<T> GetAll()
         {
-            return _context.Set<T>();
+            throw new NotImplementedException();
         }
 
         public T GetByID(int id)
         {
-            return _context.Set<T>().Find(id);
+            throw new NotImplementedException();
         }
 
         public void Update(T entity)
         {
-            _context.Entry(entity).State = EntityState.Modified;
-            Save();
+            throw new NotImplementedException();
         }
     }
 }
