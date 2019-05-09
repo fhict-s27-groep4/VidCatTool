@@ -35,10 +35,6 @@ namespace VidCat_Tool.Controllers
         public IActionResult Review(ReviewViewModel postModel, bool next)
         {
             ratingHandler.AddRating(postModel);
-            if(DateTime.Now.TimeOfDay.Hours > 15)
-            {
-                return StatusCode(StatusCodes.Status418ImATeapot);
-            }
             if (next == true)
             {
                 return RedirectToAction("Review");
