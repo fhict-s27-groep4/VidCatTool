@@ -41,9 +41,9 @@ namespace Data_Layer.Repository
                 new MySqlParameter("@arrousal", arrousal), new MySqlParameter("@dominance", dominance));
         }
 
-        public IEnumerable<Rating> GetRatingsByVideoID(string videoid)
+        public async Task<IEnumerable<Rating>> GetRatingsByVideoID(string videoid)
         {
-            return _context.Rating.Where(video => video.VideoIdentity == videoid).ToList();
+            return await _context.Rating.Where(video => video.VideoIdentity == videoid).ToListAsync();
         }
     }
 }
