@@ -2,6 +2,7 @@
 using Data_Layer;
 using Data_Layer.Interface;
 using Data_Layer.Repository;
+using Logic_Layer.AlgoritmRatings;
 using Logic_Layer.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -30,6 +31,7 @@ namespace Service_Layer.ServiceCollector
             services.AddTransient<SessionHandler>();
             services.AddTransient<UserHandler>();
             services.AddTransient<VideoAssignHandler>();
+            services.AddTransient<RatingAlgoritm>();
 
             return services;
         }
