@@ -6,14 +6,14 @@ namespace Model_Layer.Interface
 {
     public interface IUser
     {
-        string Username { get; set; }
+        string UserName { get; set; }
         string Email { get; set; }
-        string Firstname { get; set; }
-        string Lastname { get; set; }
-        string Phonenumber { get; set; }
+        string FirstName { get; set; }
+        string LastName { get; set; }
+        string PhoneNumber { get; set; }
         string Country { get; set; }
         string City { get; set; }
-        string Streetaddress { get; set; }
-        string Zipcode { get; set; }
+        string StreetAddress { get; set; }
+        string ZipCode { get; set; }
     }
 }

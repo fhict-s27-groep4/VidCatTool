@@ -22,31 +22,31 @@ namespace UnitTests.SmallTests
             user.UserID = "15";
             user.Country = "Netherlands";
             user.Email = "Youdonthavetoknow@gmail.com";
-            user.Firstname = "Duncan";
-            user.Lastname = "Schoenmakers";
+            user.FirstName = "Duncan";
+            user.LastName = "Schoenmakers";
             user.IsAdmin = true;
-            user.Password = "NotActuallyAPassword";
-            user.PasswordSalt = "NotActuallyASalt";
-            user.Phonenumber = "0651418572";
-            user.Streetaddress = "Prinses Willem Laan";
-            user.Username = "2now";
-            user.Zipcode = "5068RE";
+            user.PassWord = "NotActuallyAPassword";
+            user.PassWordSalt = "NotActuallyASalt";
+            user.PhoneNumber = "0651418572";
+            user.StreetAddress = "Prinses Willem Laan";
+            user.UserName = "2now";
+            user.ZipCode = "5068RE";
             user.IsDisabled = false;
 
             //assert
             Assert.Equal("Oisterwijk", user.City);
             Assert.Equal("Netherlands", user.Country);
             Assert.Equal("Youdonthavetoknow@gmail.com", user.Email);
-            Assert.Equal("Duncan", user.Firstname);
-            Assert.Equal("Schoenmakers", user.Lastname);
+            Assert.Equal("Duncan", user.FirstName);
+            Assert.Equal("Schoenmakers", user.LastName);
             Assert.Equal("15", user.UserID);
             Assert.True(user.IsAdmin);
-            Assert.Equal("NotActuallyAPassword", user.Password);
-            Assert.Equal("NotActuallyASalt", user.PasswordSalt);
-            Assert.Equal("0651418572", user.Phonenumber);
-            Assert.Equal("Prinses Willem Laan", user.Streetaddress);
-            Assert.Equal("2now", user.Username);
-            Assert.Equal("5068RE", user.Zipcode);
+            Assert.Equal("NotActuallyAPassword", user.PassWord);
+            Assert.Equal("NotActuallyASalt", user.PassWordSalt);
+            Assert.Equal("0651418572", user.PhoneNumber);
+            Assert.Equal("Prinses Willem Laan", user.StreetAddress);
+            Assert.Equal("2now", user.UserName);
+            Assert.Equal("5068RE", user.ZipCode);
             Assert.False(user.IsDisabled);
 
         }
@@ -57,15 +57,15 @@ namespace UnitTests.SmallTests
             user.City = "Oisterwijk";
             user.Country = "Netherlands";
             user.Email = "Youdonthavetoknow@gmail.com";
-            user.Firstname = "Duncan";
-            user.Lastname = "Schoenmakers";
+            user.FirstName = "Duncan";
+            user.LastName = "Schoenmakers";
             user.IsAdmin = true;
-            user.Password = "NotActuallyAPassword";
-            user.PasswordSalt = "NotActuallyASalt";
-            user.Phonenumber = "0651418572";
-            user.Streetaddress = "Prinses Willem Laan";
-            user.Username = "2now";
-            user.Zipcode = "5068RE";
+            user.PassWord = "NotActuallyAPassword";
+            user.PassWordSalt = "NotActuallyASalt";
+            user.PhoneNumber = "0651418572";
+            user.StreetAddress = "Prinses Willem Laan";
+            user.UserName = "2now";
+            user.ZipCode = "5068RE";
             user.IsDisabled = true;
             user.UserID = "16";
 
@@ -74,14 +74,14 @@ namespace UnitTests.SmallTests
             Assert.NotEqual("Paris", user.City);
             Assert.NotEqual("France", user.Country);
             Assert.NotEqual("SiasPLoit@gmail.com", user.Email);
-            Assert.NotEqual("Jan", user.Firstname);
-            Assert.NotEqual("Qu're", user.Lastname);
-            Assert.NotEqual("NotActuallyAPasswords", user.Password);
-            Assert.NotEqual("NotActuallyASalts", user.PasswordSalt);
-            Assert.NotEqual("0651418554", user.Phonenumber);
-            Assert.NotEqual("Prinses Willem Straat", user.Streetaddress);
-            Assert.NotEqual("2nowa", user.Username);
-            Assert.NotEqual("5068GE", user.Zipcode);
+            Assert.NotEqual("Jan", user.FirstName);
+            Assert.NotEqual("Qu're", user.LastName);
+            Assert.NotEqual("NotActuallyAPasswords", user.PassWord);
+            Assert.NotEqual("NotActuallyASalts", user.PassWordSalt);
+            Assert.NotEqual("0651418554", user.PhoneNumber);
+            Assert.NotEqual("Prinses Willem Straat", user.StreetAddress);
+            Assert.NotEqual("2nowa", user.UserName);
+            Assert.NotEqual("5068GE", user.ZipCode);
             Assert.NotEqual("15", user.UserID);
             Assert.True(user.IsDisabled);
 

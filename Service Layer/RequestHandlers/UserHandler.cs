@@ -35,7 +35,7 @@ namespace Service_Layer.RequestHandlers
                     return false;
                 }
                 sessionHandler.SetIDKey(loggedInUser.UserID);
-                sessionHandler.SetUsernameKey(loggedInUser.Username);
+                sessionHandler.SetUsernameKey(loggedInUser.UserName);
                 sessionHandler.SetAdminKey(loggedInUser.IsAdmin.ToString());
                 return true;
             }
