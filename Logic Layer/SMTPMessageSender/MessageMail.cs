@@ -4,7 +4,7 @@ using System.Net.Mail;
 
 namespace Logic_Layer.SMTPMessageSender
 {
-    class MessageMail : IMessageSettableMail
+    public class MessageMail : IMessageSettableMail
     {
         private MailMessage mailMessage;
         public MessageMail(MailMessage _mailMessage)

@@ -34,8 +34,8 @@ namespace Service_Layer.RequestHandlers
 
         public async void AddRating(ReviewViewModel vm)
         {
-                ratingRepo.AddRating(sessionHandler.Session.GetUserIDKey(), vm.VideoIdentity, 5, vm.Pleasure, vm.Arrousal, vm.Dominance);
-                ratingAlgoritm.FindDivergents(await ratingRepo.GetRatingsByVideoID(vm.VideoIdentity).Result));
+            //        ratingRepo.AddRating(sessionHandler.Session.GetUserIDKey(), vm.VideoIdentity, 5, vm.Pleasure, vm.Arrousal, vm.Dominance);
+            //        ratingAlgoritm.FindDivergents(await ratingRepo.GetRatingsByVideoID(vm.VideoIdentity).Result));
         }
     }
 }
