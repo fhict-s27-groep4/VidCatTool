@@ -31,5 +31,12 @@ namespace UnitTests
             string twee = PassHash.GenerateRandomCryptographicKey(64);
             Assert.NotEqual(een, twee);
         }
+        [Fact]
+        public void GetSetKeyHasherException()
+        {
+            Exception ex = Assert.Throws<System.ArgumentException>(() => PassHash.Key = "ABCDEFGHIJ");
+
+            Assert.Equal("Key value is empty.", ex.Message);
+        }
     }
 }

@@ -83,7 +83,7 @@ namespace UnitTests.Algorime
             categories.Add(category9);
             categories.Add(category10);
             categories.Add(category11);
-            ratalgo = new RatingAlgoritm(new Logic_Layer.CategoryReverser.CategroyReverser(categories));
+            ratalgo = new RatingAlgoritm(new Logic_Layer.CategoryReverser.CategoryManager(categories));
         }
 
         [Fact]
@@ -93,11 +93,11 @@ namespace UnitTests.Algorime
             List<IRating> test = new List<IRating>();
 
             Rating rating1 = new Rating { CategoryID = 3, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
-            Rating rating2 = new Rating { CategoryID = 4, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
-            Rating rating3 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
-            Rating rating4 = new Rating { CategoryID = 2, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
-            Rating rating5 = new Rating { CategoryID = 4, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
-            Rating rating6 = new Rating { CategoryID = 1, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating2 = new Rating { CategoryID = 3, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating3 = new Rating { CategoryID = 3, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating4 = new Rating { CategoryID = 3, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating5 = new Rating { CategoryID = 3, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating6 = new Rating { CategoryID = 3, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
             Rating rating7 = new Rating { CategoryID = 3, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
             Rating rating8 = new Rating { CategoryID = 3, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
             Rating rating9 = new Rating { CategoryID = 3, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
@@ -160,9 +160,9 @@ namespace UnitTests.Algorime
             List<IRating> test = new List<IRating>();
             Rating rating1 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
             Rating rating2 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
-            Rating rating3 = new Rating { CategoryID = 6, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
-            Rating rating4 = new Rating { CategoryID = 7, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
-            Rating rating5 = new Rating { CategoryID = 4, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating3 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating4 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating5 = new Rating { CategoryID = 5, DominanceIndex = 1, PleasureIndex = 1, ArrousalIndex = 1 };
 
             //act
             test.Add(rating1 as IRating);
@@ -229,61 +229,26 @@ namespace UnitTests.Algorime
             Assert.False(rating4.IsIABDivergent);
             Assert.False(rating5.IsIABDivergent);
         }
-        [Fact]
-        public void AlotofCategories()
-        {
-            //arrange
-            List<IRating> test = new List<IRating>();
-            Rating rating1 = new Rating { CategoryID = 1, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
-            Rating rating2 = new Rating { CategoryID = 2, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
-            Rating rating3 = new Rating { CategoryID = 3, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
-            Rating rating4 = new Rating { CategoryID = 4, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
-            Rating rating5 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
-            Rating rating6 = new Rating { CategoryID = 6, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
-            Rating rating7 = new Rating { CategoryID = 7, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
-            Rating rating8 = new Rating { CategoryID = 8, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
-            Rating rating9 = new Rating { CategoryID = 9, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
-            Rating rating10 = new Rating { CategoryID = 10, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
 
-            //act
-            test.Add(rating1 as IRating);
-            test.Add(rating2 as IRating);
-            test.Add(rating3 as IRating);
-            test.Add(rating4 as IRating);
-            test.Add(rating5 as IRating);
-            test.Add(rating6 as IRating);
-            test.Add(rating7 as IRating);
-            test.Add(rating8 as IRating);
-            test.Add(rating9 as IRating);
-            test.Add(rating10 as IRating);
-            ratalgo.DivergentRatings += Ratalgo_DivergentRatings;
-            ratalgo.FindDivergents(test);
-
-            Assert.True(rating1.IsIABDivergent);
-            Assert.True(rating2.IsIABDivergent);
-            Assert.True(rating3.IsIABDivergent);
-            Assert.True(rating4.IsIABDivergent);
-            Assert.True(rating5.IsIABDivergent);
-        }
         [Fact]
         public void CheckEventWorkingCorrect()
         {
             //arrange
             List<IRating> test = new List<IRating>();
 
-            Rating rating1 = new Rating { CategoryID = 3, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
-            Rating rating2 = new Rating { CategoryID = 3, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
-            Rating rating3 = new Rating { CategoryID = 3, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
-            Rating rating4 = new Rating { CategoryID = 7, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
-            Rating rating5 = new Rating { CategoryID = 3, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
-            Rating rating6 = new Rating { CategoryID = 8, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
-            Rating rating7 = new Rating { CategoryID = 3, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
-            Rating rating8 = new Rating { CategoryID = 3, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
-            Rating rating9 = new Rating { CategoryID = 3, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
-            Rating rating10 = new Rating { CategoryID = 5, DominanceIndex = 1, PleasureIndex = 1, ArrousalIndex = 1 };
-            Rating rating11 = new Rating { CategoryID = 8, DominanceIndex = 1, PleasureIndex = 1, ArrousalIndex = 1 };
+            Rating rating1 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating2 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating3 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating4 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating5 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating6 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating7 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating8 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating9 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating10 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
+            Rating rating11 = new Rating { CategoryID = 5, DominanceIndex = 1, PleasureIndex = 1, ArrousalIndex = 1 };
             Rating rating12 = new Rating { CategoryID = 5, DominanceIndex = 1, PleasureIndex = 1, ArrousalIndex = 1 };
-            Rating rating13 = new Rating { CategoryID = 2, DominanceIndex = 1, PleasureIndex = 1, ArrousalIndex = 1 };
+            Rating rating13 = new Rating { CategoryID = 3, DominanceIndex = 1, PleasureIndex = 1, ArrousalIndex = 1 };
 
             //act
             test.Add(rating1);
@@ -300,10 +265,11 @@ namespace UnitTests.Algorime
             test.Add(rating12);
             test.Add(rating13);
             ratalgo.DivergentRatings += Ratalgo_DivergentRatings2;
-            ratalgo.FindDivergents(test);
+            string vidID = ratalgo.FindDivergents(test);
+            int x = 0;
 
             //assert
-            Assert.Equal(4, CheckCorrect.Count);
+            Assert.Equal(3, CheckCorrect.Count);
         }
 
         private void Ratalgo_DivergentRatings2(object sender, DivergentRatings e)

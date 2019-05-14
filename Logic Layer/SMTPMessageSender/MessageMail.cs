@@ -31,7 +31,7 @@ namespace Logic_Layer.SMTPMessageSender
             {
                 if (addresses != String.Empty)
                 {
-                    addresses += ",";
+                    addresses += ", ";
                 }
                 addresses += s;
             }
