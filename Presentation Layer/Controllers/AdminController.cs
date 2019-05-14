@@ -44,7 +44,14 @@ namespace VidCat_Tool.Controllers
             return View(userHandler.GetUserManagementViewModel());
         }
 
+        // Stored Procedure maken
         public IActionResult DisableAccount(string userid)
+        {
+            return View();
+        }
+
+        // Stored Procedure maken
+        public IActionResult ResetPassword(string userid)
         {
             return View();
         }
