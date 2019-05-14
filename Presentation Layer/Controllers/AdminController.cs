@@ -7,7 +7,7 @@ using Service_Layer.ViewModels;
 namespace VidCat_Tool.Controllers
 {
     [SessionCheck]
-    [ServiceFilter(typeof(AdminCheck))]
+    [ServiceFilterAttribute(typeof(AdminCheck))]
     public class AdminController : Controller
     {
         private readonly UserHandler userHandler;
