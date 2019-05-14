@@ -17,7 +17,6 @@ namespace Service_Layer.RequestHandlers
             this.videoRepo = videoRepo;
         }
 
-        // Return een ViewModel die deze informatie bevat
         public IVideo AssignRandomVideo(string username)
         {
             return videoRepo.GetRandomVideo(username);
