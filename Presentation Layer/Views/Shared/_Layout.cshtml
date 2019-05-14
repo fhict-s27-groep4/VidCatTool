@@ -53,7 +53,7 @@
             <div class="pageTitleAndUser">
                 <div class="pageTitle">@ViewData["Title"]</div>
                 <div class="pageUser">
-                    @Context.Session.GetString("Username")  <img src="~/images/user-placeholder.png" />
+                    @Context.Session.GetUsernameKey()  <img src="~/images/user-placeholder.png" />
                 </div>
             </div>
             <div class="contentcontainer">

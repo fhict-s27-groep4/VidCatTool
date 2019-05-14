@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Service_Layer.ServiceCollector;
+using VidCat_Tool.Controllers;
 
 namespace VidCat_Tool
 {
@@ -33,6 +34,7 @@ namespace VidCat_Tool
             });
 
             services.RegisterRepositoryServices(Configuration);
+            services.AddTransient<AdminCheck>();
 
             services.AddHttpContextAccessor();
             services.AddDistributedMemoryCache();
