@@ -16,6 +16,6 @@ namespace Model_Layer.Models
         public int PleasureIndex { get; set; }
         public int ArrousalIndex { get; set; }
         public int DominanceIndex { get; set; }
-        public bool IsPADDivergentt { get; set; }
+        public bool IsPADDivergent { get; set; }
     }
 }

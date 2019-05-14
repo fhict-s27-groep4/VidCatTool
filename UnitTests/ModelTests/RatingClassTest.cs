@@ -22,7 +22,7 @@ namespace UnitTests.ModelTests
             rating.VideoIdentity = "ABCDEFG";
             rating.CategoryID = 15;
             rating.IsIABDivergent = true;
-            rating.IsPADDivergentt = true;
+            rating.IsPADDivergent = true;
             rating.PleasureIndex = 4;
             rating.ArrousalIndex = 3;
             rating.DominanceIndex = 2;
@@ -35,7 +35,7 @@ namespace UnitTests.ModelTests
             Assert.Equal(3, rating.ArrousalIndex);
             Assert.Equal(2, rating.DominanceIndex);
             Assert.True(rating.IsIABDivergent);
-            Assert.True(rating.IsPADDivergentt);
+            Assert.True(rating.IsPADDivergent);
 
 
         }
@@ -48,7 +48,7 @@ namespace UnitTests.ModelTests
             rating.VideoIdentity = "ABCDEFG";
             rating.CategoryID = 15;
             rating.IsIABDivergent = true;
-            rating.IsPADDivergentt = true;
+            rating.IsPADDivergent = true;
             rating.PleasureIndex = 4;
             rating.ArrousalIndex = 3;
             rating.DominanceIndex = 2;
@@ -61,7 +61,7 @@ namespace UnitTests.ModelTests
             Assert.NotEqual(4, rating.ArrousalIndex);
             Assert.NotEqual(3, rating.DominanceIndex);
             Assert.True(rating.IsIABDivergent);
-            Assert.True(rating.IsPADDivergentt);
+            Assert.True(rating.IsPADDivergent);
         }
     }
 }

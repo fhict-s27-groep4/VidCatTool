@@ -123,7 +123,7 @@ namespace Logic_Layer.AlgoritmRatings
                 }
                 if (divergentCount >= 2)
                 {
-                    rating.IsPADDivergentt = true;
+                    rating.IsPADDivergent = true;
                 }
                 if (!biggestCatagories.Contains(categoryReverser.GetParentTiers(rating.CategoryID).Object2))
                 {
@@ -133,7 +133,7 @@ namespace Logic_Layer.AlgoritmRatings
             IList<IRating> divergentRatings = new List<IRating>();
             foreach (IRating rating in _ratings)
             {
-                if (rating.IsIABDivergent || rating.IsPADDivergentt)
+                if (rating.IsIABDivergent || rating.IsPADDivergent)
                 {
                     divergentRatings.Add(rating);
                 }
