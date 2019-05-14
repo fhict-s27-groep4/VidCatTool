@@ -104,10 +104,10 @@ namespace Logic_Layer.AlgoritmRatings
                 {// video's with less tha 3 can't be checked
                     return null;
                 }
-                //if (!CatagoryBigEnough(countCatagorie1, iabToleranceTier1 * count) || !CatagoryBigEnough(countCatagorie2, iabToleranceTier2 * count))
-                //{//video's that don't have polarized category ratings can be finished early
-                //    return null;
-                //}
+                if (!CatagoryBigEnough(countCatagorie1, iabToleranceTier1 * count) || !CatagoryBigEnough(countCatagorie2, iabToleranceTier2 * count))
+                {//video's that don't have polarized category ratings can be finished early
+                    return null;
+                }
             }
             IEnumerable<int> biggestCatagories = BiggestCategories(countCatagorie2, count);
             double averageP = (double)pleassure / count;
