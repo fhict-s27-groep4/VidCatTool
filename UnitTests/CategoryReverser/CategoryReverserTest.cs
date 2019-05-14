@@ -102,12 +102,13 @@ namespace UnitTests.CategoryReverser
             Assert.Equal(1, parentID.Object1);
             Assert.Equal(3, parentID.Object2);
         }
-        //[Fact]
-        //public void GetSubTiersWithParentID()
-        //{
-        //    List<Category> test = new List<Category>();
-        //    test = category.GetSubTiers(10);
+        [Fact]
+        public void GetSubTiersWithParentID()
+        {
+            List<Category> test = new List<Category>();
+            
+            //Assert.Equal(category.GetSubTiers(10));
 
-        //}
+        }
     }
 }
