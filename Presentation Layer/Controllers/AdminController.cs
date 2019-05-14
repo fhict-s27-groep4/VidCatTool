@@ -1,11 +1,13 @@
 ﻿using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Service_Layer.RequestHandlers;
+using Service_Layer.SessionExtension;
 using Service_Layer.ViewModels;
 
 namespace VidCat_Tool.Controllers
 {
-    //[SessionCheck]
+    [SessionCheck]
+    [ServiceFilter(typeof(AdminCheck))]
     public class AdminController : Controller
     {
         private readonly UserHandler userHandler;

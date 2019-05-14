@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Http.Features;
+using Model_Layer.Interface;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,12 +12,14 @@ namespace Service_Layer.SessionExtension
     public class SessionHandler
     {
         private readonly IHttpContextAccessor httpContextAccessor;
+        private readonly IUserRepository userRepo;
 
         public ISession Session { get => httpContextAccessor.HttpContext.Session; }
 
-        public SessionHandler(IHttpContextAccessor httpContextAccessor)
+        public SessionHandler(IHttpContextAccessor httpContextAccessor, IUserRepository userRepo)
         {
             this.httpContextAccessor = httpContextAccessor;
+            this.userRepo = userRepo;
         }
 
         public void SetUsernameKey(string value)
@@ -37,6 +40,16 @@ namespace Service_Layer.SessionExtension
         public void ClearSession()
         {
             Session.Clear();
+        }
+
+        public bool IsUserAdmin()
+        {
+            ILoginUser loginUser = userRepo.GetByUUID(Session.GetUserIDKey());
+            if(loginUser.IsAdmin)
+            {
+                return true;
+            }
+            else return false;
         }
     }
 }
