@@ -23,11 +23,9 @@ namespace Service_Layer.RequestHandlers
             return rVM;
         }
 
-        public ReviewViewModel GetSubTiers(int _categoryID)
+        public IEnumerable<ICategory> GetSubTiers(int _categoryID)
         {
-            ReviewViewModel rVM = new ReviewViewModel();
-            rVM.Get.Categories = categoryManager.GetSubTiers(_categoryID);
-            return rVM;
+            return categoryManager.GetSubTiers(_categoryID);
         }
     }
 }
