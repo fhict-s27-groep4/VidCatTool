@@ -43,5 +43,10 @@ namespace VidCat_Tool.Controllers
         {
             return View(userHandler.GetUserManagementViewModel());
         }
+
+        public IActionResult DisableAccount(string userid)
+        {
+            return View();
+        }
     }
 }
