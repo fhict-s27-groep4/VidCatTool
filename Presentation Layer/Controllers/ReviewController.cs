@@ -30,7 +30,7 @@ namespace VidCat_Tool.Controllers
             var video = assignHandler.AssignRandomVideo(HttpContext.Session.GetString("Username"));
             ViewBag.VideoIdentity = video.UrlIdentity;
             ViewBag.VideoLink = assignHandler.GetVideoLink(video.UrlIdentity);
-            return View();
+            return View(categoryHandler.GetTier1s());
         }
 
         //[HttpGet]
