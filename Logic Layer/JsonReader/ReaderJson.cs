@@ -10,7 +10,15 @@ namespace Logic_Layer.JsonReader
         public ReaderJson()
         {
             //make sure you're using this nuget package Newtonsoft.Json and using Newtonsoft.Json.Linq;
-            json = JObject.Parse(File.ReadAllText(@"..\..\..\..\Logic Layer\JsonReader\VideoFeed.json"));
+            try
+            {
+                json = JObject.Parse(File.ReadAllText(@"..\..\..\..\Logic Layer\JsonReader\VideoFeed.json"));
+            }
+            catch
+            {
+                json = JObject.Parse(File.ReadAllText(@"..\Logic Layer\JsonReader\VideoFeed.json"));
+            }
+
         }
 
         private string FindVidUrl(string _mediaID)
