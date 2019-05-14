@@ -1,4 +1,5 @@
-﻿using Logic_Layer.CategoryReverser;
+﻿using Data_Layer.Interface;
+using Logic_Layer.CategoryReverser;
 using Model_Layer.Interface;
 using Service_Layer.ViewModels;
 using System;
@@ -10,9 +11,9 @@ namespace Service_Layer.RequestHandlers
     public class CategoryHandler
     {
         private readonly CategoryManager categoryManager;
-        public CategoryHandler(IEnumerable<ICategory> _categories)
+        public CategoryHandler(ICategoryRepository _categories)
         {
-            categoryManager = new CategoryManager(_categories);
+            categoryManager = new CategoryManager(_categories.GetAll());
         }
 
         public ReviewViewModel GetTier1s()
