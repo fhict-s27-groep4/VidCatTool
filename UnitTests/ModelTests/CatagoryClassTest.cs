@@ -39,25 +39,5 @@ namespace UnitTests.ModelTests
             Assert.NotEqual(7, catagory.ParentID);
             Assert.NotEqual("Autos", catagory.Name);
         }
-        [Fact]
-        public void CheckRatingCategory()
-        {
-            //arrange
-            Rating rating1 = new Rating();
-            rating1.ArrousalIndex = 1;
-            rating1.CategoryID = 4;
-            rating1.DominanceIndex = 4;
-            rating1.IsIABDivergent = false;
-            rating1.IsPADDivergentt = true;
-            rating1.PleasureIndex = 4;
-            rating1.RatingID = 5;
-            rating1.UserID = "15";
-            rating1.VideoIdentity = "ABCDEFG";
-
-            //act
-
-            //assert
-            throw new NotImplementedException();
-        }
     }
 }
