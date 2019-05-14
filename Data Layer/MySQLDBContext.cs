@@ -16,7 +16,7 @@ namespace Data_Layer
 
         public MySQLDBContext()
         {
-            connectionString = "Server=localhost;Database=test;Uid=root;Pwd=;";
+            connectionString = "Server=blackmania.phy.sx;Port=3306;Database=blackman_VidCatTool;Uid=blackman_vidcattooluser;Pwd=]2T5~s&w(JD&";
         }
 
 
