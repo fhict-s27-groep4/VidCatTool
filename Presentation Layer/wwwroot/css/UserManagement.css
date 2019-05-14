@@ -115,3 +115,7 @@ input#Housenumber {
 .dropdown-item:hover {
     background-color: #ededed;
 }
+
+.dropdownVidCat {
+    border-top-right-radius: 0px;
+}
