@@ -45,7 +45,7 @@ namespace Logic_Layer.JsonReader
 
         public string GetVideoUrl(string _mediaID)
         {
-            return FindVidUrl(_mediaID, @"..\..\..\..\Logic Layer\JsonReader\VideoFeed.json");
+            return FindVidUrl(_mediaID, @"..\Logic Layer\JsonReader\VideoFeed.json");
         }
     }
 }

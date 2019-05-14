@@ -17,5 +17,13 @@ namespace Service_Layer.SessionExtension
         {
             return session.GetString("UserID");
         }
+        public static bool IsUserAdmin(this ISession session)
+        {
+            if (Convert.ToBoolean(session.GetString("IsAdmin")))
+            {
+                return true;
+            }
+            else return false;
+        }
     }
 }

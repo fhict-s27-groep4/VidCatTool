@@ -97,7 +97,8 @@ namespace Data_Layer
             Type type = typeof(T);
             context.DbCommand.CommandText = procedurename;
             context.DbCommand.CommandType = CommandType.StoredProcedure;
-            foreach(MySqlParameter parameter in parameters)
+            context.DataAdapter.SelectCommand = context.DbCommand;
+            foreach (MySqlParameter parameter in parameters)
             {
                 context.DbCommand.Parameters.Add(parameter);
             }

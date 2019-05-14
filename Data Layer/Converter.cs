@@ -43,6 +43,7 @@ namespace Data_Layer
 
                     if (row.ContainsKey(propertyInfo.Name))
                     {
+                        if (row[propertyInfo.Name].GetType() == typeof(System.DBNull)) continue;
                         typeof(ReturnType).GetProperty(propertyInfo.Name).SetValue(output, row[propertyInfo.Name]);
                     }
                 }
