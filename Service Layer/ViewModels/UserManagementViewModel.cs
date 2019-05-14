@@ -7,6 +7,6 @@ namespace Service_Layer.ViewModels
 {
     public class UserManagementViewModel
     {
-        public IReadOnlyCollection<IUser> AllUsers { get; set; }
+        public IReadOnlyCollection<ISearchUser> AllUsers { get; set; }
     }
 }
