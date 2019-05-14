@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Service_Layer.ViewModels
 {
-    public class ReviewViewModel
+    public class ReviewViewModelPost
     {
         [Required]
         public string VideoIdentity { get; set; }
@@ -21,6 +21,5 @@ namespace Service_Layer.ViewModels
         [Required]
         [Range(1, 5)]
         public int Dominance { get; set; }
-        public IEnumerable<ICategory> Categories { get; set; }
     }
 }

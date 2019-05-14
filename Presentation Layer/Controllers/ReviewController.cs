@@ -15,11 +15,13 @@ namespace VidCat_Tool.Controllers
     {
         private readonly VideoAssignHandler assignHandler;
         private readonly RatingHandler ratingHandler;
+        private readonly CategoryHandler categoryHandler;
 
-        public ReviewController(VideoAssignHandler assignHandler, RatingHandler ratingHandler)
+        public ReviewController(VideoAssignHandler assignHandler, RatingHandler ratingHandler, CategoryHandler categoryHandler)
         {
             this.assignHandler = assignHandler;
             this.ratingHandler = ratingHandler;
+            this.categoryHandler = categoryHandler;
         }
 
         [HttpGet]
@@ -31,31 +33,25 @@ namespace VidCat_Tool.Controllers
             return View();
         }
 
-        //[HttpGet]
-        //public IActionResult Review()
-        //{//merge with above
-        //    CategoryManager manager = new CategoryManager(_categoryRepo);
-        //    var tierOne = manager.GetAllTierOne();
-        //    ReviewViewModel viewModel = new ReviewViewModel();
-        //    viewModel.ReviewGetInfo = new ReviewViewModelGet();
-        //    viewModel.ReviewGetInfo.Categories = tierOne;
-        //    return View(viewModel);
-        //}
+        [HttpGet]
+        public IActionResult Review()
+        {//merge with above
+            CategoryManager manager = new CategoryManager(_categoryRepo);
+            var tierOne = manager.GetAllTierOne();
+            ReviewViewModelPost viewModel = new ReviewViewModelPost();
+            viewModel.ReviewGetInfo = new ReviewViewModelPost();
+            viewModel.ReviewGetInfo.Categories = tierOne;
+            return View(viewModel);
+        }
 
-        //[HttpGet]
-        //public IActionResult GetSubCategories(int id)
-        //{
-        //    //move to service layer
-        //    CategoryManager manager = new CategoryManager(_categoryRepo);
-        //    var subTiers = manager.GetSubTiers(new Category
-        //    {
-        //        UniqueID = id
-        //    });//change to list
-        //    return Json(subTiers);
-        //}
+        [HttpGet]
+        public IActionResult GetSubCategories(int id)
+        {
+            return Json(categoryHandler.GetSubTiers(id));
+        }
 
         [HttpPost]
-        public IActionResult Review(ReviewViewModel postModel, bool next)
+        public IActionResult Review(ReviewViewModelPost postModel, bool next)
         {
             ratingHandler.AddRating(postModel);
             if (next == true)

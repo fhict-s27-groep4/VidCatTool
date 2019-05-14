@@ -8,16 +8,11 @@ namespace Service_Layer.RequestHandlers
     {
         private readonly ReaderJson reader;
         private readonly IVideoRepository videoRepo;
-        public VideoAssignHandler()
-        {
-            reader = new ReaderJson();
-        }
         public VideoAssignHandler(IVideoRepository videoRepo)
         {
             this.videoRepo = videoRepo;
+            reader = new ReaderJson();
         }
-
-        // Return een ViewModel die deze informatie bevat
         public IVideo AssignRandomVideo(string username)
         {
             return videoRepo.GetRandomVideo(username);

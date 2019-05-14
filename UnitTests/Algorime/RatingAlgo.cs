@@ -301,7 +301,6 @@ namespace UnitTests.Algorime
             test.Add(rating13);
             ratalgo.DivergentRatings += Ratalgo_DivergentRatings2;
             string vidID = ratalgo.FindDivergents(test);
-            int x = 0;
 
             //assert
             Assert.Equal(3, CheckCorrect.Count);
