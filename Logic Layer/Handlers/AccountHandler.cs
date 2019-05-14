@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace BusinessLogicLibrary
+namespace Logic_Layer.Handlers
 {
     public class AccountHandler : ILogin, IRegister
     {
