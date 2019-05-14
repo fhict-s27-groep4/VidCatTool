@@ -45,11 +45,7 @@ namespace Service_Layer.SessionExtension
         public bool IsUserAdmin()
         {
             ILoginUser loginUser = userRepo.GetByUUID(Session.GetUserIDKey());
-            if(loginUser.IsAdmin)
-            {
-                return true;
-            }
-            else return false;
+            return loginUser.IsAdmin;
         }
     }
 }

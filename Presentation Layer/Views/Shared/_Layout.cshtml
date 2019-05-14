@@ -37,17 +37,31 @@
                     <li>
                         <a asp-controller="Review" asp-action="Info">Review</a>
                     </li>
+                </ul>
+            </div>
+            <div class="seperatorLine"> </div>
+            @if (Context.Session.IsUserAdmin())
+            {
+                <div class="adminPanelList">Admin Panel</div>
+                <div class="menu-list">
+
+                    <ul id="menu-content" class="menu-content collapse out">
+                        <li>
+                            <a asp-controller="Admin" asp-action="UserManagement">User Management</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="seperatorLine"> </div>
+            }
+            <div class="menu-list">
+
+                <ul id="menu-content" class="menu-content collapse out">
                     <li>
                         <a asp-controller="Account" asp-action="Logout">Logout</a>
                     </li>
-                    @*@if (Context.Session.IsUserAdmin())
-                    {
-                        <li>
-                            <a asp-controller="Home" asp-action="Dashboard">Dashboard</a>
-                        </li>
-                    }*@
                 </ul>
             </div>
+
         </div>
         <div class="maincontainer col-9">
             <div class="pageTitleAndUser">
