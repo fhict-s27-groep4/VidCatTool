@@ -8,5 +8,10 @@ namespace Data_Layer.Repository
 {
     public class CategoryRepository : Repository<Category>, ICategoryRepository
     {
+
+        public CategoryRepository(IDBContext context) : base(context)
+        {
+
+        }
     }
 }

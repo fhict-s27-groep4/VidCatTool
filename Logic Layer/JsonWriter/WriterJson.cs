@@ -12,8 +12,8 @@ namespace Logic_Layer.JsonWriter
 {
     public class WriterJson
     {
-        CategoryReverser.CategroyReverser categroyReverser;
-        public WriterJson(CategoryReverser.CategroyReverser _categroyReverser)
+        CategoryReverser.CategoryManager categroyReverser;
+        public WriterJson(CategoryReverser.CategoryManager _categroyReverser)
         {
             categroyReverser = _categroyReverser;
         }

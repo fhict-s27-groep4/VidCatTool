@@ -25,7 +25,7 @@
                     <div class="slidecontainer col-sm-4">
                         <input onclick="SliderClick()" type="range" min="0" max="5" value="0" class="slider" id="pleasureSlider">
                     </div>
-                    <input asp-for="Pleasure" class="col-sm-4 padInput" id="pleasureValue" value="0" readonly/>
+                    <input asp-for="Pleasure" class="col-sm-4 padInput" id="pleasureValue" value="0" readonly />
                 </div>
                 <div class="row padmodelItem">
                     <div class="col-sm-4">Arrousal</div>
@@ -39,7 +39,7 @@
                     <div class="slidecontainer col-sm-4">
                         <input onclick="SliderClick()" type="range" min="0" max="5" value="0" class="slider" id="dominanceSlider">
                     </div>
-                    <input asp-for="Dominance" class="col-sm-4 padInput" id="dominanceValue" value="0" readonly  />
+                    <input asp-for="Dominance" class="col-sm-4 padInput" id="dominanceValue" value="0" readonly />
                 </div>
             </div>
 
@@ -47,13 +47,21 @@
                 <h1>Category</h1>
                 <div class="row reviewRow">
                     <div class="custom-select col-sm-6">
-                        <select></select>
+                        <div class="mainselect">
+                            <input type="text" list="categorymain" id="inputmain" name="maincat" placeholder="Category" onchange="GetSubCategories()" />
+                            <datalist id='categorymain'>
+                                @foreach (var cat in Model.Categories)
+                                {
+                                    <option value="@cat.Name" data-id="@cat.UniqueID"></option>
+                                }
+                            </datalist>
+                        </div>
                     </div>
-                    <div class="custom-select col-sm-6" id="subCategory">
-                        <select>
-                            <option value="0">Sub-Category</option>
-                            <option value="1">VidCat Tool</option>
-                        </select>
+                    <div class="custom-select col-sm-6" id="subCategory ">
+                        <div class="subselect">
+                            <input type="text" list="categorysub" id="subinput" name="subcat" placeholder="Sub-Category" />
+                            <datalist id="categorysub"></datalist>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -64,6 +72,23 @@
 </div>
 
 <script>
+    function GetSubCategories() {
+        var subcategory = $("#categorysub");
+        subcategory.empty().append('<option selected="selected" value="Loading..." disabled = "disabled"></option>');
+        $.ajax({
+            type: "GET",
+            url: "/Review/GetSubCategories?id=" + $("#categorymain option[value='" + document.getElementById("inputmain").value + "']").attr('data-id'),
+            dataType: 'JSON',
+            contentType: "application/json",
+            success: function (data) {
+                subcategory.empty();
+                for (var i = 0; i < data.length; i++) {
+                    subcategory.append('<option value="' + data[i].name + '" data-id="' + data[i].uniqueID + '"></option > ');
+                }
+            }
+        });
+    }
+
     function SliderValue(nameOfSlider, nameOfValue) {
         var slider = document.getElementById(nameOfSlider);
         var output = document.getElementById(nameOfValue);

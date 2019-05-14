@@ -91,5 +91,33 @@ namespace Data_Layer
                 context.CloseConnection();
             }
         }
+
+        public static IEnumerable<T> ExecuteReturnStoredProcedure<T>(this IDBContext context, string procedurename, MySqlParameter[] parameters)
+        {
+            Type type = typeof(T);
+            context.DbCommand.CommandText = procedurename;
+            context.DbCommand.CommandType = CommandType.StoredProcedure;
+            foreach(MySqlParameter parameter in parameters)
+            {
+                context.DbCommand.Parameters.Add(parameter);
+            }
+            DataSet dbSet = new DataSet();
+
+            try
+            {
+                context.OpenConnection();
+                context.DataAdapter.Fill(dbSet, type.Name);
+            }
+            catch(DbException exc)
+            {
+                Console.WriteLine(exc.Message);
+            }
+            finally
+            {
+                context.CloseConnection();
+            }
+
+            return Converter.ConvertDatasetToModel<T>(dbSet);
+        }
     }
 }

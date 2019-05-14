@@ -6,7 +6,12 @@ namespace Service_Layer.RequestHandlers
 {
     public class VideoAssignHandler
     {
+        private readonly ReaderJson reader;
         private readonly IVideoRepository videoRepo;
+        public VideoAssignHandler()
+        {
+            reader = new ReaderJson();
+        }
         public VideoAssignHandler(IVideoRepository videoRepo)
         {
             this.videoRepo = videoRepo;
@@ -20,7 +25,6 @@ namespace Service_Layer.RequestHandlers
 
         public string GetVideoLink(string videoIdentity)
         {
-            ReaderJson reader = new ReaderJson();
             return reader.GetVideoUrl(videoIdentity);
         }
     }

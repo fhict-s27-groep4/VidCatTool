@@ -10,7 +10,7 @@ namespace UnitTests.CategoryReverser
 {
     public class CategoryReverserTest
     {
-        CategroyReverser category;
+        CategoryManager category;
         public CategoryReverserTest()
         {
             //arrange
@@ -41,7 +41,7 @@ namespace UnitTests.CategoryReverser
             categories.Add(category3);
             categories.Add(category4);
 
-            category = new CategroyReverser(categories);
+            category = new CategoryManager(categories);
         }
 
         [Fact]
