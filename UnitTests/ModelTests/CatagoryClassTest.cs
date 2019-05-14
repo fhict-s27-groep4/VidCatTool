@@ -8,7 +8,7 @@ namespace UnitTests.ModelTests
 {
     public class CatagoryClassTest
     {
-        Category catagory;
+        private readonly Category catagory;
         public CatagoryClassTest()
         {
             catagory = new Category();

@@ -10,8 +10,8 @@ namespace UnitTests.Algorime
 {
     public class RatingAlgo
     {
-        private RatingAlgoritm ratalgo;
-        List<IRating> CheckCorrect;
+        private readonly RatingAlgoritm ratalgo;
+        private List<IRating> CheckCorrect;
 
         public RatingAlgo()
         {

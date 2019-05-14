@@ -76,14 +76,8 @@ namespace Logic_Layer.Handlers
 
         public bool ValidateAccountDisabled(ILoginUser queryUser)
         {
-            if(queryUser.IsDisabled)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return queryUser.IsDisabled;
+            
         }
     }
 }

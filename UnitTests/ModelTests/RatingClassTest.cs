@@ -8,7 +8,7 @@ namespace UnitTests.ModelTests
 {
     public class RatingClassTest
     {
-        private Rating rating;
+        private readonly Rating rating;
         public RatingClassTest()
         {
             rating = new Rating();

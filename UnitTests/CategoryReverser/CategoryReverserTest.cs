@@ -4,6 +4,7 @@ using Model_Layer.Interface;
 using Model_Layer.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Xunit;
 
@@ -11,7 +12,7 @@ namespace UnitTests.CategoryReverser
 {
     public class CategoryReverserTest
     {
-        CategoryManager category;
+        private readonly CategoryManager category;
         public CategoryReverserTest()
         {
             //arrange
@@ -106,9 +107,23 @@ namespace UnitTests.CategoryReverser
         public void GetSubTiersWithParentID()
         {
             List<Category> test = new List<Category>();
-            
-            //Assert.Equal(category.GetSubTiers(10));
-
+            List<ICategory> shit = category.GetSubTiers(2).ToList();
+            foreach(Category cat in shit)
+            {
+                test.Add(cat);
+            }
+            Assert.Equal(3, test.Count);
+        }
+        [Fact]
+        public void GetAllParentIDs()
+        {
+            List<Category> test = new List<Category>();
+            List<ICategory> fill = category.GetAllTierOne().ToList();
+            foreach(Category cat in fill)
+            {
+                test.Add(cat);
+            }
+            Assert.Equal(2, test.Count);        
         }
     }
 }
