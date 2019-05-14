@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model_Layer.Interface;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
@@ -20,5 +21,6 @@ namespace Service_Layer.ViewModels
         [Required]
         [Range(1, 5)]
         public int Dominance { get; set; }
+        public IEnumerable<ICategory> Categories { get; set; }
     }
 }
