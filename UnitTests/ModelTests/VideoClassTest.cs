@@ -1,5 +1,4 @@
-﻿using BusinessLogicLibrary;
-using Model_Layer.Models;
+﻿using Model_Layer.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -35,28 +34,6 @@ namespace UnitTests.SmallTests
 
             Assert.NotEqual("Tester124", vid.UrlIdentity);
             Assert.False(vid.Finished);
-        }
-        [Fact]
-        public void CheckGetSetRatingsFromVideo()
-        {
-            //arrange
-            List<Rating> Ratinglist = new List<Rating>();
-            Rating rating1 = new Rating();
-            rating1.ArrousalIndex = 1;
-            rating1.CategoryID = 4;
-            rating1.DominanceIndex = 4;
-            rating1.IsIABDivergent = false;
-            rating1.IsPADDivergentt = true;
-            rating1.PleasureIndex = 4;
-            rating1.RatingID = 5;
-            rating1.UserID = "15";
-
-            //act
-            Ratinglist.Add(rating1);
-
-            //assert
-            throw new NotImplementedException();
-
         }
     }
 }
