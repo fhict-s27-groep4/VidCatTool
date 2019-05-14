@@ -13,9 +13,18 @@ namespace VidCat_Tool.Controllers
 {
     public class AdminCheck : ActionFilterAttribute
     {
+        private SessionHandler sessionHandler;
+
+        public AdminCheck(SessionHandler sessionHandler)
+        {
+            this.sessionHandler = sessionHandler;
+        }
+
+        // TO DO:
+        // - Attribute checken
         public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
-            if(filterContext.HttpContext.Session.IsUserAdmin())
+            if(sessionHandler.IsUserAdmin())
             {
                 filterContext.Result = new RedirectToRouteResult(
                     new RouteValueDictionary {
