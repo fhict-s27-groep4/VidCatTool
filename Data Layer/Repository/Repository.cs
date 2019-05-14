@@ -9,6 +9,13 @@ namespace Data_Layer.Repository
 {
     public class Repository<T> : IRepository<T> where T : class
     {
+        protected IDBContext context;
+
+        public Repository(IDBContext context)
+        {
+            this.context = context;
+        }
+
         public int Count(Func<T, bool> predicate)
         {
             throw new NotImplementedException();
@@ -28,10 +35,10 @@ namespace Data_Layer.Repository
         {
             throw new NotImplementedException();
         }
-
+        
         public IEnumerable<T> GetAll()
         {
-            throw new NotImplementedException();
+            return context.SelectQuery<T>();
         }
 
         public T GetByID(int id)

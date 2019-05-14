@@ -12,9 +12,16 @@ namespace Data_Layer.Repository
 {
     public class VideoRepository : Repository<Video>, IVideoRepository
     {
+        public VideoRepository(IDBContext context) : base(context)
+        {
+
+        }
+
         public Video GetRandomVideo(string username)
         {
-            throw new NotImplementedException();
+            MySqlParameter[] parameters = new MySqlParameter[1];
+            parameters[0] = new MySqlParameter("@username", username);
+            return context.ExecuteReturnStoredProcedure<Video>("GetRandomVideo", parameters).FirstOrDefault();
         }
     }
 }
