@@ -33,16 +33,16 @@ namespace VidCat_Tool.Controllers
             return View();
         }
 
-        [HttpGet]
-        public IActionResult Review()
-        {//merge with above
-            CategoryManager manager = new CategoryManager(_categoryRepo);
-            var tierOne = manager.GetAllTierOne();
-            ReviewViewModelPost viewModel = new ReviewViewModelPost();
-            viewModel.ReviewGetInfo = new ReviewViewModelPost();
-            viewModel.ReviewGetInfo.Categories = tierOne;
-            return View(viewModel);
-        }
+        //[HttpGet]
+        //public IActionResult Review()
+        //{//merge with above
+        //    CategoryManager manager = new CategoryManager(_categoryRepo);
+        //    var tierOne = manager.GetAllTierOne();
+        //    ReviewViewModelPost viewModel = new ReviewViewModelPost();
+        //    viewModel.ReviewGetInfo = new ReviewViewModelPost();
+        //    viewModel.ReviewGetInfo.Categories = tierOne;
+        //    return View(viewModel);
+        //}
 
         [HttpGet]
         public IActionResult GetSubCategories(int id)
