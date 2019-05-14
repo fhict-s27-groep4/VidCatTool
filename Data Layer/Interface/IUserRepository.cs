@@ -9,5 +9,6 @@ namespace Data_Layer.Interface
     {
         User GetUserByName(string username);
         User GetByUUID(string uid);
+        void DisableUser(string userid);
     }
 }

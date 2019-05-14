@@ -51,9 +51,9 @@ namespace VidCat_Tool.Controllers
         }
 
         [HttpPost]
-        public IActionResult Review(ReviewViewModelPost postModel, bool next)
+        public IActionResult Review(ReviewViewModel viewModel, bool next)
         {
-            ratingHandler.AddRating(postModel);
+            ratingHandler.AddRating(viewModel.Post);
             if (next == true)
             {
                 return RedirectToAction("Review");
