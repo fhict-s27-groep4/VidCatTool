@@ -10,5 +10,7 @@ namespace Data_Layer
         DbConnection DbConnection { get; }
         DbCommand DbCommand { get; }
         DbDataAdapter DataAdapter { get; }
+
+        
     }
 }

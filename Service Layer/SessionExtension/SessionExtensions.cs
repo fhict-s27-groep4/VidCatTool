@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Model_Layer.Interface;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,11 +16,6 @@ namespace Service_Layer.SessionExtension
         public static string GetUserIDKey(this ISession session)
         {
             return session.GetString("UserID");
-        }
-
-        public static bool IsUserAdmin(this ISession session)
-        {
-            return Convert.ToBoolean(session.GetString("IsAdmin"));
         }
     }
 }
