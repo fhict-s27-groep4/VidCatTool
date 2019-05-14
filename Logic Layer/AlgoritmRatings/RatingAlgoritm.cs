@@ -15,10 +15,10 @@ namespace Logic_Layer.AlgoritmRatings
         private double biggestPercentIAB = 0.9;
         private double padTolerance = 0.7;
         private int maximumRatings = 80;
-        private readonly CategoryReverser.CategroyReverser categoryReverser;
+        private readonly CategoryReverser.CategoryManager categoryReverser;
         public event EventHandler<DivergentRatings> DivergentRatings;
 
-        public RatingAlgoritm(CategoryReverser.CategroyReverser _categroyReverser)
+        public RatingAlgoritm(CategoryReverser.CategoryManager _categroyReverser)
         {
             categoryReverser = _categroyReverser;
         }
@@ -123,7 +123,7 @@ namespace Logic_Layer.AlgoritmRatings
                 }
                 if (divergentCount >= 2)
                 {
-                    rating.IsPADDivergentt = true;
+                    rating.IsPADDivergent = true;
                 }
                 if (!biggestCatagories.Contains(categoryReverser.GetParentTiers(rating.CategoryID).Object2))
                 {
@@ -133,7 +133,7 @@ namespace Logic_Layer.AlgoritmRatings
             IList<IRating> divergentRatings = new List<IRating>();
             foreach (IRating rating in _ratings)
             {
-                if (rating.IsIABDivergent || rating.IsPADDivergentt)
+                if (rating.IsIABDivergent || rating.IsPADDivergent)
                 {
                     divergentRatings.Add(rating);
                 }

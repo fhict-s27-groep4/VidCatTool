@@ -4,10 +4,10 @@ using System.Linq;
 
 namespace Logic_Layer.CategoryReverser
 {
-    public class CategroyReverser
+    public class CategoryManager
     {
         IEnumerable<ICategory> categories;
-        public CategroyReverser(IEnumerable<ICategory> _categories)
+        public CategoryManager(IEnumerable<ICategory> _categories)
         {
             categories = _categories;
         }
@@ -23,6 +23,24 @@ namespace Logic_Layer.CategoryReverser
                 current = categories.Where(x => x.UniqueID == parentTiers.Object1).First();
             }
             return parentTiers;
+        }
+
+        public IEnumerable<ICategory> GetAllTierOne()
+        {
+            return categories.Where(one => one.ParentID == null).ToList();
+        }
+
+        public IEnumerable<ICategory> GetSubTiers(int parentCategory)
+        {
+            IList<ICategory> subCategories = new List<ICategory>();
+            foreach(ICategory c in categories.Where(x => x.ParentID != null))
+            {
+                if(GetParentTiers(c.UniqueID).Object1 == parentCategory)
+                {
+                    subCategories.Add(c);
+                }
+            }
+            return subCategories;
         }
     }
 }

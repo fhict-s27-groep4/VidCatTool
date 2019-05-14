@@ -23,7 +23,7 @@ namespace Service_Layer.RequestHandlers
             this.videoRepo = videoRepo;
             this.sessionHandler = sessionHandler;
             this.categoryRepo = categoryRepo;
-            ratingAlgoritm = new RatingAlgoritm(new CategroyReverser(categoryRepo.GetAll()));
+            ratingAlgoritm = new RatingAlgoritm(new CategoryManager(categoryRepo.GetAll()));
             ratingAlgoritm.DivergentRatings += this.OnDivergentRatings;
         }
 
