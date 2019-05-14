@@ -7,5 +7,6 @@ namespace Model_Layer.Interface
     public interface ISearchUser : IUser
     {
         string UserID { get; }
+        bool IsDisabled { get; }
     }
 }

@@ -48,7 +48,12 @@ namespace VidCat_Tool.Controllers
         public IActionResult DisableAccount(string userid)
         {
             userHandler.DisableUser(userid);
-            return View();
+            return Redirect(Url.Action("UserManagement", "Admin"));
+        }
+        public IActionResult EnableAccount(string userid)
+        {
+            userHandler.EnableUser(userid);
+            return Redirect(Url.Action("UserManagement", "Admin"));
         }
 
         // Stored Procedure maken
