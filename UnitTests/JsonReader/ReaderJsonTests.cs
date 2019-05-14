@@ -8,12 +8,20 @@ namespace UnitTests.JsonReader
 {
     public class ReaderJsonTests
     {
-        [Fact]
-        public void JsonReaderTest()
+        ReaderJson readerJson;
+        public ReaderJsonTests()
         {
-            ReaderJson readerJson = new ReaderJson();
-
+            readerJson = new ReaderJson();
+        }
+        [Fact]
+        public void JsonReaderSearchVideoURL()
+        {
             Assert.Equal("https://cdn.jwplayer.com/videos/Eq8rlVfq-Fs88Rtdh.mp4", readerJson.GetVideoUrl("Eq8rlVfq"));
+        }
+        [Fact]
+        public void JsonReaderReturnNull()
+        {
+            Assert.Null(readerJson.GetVideoUrl("HAHA"));
         }
     }
 }

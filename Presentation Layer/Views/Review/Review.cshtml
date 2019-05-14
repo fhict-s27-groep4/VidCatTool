@@ -17,7 +17,7 @@
     </div>
     <form method="post">
         <div class="row reviewRow">
-            <input asp-for="VideoIdentity" type="hidden" value="@ViewBag.VideoIdentity" />
+            <input asp-for="Post.VideoIdentity" type="hidden" value="@ViewBag.VideoIdentity" />
             <div class="reviewPart col-sm-6" id="Pad-Model">
                 <h1>PAD-Model</h1>
                 <div class="row padmodelItem">
@@ -25,21 +25,21 @@
                     <div class="slidecontainer col-sm-4">
                         <input onclick="SliderClick()" type="range" min="0" max="5" value="0" class="slider" id="pleasureSlider">
                     </div>
-                    <input asp-for="Pleasure" class="col-sm-4 padInput" id="pleasureValue" value="0" readonly />
+                    <input asp-for="Post.Pleasure" class="col-sm-4 padInput" id="pleasureValue" value="0" readonly />
                 </div>
                 <div class="row padmodelItem">
                     <div class="col-sm-4">Arrousal</div>
                     <div class="slidecontainer col-sm-4">
                         <input onclick="SliderClick()" type="range" min="0" max="5" value="0" class="slider" id="arrousalSlider">
                     </div>
-                    <input asp-for="Arrousal" class="col-sm-4 padInput" id="arrousalValue" value="0" readonly />
+                    <input asp-for="Post.Arrousal" class="col-sm-4 padInput" id="arrousalValue" value="0" readonly />
                 </div>
                 <div class="row padmodelItem">
                     <div class="col-sm-4">Dominance</div>
                     <div class="slidecontainer col-sm-4">
                         <input onclick="SliderClick()" type="range" min="0" max="5" value="0" class="slider" id="dominanceSlider">
                     </div>
-                    <input asp-for="Dominance" class="col-sm-4 padInput" id="dominanceValue" value="0" readonly />
+                    <input asp-for="Post.Dominance" class="col-sm-4 padInput" id="dominanceValue" value="0" readonly />
                 </div>
             </div>
 
@@ -50,7 +50,7 @@
                         <div class="mainselect">
                             <input type="text" list="categorymain" id="inputmain" name="maincat" placeholder="Category" onchange="GetSubCategories()" />
                             <datalist id='categorymain'>
-                                @foreach (var cat in Model.Categories)
+                                @foreach (var cat in Model.Get.Categories)
                                 {
                                     <option value="@cat.Name" data-id="@cat.UniqueID"></option>
                                 }

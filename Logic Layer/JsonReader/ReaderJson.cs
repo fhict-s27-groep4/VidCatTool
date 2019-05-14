@@ -6,14 +6,15 @@ namespace Logic_Layer.JsonReader
 {
     public class ReaderJson
     {
+        JObject json;
         public ReaderJson()
         {
             //make sure you're using this nuget package Newtonsoft.Json and using Newtonsoft.Json.Linq;
+            json = JObject.Parse(File.ReadAllText(@"..\..\..\..\Logic Layer\JsonReader\VideoFeed.json"));
         }
 
-        private string FindVidUrl(string _mediaID, string _file)
+        private string FindVidUrl(string _mediaID)
         {//returns url with best quality or null if the id doe not exist 
-            JObject json = JObject.Parse(File.ReadAllText(_file));
             string filePath = null;
             int quality = 0;
             foreach (JObject video in json["playlist"])
@@ -45,7 +46,7 @@ namespace Logic_Layer.JsonReader
 
         public string GetVideoUrl(string _mediaID)
         {
-            return FindVidUrl(_mediaID, @"..\..\..\..\..\..\fhict-s27-groep4\VidCatTool\Logic Layer\JsonReader\VideoFeed.json");
+            return FindVidUrl(_mediaID);
         }
     }
 }
