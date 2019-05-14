@@ -22,7 +22,7 @@ namespace UnitTests.ModelTests
             rating.VideoIdentity = "ABCDEFG";
             rating.CategoryID = 15;
             rating.IsIABDivergent = true;
-            rating.IsPADDivergent = true;
+            rating.IsPADDivergentt = true;
             rating.PleasureIndex = 4;
             rating.ArrousalIndex = 3;
             rating.DominanceIndex = 2;
@@ -35,7 +35,7 @@ namespace UnitTests.ModelTests
             Assert.Equal(3, rating.ArrousalIndex);
             Assert.Equal(2, rating.DominanceIndex);
             Assert.True(rating.IsIABDivergent);
-            Assert.True(rating.IsPADDivergent);
+            Assert.True(rating.IsPADDivergentt);
 
 
         }
@@ -48,7 +48,7 @@ namespace UnitTests.ModelTests
             rating.VideoIdentity = "ABCDEFG";
             rating.CategoryID = 15;
             rating.IsIABDivergent = true;
-            rating.IsPADDivergent = true;
+            rating.IsPADDivergentt = true;
             rating.PleasureIndex = 4;
             rating.ArrousalIndex = 3;
             rating.DominanceIndex = 2;
@@ -61,7 +61,7 @@ namespace UnitTests.ModelTests
             Assert.NotEqual(4, rating.ArrousalIndex);
             Assert.NotEqual(3, rating.DominanceIndex);
             Assert.True(rating.IsIABDivergent);
-            Assert.True(rating.IsPADDivergent);
+            Assert.True(rating.IsPADDivergentt);
         }
         
         [Fact]
@@ -72,34 +72,33 @@ namespace UnitTests.ModelTests
             user1.City = "Oisterwijk";
             user1.Country = "Netherlands";
             user1.Email = "Youdonthavetoknow@gmail.com";
-            user1.Firstname = "Duncan";
-            user1.Lastname = "Schoenmakers";
+            user1.FirstName = "Duncan";
+            user1.LastName = "Schoenmakers";
             user1.IsAdmin = true;
-            user1.Password = "NotActuallyAPassword";
-            user1.PasswordSalt = "NotActuallyASalt";
-            user1.Phonenumber = "0651418572";
-            user1.Streetaddress = "Prinses Willem Laan";
-            user1.Username = "2now";
-            user1.Zipcode = "5068RE";
+            user1.PassWord = "NotActuallyAPassword";
+            user1.PassWordSalt = "NotActuallyASalt";
+            user1.PhoneNumber = "0651418572";
+            user1.StreetAddress = "Prinses Willem Laan";
+            user1.UserName = "2now";
+            user1.ZipCode = "5068RE";
             user1.IsDisabled = true;
             user1.UserID = "16";
-            rating.User = user1;
 
-            User user2 = rating.User;
             //assert
-            Assert.NotEqual("Paris", user2.City);
-            Assert.NotEqual("France", user2.Country);
-            Assert.NotEqual("SiasPLoit@gmail.com", user2.Email);
-            Assert.NotEqual("Jan", user2.Firstname);
-            Assert.NotEqual("Qu're", user2.Lastname);
-            Assert.NotEqual("NotActuallyAPasswords", user2.Password);
-            Assert.NotEqual("NotActuallyASalts", user2.PasswordSalt);
-            Assert.NotEqual("0651418554", user2.Phonenumber);
-            Assert.NotEqual("Prinses Willem Straat", user2.Streetaddress);
-            Assert.NotEqual("2nowa", user2.Username);
-            Assert.NotEqual("5068GE", user2.Zipcode);
-            Assert.NotEqual("15", user2.UserID);
-            Assert.True(user2.IsDisabled);
+            //Assert.NotEqual("Paris", user2.City);
+            //Assert.NotEqual("France", user2.Country);
+            //Assert.NotEqual("SiasPLoit@gmail.com", user2.Email);
+            //Assert.NotEqual("Jan", user2.FirstName);
+            //Assert.NotEqual("Qu're", user2.LastName);
+            //Assert.NotEqual("NotActuallyAPasswords", user2.PassWord);
+            //Assert.NotEqual("NotActuallyASalts", user2.PassWordSalt);
+            //Assert.NotEqual("0651418554", user2.PhoneNumber);
+            //Assert.NotEqual("Prinses Willem Straat", user2.StreetAddress);
+            //Assert.NotEqual("2nowa", user2.UserName);
+            //Assert.NotEqual("5068GE", user2.ZipCode);
+            //Assert.NotEqual("15", user2.UserID);
+            //Assert.True(user2.IsDisabled);
+            throw new NotImplementedException();
         }
         [Fact]
         public void CheckvideoRating()
@@ -109,11 +108,9 @@ namespace UnitTests.ModelTests
             vid1.UrlIdentity = "Tester123";
             vid1.Finished = true;
 
-            rating.Video = vid1;
 
             //assert
-            Assert.Equal("Tester123", rating.Video.UrlIdentity);
-            Assert.True(rating.Video.Finished);
+            throw new NotImplementedException();
         }
         [Fact]
         public void CheckCategoryRating()
@@ -123,11 +120,7 @@ namespace UnitTests.ModelTests
             cat1.Name = "Honda";
             cat1.UniqueID = 10;
 
-            rating.Category = cat1;
-
-            Assert.Equal(5, rating.Category.ParentID);
-            Assert.Equal("Honda", rating.Category.Name);
-            Assert.Equal(10, rating.Category.UniqueID);
+            throw new NotImplementedException();
         }
     }
 }

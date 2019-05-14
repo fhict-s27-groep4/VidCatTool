@@ -23,7 +23,7 @@ namespace BusinessLogicLibrary
         {
             PasswordHasher hasher = new PasswordHasher();
             
-            if (queryUser.Password == hasher.CheckPassword(password, queryUser.PasswordSalt))
+            if (queryUser.PassWord == hasher.CheckPassword(password, queryUser.PassWordSalt))
             {
                 return true;
             }
@@ -40,22 +40,22 @@ namespace BusinessLogicLibrary
             string generatedPassword = PasswordGenerator.GeneratePassword(true, true, true, true, false, 12);
 
             User newUser = new User();
-            newUser.Username = GenerateUsername(firstname, lastname, allUsers);
-            newUser.Firstname = firstname;
-            newUser.Lastname = lastname;
+            newUser.UserName = GenerateUsername(firstname, lastname, allUsers);
+            newUser.FirstName = firstname;
+            newUser.LastName = lastname;
             newUser.Email = email;
-            newUser.Password = hasher.HashWithSalt(generatedPassword);
-            newUser.PasswordSalt = hasher.Key;
-            if (phonenumber != null) newUser.Phonenumber = phonenumber;
+            newUser.PassWord = hasher.HashWithSalt(generatedPassword);
+            newUser.PassWordSalt = hasher.Key;
+            if (phonenumber != null) newUser.PhoneNumber = phonenumber;
             if (country != null) newUser.Country = country;
             if (city != null) newUser.City = city;
-            if (streetaddress != null) newUser.Streetaddress = streetaddress;
-            if (zipcode != null) newUser.Zipcode = zipcode;
+            if (streetaddress != null) newUser.StreetAddress = streetaddress;
+            if (zipcode != null) newUser.ZipCode = zipcode;
 
 
             EMailSender eMailer = new EMailSender();
             IMessageSettableMail mail = new MessageMail(new System.Net.Mail.MailMessage());
-            mail.MakeMail("Account Verification", String.Format("Dear Sir/Madam, \n\n An account has been created with this specific e-mail address. Please login with the following credentials: \n Username: {0} \n Password: {1} \n\n Kind regards, \n The staff of JWPlayer", newUser.Username, generatedPassword), email);
+            mail.MakeMail("Account Verification", String.Format("Dear Sir/Madam, \n\n An account has been created with this specific e-mail address. Please login with the following credentials: \n Username: {0} \n Password: {1} \n\n Kind regards, \n The staff of JWPlayer", newUser.UserName, generatedPassword), email);
             eMailer.Send(mail);
 
             return true;
@@ -66,9 +66,9 @@ namespace BusinessLogicLibrary
         {
             string generatedUsername = string.Empty;
             generatedUsername = firstname.Substring(0, 1).ToLower() + "." + lastname.ToLower();
-            if (allUsers.Where(u => u.Username == generatedUsername).Any())
+            if (allUsers.Where(u => u.UserName == generatedUsername).Any())
             {
-                int count = allUsers.Where(u => u.Username.Contains(generatedUsername)).Count() + 1;
+                int count = allUsers.Where(u => u.UserName.Contains(generatedUsername)).Count() + 1;
                 generatedUsername += count;
             }
             return generatedUsername;

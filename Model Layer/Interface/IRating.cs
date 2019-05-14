@@ -12,6 +12,6 @@ namespace Model_Layer.Interface
         int PleasureIndex { get; set; }
         int ArrousalIndex { get; set; }
         int DominanceIndex { get; set; }
-        bool IsPADDivergent { get; set; }
+        bool IsPADDivergentt { get; set; }
     }
 }

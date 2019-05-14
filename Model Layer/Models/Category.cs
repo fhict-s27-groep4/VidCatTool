@@ -8,10 +8,8 @@ namespace Model_Layer.Models
 {
     public class Category : ICategory
     {
-        [Key]
         public int UniqueID { get; set; }
         public int? ParentID { get; set; }
         public string Name { get; set; }
-        public ICollection<Rating> Ratings { get; set; }
     }
 }

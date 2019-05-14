@@ -15,10 +15,10 @@ namespace Logic_Layer.AlgoritmRatings
         private double biggestPercentIAB = 0.9;
         private double padTolerance = 0.7;
         private int maximumRatings = 80;
-        private readonly CategoryReverser.CategoryReverser categoryReverser;
+        private readonly CategoryReverser.CategroyReverser categoryReverser;
         public event EventHandler<DivergentRatings> DivergentRatings;
 
-        public RatingAlgoritm(CategoryReverser.CategoryReverser _categroyReverser)
+        public RatingAlgoritm(CategoryReverser.CategroyReverser _categroyReverser)
         {
             categoryReverser = _categroyReverser;
         }
@@ -69,79 +69,80 @@ namespace Logic_Layer.AlgoritmRatings
         {
             if (DivergentRatings == null)
             {
-                throw new Exception();
+                throw new NotImplementedException();
             }
             DivergentRatings(this, new DivergentRatings(_ratings));
         }
 
-        public Task FindDivergents(IEnumerable<IRating> _ratings)
+        public string FindDivergents(IEnumerable<IRating> _ratings)
         {
-            return Task.Run(() =>
-            {
-                IList<IObjectPair<int, int>> countCatagorie1 = new List<IObjectPair<int, int>>();
-                IList<IObjectPair<int, int>> countCatagorie2 = new List<IObjectPair<int, int>>();
-                int count = _ratings.Count();
-                int pleassure = 0;
-                int dominance = 0;
-                int arrousel = 0;
-                foreach (IRating rating in _ratings)
-                {//generates count, total PAD, Counts catagories
-                    IObjectPair<int, int> categoryIDs = categoryReverser.GetParentTiers(rating.CategoryID);
-                    countCatagorie1 = CatagoryInList(countCatagorie1, categoryIDs.Object1);
-                    countCatagorie2 = CatagoryInList(countCatagorie2, categoryIDs.Object2);
-                    pleassure += rating.PleasureIndex;
-                    dominance += rating.DominanceIndex;
-                    arrousel += rating.ArrousalIndex;
+            IList<IObjectPair<int, int>> countCatagorie1 = new List<IObjectPair<int, int>>();
+            IList<IObjectPair<int, int>> countCatagorie2 = new List<IObjectPair<int, int>>();
+            int count = _ratings.Count();
+            int pleassure = 0;
+            int dominance = 0;
+            int arrousel = 0;
+            foreach (IRating rating in _ratings)
+            {//generates count, total PAD, Counts catagories
+                IObjectPair<int, int> categoryIDs = categoryReverser.GetParentTiers(rating.CategoryID);
+                countCatagorie1 = CatagoryInList(countCatagorie1, categoryIDs.Object1);
+                countCatagorie2 = CatagoryInList(countCatagorie2, categoryIDs.Object2);
+                pleassure += rating.PleasureIndex;
+                dominance += rating.DominanceIndex;
+                arrousel += rating.ArrousalIndex;
+            }
+            if (count <= maximumRatings)
+            {//prevents video from getting more ratings
+                if (count <= 3)
+                {// video's with less tha 3 can't be checked
+                    return null;
                 }
-                if (count <= maximumRatings)
-                {//prevents video from getting more ratings
-                    if (count <= 3)
-                    {// video's with less tha 3 can't be checked
-                        return;
-                    }
-                    if (CatagoryBigEnough(countCatagorie1, iabToleranceTier1 * count) || CatagoryBigEnough(countCatagorie1, iabToleranceTier2 * count))
-                    {//video's that don't have polarized category ratings can be finished early
-                        return;
-                    }
+                if (CatagoryBigEnough(countCatagorie1, iabToleranceTier1 * count) || CatagoryBigEnough(countCatagorie1, iabToleranceTier2 * count))
+                {//video's that don't have polarized category ratings can be finished early
+                    return null;
                 }
-                IEnumerable<int> biggestCatagories = BiggestCategories(countCatagorie2, count);
-                double averageP = (double)pleassure / count;
-                double averageA = (double)arrousel / count;
-                double averageD = (double)dominance / count;
-                foreach (IRating rating in _ratings)
-                {//2 of 3 divergent pads>>>pad is divergent, tier2 is not in the list with biggest catagories>>>iabdivergent
-                    int divergentCount = 0;
-                    if ((rating.PleasureIndex + averageP) % averageP > padTolerance)
-                    {
-                        divergentCount++;
-                    }
-                    if ((rating.ArrousalIndex + averageA) % averageA > padTolerance)
-                    {
-                        divergentCount++;
-                    }
-                    if ((rating.DominanceIndex + averageD) % averageD > padTolerance)
-                    {
-                        divergentCount++;
-                    }
-                    if (divergentCount >= 2)
-                    {
-                        rating.IsPADDivergent = true;
-                    }
-                    if (!biggestCatagories.Contains(categoryReverser.GetParentTiers(rating.CategoryID).Object2))
-                    {
-                        rating.IsIABDivergent = true;
-                    }
-                }
-                IList<IRating> divergentRatings = new List<IRating>();
-                foreach (IRating rating in _ratings)
+            }
+            IEnumerable<int> biggestCatagories = BiggestCategories(countCatagorie2, count);
+            double averageP = (double)pleassure / count;
+            double averageA = (double)arrousel / count;
+            double averageD = (double)dominance / count;
+            foreach (IRating rating in _ratings)
+            {//2 of 3 divergent pads>>>pad is divergent, tier2 is not in the list with biggest catagories>>>iabdivergent
+                int divergentCount = 0;
+                if ((rating.PleasureIndex + averageP) % averageP > padTolerance)
                 {
-                    if (rating.IsIABDivergent || rating.IsPADDivergent)
-                    {
-                        divergentRatings.Add(rating);
-                    }
+                    divergentCount++;
                 }
+                if ((rating.ArrousalIndex + averageA) % averageA > padTolerance)
+                {
+                    divergentCount++;
+                }
+                if ((rating.DominanceIndex + averageD) % averageD > padTolerance)
+                {
+                    divergentCount++;
+                }
+                if (divergentCount >= 2)
+                {
+                    rating.IsPADDivergentt = true;
+                }
+                if (!biggestCatagories.Contains(categoryReverser.GetParentTiers(rating.CategoryID).Object2))
+                {
+                    rating.IsIABDivergent = true;
+                }
+            }
+            IList<IRating> divergentRatings = new List<IRating>();
+            foreach (IRating rating in _ratings)
+            {
+                if (rating.IsIABDivergent || rating.IsPADDivergentt)
+                {
+                    divergentRatings.Add(rating);
+                }
+            }
+            if (divergentRatings.Count() > 0)
+            {
                 OnDivergentRatings(divergentRatings);
-            });
+            }
+            return _ratings.First().VideoIdentity;
         }
     }
 }
