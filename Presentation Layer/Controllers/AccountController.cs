@@ -59,10 +59,5 @@ namespace VidCat_Tool.Controllers
         {
             return View();
         }
-
-        public IActionResult CreateUser()
-        {
-            return View();
-        }
     }
 }
