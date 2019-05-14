@@ -283,7 +283,7 @@ namespace UnitTests.Algorime
             Rating rating10 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
             Rating rating11 = new Rating { CategoryID = 5, DominanceIndex = 1, PleasureIndex = 1, ArrousalIndex = 1 };
             Rating rating12 = new Rating { CategoryID = 5, DominanceIndex = 1, PleasureIndex = 1, ArrousalIndex = 1 };
-            Rating rating13 = new Rating { CategoryID = 2, DominanceIndex = 1, PleasureIndex = 1, ArrousalIndex = 1 };
+            Rating rating13 = new Rating { CategoryID = 3, DominanceIndex = 1, PleasureIndex = 1, ArrousalIndex = 1 };
 
             //act
             test.Add(rating1);
@@ -300,10 +300,11 @@ namespace UnitTests.Algorime
             test.Add(rating12);
             test.Add(rating13);
             ratalgo.DivergentRatings += Ratalgo_DivergentRatings2;
-            ratalgo.FindDivergents(test);
+            string vidID = ratalgo.FindDivergents(test);
+            int x = 0;
 
             //assert
-            Assert.Equal(4, CheckCorrect.Count);
+            Assert.Equal(3, CheckCorrect.Count);
         }
 
         private void Ratalgo_DivergentRatings2(object sender, DivergentRatings e)

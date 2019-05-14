@@ -55,14 +55,21 @@ namespace Logic_Layer.AlgoritmRatings
             return false;
         }
 
-        private IEnumerable<int> BiggestCategories(IEnumerable<IObjectPair<int, int>> _countCategories, int _count)
+        private IEnumerable<int> BiggestCategories(IList<IObjectPair<int, int>> _countCategories, int _count)
         {
-            int currCount = _countCategories.Max(x => x.Object2);
-            while (_countCategories.Where(x => x.Object2 >= currCount).Sum(x => x.Object2) > biggestPercentIAB * _count)
+            IList<int> biggestCategories = new List<int>();
+            int curCount = 0;
+            while(curCount < biggestPercentIAB * _count)
             {
-                currCount--;
+                IEnumerable<IObjectPair<int, int>> newBiggestCategories = _countCategories.Where(x => x.Object2 == _countCategories.Max(y => y.Object2)).ToList();
+                foreach (IObjectPair<int, int> c in newBiggestCategories)
+                {
+                    curCount += c.Object2;
+                    biggestCategories.Add(c.Object1);
+                    _countCategories.Remove(c);
+                }
             }
-            return _countCategories.Where(x => x.Object2 > currCount).Select(x => x.Object1);
+            return biggestCategories;
         }
 
         protected virtual void OnDivergentRatings(IEnumerable<IRating> _ratings)
@@ -97,7 +104,7 @@ namespace Logic_Layer.AlgoritmRatings
                 {// video's with less tha 3 can't be checked
                     return null;
                 }
-                if (CatagoryBigEnough(countCatagorie1, iabToleranceTier1 * count) || CatagoryBigEnough(countCatagorie1, iabToleranceTier2 * count))
+                if (!CatagoryBigEnough(countCatagorie1, iabToleranceTier1 * count) || !CatagoryBigEnough(countCatagorie2, iabToleranceTier2 * count))
                 {//video's that don't have polarized category ratings can be finished early
                     return null;
                 }
