@@ -19,7 +19,7 @@ namespace Logic_Layer.Handlers
         {
         }
 
-        public bool ValidateUser(string username, string password, ILoginUser queryUser)
+        public bool ValidateUser(string password, ILoginUser queryUser)
         {
             PasswordHasher hasher = new PasswordHasher();
             
@@ -27,10 +27,7 @@ namespace Logic_Layer.Handlers
             {
                 return true;
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
 
         // NOG VERANDEREN NAAR INTERFACE DIE NOG GEMAAKT MOET WORDEN 

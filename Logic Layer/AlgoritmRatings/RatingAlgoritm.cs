@@ -10,11 +10,11 @@ namespace Logic_Layer.AlgoritmRatings
 {
     public class RatingAlgoritm
     {
-        private double iabToleranceTier1 = 0.85;
-        private double iabToleranceTier2 = 0.75;
-        private double biggestPercentIAB = 0.9;
-        private double padTolerance = 0.7;
-        private int maximumRatings = 80;
+        private readonly double iabToleranceTier1 = 0.85;
+        private readonly double iabToleranceTier2 = 0.75;
+        private readonly double biggestPercentIAB = 0.9;
+        private readonly double padTolerance = 0.7;
+        private readonly int maximumRatings = 80;
         private readonly CategoryReverser.CategoryManager categoryReverser;
         public event EventHandler<DivergentRatings> DivergentRatings;
 

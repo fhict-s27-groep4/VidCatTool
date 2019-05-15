@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using Xunit;
 
-namespace UnitTests.SmallTests
+namespace UnitTests.LogicLayer.ModelTests
 {
     public class UserClassTest
     {
