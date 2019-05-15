@@ -49,13 +49,13 @@ namespace VidCat_Tool.Controllers
             return View();
         }   
 
-        [HttpPost]
-        public FileResult ExportToJSON()
-        {
+        //[HttpPost]
+        //public FileResult ExportToJSON()
+        //{
 
-            byte[] fileBytes = System.IO.File.ReadAllBytes();
-            return File(fileBytes, "json", "JsonExport");
-        }
+        //    byte[] fileBytes = System.IO.File.ReadAllBytes();
+        //    return File(fileBytes, "json", "JsonExport");
+        //}
         
         public IActionResult Logout()
         {

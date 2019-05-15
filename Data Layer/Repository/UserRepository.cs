@@ -1,5 +1,6 @@
 ﻿using Data_Layer.Interface;
 using Microsoft.EntityFrameworkCore;
+using Model_Layer.Interface;
 using Model_Layer.Models;
 using MySql.Data.MySqlClient;
 using System;
@@ -38,6 +39,23 @@ namespace Data_Layer.Repository
             MySqlParameter[] parameters = new MySqlParameter[1];
             parameters[0] = new MySqlParameter("@userID", userid);
             context.ExecuteStoredProcedure("EnableUser", parameters);
+        }
+
+        public void AddUser(IRegisterUser user)
+        {
+            MySqlParameter[] parameters = new MySqlParameter[11];
+            parameters[0] = new MySqlParameter("@username", user.UserName);
+            parameters[1] = new MySqlParameter("@pass", user.PassWord);
+            parameters[2] = new MySqlParameter("@passwordsalt", user.PassWordSalt);
+            parameters[3] = new MySqlParameter("@email", user.Email);
+            parameters[4] = new MySqlParameter("@firstname", user.FirstName);
+            parameters[5] = new MySqlParameter("@lastname", user.LastName);
+            parameters[6] = new MySqlParameter("@phonenumber", user.PhoneNumber);
+            parameters[7] = new MySqlParameter("@country", user.Country);
+            parameters[8] = new MySqlParameter("@city", user.City);
+            parameters[9] = new MySqlParameter("@streetaddress", user.StreetAddress);
+            parameters[10] = new MySqlParameter("@zipcode", user.ZipCode);
+            context.ExecuteStoredProcedure("AddUser", parameters);
         }
     }
 }

@@ -45,7 +45,8 @@ namespace Service_Layer.RequestHandlers
         // City vergeten in de UI te zetten
         public void CreateUser(RegisterViewModel vm)
         {
-            IUser generatedUser = registerHandler.CreateUser(userRepo.GetAll(), vm.Firstname, vm.Lastname, vm.Email, vm.Phonenumber, vm.Country, null, vm.Streetname, vm.Zip);
+            IRegisterUser generatedUser = registerHandler.CreateUser(userRepo.GetAll(), vm.Firstname, vm.Lastname, vm.Email, vm.Phonenumber, vm.Country, null, vm.Streetname, vm.Zip);
+            userRepo.AddUser(generatedUser);
         }
 
         public UserManagementViewModel GetUserManagementViewModel()
