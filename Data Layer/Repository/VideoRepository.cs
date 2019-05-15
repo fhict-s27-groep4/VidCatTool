@@ -23,5 +23,13 @@ namespace Data_Layer.Repository
             parameters[0] = new MySqlParameter("@username", username);
             return context.ExecuteReturnStoredProcedure<Video>("GetRandomVideo", parameters).FirstOrDefault();
         }
+
+        public void UpdateVideoFinished(string videoid)
+        {
+            MySqlParameter[] parameters = new MySqlParameter[1];
+            parameters[0] = new MySqlParameter("@videoID ", videoid);
+
+            context.ExecuteStoredProcedure("UpdateVideoFinished", parameters);
+        }
     }
 }
