@@ -15,6 +15,7 @@ namespace Data_Layer.Interface
         void AddUser(IRegisterUser user);
         IEnumerable<Tuple<int, string>> GetRatingCountFromAllUsers();
         IEnumerable<Tuple<int, string>> GetDivergentRatingsFromAllUser();
+        void UpdatePassword(string userid, string password, string passwordsalt);
 
     }
 }

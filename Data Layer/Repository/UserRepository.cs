@@ -66,5 +66,14 @@ namespace Data_Layer.Repository
         {
             return context.ExecuteNonObjectStoredProcedure("GetDivergentRatingsFromAllUser", null);
         }
+
+        public void UpdatePassword(string userid, string password, string passwordsalt)
+        {
+            MySqlParameter[] parameters = new MySqlParameter[3];
+            parameters[0] = new MySqlParameter("@userID", userid);
+            parameters[1] = new MySqlParameter("@pword", password);
+            parameters[2] = new MySqlParameter("@passwordsalt", passwordsalt);
+            context.ExecuteStoredProcedure("UpdatePassword", parameters);
+        }
     }
 }
