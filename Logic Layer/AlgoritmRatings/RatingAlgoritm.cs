@@ -59,7 +59,7 @@ namespace Logic_Layer.AlgoritmRatings
         {
             IList<int> biggestCategories = new List<int>();
             int curCount = 0;
-            while(curCount < biggestPercentIAB * _count)
+            while (curCount < biggestPercentIAB * _count)
             {
                 IEnumerable<IObjectPair<int, int>> newBiggestCategories = _countCategories.Where(x => x.Object2 == _countCategories.Max(y => y.Object2)).ToList();
                 foreach (IObjectPair<int, int> c in newBiggestCategories)
@@ -72,16 +72,16 @@ namespace Logic_Layer.AlgoritmRatings
             return biggestCategories;
         }
 
-        protected virtual void OnDivergentRatings(IEnumerable<IRating> _ratings)
+        protected virtual void OnDivergentRatings(string _vidID, IEnumerable<IRating> _ratings)
         {
             if (DivergentRatings == null)
             {
                 throw new NotImplementedException();
             }
-            DivergentRatings(this, new DivergentRatings(_ratings));
+            DivergentRatings(this, new DivergentRatings(_vidID, _ratings));
         }
 
-        public string FindDivergents(IEnumerable<IRating> _ratings)
+        public void FindDivergents(IEnumerable<IRating> _ratings)
         {
             IList<IObjectPair<int, int>> countCatagorie1 = new List<IObjectPair<int, int>>();
             IList<IObjectPair<int, int>> countCatagorie2 = new List<IObjectPair<int, int>>();
@@ -102,11 +102,11 @@ namespace Logic_Layer.AlgoritmRatings
             {//prevents video from getting more ratings
                 if (count <= 3)
                 {// video's with less tha 3 can't be checked
-                    return null;
+                    return;
                 }
                 if (!CatagoryBigEnough(countCatagorie1, iabToleranceTier1 * count) || !CatagoryBigEnough(countCatagorie2, iabToleranceTier2 * count))
                 {//video's that don't have polarized category ratings can be finished early
-                    return null;
+                    return;
                 }
             }
             IEnumerable<int> biggestCatagories = BiggestCategories(countCatagorie2, count);
@@ -145,11 +145,7 @@ namespace Logic_Layer.AlgoritmRatings
                     divergentRatings.Add(rating);
                 }
             }
-            if (divergentRatings.Count() > 0)
-            {
-                OnDivergentRatings(divergentRatings);
-            }
-            return _ratings.First().VideoIdentity;
+            OnDivergentRatings(_ratings.First().VideoIdentity, divergentRatings);
         }
     }
 }

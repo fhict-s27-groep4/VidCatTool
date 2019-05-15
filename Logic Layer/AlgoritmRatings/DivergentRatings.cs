@@ -7,11 +7,18 @@ namespace Logic_Layer.AlgoritmRatings
 {
     public class DivergentRatings : EventArgs
     {
+        private string vidID;
         private IEnumerable<IRating> ratings;
 
-        public DivergentRatings(IEnumerable<IRating> _ratings)
+        public DivergentRatings(string _vidID, IEnumerable<IRating> _ratings)
         {
+            vidID = _vidID;
             ratings = _ratings;
+        }
+
+        public string VidID
+        {
+            get { return vidID; }
         }
 
         public IEnumerable<IRating> Ratings
