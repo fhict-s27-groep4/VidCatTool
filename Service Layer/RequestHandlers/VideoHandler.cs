@@ -4,6 +4,7 @@ using Model_Layer.Interface;
 using Service_Layer.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -29,10 +30,13 @@ namespace Service_Layer.RequestHandlers
             return vm;
         }
 
-        public string ExportAllVideosToJson()
+        public byte[] ExportAllVideosToJson()
         {
             IEnumerable<IDuncan> duncans = ratingRepo.GetAllRatingFromFinishedVideos();
-            return writer.Write(duncans).Result;
+            string file = Path.GetFullPath(writer.Write(duncans).Result);
+            byte[] bytes = File.ReadAllBytes(file);
+            File.Delete(file);
+            return bytes;
         }
     }
 }
