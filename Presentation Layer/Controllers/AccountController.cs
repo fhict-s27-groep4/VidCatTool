@@ -56,7 +56,8 @@ namespace VidCat_Tool.Controllers
             return View();
         }
 
-        public IActionResult ResetPassWord(ResetCredentialsViewModel _rcvm)
+        [HttpPost]
+        public IActionResult ResetCredentials(ResetCredentialsViewModel _rcvm)
         {
             userHandler.ResetPassWord(_rcvm.UserName);
             return View();
