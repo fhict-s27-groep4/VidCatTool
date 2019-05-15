@@ -59,7 +59,8 @@
                     </div>
                     <div class="custom-select col-sm-6" id="subCategory ">
                         <div class="subselect">
-                            <input type="text" list="categorysub" id="subinput" name="subcat" placeholder="Sub-Category" />
+                            <input  onchange="SetValueToModel()" type="text" list="categorysub" id="subinput" name="subcat" placeholder="Sub-Category" />
+                            <input id="iabValueModel" type="hidden" asp-for="Post.IABID" value="" />
                             <datalist id="categorysub"></datalist>
                         </div>
                     </div>
@@ -87,6 +88,11 @@
                 }
             }
         });
+    }
+
+    function SetValueToModel() {
+        var subcatvalue = document.getElementById("iabValueModel");
+        subcatvalue.value = $('#categorysub option[value="' + $("#subinput").val() + '"]').data('id');
     }
 
     function SliderValue(nameOfSlider, nameOfValue) {

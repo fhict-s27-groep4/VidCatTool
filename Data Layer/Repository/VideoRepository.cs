@@ -27,7 +27,7 @@ namespace Data_Layer.Repository
         public void UpdateVideoFinished(string videoid)
         {
             MySqlParameter[] parameters = new MySqlParameter[1];
-            parameters[0] = new MySqlParameter("@videoID ", videoid);
+            parameters[0] = new MySqlParameter("@videoIdentity ", videoid);
 
             context.ExecuteStoredProcedure("UpdateVideoFinished", parameters);
         }
