@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using Xunit;
 
-namespace UnitTests.JsonReader
+namespace UnitTests.LogicLayer.JsonReader
 {
     public class ReaderJsonTests
     {

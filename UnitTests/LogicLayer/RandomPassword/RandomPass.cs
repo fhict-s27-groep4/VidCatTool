@@ -4,7 +4,7 @@ using Xunit;
 using System.Text;
 using Logic_Layer;
 
-namespace UnitTests.RandomPassword
+namespace UnitTests.LogicLayer.RandomPassword
 {
     public class RandomPass
     {

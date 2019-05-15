@@ -3,7 +3,7 @@ using Xunit;
 using System.Security.Authentication;
 using Logic_Layer.Hasher;
 
-namespace UnitTests
+namespace UnitTests.LogicLayer.Hasher
 {
     public class HasherUnitTest
     {

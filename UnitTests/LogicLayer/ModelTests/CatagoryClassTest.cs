@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using Xunit;
 
-namespace UnitTests.ModelTests
+namespace UnitTests.LogicLayer.ModelTests
 {
     public class CatagoryClassTest
     {

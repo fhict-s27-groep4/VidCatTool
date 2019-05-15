@@ -6,7 +6,7 @@ using Logic_Layer.AlgoritmRatings;
 using Model_Layer.Models;
 using Model_Layer.Interface;
 
-namespace UnitTests.Algorime
+namespace UnitTests.LogicLayer.Algorime
 {
     public class RatingAlgo
     {
