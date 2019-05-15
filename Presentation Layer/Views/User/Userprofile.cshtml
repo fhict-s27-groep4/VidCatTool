@@ -1,4 +1,4 @@
-﻿@model VidCat_Tool.ViewModels.UserProfileVIewModel
+﻿@*@model VidCat_Tool.ViewModels.UserProfileVIewModel*@
 
 @{
     ViewData["Title"] = "Profile";
@@ -16,7 +16,7 @@
         </div>
         <div class="col-sm-9 userInformationColumn">
             <form method="post">
-                <div id="profileInfoTitle"><b>User information</b></div>
+                @*<div id="profileInfoTitle"><b>User information</b></div>
                 <input asp-for="Firstname" class="form-control inputField">
                 <input asp-for="Lastname" class="form-control inputField">
                 <div id="profileInfoTitle"><b>Address information</b></div>
@@ -28,7 +28,7 @@
                 <input asp-for="Zip" class="form-control inputField">
                 <div id="profileInfoTitle"><b>Contact information</b></div>
                 <input asp-for="Phonenumber" class="form-control inputField">
-                <input asp-for="Email" class="form-control inputField">
+                <input asp-for="Email" class="form-control inputField">*@
             </form>
         </div>
     </div>

@@ -30,6 +30,7 @@
                         <input onclick="SliderClick()" type="range" min="0" max="5" value="0" class="slider" id="pleasureSlider">
                     </div>
                     <input asp-for="Post.Pleasure" class="col-sm-4 padInput" id="pleasureValue" value="0" readonly />
+                    <span class="errorMessage" asp-validation-for="Post.Pleasure"></span>
                 </div>
                 <div class="row padmodelItem">
                     <div class="col-sm-4">Arrousal</div>
@@ -37,6 +38,7 @@
                         <input onclick="SliderClick()" type="range" min="0" max="5" value="0" class="slider" id="arrousalSlider">
                     </div>
                     <input asp-for="Post.Arrousal" class="col-sm-4 padInput" id="arrousalValue" value="0" readonly />
+                    <span class="errorMessage" asp-validation-for="Post.Arrousal"></span>
                 </div>
                 <div class="row padmodelItem">
                     <div class="col-sm-4">Dominance</div>
@@ -44,6 +46,7 @@
                         <input onclick="SliderClick()" type="range" min="0" max="5" value="0" class="slider" id="dominanceSlider">
                     </div>
                     <input asp-for="Post.Dominance" class="col-sm-4 padInput" id="dominanceValue" value="0" readonly />
+                    <span class="errorMessage" asp-validation-for="Post.Dominance"></span>
                 </div>
             </div>
 
@@ -68,6 +71,7 @@
                             <select onchange="SetValueToModel()" id="categorysub"></select>
                         </div>
                     </div>
+                    <span class="errorMessage" asp-validation-for="Post.IABID"></span>
                 </div>
             </div>
         </div>

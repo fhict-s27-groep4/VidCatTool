@@ -445,4 +445,8 @@ body {
     margin-right: 30%;
 }
 
-
+.errorMessage {
+    color: red;
+    margin-top: 1%;
+    display: inline-block;
+}

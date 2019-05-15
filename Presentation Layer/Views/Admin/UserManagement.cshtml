@@ -176,13 +176,13 @@
                 <div class="userSearchResults">
                     @foreach (var user in Model)
                     {
-                    <div class="userSearchItem" style="border: 1px solid #e91e63; margin-top: 1%; margin-bottom: 1%; padding: 1.8%; position:relative;">
+                    <div class="userSearchItem" style="border: 1px solid #e91e63; margin-top: 1%; margin-bottom: 1%; padding: 3%; position:relative;">
                         <div class="row" style="height: 25%; max-height: 50px;">
                             <div class="col-md-11">
                                 <h3 style="margin: 0%;" id="fullName">@user.User.FirstName @user.User.LastName (@user.User.UserName)</h3>
                                 <div>
                                     <div class="row" style="margin-top:2%;">
-                                        <div class="col-sm-1" style="width:auto;"><div class="userStatView">@user.RatingCount</div></div>
+                                        <div class="col-sm-1" style="width:auto;"><div class="userStatView"><i class="fas fa-eye"></i> @user.RatingCount</div></div>
                                         <div class="col-sm-1" style="width:auto;"><div class="userStatView">@user.ProcentDivergent</div></div>
                                         <div class="col-sm-1" style="width:auto;"></div>
 
@@ -193,7 +193,6 @@
                             <div class="col-md-1"><img height="64" width="64" src="~/images/user-placeholder.png" style="float: right;" /></div>
 
                         </div>
-                        <h6>@user.User.PhoneNumber</h6>
 
                         <div class="dropdown dropdownVidCat" style="position:absolute; top: 0; right: 0;">
                             <button class="btn btn-secondary dropdown-toggle prim-btn actionMenu" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
