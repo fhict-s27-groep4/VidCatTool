@@ -137,3 +137,12 @@ input#Housenumber {
     margin: auto !important;
     height: fit-content !important;
 }
+
+.userStatView {
+    background-color: #e91e63;
+    color: white;
+    width: 150%;
+    border-radius: 25px;
+    text-align: center;
+    padding: 3%;
+}
