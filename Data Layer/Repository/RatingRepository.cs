@@ -32,7 +32,8 @@ namespace Data_Layer.Repository
 
         public IEnumerable<Rating> GetRatingsByVideoID(string videoid)
         {
-            return context.SelectQuery<Rating>().Where(rating => rating.VideoIdentity == videoid);
+            IEnumerable<Rating> allratings = context.SelectQuery<Rating>();
+            return allratings.Where(vid => vid.VideoIdentity == videoid);
         }
         
     }
