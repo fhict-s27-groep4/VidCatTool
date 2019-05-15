@@ -119,3 +119,21 @@ input#Housenumber {
 .dropdownVidCat {
     border-top-right-radius: 0px;
 }
+
+.dropdown-menu-center {
+    right: auto;
+    left: 50%;
+    -webkit-transform: translate(-50%, 0);
+    -o-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
+}
+
+.modal-dialog {
+    height: 100vh !important;
+    display: flex;
+}
+
+.modal-content {
+    margin: auto !important;
+    height: fit-content !important;
+}

@@ -8,7 +8,7 @@ namespace UnitTests.JsonReader
 {
     public class ReaderJsonTests
     {
-        ReaderJson readerJson;
+        private readonly ReaderJson readerJson;
         public ReaderJsonTests()
         {
             readerJson = new ReaderJson();

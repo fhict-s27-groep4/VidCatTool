@@ -8,7 +8,7 @@ namespace UnitTests.SmallTests
 {
     public class VideoClassTest
     {
-        Video vid;
+        private readonly Video vid;
         public VideoClassTest()
         {
             vid = new Video();

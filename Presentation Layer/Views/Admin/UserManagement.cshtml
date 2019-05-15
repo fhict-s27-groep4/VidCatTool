@@ -1,4 +1,4 @@
-﻿@model  Service_Layer.ViewModels.UserManagementViewModel
+﻿@model Service_Layer.ViewModels.UserManagementViewModel
 
 @{
     ViewData["Title"] = "User Management";
@@ -23,7 +23,7 @@
 
 
     @*<link rel="stylesheet" href="~/lib/jquery-ui/dist/css/jquery-ui.css" />
-    <link rel="stylesheet" href="~/lib/jquery-ui/dist/css/jquery-ui.min.css" />*@
+        <link rel="stylesheet" href="~/lib/jquery-ui/dist/css/jquery-ui.min.css" />*@
 
     <script type="text/javascript" src="~/lib/jquery/dist/jquery.js"></script>
     @*<script type="text/javascript" src="~/lib/jquery-ui/dist/js/jquery-ui.js"></script>*@
@@ -35,8 +35,8 @@
     @*---------------------------------------------------*@
 
     @*<script>
-        var sliderA = new Slider("#slider1a", { min: 0, max: 10, value: [3, 9], focus: true });
-    </script>*@
+            var sliderA = new Slider("#slider1a", { min: 0, max: 10, value: [3, 9], focus: true });
+        </script>*@
 
     @*------------------------------------------------------------*@
 
@@ -49,76 +49,82 @@
 
             @* ------------------------------------------------------------------- *@
 
-                        @* THE LEFT SIDE COLUMN WITH FILTERS TO APPLY *@
+            @* THE LEFT SIDE COLUMN WITH FILTERS TO APPLY *@
 
             @* ------------------------------------------------------------------- *@
 
+            <div class="col-sm-3">
+                <div class="userFilterColumn" style="background-color: #ffffff; border: 1px solid #bdbdbd; padding: 5%;">
+                    <h3 class="text-center" style="color: #e91e63">Filters</h3>
 
-            <div class="col-sm-3 userFilterColumn" style="background-color: #ffffff; border: 1px solid #bdbdbd">
-                
-                <h3 class="text-center" style="color: #e91e63">Filters</h3>
+                    <div class="horizontal-line center-block"></div>
 
-                <div class="horizontal-line center-block"></div>
+                    @*<input id="slider1a" type="text" /><br/>*@
 
-                @*<input id="slider1a" type="text" /><br/>*@
-
-                @*<div id="flat-slider" class="slider_element"></div>*@
-
-
-                <div class="user-filter-box">
-                    <h4 style="text-decoration: underline; color: #707070;">Afwijking PAD-Score</h4>
-                    <input type="range" multiple min="1" max="100" value="70,100" class="slider int-slider" />
-                </div>
-                <div class="user-filter-box">
-                    <h4 style="text-decoration: underline; color: #707070;">Afwijking IAB-Score</h4>
-                    <input type="range" multiple min="1" max="100" value="70,100" class="slider int-slider" />
-                </div>
+                    @*<div id="flat-slider" class="slider_element"></div>*@
 
 
-                <div class="horizontal-line center-block"></div>
+                    <div class="user-filter-box">
+                        <h4 style="text-decoration: underline; color: #707070;">Afwijking PAD-Score</h4>
+                        <input type="range" multiple min="1" max="100" value="70,100" class="slider int-slider" />
+                    </div>
+                    <div class="user-filter-box">
+                        <h4 style="text-decoration: underline; color: #707070;">Afwijking IAB-Score</h4>
+                        <input type="range" multiple min="1" max="100" value="70,100" class="slider int-slider" />
+                    </div>
 
-                <div class="user-filter-box">
-                    <h4 style="text-decoration: underline; color: #707070;">Aantal Bekeken</h4>
-                    <div class="row" style="width: 100%; min-height: 28px; max-height: 28px;">
-                        <div style="margin-left: 5%; margin-right: 5%;">
-                            <div style="float: left; width: 25%; overflow: hidden;">
-                                <input type="number" style="width: 100%; border: none; outline: none; background: transparent; border-bottom: 1px solid #707070;" />
+
+                    <div class="horizontal-line center-block"></div>
+
+                    <div class="user-filter-box">
+                        <h4 style="text-decoration: underline; color: #707070;">Aantal Bekeken</h4>
+                        <div class="row" style="width: 100%; min-height: 28px; max-height: 28px;">
+                            <div style="margin-left: 5%; margin-right: 5%;">
+                                <div style="float: left; width: 25%; overflow: hidden;">
+                                    <input type="number" style="width: 100%; border: none; outline: none; background: transparent; border-bottom: 1px solid #707070;" />
+                                </div>
+                                <div style="float: left; margin-left: 4%; margin-right: 4%; margin-top: 1%;">T/M</div>
+                                <div style="float: left; width: 25%; overflow: hidden;">
+                                    <input type="number" style="width: 100%; border: none; outline: none; background: transparent; border-bottom: 1px solid #707070;" />
+                                </div>
+                                <div style="float: left; margin-left: 4%; margin-top: 1%;">Video's.</div>
                             </div>
-                            <div style="float: left; margin-left: 4%; margin-right: 4%; margin-top: 1%;">T/M</div>
-                            <div style="float: left; width: 25%; overflow: hidden;">
-                                <input type="number" style="width: 100%; border: none; outline: none; background: transparent; border-bottom: 1px solid #707070;" />
-                            </div>
-                            <div style="float: left; margin-left: 4%; margin-top: 1%;">Video's.</div>
                         </div>
                     </div>
-                </div>
 
 
-                <div class="horizontal-line center-block"></div>
+                    <div class="horizontal-line center-block"></div>
 
-                <div class="user-filter-box">
-                    <h4 style="text-decoration: underline; color: #707070;">Leeftijd Account</h4>
-                    <div class="row" style="width: 100%; min-height: 28px; max-height: 28px;">
-                        <div style="margin-left: 5%; margin-right: 5%;">
-                            <div style="float: left; width: 20%; overflow: hidden;">
-                                <input type="number" style="width: 100%; border: none; outline: none; background: transparent; border-bottom: 1px solid #707070;" />
+                    <div class="user-filter-box">
+                        <h4 style="text-decoration: underline; color: #707070;">Leeftijd Account</h4>
+                        <div class="row" style="width: 100%; min-height: 28px; max-height: 28px;">
+                            <div style="margin-left: 5%; margin-right: 5%;">
+                                <div style="float: left; width: 20%; overflow: hidden;">
+                                    <input type="number" style="width: 100%; border: none; outline: none; background: transparent; border-bottom: 1px solid #707070;" />
+                                </div>
+                                <div style="float: left; width: 30%; overflow: hidden; margin-left: 4%; margin-top: 1%;">
+                                    <select style="width: 100%">
+                                        <option value="days">Days</option>
+                                        <option value="weeks">Weeks</option>
+                                        <option value="months">Months</option>
+                                        <option value="years">Years</option>
+                                    </select>
+                                </div>
+                                <div style="float: left; margin-left: 4%; margin-top: 1%;">oud.</div>
                             </div>
-                            <div style="float: left; width: 30%; overflow: hidden; margin-left: 4%; margin-top: 1%;">
-                                <select style="width: 100%">
-                                    <option value="days">Days</option>
-                                    <option value="weeks">Weeks</option>
-                                    <option value="months">Months</option>
-                                    <option value="years">Years</option>
-                                </select>
-                            </div>
-                            <div style="float: left; margin-left: 4%; margin-top: 1%;">oud.</div>
                         </div>
                     </div>
+
+
+                    <div class="horizontal-line center-block"></div>
+
                 </div>
-
-
-                <div class="horizontal-line center-block"></div>
-
+                <div class="" style="padding: 5px 0px 5px 0px; width: 40%; margin-left: 30%;">
+                    <a class="btn userAddButton" asp-controller="Admin" asp-action="AddUser"
+                       style="background-color: #e91e63; color: #ffffff; font-weight: 200; width: 100%;">
+                        <i class="fas fa-plus"></i>&nbsp Add User
+                    </a>
+                </div>
             </div>
 
 
@@ -132,29 +138,26 @@
 
             <div class="col-sm-7 userActionsColumn" style="margin-left: 4%;">
 
-                @* All buttons in the menu *@
-                <div class="col-sm-10 userSelActionsContainer">
-                    <a class="btn btn-default" asp-controller="Admin" asp-action="BanUser" style="font-size: 14px; margin: 5px 2px 5px -9px;">
-                        <i class="fas fa-times"></i>&nbsp Ban
-                    </a>
-                    <a class="btn btn-default" asp-controller="" asp-action="" style="font-size: 14px; margin: 5px 2px 5px 0px;">
-                        <i class="fas fa-user-check"></i>&nbsp Check Ratings
-                    </a>
-                    <a class="btn btn-default" asp-controller="" asp-action="" style="font-size: 14px; margin: 5px 2px 5px 0px;">
-                        <i class="far fa-comment-dots"></i>&nbsp Send Message
-                    </a>
-                    <a class="btn btn-default" asp-controller="" asp-action="" style="font-size: 14px; margin: 5px -9px 5px 0px;">
-                        <i class="fas fa-exclamation-circle"></i>&nbsp Warn User
-                    </a>
-                </div>
+
+
+                
+                @* All buttons in the menu
+        <div class="col-sm-10 userSelActionsContainer">
+            <a class="btn btn-default" asp-controller="Admin" asp-action="BanUser" style="font-size: 14px; margin: 5px 2px 5px -9px;">
+                <i class="fas fa-times"></i>&nbsp Ban
+            </a>
+            <a class="btn btn-default" asp-controller="" asp-action="" style="font-size: 14px; margin: 5px 2px 5px 0px;">
+                <i class="fas fa-user-check"></i>&nbsp Check Ratings
+            </a>
+            <a class="btn btn-default" asp-controller="" asp-action="" style="font-size: 14px; margin: 5px 2px 5px 0px;">
+                <i class="far fa-comment-dots"></i>&nbsp Send Message
+            </a>
+            <a class="btn btn-default" asp-controller="" asp-action="" style="font-size: 14px; margin: 5px -9px 5px 0px;">
+                <i class="fas fa-exclamation-circle"></i>&nbsp Warn User
+            </a>
+        </div>*@
 
                 @* The "Add User" Button, which is outside the other box *@
-                <div class="col-sm-1 userAddContainer" style="margin-left: 6.2%; padding: 5px 0px 5px 0px;">
-                    <a class="btn userAddButton" asp-controller="Admin" asp-action="AddUser"
-                       style="background-color: #e91e63; color: #ffffff; font-weight: 200;">
-                        <i class="fas fa-plus"></i>&nbsp Add User
-                    </a>
-                </div>
 
             </div>
 
@@ -166,25 +169,32 @@
             @* ------------------------------------------------------------------- *@
 
 
-            <div class="col-sm-7 userResultsColumn" style="margin-left: 5%; padding: 1.6%; padding-top: 0.5%; background-color: #ffffff; margin-top: 0.5%; margin-bottom: 1%; border: 1px solid #bdbdbd">
+            <div class="col-sm-7 userResultsColumn" style="margin-left: 5%; padding: 1.6%; padding-top: 0.5%; background-color: #ffffff; margin-bottom: 1%; border: 1px solid #bdbdbd">
                 <h3 class="text-center" style="color: #e91e63; margin: 3%;">Search Results</h3>
-                
+
                 @* The List of Search Results, looping users *@
                 <div class="userSearchResults">
                     @foreach (var user in Model.AllUsers)
                     {
                         <div class="userSearchItem" style="border: 1px solid #e91e63; margin-top: 1%; margin-bottom: 1%; padding: 1.8%; position:relative;">
                             <div class="row" style="height: 25%; max-height: 50px;">
-                                <div class="col-md-11"><h3 style="margin: 0%;">@user.FirstName @user.LastName</h3></div>
+                                <div class="col-md-11"><h3 style="margin: 0%;" id="fullName">@user.FirstName @user.LastName</h3></div>
 
                                 <div class="col-md-1"><img height="64" width="64" src="~/images/user-placeholder.png" style="float: right;" /></div>
                                 <div class="dropdown dropdown dropdownVidCat" style="position:absolute; top: 0; right: 0;">
                                     <button class="btn btn-secondary dropdown-toggle prim-btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="fas fa-caret-down"></i>
                                     </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <button class="dropdown-item" type="button" asp-action="DisableAccount" asp-controller="Admin" asp-route-userid="@user.UserID">Disable</button>
-                                        <button class="dropdown-item" type="button" asp-action="" asp-controller="Admin">Reset Password</button>
+                                    <div class="dropdown-menu dropdown-menu-center" aria-labelledby="dropdownMenuButton">
+                                        @if (user.IsDisabled == true)
+                                        {
+                                            <a class="dropdown-item" asp-action="EnableAccount" asp-controller="Admin" asp-route-userid="@user.UserID">Enable</a>
+                                        }
+                                        else
+                                        {
+                                            <a class="dropdown-item open-ValidateAction" data-toggle="modal" href="#ValidateAction" data-id="@user.UserID" data-name="@user.FirstName">Disable</a>
+                                        }
+                                        <a class="dropdown-item" asp-action="" asp-controller="Admin">Reset Password</a>
                                     </div>
                                 </div>
                             </div>
@@ -207,7 +217,7 @@
 
         @* ------------------------------------------------------------------- *@
 
-                    @* THE END OF THE HTML. HET WERD TIJD. *@
+        @* THE END OF THE HTML. HET WERD TIJD. *@
 
         @* ------------------------------------------------------------------- *@
 
@@ -218,7 +228,34 @@
 </html>
 
 @*<script>
-    $(function () {
-        $("#new-slider").slider();
+        $(function () {
+            $("#new-slider").slider();
+        });
+    </script>*@
+
+<div class="modal fade" id="ValidateAction">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Disable Account</h4>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to disable the account from: <b><span id="username" value=""/></b></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary prim-btn">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).on("click", ".open-ValidateAction", function () {
+        var nameElement = document.getElementById("fullName").innerHTML;
+        var mnameElement = document.getElementById("username");
+        
+        mnameElement.innerHTML = nameElement;
     });
-</script>*@
+</script>

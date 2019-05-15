@@ -61,5 +61,10 @@ namespace Service_Layer.RequestHandlers
         {
             userRepo.DisableUser(userid);
         }
+        public void EnableUser(string userid)
+        {
+            userRepo.EnableUser(userid);
+        }
+
     }
 }

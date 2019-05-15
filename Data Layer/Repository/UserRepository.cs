@@ -32,5 +32,12 @@ namespace Data_Layer.Repository
             parameters[0] = new MySqlParameter("@userID", userid);
             context.ExecuteStoredProcedure("DisableUser", parameters);
         }
+
+        public void EnableUser(string userid)
+        {
+            MySqlParameter[] parameters = new MySqlParameter[1];
+            parameters[0] = new MySqlParameter("@userID", userid);
+            context.ExecuteStoredProcedure("EnableUser", parameters);
+        }
     }
 }

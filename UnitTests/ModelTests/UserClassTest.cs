@@ -8,7 +8,7 @@ namespace UnitTests.SmallTests
 {
     public class UserClassTest
     {
-        User user;
+        private readonly User user;
         public UserClassTest()
         {
             user = new User();
