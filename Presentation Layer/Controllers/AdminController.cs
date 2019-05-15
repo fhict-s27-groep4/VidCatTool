@@ -70,7 +70,7 @@ namespace VidCat_Tool.Controllers
         {
             string file = videoHandler.ExportAllVideosToJson();
             byte[] fileBytes = System.IO.File.ReadAllBytes(Path.GetFullPath(file));
-            return File(fileBytes, "json", "JsonExport");
+            return File(fileBytes, "application/json", "JsonExport");
         }
     }
 }
