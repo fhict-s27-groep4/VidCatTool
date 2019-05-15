@@ -29,6 +29,7 @@ namespace Service_Layer.ServiceCollector
             services.AddTransient<UserHandler>();
             services.AddTransient<VideoAssignHandler>();
             services.AddTransient<CategoryHandler>();
+            services.AddTransient<VideoHandler>();
 
             return services;
         }

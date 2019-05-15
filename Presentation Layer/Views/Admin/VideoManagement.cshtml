@@ -1,4 +1,5 @@
-﻿
+﻿@model Service_Layer.ViewModels.VideoManagementViewModel
+
 @{
     ViewData["Title"] = "Video Management";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -27,7 +28,7 @@
     <script type="text/javascript" src="~/lib/jquery/dist/jquery.js"></script>
     @*<script type="text/javascript" src="~/lib/jquery-ui/dist/js/jquery-ui.js"></script>*@
 
-    <link href="~/css/VideoManagement.css" rel="stylesheet" />
+    <link href="~/css/videomanagement.css" rel="stylesheet" />
 
     @*<script type="text/javascript" src="~/js/elements/multirange.js"></script>*@
 
@@ -100,12 +101,6 @@
                         </div>
                         <h4 style="color: #707070; margin-left: 25px;">Completed Video?</h4>
                     </div>
-                    <div class="video-filter-box">
-                        <div style="float: left;">
-                            <input type="checkbox" style="height: 16px; width: 16px; margin: 2px 2px 2px 2px;" checked>
-                        </div>
-                        <h4 style="color: #707070; margin-left: 25px;">Checkbox2?</h4>
-                    </div>
 
 
                     <div class="horizontal-line center-block"></div>
@@ -175,25 +170,30 @@
                 <h3 class="text-center" style="color: #e91e63; margin: 3%;">Search Results</h3>
 
                 @* The List of Search Results, looping users *@
-                <div class="videoSearchResults">
-                    @*@foreach (var user in Model.SelectedUsers)
-                        {
-                            <div class="userSearchItem" style="border: 1px solid #e91e63; padding: 1.8%;">
-                                <div class="row" style="height: 25%; max-height: 50px;">
-                                    <div class="col-md-11"><h3 style="margin: 0%;">@user.Firstname @user.Lastname</h3></div>
-                                    <div class="col-md-1"><img height="64" width="64" src="~/images/user-placeholder.png" style="float: right;" /></div>
+                @foreach (var video in Model.Videos)
+                {
+                    <div class="userSearchItem" style="border: 1px solid #e91e63; margin-top: 1%; margin-bottom: 1%; padding: 1.8%; position:relative;">
+                        <div class="row" style="height: 25%;">
+                            <div class="col-md-11">
+                                <h3 style="margin: 0%;" id="fullName">@video.UrlIdentity</h3>
+                                <div>
+                                    <div class="row" style="margin-top:2%; margin-bottom: 1%;">
+                                        <div class="col-sm-1" style="width:auto;"><div class="videoStatView">@video.Finished</div></div>
+                                        <div class="col-sm-1" style="width:auto;"><div class="videoStatView">9000</div></div>
+
+                                    </div>
                                 </div>
-                                <div class="row" style="height: 20%; max-height: 32px;">
-                                    <h6>@user.City, @user.Country (@user.Streetaddress, @user.Zipcode)</h6>
-                                </div>
-                                <h6>@user.Phonenumber</h6>
                             </div>
-                        }*@
-                </div>
+
+                            <div class="col-md-1"><img height="64" width="64" src="~/images/user-placeholder.png" style="float: right;" /></div>
+
+                        </div>
+                    </div>
+                }
 
                 @* Bottom text and actions, such as the amount of pages. *@
                 <div class="videoSearchCount" style="margin: 4%;">
-                    <h6 class="text-center" style="width: 100%; color: #707070;">??? Results found.</h6>
+                    <h6 class="text-center" style="width: 100%; color: #707070;">@Model.Videos.Count Results found</h6>
                 </div>
             </div>
 

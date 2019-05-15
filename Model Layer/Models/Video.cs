@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Model_Layer.Models
 {
-    public class Video : IVideo
+    public class Video : IVideo, ISearchVideo
     {
         public string UrlIdentity { get; set; }
         public bool Finished { get; set; }

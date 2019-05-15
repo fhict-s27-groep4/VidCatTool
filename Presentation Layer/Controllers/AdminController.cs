@@ -11,10 +11,12 @@ namespace VidCat_Tool.Controllers
     public class AdminController : Controller
     {
         private readonly UserHandler userHandler;
+        private readonly VideoHandler videoHandler;
 
-        public AdminController(UserHandler userHandler)
+        public AdminController(UserHandler userHandler, VideoHandler videoHandler)
         {
             this.userHandler = userHandler;
+            this.videoHandler = videoHandler;
         }
 
         public IActionResult AddUser()
@@ -65,7 +67,7 @@ namespace VidCat_Tool.Controllers
         [HttpGet]
         public IActionResult VideoManagement()
         {
-            return View();
+            return View(videoHandler.GetVideoManagementViewModel());
         }
     }
 }
