@@ -1,4 +1,5 @@
-﻿using Model_Layer.Models;
+﻿using Model_Layer.Interface;
+using Model_Layer.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,5 +12,6 @@ namespace Data_Layer.Interface
         User GetByUUID(string uid);
         void DisableUser(string userid);
         void EnableUser(string userid);
+        void AddUser(IRegisterUser user);
     }
 }

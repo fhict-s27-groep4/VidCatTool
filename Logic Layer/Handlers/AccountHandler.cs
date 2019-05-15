@@ -31,7 +31,7 @@ namespace Logic_Layer.Handlers
         }
 
         // NOG VERANDEREN NAAR INTERFACE DIE NOG GEMAAKT MOET WORDEN 
-        public IUser CreateUser(IEnumerable<User> allUsers, string firstname, string lastname, string email, string phonenumber = null, string country = null, string city = null, string streetaddress = null, string zipcode = null)
+        public IRegisterUser CreateUser(IEnumerable<User> allUsers, string firstname, string lastname, string email, string phonenumber = null, string country = null, string city = null, string streetaddress = null, string zipcode = null)
         {
             PasswordHasher hasher = new PasswordHasher();
             string generatedPassword = PasswordGenerator.GeneratePassword(true, true, true, true, false, 12);

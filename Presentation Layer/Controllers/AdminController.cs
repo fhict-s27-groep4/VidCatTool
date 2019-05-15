@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.IO;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Service_Layer.RequestHandlers;
 using Service_Layer.SessionExtension;
@@ -21,12 +22,6 @@ namespace VidCat_Tool.Controllers
 
         public IActionResult AddUser()
         {
-            return View();
-        }
-
-        public IActionResult ExportToJSON()
-        {
-            
             return View();
         }
 
@@ -69,6 +64,13 @@ namespace VidCat_Tool.Controllers
         public IActionResult VideoManagement()
         {
             return View(videoHandler.GetVideoManagementViewModel());
+        }
+        
+        public FileResult ExportToJSON()
+        {
+            string file = videoHandler.ExportAllVideosToJson();
+            byte[] fileBytes = System.IO.File.ReadAllBytes(Path.GetFullPath(file));
+            return File(fileBytes, "json", "JsonExport");
         }
     }
 }

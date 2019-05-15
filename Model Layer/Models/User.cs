@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Model_Layer.Models
 {
-    public class User : IUser, ILoginUser, ISearchUser
+    public class User : IUser, ILoginUser, ISearchUser, IRegisterUser
     {
         public string UserID { get; set; }
         public string UserName { get; set; }

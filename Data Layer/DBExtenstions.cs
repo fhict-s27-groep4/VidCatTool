@@ -75,9 +75,13 @@ namespace Data_Layer
         {
             context.DbCommand.CommandText = procedurename;
             context.DbCommand.CommandType = CommandType.StoredProcedure;
-            foreach (MySqlParameter parameter in parameters)
+            context.DbCommand.Parameters.Clear();
+            if (parameters != null)
             {
-                context.DbCommand.Parameters.Add(parameter);
+                foreach (MySqlParameter parameter in parameters)
+                {
+                    context.DbCommand.Parameters.Add(parameter);
+                }
             }
 
             try
@@ -101,9 +105,13 @@ namespace Data_Layer
             context.DbCommand.CommandText = procedurename;
             context.DbCommand.CommandType = CommandType.StoredProcedure;
             context.DataAdapter.SelectCommand = context.DbCommand;
-            foreach (MySqlParameter parameter in parameters)
-            {
-                context.DbCommand.Parameters.Add(parameter);
+            context.DbCommand.Parameters.Clear();
+            if(parameters != null)
+            { 
+                foreach (MySqlParameter parameter in parameters)
+                {
+                    context.DbCommand.Parameters.Add(parameter);
+                }
             }
             DataSet dbSet = new DataSet();
 
