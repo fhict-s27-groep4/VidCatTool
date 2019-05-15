@@ -23,5 +23,17 @@ namespace UnitTests.LogicLayer.JsonReader
         {
             Assert.Null(readerJson.GetVideoUrl("HAHA"));
         }
+
+        [Fact]
+        public void JSonReaderTitle()
+        {
+            Assert.Equal("Nyan Cat Really Exists and He Lives in Russia", readerJson.GetVideoTitle("KWeGeUcF"));
+        }
+
+        [Fact]
+        public void JsonReaderTitleReturnNull()
+        {
+            Assert.Null(readerJson.GetVideoTitle("HAHA"));
+        }
     }
 }

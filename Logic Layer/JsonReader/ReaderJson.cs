@@ -21,7 +21,7 @@ namespace Logic_Layer.JsonReader
 
         }
 
-        private string FindVidUrl(string _mediaID)
+        public string GetVideoUrl(string _mediaID)
         {//returns url with best quality or null if the id doe not exist 
             string filePath = null;
             int quality = 0;
@@ -52,9 +52,16 @@ namespace Logic_Layer.JsonReader
             return null;
         }
 
-        public string GetVideoUrl(string _mediaID)
+        public string GetVideoTitle(string _mediaID)
         {
-            return FindVidUrl(_mediaID);
+            foreach (JObject video in json["playlist"])
+            {//loops for every item in the playlist
+                if ((string)video["mediaid"] == _mediaID)
+                {
+                    return (string)video["title"];
+                }
+            }
+            return null;
         }
     }
 }
