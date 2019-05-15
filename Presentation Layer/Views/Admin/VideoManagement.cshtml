@@ -1,4 +1,4 @@
-﻿@model Service_Layer.ViewModels.VideoManagementViewModel
+﻿@model IReadOnlyCollection<Service_Layer.ViewModels.VideoManagementViewModel>
 
 @{
     ViewData["Title"] = "Video Management";
@@ -170,22 +170,22 @@
                 <h3 class="text-center" style="color: #e91e63; margin: 3%;">Search Results</h3>
 
                 @* The List of Search Results, looping users *@
-                @foreach (var video in Model.Videos)
+                @foreach (var video in Model)
                 {
                     <div class="userSearchItem" style="border: 1px solid #e91e63; margin-top: 1%; margin-bottom: 1%; padding: 1.8%; position:relative;">
                         <div class="row" style="height: 25%;">
                             <div class="col-md-11">
-                                <h3 style="margin: 0%;" id="fullName">@video.UrlIdentity</h3>
+                                <h3 style="margin: 0%;" id="fullName">@video.Title (@video.Video.UrlIdentity)</h3>
                                 <div>
                                     <div class="row" style="margin-top:2%; margin-bottom: 1%;">
-                                        <div class="col-sm-1" style="width:auto;"><div class="videoStatView">@video.Finished</div></div>
+                                        <div class="col-sm-1" style="width:auto;"><div class="videoStatView">@video.Video.Finished</div></div>
                                         <div class="col-sm-1" style="width:auto;"><div class="videoStatView">9000</div></div>
 
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-md-1"><img height="64" width="64" src="~/images/user-placeholder.png" style="float: right;" /></div>
+                            <div class="col-md-1"><img height="64" width="64" src="@Html.Raw(video.Thumbnail)" style="float: right;" /></div>
 
                         </div>
                     </div>
@@ -193,7 +193,7 @@
 
                 @* Bottom text and actions, such as the amount of pages. *@
                 <div class="videoSearchCount" style="margin: 4%;">
-                    <h6 class="text-center" style="width: 100%; color: #707070;">@Model.Videos.Count Results found</h6>
+                    <h6 class="text-center" style="width: 100%; color: #707070;">@Model.Count Results found</h6>
                 </div>
             </div>
 
