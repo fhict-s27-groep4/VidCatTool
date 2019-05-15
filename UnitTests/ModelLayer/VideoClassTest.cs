@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using Xunit;
 
-namespace UnitTests.LogicLayer.ModelTests
+namespace UnitTests.ModelLayer
 {
     public class VideoClassTest
     {

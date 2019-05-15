@@ -10,10 +10,10 @@ namespace UnitTests.LogicLayer.AccountHand
 {
     public class AccountHandlerTests
     {
-        private readonly AccountHandler account;
+        private readonly AccountManager account;
         public AccountHandlerTests()
         {
-            account = new AccountHandler();
+            account = new AccountManager();
         }
         [Fact]
         public void ValidateUserTest()
@@ -40,7 +40,87 @@ namespace UnitTests.LogicLayer.AccountHand
         [Fact]
         public void CreateAUser()
         {
-            
+            List<User> users = new List<User>();
+            User user1 = new User();
+            User user2 = new User();
+            user1.City = "Oisterwijk";
+            user1.UserID = "15";
+            user1.Country = "Netherlands";
+            user1.Email = "Youdonthavetoknow@gmail.com";
+            user1.FirstName = "Duncan";
+            user1.LastName = "Schoenmakers";
+            user1.IsAdmin = true;
+            user1.PassWord = "NotActuallyAPassword";
+            user1.PassWordSalt = "NotActuallyASalt";
+            user1.PhoneNumber = "0651418572";
+            user1.StreetAddress = "Prinses Willem Laan";
+            user1.UserName = "2now";
+            user1.ZipCode = "5068RE";
+            user1.IsDisabled = false;
+
+            user2.City = "Oisterwijk";
+            user2.UserID = "15";
+            user2.Country = "Netherlands";
+            user2.Email = "Yodonthavetoknow@gmail.com";
+            user2.FirstName = "Puncan";
+            user2.LastName = "Rchoenmakers";
+            user2.IsAdmin = true;
+            user2.PassWord = "NotActuallyAPassword";
+            user2.PassWordSalt = "NotActuallyASalt";
+            user2.PhoneNumber = "0651418572";
+            user2.StreetAddress = "Prinses Willem Laan";
+            user2.UserName = "3now";
+            user2.ZipCode = "5068RE";
+            user2.IsDisabled = false;
+
+            users.Add(user1);
+            users.Add(user2);
+
+            var fulluser2 = account.CreateUser(users, "Vinnie", "DeGekkert", "DeenigeEchteVinnie@gmail.com", "0651489306", "Netherlands", "Maastricht", "Geenideestraat 5", "5061GS");
+            Assert.NotEmpty(fulluser2.UserName);
+            Assert.Equal("Vinnie", fulluser2.FirstName);
+
+        }
+        [Fact]
+        public void CreateUserThatAlreadyExists()
+        {
+            List<User> users = new List<User>();
+            User user1 = new User();
+            User user2 = new User();
+            user1.City = "Oisterwijk";
+            user1.UserID = "15";
+            user1.Country = "Netherlands";
+            user1.Email = "Youdonthavetoknow@gmail.com";
+            user1.FirstName = "Duncan";
+            user1.LastName = "Schoenmakers";
+            user1.IsAdmin = true;
+            user1.PassWord = "NotActuallyAPassword";
+            user1.PassWordSalt = "NotActuallyASalt";
+            user1.PhoneNumber = "0651418572";
+            user1.StreetAddress = "Prinses Willem Laan";
+            user1.UserName = "d.schoenmakers";
+            user1.ZipCode = "5068RE";
+            user1.IsDisabled = false;
+
+            user2.City = "Oisterwijk";
+            user2.UserID = "15";
+            user2.Country = "Netherlands";
+            user2.Email = "Yodonthavetoknow@gmail.com";
+            user2.FirstName = "Puncan";
+            user2.LastName = "Rchoenmakers";
+            user2.IsAdmin = true;
+            user2.PassWord = "NotActuallyAPassword";
+            user2.PassWordSalt = "NotActuallyASalt";
+            user2.PhoneNumber = "0651418572";
+            user2.StreetAddress = "Prinses Willem Laan";
+            user2.UserName = "3now";
+            user2.ZipCode = "5068RE";
+            user2.IsDisabled = false;
+
+            users.Add(user1);
+            users.Add(user2);
+            var fulluser2 = account.CreateUser(users, "Duncan", "Schoenmakers", "DeenigeEchteVinnie@gmail.com", "0651489306", "Netherlands", "Maastricht", "Geenideestraat 5", "5061GS");
+            Assert.Equal("d.schoenmakers2", fulluser2.UserName);
         }
         [Fact]
         public void ValidateEnabledAccountTest()
