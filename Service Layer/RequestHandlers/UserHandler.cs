@@ -30,7 +30,7 @@ namespace Service_Layer.RequestHandlers
             ILoginUser loggedInUser = userRepo.GetUserByName(vm.Username) as ILoginUser;
             if(loginHandler.ValidateUser(vm.Password, loggedInUser))
             {
-                if(loginHandler.ValidateAccountDisabled(loggedInUser))
+                if(loggedInUser.IsDisabled)
                 {
                     return false;
                 }
@@ -63,7 +63,8 @@ namespace Service_Layer.RequestHandlers
                 }
                 else if(divergentRatings.Any(x => x.Item2.Contains(user.UserID)))
                 {
-                    divergent = Math.Round(divergentRatings.Where((t) => t.Item2 == user.UserID).Select(x => x.Item1).FirstOrDefault() / Convert.ToDouble(ratingcount.Where((t) => t.Item2 == user.UserID).Select(x => x.Item1).FirstOrDefault()) * 100, MidpointRounding.AwayFromZero).ToString();
+                    divergent = Math.Round(divergentRatings.Where((t) => t.Item2 == user.UserID).Select(x => x.Item1).FirstOrDefault() / Convert.ToDouble(ratingcount.Where((t) => t.Item2 == user.UserID).Select(x => x.Item1).FirstOrDefault()) * 100, 2, MidpointRounding.AwayFromZero).ToString();
+                    divergent += "%";
                 }
 
                 usermodels.Add(new UserManagementViewModel
