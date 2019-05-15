@@ -116,10 +116,6 @@ input#Housenumber {
     background-color: #ededed;
 }
 
-.dropdownVidCat {
-    border-top-right-radius: 0px;
-}
-
 .dropdown-menu-center {
     right: auto;
     left: 50%;
@@ -145,4 +141,8 @@ input#Housenumber {
     border-radius: 25px;
     text-align: center;
     padding: 3%;
+}
+
+.actionMenu {
+    border-top-right-radius: 0px;
 }
