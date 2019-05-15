@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Model_Layer.Interface;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Logic_Layer
+namespace Model_Layer.Models
 {
     public class ObjectPair<T1, T2> : IObjectPair<T1, T2>
     {
