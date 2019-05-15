@@ -65,11 +65,11 @@
 
 
                     <div class="user-filter-box" style="text-align:center; width: 90%; margin: auto;">
-                        <h4 style="text-decoration: none; color: #707070;">Afwijking PAD-Score</h4>
+                        <h4 style="text-decoration: none; color: #707070;">Divergent PAD-Score</h4>
                         <input type="range" multiple min="1" max="100" value="70,100" class="slider int-slider" />
                     </div>
                     <div class="user-filter-box" style="text-align:center; width: 90%; margin: auto;">
-                        <h4 style="text-decoration: none; color: #707070;">Afwijking IAB-Score</h4>
+                        <h4 style="text-decoration: none; color: #707070;">Divergent IAB-Score</h4>
                         <input type="range" multiple min="1" max="100" value="70,100" class="slider int-slider" />
                     </div>
 
@@ -77,43 +77,21 @@
                     <div class="horizontal-line center-block"></div>
 
                     <div class="user-filter-box" style="text-align:center; width: 90%; margin: auto;">
-                        <h4 style="text-decoration: none; color: #707070;">Aantal Bekeken</h4>
+                        <h4 style="text-decoration: none; color: #707070;">Times Viewed</h4>
                         <div class="row" style="width: 100%; min-height: 28px; max-height: 28px; margin-left:0px; margin-right: 0px;">
                             <div style="margin-left: 5%; margin-right: 5%;">
                                 <div style="float: left; width: 25%; overflow: hidden;">
                                     <input type="number" style="width: 100%; border: none; outline: none; background: transparent; border-bottom: 1px solid #707070;" />
                                 </div>
-                                <div style="float: left; margin-left: 4%; margin-right: 4%; margin-top: 1%;">T/M</div>
+                                <div style="float: left; margin-left: 4%; margin-right: 4%; margin-top: 1%;"> - </div>
                                 <div style="float: left; width: 25%; overflow: hidden;">
                                     <input type="number" style="width: 100%; border: none; outline: none; background: transparent; border-bottom: 1px solid #707070;" />
                                 </div>
-                                <div style="float: left; margin-left: 4%; margin-top: 1%;">Video's.</div>
+                                <div style="float: left; margin-left: 4%; margin-top: 1%;">Videos</div>
                             </div>
                         </div>
                     </div>
 
-
-                    <div class="horizontal-line center-block"></div>
-
-                    <div class="user-filter-box" style="text-align:center; width: 90%; margin:auto;">
-                        <h4 style="text-decoration: none; color: #707070;">Leeftijd Account</h4>
-                        <div class="row" style="width: 100%; min-height: 28px; max-height: 28px; margin-left:0px; margin-right: 0px;">
-                            <div style="margin-left: 5%; margin-right: 5%;">
-                                <div style="float: left; width: 20%; overflow: hidden;">
-                                    <input type="number" style="width: 100%; border: none; outline: none; background: transparent; border-bottom: 1px solid #707070;" />
-                                </div>
-                                <div style="float: left; width: 30%; overflow: hidden; margin-left: 4%; margin-top: 1%;">
-                                    <select style="width: 100%">
-                                        <option value="days">Days</option>
-                                        <option value="weeks">Weeks</option>
-                                        <option value="months">Months</option>
-                                        <option value="years">Years</option>
-                                    </select>
-                                </div>
-                                <div style="float: left; margin-left: 4%; margin-top: 1%;">oud.</div>
-                            </div>
-                        </div>
-                    </div>
 
 
                     <div class="horizontal-line center-block"></div>
@@ -184,7 +162,6 @@
                                     <div class="row" style="margin-top:2%;">
                                         <div class="col-sm-1" style="width:auto;"><div class="userStatView"><i class="fas fa-eye"></i> @user.RatingCount</div></div>
                                         <div class="col-sm-1" style="width:auto;"><div class="userStatView">@user.ProcentDivergent</div></div>
-                                        <div class="col-sm-1" style="width:auto;"></div>
 
                                     </div>
                                 </div>
@@ -205,7 +182,8 @@
                                 }
                                 else
                                 {
-                                    <a class="dropdown-item open-ValidateAction" data-toggle="modal" href="#ValidateAction" data-id="@user.User.UserID" data-name="@user.User.FirstName">Disable</a>
+                                    <a class="dropdown-item" asp-action="DisableAccount" asp-controller="Admin" asp-route-userid="@user.User.UserID">Enable</a>
+                                    @* <a class="dropdown-item open-ValidateAction" href="#ValidateAction" data-id="@user.User.UserID" data-name="@user.User.FirstName">Disable</a> *@
                                 }
                                 <a class="dropdown-item" asp-action="" asp-controller="Admin">Reset Password</a>
                             </div>
