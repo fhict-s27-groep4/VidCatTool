@@ -10,9 +10,7 @@ namespace Service_Layer.ViewModels
         public ISearchVideo Video { get; set; }
         public string Title { get; set; }
         public string Thumbnail { get; set; }
-
-
-        // Deze moet uiteindelijk weg 
-        public IReadOnlyCollection<ISearchVideo> Videos { get; set; }
+        public int WatchCount { get; set; }
+        public double BiggestTier2 { get; set; }
     }
 }

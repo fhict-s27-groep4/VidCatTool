@@ -24,7 +24,7 @@ namespace Logic_Layer.AlgoritmRatings
             categoryReverser = _categroyReverser;
         }
 
-        private IList<IObjectPair<int, int>> CatagoryInList(IList<IObjectPair<int, int>> _categoryList, int _categoryID)
+        public IList<IObjectPair<int, int>> CatagoryInList(IList<IObjectPair<int, int>> _categoryList, int _categoryID)
         {
             IList<IObjectPair<int, int>> categoryList = new List<IObjectPair<int, int>>();
             foreach (IObjectPair<int, int> pair in _categoryList)
