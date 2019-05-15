@@ -52,6 +52,7 @@ namespace VidCat_Tool.Controllers
             userHandler.DisableUser(userid);
             return Redirect(Url.Action("UserManagement", "Admin"));
         }
+
         public IActionResult EnableAccount(string userid)
         {
             userHandler.EnableUser(userid);
