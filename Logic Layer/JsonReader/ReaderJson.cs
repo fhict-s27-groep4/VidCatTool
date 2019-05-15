@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Model_Layer.Interface;
+using Model_Layer.Models;
+using Newtonsoft.Json.Linq;
 using System;
 using System.IO;
 
@@ -52,16 +54,19 @@ namespace Logic_Layer.JsonReader
             return null;
         }
 
-        public string GetVideoTitle(string _mediaID)
+        public IObjectPair<string, string> GetVideoTitleAndImage(string _mediaID)
         {
+            IObjectPair<string, string> titleImage = new ObjectPair<string, string>();
             foreach (JObject video in json["playlist"])
             {//loops for every item in the playlist
                 if ((string)video["mediaid"] == _mediaID)
                 {
-                    return (string)video["title"];
+                    titleImage.Object1 = (string)video["title"];
+                    titleImage.Object2 = (string)video["image"];
+                    return titleImage;
                 }
             }
-            return null;
+            return titleImage;
         }
     }
 }

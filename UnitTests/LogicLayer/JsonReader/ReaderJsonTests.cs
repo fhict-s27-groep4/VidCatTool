@@ -1,4 +1,5 @@
 ﻿using Logic_Layer.JsonReader;
+using Model_Layer.Interface;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -27,13 +28,17 @@ namespace UnitTests.LogicLayer.JsonReader
         [Fact]
         public void JSonReaderTitle()
         {
-            Assert.Equal("Nyan Cat Really Exists and He Lives in Russia", readerJson.GetVideoTitle("KWeGeUcF"));
+            IObjectPair<string, string> titleImage = readerJson.GetVideoTitleAndImage("KWeGeUcF");
+            Assert.Equal("Nyan Cat Really Exists and He Lives in Russia", titleImage.Object1);
+            Assert.Equal("https://cdn.jwplayer.com/thumbs/KWeGeUcF-720.jpg", titleImage.Object2);
         }
 
         [Fact]
         public void JsonReaderTitleReturnNull()
         {
-            Assert.Null(readerJson.GetVideoTitle("HAHA"));
+            IObjectPair<string, string> titleImage = readerJson.GetVideoTitleAndImage("HaHa");
+            Assert.Null(titleImage.Object1);
+            Assert.Null(titleImage.Object2);
         }
     }
 }

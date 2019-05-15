@@ -91,7 +91,7 @@ namespace UnitTests.LogicLayer.CategoryReverser
         [Fact]
         public void GetParentIDHonda()
         {
-            IObjectPair<int,int> parentID = category.GetParentTiers(4);
+            IObjectPair<int, int> parentID = category.GetParentTiers(4);
             Assert.Equal(1, parentID.Object1);
             Assert.Equal(4, parentID.Object2);
         }
