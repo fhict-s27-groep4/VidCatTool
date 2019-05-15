@@ -16,5 +16,7 @@ namespace Data_Layer.Interface
         void UpdateIABDivergent(IRating rating);
 
         void UpdatePadDivergent(IRating rating);
+
+        IEnumerable<IDuncan> GetAllRatingFromFinishedVideos();
     }
 }

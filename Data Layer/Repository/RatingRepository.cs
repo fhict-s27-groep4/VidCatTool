@@ -29,7 +29,11 @@ namespace Data_Layer.Repository
             parameters[5] = new MySqlParameter("@dominance", dominance);
             context.ExecuteStoredProcedure("AddRating", parameters);
         }
-        
+
+        public IEnumerable<IDuncan> GetAllRatingFromFinishedVideos()
+        {
+            return context.ExecuteReturnStoredProcedure<Rating>("GetAllRatingFromFinishedVideos", null);
+        }
 
         public IEnumerable<Rating> GetRatingsByVideoID(string videoid)
         {
