@@ -13,6 +13,7 @@ using Service_Layer;
 using Service_Layer.RequestHandlers;
 using Service_Layer.ViewModels;
 using Service_Layer.SessionExtension;
+using System.IO;
 
 namespace VidCat_Tool.Controllers
 {
@@ -48,14 +49,6 @@ namespace VidCat_Tool.Controllers
             TempData["FailedLoginAttempt"] = "The username or password were incorrect";
             return View();
         }   
-
-        [HttpPost]
-        public FileResult ExportToJSON()
-        {
-
-            byte[] fileBytes = System.IO.File.ReadAllBytes();
-            return File(fileBytes, "json", "JsonExport");
-        }
         
         public IActionResult Logout()
         {
