@@ -265,7 +265,7 @@ namespace UnitTests.LogicLayer.Algorime
             test.Add(rating12);
             test.Add(rating13);
             ratalgo.DivergentRatings += Ratalgo_DivergentRatings2;
-            string vidID = ratalgo.FindDivergents(test);
+            ratalgo.FindDivergents(test);
 
             //assert
             Assert.Equal(3, CheckCorrect.Count);

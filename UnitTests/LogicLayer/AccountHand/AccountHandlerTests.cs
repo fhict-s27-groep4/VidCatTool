@@ -37,7 +37,32 @@ namespace UnitTests.LogicLayer.AccountHand
             user.IsDisabled = false;
             Assert.False(account.ValidateUser("ultra_safe_P455w0rD", user));
         }
-        //[Fact]
-        //public void 
+        [Fact]
+        public void CreateAUser()
+        {
+            
+        }
+        [Fact]
+        public void ValidateEnabledAccountTest()
+        {
+            User user = new User();
+            user.UserID = "5";
+            user.PassWord = "F6-BE-64-90-A0-58-83-D4-1E-D5-8A-1D-72-94-CF-9A-10-94-4A-41-D9-9A-CE-4B-A4-C3-84-F0-C0-77-DF-57";
+            user.PassWordSalt = "vvFZoAwtYHaHVmfNnS9vXnvlsIJZKFnPcTNb4Es9XqVjftiMmoWHXl5/D9t2RLZReSlhUwTTFwDK01s67mOukw==";
+            user.IsAdmin = false;
+            user.IsDisabled = false;
+            Assert.False(account.ValidateAccountDisabled(user));
+        }
+        [Fact]
+        public void ValidateDisabledAccountTest()
+        {
+            User user = new User();
+            user.UserID = "5";
+            user.PassWord = "F6-BE-64-90-A0-58-83-D4-1E-D5-8A-1D-72-94-CF-9A-10-94-4A-41-D9-9A-CE-4B-A4-C3-84-F0-C0-77-DF-57";
+            user.PassWordSalt = "vvFZoAwtYHaHVmfNnS9vXnvlsIJZKFnPcTNb4Es9XqVjftiMmoWHXl5/D9t2RLZReSlhUwTTFwDK01s67mOukw==";
+            user.IsAdmin = false;
+            user.IsDisabled = true;
+            Assert.True(account.ValidateAccountDisabled(user));
+        }
     }
 }
