@@ -63,6 +63,7 @@ namespace VidCat_Tool.Controllers
         [HttpGet]
         public IActionResult VideoManagement()
         {
+            // Return een IReadonlycollection<VideoManagementViewModel> naar de view. KIJK BIJ USERMANAGEMENT GETUSERMANAGEMENTVIEWMODEL METHODE VOOR MEER INFO (Ya yeet)
             return View(videoHandler.GetVideoManagementViewModel());
         }
         
