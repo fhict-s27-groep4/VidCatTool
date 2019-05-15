@@ -6,7 +6,11 @@
 @using Service_Layer.ViewModels;
 @model ReviewViewModel
 
-<link href="~/css/review.css" rel="stylesheet" />
+
+
+<head>
+    <link href="~/css/review.css" rel="stylesheet" />
+</head>
 
 <div class="reviewContainer">
 
@@ -46,22 +50,22 @@
             <div class="reviewPart col-sm-6" id="Category">
                 <h1>Category</h1>
                 <div class="row reviewRow">
-                    <div class="custom-select col-sm-6">
+                    <div class="custom-select col-sm-4">
                         <div class="mainselect">
-                            <input type="text" list="categorymain" id="inputmain" name="maincat" placeholder="Category" onchange="GetSubCategories()" />
-                            <datalist id='categorymain'>
+                            <select id='categorymain' onchange="GetSubCategories()">
+
                                 @foreach (var cat in Model.Get.Categories)
                                 {
-                                    <option value="@cat.Name" data-id="@cat.UniqueID"></option>
+                                    <option value="@cat.Name" data-id="@cat.UniqueID">@cat.Name</option>
                                 }
-                            </datalist>
+                            </select>
                         </div>
                     </div>
+
                     <div class="custom-select col-sm-6" id="subCategory ">
                         <div class="subselect">
-                            <input  onchange="SetValueToModel()" type="text" list="categorysub" id="subinput" name="subcat" placeholder="Sub-Category" />
                             <input id="iabValueModel" type="hidden" asp-for="Post.IABID" value="" />
-                            <datalist id="categorysub"></datalist>
+                            <select onchange="SetValueToModel()" id="categorysub"></select>
                         </div>
                     </div>
                 </div>
@@ -72,19 +76,21 @@
     </form>
 </div>
 
+
+
 <script>
     function GetSubCategories() {
         var subcategory = $("#categorysub");
         subcategory.empty().append('<option selected="selected" value="Loading..." disabled = "disabled"></option>');
         $.ajax({
             type: "GET",
-            url: "/Review/GetSubCategories?id=" + $("#categorymain option[value='" + document.getElementById("inputmain").value + "']").attr('data-id'),
+            url: "/Review/GetSubCategories?id=" + $("#categorymain option[value='" + document.getElementById("categorymain").value + "']").attr('data-id'),
             dataType: 'JSON',
             contentType: "application/json",
             success: function (data) {
                 subcategory.empty();
                 for (var i = 0; i < data.length; i++) {
-                    subcategory.append('<option value="' + data[i].name + '" data-id="' + data[i].uniqueID + '"></option > ');
+                    subcategory.append('<option value="' + data[i].name + '" data-id="' + data[i].uniqueID + '">' + data[i].name + '</option > ');
                 }
             }
         });
