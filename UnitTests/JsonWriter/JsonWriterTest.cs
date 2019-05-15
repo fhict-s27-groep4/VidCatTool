@@ -94,8 +94,7 @@ namespace UnitTests.JsonWriter
             Random rand = new Random();
             int randnum()
             {
-                System.Threading.Thread.Sleep(4);
-                return rand.Next(1, 6);
+                return rand.Next(3, 8);
             }
             for (int i = 0; i < 2000; i++)
             {
