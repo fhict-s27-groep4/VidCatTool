@@ -61,5 +61,11 @@ namespace VidCat_Tool.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public IActionResult VideoManagement()
+        {
+            return View();
+        }
     }
 }
