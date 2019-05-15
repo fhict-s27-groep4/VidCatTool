@@ -17,6 +17,7 @@ namespace UnitTests.ModelLayer
         [Fact]
         public void CheckGetSetRating()
         {
+            //arrange
             rating.RatingID = 20;
             rating.UserID = "90";
             rating.VideoIdentity = "ABCDEFG";
@@ -27,6 +28,7 @@ namespace UnitTests.ModelLayer
             rating.ArrousalIndex = 3;
             rating.DominanceIndex = 2;
 
+            //assert
             Assert.Equal(20, rating.RatingID);
             Assert.Equal("90", rating.UserID);
             Assert.Equal("ABCDEFG", rating.VideoIdentity);
@@ -43,6 +45,7 @@ namespace UnitTests.ModelLayer
         [Fact]
         public void CheckGetSetNotEqualRating()
         {
+            //arrange
             rating.RatingID = 20;
             rating.UserID = "90";
             rating.VideoIdentity = "ABCDEFG";
@@ -53,6 +56,7 @@ namespace UnitTests.ModelLayer
             rating.ArrousalIndex = 3;
             rating.DominanceIndex = 2;
 
+            //assert
             Assert.NotEqual(24, rating.RatingID);
             Assert.NotEqual("93", rating.UserID);
             Assert.NotEqual("ABCDEFN", rating.VideoIdentity);

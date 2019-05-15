@@ -15,7 +15,6 @@ namespace Logic_Layer.Hasher
             get => key;
             set
             {
-
                 if (string.IsNullOrEmpty(key)) throw new ArgumentException("Key value is empty.");
                 value = key;
             }
@@ -39,7 +38,6 @@ namespace Logic_Layer.Hasher
             byte[] textData = System.Text.Encoding.UTF8.GetBytes(total); // omzetten naar bytes
             byte[] hash = SHA256.Create().ComputeHash(textData); // hashen van salt en wachtwoord
             return BitConverter.ToString(hash); // omzetten van bytes naar string en terugsturen om te checken
-            
         }
 
         public string GenerateRandomCryptographicKey(int keyLength)

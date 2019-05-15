@@ -16,7 +16,11 @@ namespace UnitTests.LogicLayer.CategoryReverser
         public CategoryReverserTest()
         {
             //arrange
+
             List<Category> categories = new List<Category>();
+
+            #region Make Category objects
+
             Category category1 = new Category();
             Category category2 = new Category();
             Category category3 = new Category();
@@ -28,6 +32,11 @@ namespace UnitTests.LogicLayer.CategoryReverser
             Category category9 = new Category();
             Category category10 = new Category();
             Category category11 = new Category();
+
+            #endregion
+
+            #region Make Category's
+
             category1.ParentID = null;
             category1.UniqueID = 1;
             category1.Name = "Auto";
@@ -72,7 +81,12 @@ namespace UnitTests.LogicLayer.CategoryReverser
             category11.UniqueID = 11;
             category11.Name = "Boeing JetEngine";
 
+            #endregion
+
             //act
+
+            #region Add Category's to List
+
             categories.Add(category1);
             categories.Add(category2);
             categories.Add(category3);
@@ -84,6 +98,8 @@ namespace UnitTests.LogicLayer.CategoryReverser
             categories.Add(category9);
             categories.Add(category10);
             categories.Add(category11);
+
+            #endregion
 
             category = new CategoryManager(categories);
         }

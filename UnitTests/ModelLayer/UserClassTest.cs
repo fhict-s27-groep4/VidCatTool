@@ -16,7 +16,7 @@ namespace UnitTests.ModelLayer
         [Fact]
         public void CheckGetSetUser()
         {
-            //act
+            //arrange
             user.City = "Oisterwijk";
             user.UserID = "15";
             user.Country = "Netherlands";
@@ -52,7 +52,7 @@ namespace UnitTests.ModelLayer
         [Fact]
         public void CheckGetSetFalseUser()
         {
-            //act
+            //arrange
             user.City = "Oisterwijk";
             user.Country = "Netherlands";
             user.Email = "Youdonthavetoknow@gmail.com";

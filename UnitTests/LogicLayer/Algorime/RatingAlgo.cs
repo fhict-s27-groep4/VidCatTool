@@ -16,6 +16,9 @@ namespace UnitTests.LogicLayer.Algorime
         public RatingAlgo()
         {
             List<Category> categories = new List<Category>();
+
+            #region Make Category Objects
+
             Category category1 = new Category();
             Category category2 = new Category();
             Category category3 = new Category();
@@ -27,6 +30,11 @@ namespace UnitTests.LogicLayer.Algorime
             Category category9 = new Category();
             Category category10 = new Category();
             Category category11 = new Category();
+
+            #endregion
+
+            #region Make Category's
+
             category1.ParentID = null;
             category1.UniqueID = 1;
             category1.Name = "Auto";
@@ -71,7 +79,10 @@ namespace UnitTests.LogicLayer.Algorime
             category11.UniqueID = 11;
             category11.Name = "Boeing JetEngine";
 
-            //act
+            #endregion
+
+            #region Add Category's to List
+
             categories.Add(category1);
             categories.Add(category2);
             categories.Add(category3);
@@ -83,6 +94,9 @@ namespace UnitTests.LogicLayer.Algorime
             categories.Add(category9);
             categories.Add(category10);
             categories.Add(category11);
+
+            #endregion
+
             ratalgo = new RatingAlgoritm(new Logic_Layer.CategoryReverser.CategoryManager(categories));
         }
 
@@ -91,6 +105,8 @@ namespace UnitTests.LogicLayer.Algorime
         {
             //arrange
             List<IRating> test = new List<IRating>();
+
+            #region Make Ratings
 
             Rating rating1 = new Rating { CategoryID = 3, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
             Rating rating2 = new Rating { CategoryID = 3, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
@@ -103,7 +119,12 @@ namespace UnitTests.LogicLayer.Algorime
             Rating rating9 = new Rating { CategoryID = 3, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
             Rating rating10 = new Rating { CategoryID = 3, DominanceIndex = 1, PleasureIndex = 1, ArrousalIndex = 1 };
 
+            #endregion
+
             //act
+
+            #region Add Ratings to List
+
             test.Add(rating1);
             test.Add(rating2);
             test.Add(rating3);
@@ -114,6 +135,9 @@ namespace UnitTests.LogicLayer.Algorime
             test.Add(rating8);
             test.Add(rating9);
             test.Add(rating10);
+
+            #endregion
+
             ratalgo.DivergentRatings += Ratalgo_DivergentRatings;
             ratalgo.FindDivergents(test);
 
@@ -131,18 +155,29 @@ namespace UnitTests.LogicLayer.Algorime
         {
             //arrange
             List<IRating> test = new List<IRating>();
+
+            #region Make Ratings
+
             Rating rating1 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
             Rating rating2 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
             Rating rating3 = new Rating { CategoryID = 6, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
             Rating rating4 = new Rating { CategoryID = 7, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
             Rating rating5 = new Rating { CategoryID = 4, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
 
+            #endregion
+
             //act
+
+            #region Add Ratings to List
+
             test.Add(rating1 as IRating);
             test.Add(rating2 as IRating);
             test.Add(rating3 as IRating);
             test.Add(rating4 as IRating);
             test.Add(rating5 as IRating);
+
+            #endregion
+
             ratalgo.DivergentRatings += Ratalgo_DivergentRatings;
             ratalgo.FindDivergents(test);
 
@@ -158,18 +193,29 @@ namespace UnitTests.LogicLayer.Algorime
         {
             //arrange
             List<IRating> test = new List<IRating>();
+
+            #region Make Ratings
+
             Rating rating1 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
             Rating rating2 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
             Rating rating3 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
             Rating rating4 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
             Rating rating5 = new Rating { CategoryID = 5, DominanceIndex = 1, PleasureIndex = 1, ArrousalIndex = 1 };
 
+            #endregion
+
             //act
+
+            #region Add Ratings to List
+
             test.Add(rating1 as IRating);
             test.Add(rating2 as IRating);
             test.Add(rating3 as IRating);
             test.Add(rating4 as IRating);
             test.Add(rating5 as IRating);
+
+            #endregion
+
             Action act = () => ratalgo.FindDivergents(test);
 
             //assert
@@ -181,12 +227,23 @@ namespace UnitTests.LogicLayer.Algorime
         {
             //arrange
             List<IRating> test = new List<IRating>();
+
+            #region Make Ratings
+
             Rating rating1 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
             Rating rating2 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
 
+            #endregion
+
             //act
+
+            #region Add Ratings to List
+
             test.Add(rating1 as IRating);
             test.Add(rating2 as IRating);
+
+            #endregion
+
             ratalgo.FindDivergents(test);
 
             //assert
@@ -199,6 +256,8 @@ namespace UnitTests.LogicLayer.Algorime
         {
             //arrange
             List<IRating> test = new List<IRating>();
+
+            #region Make Ratings
 
             Rating rating1 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
             Rating rating2 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
@@ -214,7 +273,12 @@ namespace UnitTests.LogicLayer.Algorime
             Rating rating12 = new Rating { CategoryID = 5, DominanceIndex = 1, PleasureIndex = 1, ArrousalIndex = 1 };
             Rating rating13 = new Rating { CategoryID = 3, DominanceIndex = 1, PleasureIndex = 1, ArrousalIndex = 1 };
 
+            #endregion
+
             //act
+
+            #region Add Ratings to List
+
             test.Add(rating1);
             test.Add(rating2);
             test.Add(rating3);
@@ -228,6 +292,9 @@ namespace UnitTests.LogicLayer.Algorime
             test.Add(rating11);
             test.Add(rating12);
             test.Add(rating13);
+
+            #endregion
+
             ratalgo.DivergentRatings += Ratalgo_DivergentRatings2;
             ratalgo.FindDivergents(test);
 

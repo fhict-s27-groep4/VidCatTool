@@ -29,9 +29,11 @@ namespace UnitTests.ModelLayer
         [Fact]
         public void CheckGetSetFalseVideo()
         {
+            //arrange
             vid.UrlIdentity = "Tester123";
             vid.Finished = false;
 
+            //assert
             Assert.NotEqual("Tester124", vid.UrlIdentity);
             Assert.False(vid.Finished);
         }
