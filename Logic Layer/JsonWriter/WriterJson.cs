@@ -127,7 +127,7 @@ namespace Logic_Layer.JsonWriter
                 taskArray[index] = Task.Run(() => Video(_ratings.Where(x => x.VideoIdentity == s)));
                 index++;
             }
-            string filename = "../../JsonExport" + DateTime.Now.ToString("dd-mm-yyyy hh-mm-ss") + ".json";
+            string filename = "JsonExport" + DateTime.Now.ToString("dd-mm-yyyy hh-mm-ss") + ".json";
             StreamWriter stream = new StreamWriter(File.Create(filename));
             await Task.WhenAll(taskArray);
             foreach (JObject video in taskArray.Select(x => x.Result))

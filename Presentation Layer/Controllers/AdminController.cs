@@ -68,8 +68,7 @@ namespace VidCat_Tool.Controllers
         
         public FileResult ExportToJSON()
         {
-            string file = videoHandler.ExportAllVideosToJson();
-            byte[] fileBytes = System.IO.File.ReadAllBytes(Path.GetFullPath(file));
+            byte[] fileBytes = videoHandler.ExportAllVideosToJson();
             return File(fileBytes, "application/json", "JsonExport");
         }
     }
