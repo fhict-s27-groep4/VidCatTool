@@ -1,19 +1,19 @@
-﻿using Logic_Layer.CategoryReverser;
-using Logic_Layer.JsonWriter;
+﻿using Logic_Layer;
+using Logic_Layer.CategoryReverser;
 using Model_Layer.Interface;
 using Model_Layer.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
-namespace UnitTests.JsonWriter
+namespace UnitTests.LogicLayer.CategoryReverser
 {
-    public class JsonWriterTest
+    public class CategoryReverserTest
     {
-        private readonly WriterJson writer;
-        public JsonWriterTest()
+        private readonly CategoryManager category;
+        public CategoryReverserTest()
         {
             //arrange
             List<Category> categories = new List<Category>();
@@ -85,31 +85,45 @@ namespace UnitTests.JsonWriter
             categories.Add(category10);
             categories.Add(category11);
 
-            writer = new WriterJson(new CategoryManager(categories));
+            category = new CategoryManager(categories);
+        }
+
+        [Fact]
+        public void GetParentIDHonda()
+        {
+            IObjectPair<int,int> parentID = category.GetParentTiers(4);
+            Assert.Equal(1, parentID.Object1);
+            Assert.Equal(4, parentID.Object2);
+        }
+
+        [Fact]
+        public void GetParentIDBently()
+        {
+            IObjectPair<int, int> parentID = category.GetParentTiers(3);
+            Assert.Equal(1, parentID.Object1);
+            Assert.Equal(3, parentID.Object2);
         }
         [Fact]
-        public async void WriteJsonFile()
+        public void GetSubTiersWithParentID()
         {
-            List<IDuncan> test = new List<IDuncan>();
-            Random rand = new Random();
-            int randnum()
+            List<Category> test = new List<Category>();
+            List<ICategory> shit = category.GetSubTiers(2).ToList();
+            foreach(Category cat in shit)
             {
-                return rand.Next(3, 8);
+                test.Add(cat);
             }
-            for (int i = 0; i < 2000; i++)
+            Assert.Equal(3, test.Count);
+        }
+        [Fact]
+        public void GetAllParentIDs()
+        {
+            List<Category> test = new List<Category>();
+            List<ICategory> fill = category.GetAllTierOne().ToList();
+            foreach(Category cat in fill)
             {
-                test.Add( new Rating()
-                {
-                VideoIdentity = randnum().ToString(),
-                CategoryID = randnum(),
-                PleasureIndex = randnum(),
-                ArrousalIndex = randnum(),
-                DominanceIndex = randnum(),
-            });
+                test.Add(cat);
             }
-            Task<string> test1 = Task.Run(() => writer.Write(test));
-            await test1;
-            int x = 0;
+            Assert.Equal(2, test.Count);        
         }
     }
 }
