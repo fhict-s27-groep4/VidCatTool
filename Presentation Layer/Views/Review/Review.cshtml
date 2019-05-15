@@ -71,6 +71,18 @@
                 </div>
             </div>
         </div>
+        <div>
+            <span class="errorMessage" asp-validation-for="Post.Pleasure"></span>
+        </div>
+        <div>
+            <span class="errorMessage" asp-validation-for="Post.Arrousal"></span>
+        </div>
+        <div>
+            <span class="errorMessage" asp-validation-for="Post.Dominance"></span>
+        </div>
+        <div>
+            <span class="errorMessage" asp-validation-for="Post.IABID"></span>
+        </div>
         <div><button name="next" value="true" type="submit" class="btn prim-btn btn-submit disabled" id="submitNextBtn">Submit & Next Video</button></div>
         <div><button name="next" value="false" type="submit" class="btn prim-btn btn-submit-close disabled" id="submitCloseBtn">Submit & Close</button></div>
     </form>

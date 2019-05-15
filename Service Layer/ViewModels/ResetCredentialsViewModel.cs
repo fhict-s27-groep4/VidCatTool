@@ -7,10 +7,7 @@ namespace Service_Layer.ViewModels
 {
     public class ResetCredentialsViewModel
     {
-        [Required, Display(Name = "EMail", Prompt = "EMail"), DataType(DataType.EmailAddress)]
-        public string EMail { get; set; }
-
-        [Required, Display(Name = "ResetType", Prompt = "ResetType")]
-        public string ResetType { get; set; }
+        [Required, Display(Name = "Username", Prompt = "Username")]
+        public string UserName { get; set; }
     }
 }

@@ -7,6 +7,10 @@ namespace Service_Layer.ViewModels
 {
     public class VideoManagementViewModel
     {
-        public IReadOnlyCollection<ISearchVideo> Videos { get; set; }
+        public ISearchVideo Video { get; set; }
+        public string Title { get; set; }
+        public string Thumbnail { get; set; }
+        public int WatchCount { get; set; }
+        public double BiggestTier2 { get; set; }
     }
 }

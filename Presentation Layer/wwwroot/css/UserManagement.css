@@ -140,8 +140,14 @@ input#Housenumber {
     width: 150%;
     border-radius: 25px;
     text-align: center;
-    padding: 3%;
+    padding: 1%;
     min-width: 20px;
+    min-height: 25px;
+    max-height: 25px;
+}
+
+.userStatView i{
+    margin-top: 13%;
 }
 
 .userStatView:hover {

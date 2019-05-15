@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Service_Layer.RequestHandlers;
 using Service_Layer.ViewModels;
+using Service_Layer.SessionExtension;
 
 namespace VidCat_Tool.Controllers
 {
@@ -27,7 +28,7 @@ namespace VidCat_Tool.Controllers
         [HttpGet]
         public IActionResult Review()
         {
-            var video = assignHandler.AssignRandomVideo(HttpContext.Session.GetString("Username"));
+            var video = assignHandler.AssignRandomVideo(HttpContext.Session.GetUsernameKey());
             ViewBag.VideoIdentity = video.UrlIdentity;
             ViewBag.VideoLink = assignHandler.GetVideoLink(video.UrlIdentity);
             return View(categoryHandler.GetTier1s());
@@ -42,7 +43,17 @@ namespace VidCat_Tool.Controllers
         [HttpPost]
         public IActionResult Review(ReviewViewModel viewModel, bool next)
         {
-            ratingHandler.AddRating(viewModel.Post);
+            if(ModelState.IsValid)
+            { 
+                ratingHandler.AddRating(viewModel.Post);
+            }
+            else
+            {
+                var video = assignHandler.AssignRandomVideo(HttpContext.Session.GetUsernameKey());
+                ViewBag.VideoIdentity = video.UrlIdentity;
+                ViewBag.VideoLink = assignHandler.GetVideoLink(video.UrlIdentity);
+                return View(categoryHandler.GetTier1s());
+            }
             if (next == true)
             {
                 return RedirectToAction("Review");
@@ -51,6 +62,7 @@ namespace VidCat_Tool.Controllers
             {
                 return RedirectToAction("Dashboard", "Home");
             }
+
         }
 
         public IActionResult Info()
