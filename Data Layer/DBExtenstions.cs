@@ -44,6 +44,8 @@ namespace Data_Layer
             IEnumerable<T> result = new List<T>();
             DataSet dataSet = new DataSet();
             context.DbCommand.CommandText = query;
+            context.DbCommand.CommandType = CommandType.Text;
+            context.DbCommand.Parameters.Clear();
             try
             {
                 context.OpenConnection();

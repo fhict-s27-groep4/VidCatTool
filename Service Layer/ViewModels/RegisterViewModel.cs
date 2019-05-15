@@ -7,28 +7,28 @@ namespace Service_Layer.ViewModels
 {
     public class RegisterViewModel
     {
-        [Required, Display(Name = "FirstName", Prompt = "First Name")]
+        [Required(ErrorMessage = "Firstname is required."), Display(Name = "FirstName", Prompt = "First Name")]
         public string Firstname { get; set; }
 
-        [Required, Display(Name = "LastName", Prompt = "Last Name")]
+        [Required(ErrorMessage = "Lastname is required."), Display(Name = "LastName", Prompt = "Last Name")]
         public string Lastname { get; set; }
 
-        [Required, Display(Name = "Country", Prompt = "Country")]
+        [Display(Name = "Country", Prompt = "Country")]
         public string Country { get; set; }
 
-        [Required, Display(Name = "StreetName", Prompt = "Street Name")]
+        [Display(Name = "StreetName", Prompt = "Street Name")]
         public string Streetname { get; set; }
 
-        [Required, Display(Name = "Housenumber", Prompt = "Housenumber")]
+        [Display(Name = "Housenumber", Prompt = "Housenumber")]
         public string Housenumber { get; set; }
 
-        [Required, Display(Name = "Zip", Prompt = "Zip")]
+        [Display(Name = "Zip", Prompt = "Zip")]
         public string Zip { get; set; }
 
-        [Required, Display(Name = "PhoneNumber", Prompt = "Phone Number")]
+        [Display(Name = "PhoneNumber", Prompt = "Phone Number")]
         public string Phonenumber { get; set; }
 
-        [Required, Display(Name = "Email", Prompt = "E-mail")]
+        [Required(ErrorMessage = "Email is required"), Display(Name = "Email", Prompt = "E-mail")]
         public string Email { get; set; }
     }
 }

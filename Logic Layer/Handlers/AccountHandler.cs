@@ -31,7 +31,7 @@ namespace Logic_Layer.Handlers
         }
 
         // NOG VERANDEREN NAAR INTERFACE DIE NOG GEMAAKT MOET WORDEN 
-        public bool CreateUser(IEnumerable<User> allUsers, string firstname, string lastname, string email, string phonenumber = null, string country = null, string city = null, string streetaddress = null, string zipcode = null)
+        public IUser CreateUser(IEnumerable<User> allUsers, string firstname, string lastname, string email, string phonenumber = null, string country = null, string city = null, string streetaddress = null, string zipcode = null)
         {
             PasswordHasher hasher = new PasswordHasher();
             string generatedPassword = PasswordGenerator.GeneratePassword(true, true, true, true, false, 12);
@@ -55,7 +55,7 @@ namespace Logic_Layer.Handlers
             mail.MakeMail("Account Verification", String.Format("Dear Sir/Madam, \n\n An account has been created with this specific e-mail address. Please login with the following credentials: \n Username: {0} \n Password: {1} \n\n Kind regards, \n The staff of JWPlayer", newUser.UserName, generatedPassword), email);
             eMailer.Send(mail);
 
-            return true;
+            return newUser;
         }
 
         // Need changing to not use database

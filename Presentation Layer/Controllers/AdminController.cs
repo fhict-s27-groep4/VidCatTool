@@ -11,10 +11,12 @@ namespace VidCat_Tool.Controllers
     public class AdminController : Controller
     {
         private readonly UserHandler userHandler;
+        private readonly VideoHandler videoHandler;
 
-        public AdminController(UserHandler userHandler)
+        public AdminController(UserHandler userHandler, VideoHandler videoHandler)
         {
             this.userHandler = userHandler;
+            this.videoHandler = videoHandler;
         }
 
         public IActionResult AddUser()
@@ -50,6 +52,7 @@ namespace VidCat_Tool.Controllers
             userHandler.DisableUser(userid);
             return Redirect(Url.Action("UserManagement", "Admin"));
         }
+
         public IActionResult EnableAccount(string userid)
         {
             userHandler.EnableUser(userid);
@@ -60,6 +63,12 @@ namespace VidCat_Tool.Controllers
         public IActionResult ResetPassword(string userid)
         {
             return View();
+        }
+
+        [HttpGet]
+        public IActionResult VideoManagement()
+        {
+            return View(videoHandler.GetVideoManagementViewModel());
         }
     }
 }

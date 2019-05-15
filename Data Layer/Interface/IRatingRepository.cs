@@ -1,4 +1,5 @@
-﻿using Model_Layer.Models;
+﻿using Model_Layer.Interface;
+using Model_Layer.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,5 +12,11 @@ namespace Data_Layer.Interface
         void AddRating(string userid, string videoidentity, int categoryid, int pleasure, int arrousal, int dominance);
 
         IEnumerable<Rating> GetRatingsByVideoID(string videoid);
+
+        void UpdateIABDivergent(IRating rating);
+
+        void UpdatePadDivergent(IRating rating);
+
+        IEnumerable<IDuncan> GetAllRatingFromFinishedVideos();
     }
 }

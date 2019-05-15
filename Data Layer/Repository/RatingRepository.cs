@@ -1,5 +1,6 @@
 ﻿using Data_Layer.Interface;
 using Microsoft.EntityFrameworkCore;
+using Model_Layer.Interface;
 using Model_Layer.Models;
 using MySql.Data.MySqlClient;
 using System;
@@ -28,13 +29,33 @@ namespace Data_Layer.Repository
             parameters[5] = new MySqlParameter("@dominance", dominance);
             context.ExecuteStoredProcedure("AddRating", parameters);
         }
-        
+
+        public IEnumerable<IDuncan> GetAllRatingFromFinishedVideos()
+        {
+            return context.ExecuteReturnStoredProcedure<Rating>("GetAllRatingFromFinishedVideos", null);
+        }
 
         public IEnumerable<Rating> GetRatingsByVideoID(string videoid)
         {
             IEnumerable<Rating> allratings = context.SelectQuery<Rating>();
             return allratings.Where(vid => vid.VideoIdentity == videoid);
         }
-        
+
+        public void UpdateIABDivergent(IRating rating)
+        {
+            MySqlParameter[] parameters = new MySqlParameter[2];
+            parameters[0] = new MySqlParameter("@videoID ", rating.VideoIdentity);
+            parameters[1] = new MySqlParameter("@userID ", rating.UserID);
+
+            context.ExecuteStoredProcedure("UpdateIABDivergent", parameters);
+        }
+        public void UpdatePadDivergent(IRating rating)
+        {
+            MySqlParameter[] parameters = new MySqlParameter[2];
+            parameters[0] = new MySqlParameter("@videoID ", rating.VideoIdentity);
+            parameters[1] = new MySqlParameter("@userID ", rating.UserID);
+
+            context.ExecuteStoredProcedure("UpdatePadDivergent", parameters);
+        }
     }
 }

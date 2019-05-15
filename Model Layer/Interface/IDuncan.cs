@@ -6,6 +6,7 @@ namespace Model_Layer.Interface
 {
     public interface IDuncan
     {
+        string UserID { get; set; }
         string VideoIdentity { get; set; }
         int CategoryID { get; set; }
         int PleasureIndex { get; set; }

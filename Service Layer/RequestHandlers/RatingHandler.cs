@@ -29,13 +29,21 @@ namespace Service_Layer.RequestHandlers
 
         private void OnDivergentRatings(object sender, DivergentRatings e)
         {
-            
+            videoRepo.UpdateVideoFinished(e.VidID);
+            foreach (IRating r in e.Ratings.Where(x => x.IsPADDivergent))
+            {
+                ratingRepo.UpdatePadDivergent(r);
+            }
+            foreach (IRating r in e.Ratings.Where(x => x.IsIABDivergent))
+            {
+                ratingRepo.UpdateIABDivergent(r);
+            }
         }
 
         public void AddRating(ReviewViewModelPost vm)
         {
-            ratingRepo.AddRating(sessionHandler.Session.GetUserIDKey(), vm.VideoIdentity, 5, vm.Pleasure, vm.Arrousal, vm.Dominance);
-            ratingAlgoritm.FindDivergents(ratingRepo.GetRatingsByVideoID(vm.VideoIdentity)); //broken + run as task
+            ratingRepo.AddRating(sessionHandler.Session.GetUserIDKey(), vm.VideoIdentity, vm.IABID, vm.Pleasure, vm.Arrousal, vm.Dominance);
+            Task.Run(() => ratingAlgoritm.FindDivergents(ratingRepo.GetRatingsByVideoID(vm.VideoIdentity))); 
         }
     }
 }
