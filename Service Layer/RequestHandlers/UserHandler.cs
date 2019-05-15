@@ -7,6 +7,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using Logic_Layer;
+using Logic_Layer.SMTPMessageSender;
+using Logic_Layer.Hasher;
 
 namespace Service_Layer.RequestHandlers
 {
@@ -82,10 +85,22 @@ namespace Service_Layer.RequestHandlers
         {
             userRepo.DisableUser(userid);
         }
+
         public void EnableUser(string userid)
         {
             userRepo.EnableUser(userid);
         }
 
+        public void ResetPassWord(string _userName)
+        {
+            PasswordHasher hasher = new PasswordHasher();
+            ILoginUser loggedInUser = userRepo.GetUserByName(_userName) as ILoginUser;
+            string generatedPassword = PasswordGenerator.GeneratePassword(true, true, true, true, false, 12);
+            userRepo.UpdatePassword(loggedInUser.UserID, hasher.HashWithSalt(generatedPassword), hasher.Key);
+            EMailSender eMailer = new EMailSender();
+            IMessageSettableMail mail = new MessageMail(new System.Net.Mail.MailMessage());
+            mail.MakeMail("New Password For VidCatTool", String.Format("Dear Sir/Madam, \n\n The password of this account has been reset.\n Please login with the following password: {0} \n\n Kind regards, \n The staff of JWPlayer", generatedPassword), loggedInUser.Email);
+            eMailer.Send(mail);
+        }
     }
 }
