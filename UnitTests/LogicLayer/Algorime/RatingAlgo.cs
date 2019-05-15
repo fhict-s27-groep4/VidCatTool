@@ -193,43 +193,7 @@ namespace UnitTests.LogicLayer.Algorime
             Assert.False(rating1.IsPADDivergent);
 
         }
-        [Fact]
-        public void NotEnoughCat()
-        {
-            //arrange
-            List<IRating> test = new List<IRating>();
-            Rating rating1 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
-            Rating rating2 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
-            Rating rating3 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
-            Rating rating4 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
-            Rating rating5 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
-            Rating rating6 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
-            Rating rating7 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
-            Rating rating8 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
-            Rating rating9 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
-            Rating rating10 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
-
-            //act
-            test.Add(rating1 as IRating);
-            test.Add(rating2 as IRating);
-            test.Add(rating3 as IRating);
-            test.Add(rating4 as IRating);
-            test.Add(rating5 as IRating);
-            test.Add(rating6 as IRating);
-            test.Add(rating7 as IRating);
-            test.Add(rating8 as IRating);
-            test.Add(rating9 as IRating);
-            test.Add(rating10 as IRating);
-            ratalgo.FindDivergents(test);
-
-            //assert
-            Assert.False(rating1.IsIABDivergent);
-            Assert.False(rating2.IsIABDivergent);
-            Assert.False(rating3.IsIABDivergent);
-            Assert.False(rating4.IsIABDivergent);
-            Assert.False(rating5.IsIABDivergent);
-        }
-
+       
         [Fact]
         public void CheckEventWorkingCorrect()
         {
@@ -265,7 +229,7 @@ namespace UnitTests.LogicLayer.Algorime
             test.Add(rating12);
             test.Add(rating13);
             ratalgo.DivergentRatings += Ratalgo_DivergentRatings2;
-            string vidID = ratalgo.FindDivergents(test);
+            ratalgo.FindDivergents(test);
 
             //assert
             Assert.Equal(3, CheckCorrect.Count);

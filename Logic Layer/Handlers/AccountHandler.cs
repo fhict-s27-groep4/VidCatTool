@@ -13,9 +13,9 @@ using System.Web;
 
 namespace Logic_Layer.Handlers
 {
-    public class AccountHandler : ILogin, IRegister
+    public class AccountManager : ILogin, IRegister
     {
-        public AccountHandler()
+        public AccountManager()
         {
         }
 
