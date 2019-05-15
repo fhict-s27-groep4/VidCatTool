@@ -43,7 +43,7 @@ namespace Service_Layer.RequestHandlers
         public void AddRating(ReviewViewModelPost vm)
         {
             ratingRepo.AddRating(sessionHandler.Session.GetUserIDKey(), vm.VideoIdentity, 5, vm.Pleasure, vm.Arrousal, vm.Dominance);
-            ratingAlgoritm.FindDivergents(ratingRepo.GetRatingsByVideoID(vm.VideoIdentity)); //broken + run as task
+            Task.Run(() => ratingAlgoritm.FindDivergents(ratingRepo.GetRatingsByVideoID(vm.VideoIdentity))); 
         }
     }
 }
