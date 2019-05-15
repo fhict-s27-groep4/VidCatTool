@@ -141,6 +141,11 @@ input#Housenumber {
     border-radius: 25px;
     text-align: center;
     padding: 3%;
+    min-width: 20px;
+}
+
+.userStatView:hover {
+    background-color: #97052d;
 }
 
 .actionMenu {

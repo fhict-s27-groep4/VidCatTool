@@ -131,5 +131,42 @@ namespace Data_Layer
 
             return Converter.ConvertDatasetToModel<T>(dbSet);
         }
+
+        public static IEnumerable<Tuple<int, string>> ExecuteNonObjectStoredProcedure(this IDBContext context, string procedurename, MySqlParameter[] parameters)
+        {
+            List<Tuple<int, string>> items = new List<Tuple<int, string>>();
+            context.DbCommand.CommandText = procedurename;
+            context.DbCommand.CommandType = CommandType.StoredProcedure;
+            context.DataAdapter.SelectCommand = context.DbCommand;
+            context.DbCommand.Parameters.Clear();
+            if (parameters != null)
+            {
+                foreach (MySqlParameter parameter in parameters)
+                {
+                    context.DbCommand.Parameters.Add(parameter);
+                }
+            }
+
+            try
+            {
+                context.OpenConnection();
+                DbDataReader reader = context.DbCommand.ExecuteReader();
+                while(reader.Read())
+                {
+                    items.Add(new Tuple<int, string>(reader.GetInt32(0), reader.GetString(1)));
+                }
+
+            }
+            catch (DbException exc)
+            {
+                Console.WriteLine(exc.Message);
+            }
+            finally
+            {
+                context.CloseConnection();
+            }
+
+            return items;
+        }
     }
 }

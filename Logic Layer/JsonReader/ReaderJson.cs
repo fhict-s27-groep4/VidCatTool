@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Model_Layer.Interface;
+using Model_Layer.Models;
+using Newtonsoft.Json.Linq;
 using System;
 using System.IO;
 
@@ -21,7 +23,7 @@ namespace Logic_Layer.JsonReader
 
         }
 
-        private string FindVidUrl(string _mediaID)
+        public string GetVideoUrl(string _mediaID)
         {//returns url with best quality or null if the id doe not exist 
             string filePath = null;
             int quality = 0;
@@ -52,9 +54,19 @@ namespace Logic_Layer.JsonReader
             return null;
         }
 
-        public string GetVideoUrl(string _mediaID)
+        public IObjectPair<string, string> GetVideoTitleAndImage(string _mediaID)
         {
-            return FindVidUrl(_mediaID);
+            IObjectPair<string, string> titleImage = new ObjectPair<string, string>();
+            foreach (JObject video in json["playlist"])
+            {//loops for every item in the playlist
+                if ((string)video["mediaid"] == _mediaID)
+                {
+                    titleImage.Object1 = (string)video["title"];
+                    titleImage.Object2 = (string)video["image"];
+                    return titleImage;
+                }
+            }
+            return titleImage;
         }
     }
 }

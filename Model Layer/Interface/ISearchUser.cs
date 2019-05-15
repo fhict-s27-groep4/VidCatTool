@@ -8,7 +8,5 @@ namespace Model_Layer.Interface
     {
         string UserID { get; }
         bool IsDisabled { get; }
-        int TotalViews { get; }
-        int DivergentRate { get; }
     }
 }

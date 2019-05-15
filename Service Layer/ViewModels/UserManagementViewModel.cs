@@ -6,7 +6,15 @@ using System.Text;
 namespace Service_Layer.ViewModels
 {
     public class UserManagementViewModel
-    {//aantal vids, iab % right, 
-        public IReadOnlyCollection<ISearchUser> AllUsers { get; set; }
+    {
+        public UserManagementViewModel()
+        {
+            RatingCount = 0;
+            ProcentDivergent = "More ratings needed";
+        }
+
+        public ISearchUser User { get; set; }
+        public int RatingCount { get; set; }
+        public string ProcentDivergent { get; set; }
     }
 }

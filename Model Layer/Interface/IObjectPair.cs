@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Logic_Layer
+namespace Model_Layer.Interface
 {
     public interface IObjectPair<T1, T2>
     {

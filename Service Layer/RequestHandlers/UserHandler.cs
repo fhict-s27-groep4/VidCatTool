@@ -49,13 +49,32 @@ namespace Service_Layer.RequestHandlers
             userRepo.AddUser(generatedUser);
         }
 
-        public UserManagementViewModel GetUserManagementViewModel()
+        public IReadOnlyCollection<UserManagementViewModel> GetUserManagementViewModel()
         {
-            UserManagementViewModel vm = new UserManagementViewModel
+            List<UserManagementViewModel> usermodels = new List<UserManagementViewModel>();
+            var ratingcount = userRepo.GetRatingCountFromAllUsers();
+            var divergentRatings = userRepo.GetDivergentRatingsFromAllUser();
+            foreach (ISearchUser user in userRepo.GetAll())
             {
-                AllUsers = userRepo.GetAll().Cast<ISearchUser>().ToList() as IReadOnlyCollection<ISearchUser>
-            };   
-            return vm;
+                string divergent = "More ratings needed";
+                if(ratingcount.Where((t) => t.Item2 == user.UserID).Select(x => x.Item1).FirstOrDefault() < 6)
+                {
+                    divergent = "More ratings needed";
+                }
+                else if(divergentRatings.Any(x => x.Item2.Contains(user.UserID)))
+                {
+                    divergent = Math.Round(divergentRatings.Where((t) => t.Item2 == user.UserID).Select(x => x.Item1).FirstOrDefault() / Convert.ToDouble(ratingcount.Where((t) => t.Item2 == user.UserID).Select(x => x.Item1).FirstOrDefault()) * 100, MidpointRounding.AwayFromZero).ToString();
+                }
+
+                usermodels.Add(new UserManagementViewModel
+                {
+                    User = user,
+                    RatingCount = ratingcount.Where((t) => t.Item2 == user.UserID).Select(x => x.Item1).DefaultIfEmpty(0).FirstOrDefault(),
+                    ProcentDivergent = divergent
+                });
+            }
+
+            return usermodels;
         }
 
         public void DisableUser(string userid)

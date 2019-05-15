@@ -1,4 +1,4 @@
-﻿@model Service_Layer.ViewModels.UserManagementViewModel
+﻿@model IReadOnlyCollection<Service_Layer.ViewModels.UserManagementViewModel>
 
 @{
     ViewData["Title"] = "User Management";
@@ -174,16 +174,16 @@
 
                 @* The List of Search Results, looping users *@
                 <div class="userSearchResults">
-                    @foreach (var user in Model.AllUsers)
+                    @foreach (var user in Model)
                     {
                     <div class="userSearchItem" style="border: 1px solid #e91e63; margin-top: 1%; margin-bottom: 1%; padding: 1.8%; position:relative;">
                         <div class="row" style="height: 25%; max-height: 50px;">
                             <div class="col-md-11">
-                                <h3 style="margin: 0%;" id="fullName">@user.FirstName @user.LastName (@user.UserName)</h3>
+                                <h3 style="margin: 0%;" id="fullName">@user.User.FirstName @user.User.LastName (@user.User.UserName)</h3>
                                 <div>
                                     <div class="row" style="margin-top:2%;">
-                                        <div class="col-sm-1" style="width:auto;"><div class="userStatView">66%</div></div>
-                                        <div class="col-sm-1" style="width:auto;"><div class="userStatView">9000</div></div>
+                                        <div class="col-sm-1" style="width:auto;"><div class="userStatView">@user.RatingCount</div></div>
+                                        <div class="col-sm-1" style="width:auto;"><div class="userStatView">@user.ProcentDivergent</div></div>
                                         <div class="col-sm-1" style="width:auto;"></div>
 
                                     </div>
@@ -193,20 +193,20 @@
                             <div class="col-md-1"><img height="64" width="64" src="~/images/user-placeholder.png" style="float: right;" /></div>
 
                         </div>
-                        <h6>@user.PhoneNumber</h6>
+                        <h6>@user.User.PhoneNumber</h6>
 
                         <div class="dropdown dropdownVidCat" style="position:absolute; top: 0; right: 0;">
                             <button class="btn btn-secondary dropdown-toggle prim-btn actionMenu" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-caret-down"></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-center" aria-labelledby="dropdownMenuButton">
-                                @if (user.IsDisabled == true)
+                                @if (user.User.IsDisabled == true)
                                 {
-                                    <a class="dropdown-item" asp-action="EnableAccount" asp-controller="Admin" asp-route-userid="@user.UserID">Enable</a>
+                                    <a class="dropdown-item" asp-action="EnableAccount" asp-controller="Admin" asp-route-userid="@user.User.UserID">Enable</a>
                                 }
                                 else
                                 {
-                                    <a class="dropdown-item open-ValidateAction" data-toggle="modal" href="#ValidateAction" data-id="@user.UserID" data-name="@user.FirstName">Disable</a>
+                                    <a class="dropdown-item open-ValidateAction" data-toggle="modal" href="#ValidateAction" data-id="@user.User.UserID" data-name="@user.User.FirstName">Disable</a>
                                 }
                                 <a class="dropdown-item" asp-action="" asp-controller="Admin">Reset Password</a>
                             </div>
@@ -217,7 +217,7 @@
 
                 @* Bottom text and actions, such as the amount of pages. *@
                 <div class="userSearchCount" style="margin: 4%;">
-                    <h6 class="text-center" style="width: 100%; color: #707070;">@Model.AllUsers.Count Results found</h6>
+                    <h6 class="text-center" style="width: 100%; color: #707070;">@Model.Count Results found</h6>
                 </div>
             </div>
 

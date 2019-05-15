@@ -57,5 +57,14 @@ namespace Data_Layer.Repository
             parameters[10] = new MySqlParameter("@zipcode", user.ZipCode);
             context.ExecuteStoredProcedure("AddUser", parameters);
         }
+
+        public IEnumerable<Tuple<int, string>> GetRatingCountFromAllUsers()
+        {
+            return context.ExecuteNonObjectStoredProcedure("GetRatingCountFromAllUsers", null);
+        }
+        public IEnumerable<Tuple<int, string>> GetDivergentRatingsFromAllUser()
+        {
+            return context.ExecuteNonObjectStoredProcedure("GetDivergentRatingsFromAllUser", null);
+        }
     }
 }
