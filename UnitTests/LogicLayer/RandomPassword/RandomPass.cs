@@ -70,16 +70,26 @@ namespace UnitTests.LogicLayer.RandomPassword
             Assert.NotEqual(one, two);
         }
         [Fact]
-        public void PasswordsToShort()
+        public void PasswordsToShortTestMessage()
         {
             Exception ex = Assert.Throws<System.ArgumentException>(() => PasswordGenerator.GeneratePassword(true, true, true, true, true, 5));
             Assert.Equal("The length of the password must be between 8 - 50 characters", ex.Message);
         }
         [Fact]
-        public void PasswordsToLong()
+        public void PasswordsToLongTestMessage()
         {
             Exception ex = Assert.Throws<System.ArgumentException>(() => PasswordGenerator.GeneratePassword(true, true, true, true, true, 100));
             Assert.Equal("The length of the password must be between 8 - 50 characters", ex.Message);
+        }
+        [Fact]
+        public void PasswordsToShort()
+        {
+           Assert.Throws<System.ArgumentException>(() => PasswordGenerator.GeneratePassword(true, true, true, true, true, 5));
+        }
+        [Fact]
+        public void PasswordsToLong()
+        {
+           Assert.Throws<System.ArgumentException>(() => PasswordGenerator.GeneratePassword(true, true, true, true, true, 100));
         }
     }
 }
