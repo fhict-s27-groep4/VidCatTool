@@ -15,16 +15,16 @@ namespace Service_Layer.RequestHandlers
         private readonly IVideoRepository videoRepo;
         private readonly SessionHandler sessionHandler;
         private readonly ICategoryRepository categoryRepo;
-        private readonly RatingAlgoritm ratingAlgoritm;
+        private readonly IRatingAlgoritm ratingAlgoritm;
 
-        public RatingHandler(IRatingRepository ratingRepo, IVideoRepository videoRepo, ICategoryRepository categoryRepo, SessionHandler sessionHandler)
+        public RatingHandler(IRatingRepository ratingRepo, IVideoRepository videoRepo, ICategoryRepository categoryRepo, SessionHandler sessionHandler, IRatingAlgoritm _ratingAlgoritm)
         {
             this.ratingRepo = ratingRepo;
             this.videoRepo = videoRepo;
             this.sessionHandler = sessionHandler;
             this.categoryRepo = categoryRepo;
-            ratingAlgoritm = new RatingAlgoritm(new CategoryManager(categoryRepo.GetAll()));
-            ratingAlgoritm.DivergentRatings += this.OnDivergentRatings;
+            this.ratingAlgoritm = _ratingAlgoritm;
+            this.ratingAlgoritm.DivergentRatings += this.OnDivergentRatings;
         }
 
         private void OnDivergentRatings(object sender, DivergentRatings e)

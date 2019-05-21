@@ -97,7 +97,7 @@ namespace UnitTests.LogicLayer.Algorime
 
             #endregion
 
-            ratalgo = new RatingAlgoritm(new Logic_Layer.CategoryReverser.CategoryManager(categories));
+            //ratalgo = new RatingAlgoritm(new Logic_Layer.CategoryReverser.CategoryManager(categories));
         }
 
         [Fact]

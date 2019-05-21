@@ -18,16 +18,16 @@ namespace Service_Layer.RequestHandlers
     {
         private readonly IVideoRepository videoRepo;
         private readonly IRatingRepository ratingRepo;
-        private readonly RatingAlgoritm ratingAlgoritm;
+        private readonly IRatingAlgoritm ratingAlgoritm;
         private readonly WriterJson writer;
-        private readonly CategoryManager categoryManager;
+        private readonly ICategoryManager categoryManager;
 
-        public VideoHandler(IVideoRepository videoRepo, IRatingRepository _ratingRepo, ICategoryRepository _catRepo)
+        public VideoHandler(IVideoRepository videoRepo, IRatingRepository _ratingRepo, ICategoryRepository _catRepo, IRatingAlgoritm ratingAlgoritm)
         {
             this.videoRepo = videoRepo;
             this.ratingRepo = _ratingRepo;
             categoryManager = new CategoryManager(_catRepo.GetAll());
-            ratingAlgoritm = new RatingAlgoritm(categoryManager);
+            this.ratingAlgoritm = ratingAlgoritm;
             writer = new WriterJson(categoryManager);
         }
 
@@ -48,7 +48,8 @@ namespace Service_Layer.RequestHandlers
                 IList<IObjectPair<int, int>> catCount = new List<IObjectPair<int, int>>();
                 foreach (IRating rating in ratings.Where(x => x.VideoIdentity == video.UrlIdentity))
                 {
-                    catCount = ratingAlgoritm.CatagoryInList(catCount, categoryManager.GetParentTiers(rating.CategoryID).Object2);
+                    throw new NotImplementedException();
+                    //catCount = ratingAlgoritm.CatagoryInList(catCount, categoryManager.GetParentTiers(rating.CategoryID).Object2);
                 }
                 if (catCount.Count() > 0)
                 {
