@@ -7,7 +7,7 @@ namespace Logic_Layer.CategoryReverser
 {
     public class CategoryManager : ICategoryManager
     {
-        IEnumerable<ICategory> categories;
+        private IEnumerable<ICategory> categories;
         public CategoryManager(IEnumerable<ICategory> _categories)
         {
             categories = _categories;
