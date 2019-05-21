@@ -6,7 +6,7 @@ using System.IO;
 
 namespace Logic_Layer.JsonReader
 {
-    public class ReaderJson
+    public class ReaderJson : IReaderJson
     {
         JObject json;
         public ReaderJson()

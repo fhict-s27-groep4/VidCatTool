@@ -13,7 +13,7 @@ namespace Service_Layer.RequestHandlers
         private readonly ICategoryManager categoryManager;
         public CategoryHandler(ICategoryManager categoryManager)
         {
-            this.categoryManager = categoryManager;
+            this.categoryManager = categoryManager ?? throw new NullReferenceException();
         }
 
         public ReviewViewModel GetTier1s()

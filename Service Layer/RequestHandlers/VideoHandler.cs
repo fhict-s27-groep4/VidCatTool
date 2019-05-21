@@ -20,19 +20,20 @@ namespace Service_Layer.RequestHandlers
         private readonly IRatingRepository ratingRepo;
         private readonly IRatingAlgoritm ratingAlgoritm;
         private readonly WriterJson writer;
+        private readonly IReaderJson jsonReader;
 
-        public VideoHandler(IVideoRepository videoRepo, IRatingRepository _ratingRepo, IRatingAlgoritm ratingAlgoritm)
+        public VideoHandler(IVideoRepository videoRepo, IRatingRepository _ratingRepo, IRatingAlgoritm ratingAlgoritm, IReaderJson readerJson)
         {
-            this.videoRepo = videoRepo;
-            this.ratingRepo = _ratingRepo;
-            this.ratingAlgoritm = ratingAlgoritm;
+            this.videoRepo = videoRepo ?? throw new NullReferenceException();
+            this.ratingRepo = _ratingRepo ?? throw new NullReferenceException();
+            this.ratingAlgoritm = ratingAlgoritm ?? throw new NullReferenceException();
+            this.jsonReader = readerJson ?? throw new NullReferenceException();
             throw new NotImplementedException();
             //writer = new WriterJson();
         }
 
         public IEnumerable<VideoManagementViewModel> GetVideoManagementViewModel()
         {
-            ReaderJson reader = new ReaderJson();
             IList<VideoManagementViewModel> videos = new List<VideoManagementViewModel>();
             IEnumerable<ISearchVideo> vids = videoRepo.GetAll();
             IEnumerable<IRating> ratings = ratingRepo.GetAll();
@@ -40,7 +41,7 @@ namespace Service_Layer.RequestHandlers
             {
                 VideoManagementViewModel model = new VideoManagementViewModel();
                 model.Video = video;
-                IObjectPair<string, string> titleImage = reader.GetVideoTitleAndImage(video.UrlIdentity);
+                IObjectPair<string, string> titleImage = jsonReader.GetVideoTitleAndImage(video.UrlIdentity);
                 model.Title = titleImage.Object1;
                 model.Thumbnail = titleImage.Object2;
                 model.WatchCount = ratings.Where(x => x.VideoIdentity == video.UrlIdentity).Count();

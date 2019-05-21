@@ -6,6 +6,7 @@ using System.Linq;
 using Logic_Layer.AlgoritmRatings;
 using System.Threading.Tasks;
 using Logic_Layer.CategoryReverser;
+using System;
 
 namespace Service_Layer.RequestHandlers
 {
@@ -19,11 +20,11 @@ namespace Service_Layer.RequestHandlers
 
         public RatingHandler(IRatingRepository ratingRepo, IVideoRepository videoRepo, ICategoryRepository categoryRepo, SessionHandler sessionHandler, IRatingAlgoritm _ratingAlgoritm)
         {
-            this.ratingRepo = ratingRepo;
-            this.videoRepo = videoRepo;
-            this.sessionHandler = sessionHandler;
-            this.categoryRepo = categoryRepo;
-            this.ratingAlgoritm = _ratingAlgoritm;
+            this.ratingRepo = ratingRepo ?? throw new NullReferenceException();
+            this.videoRepo = videoRepo ?? throw new NullReferenceException();
+            this.sessionHandler = sessionHandler ?? throw new NullReferenceException();
+            this.categoryRepo = categoryRepo ?? throw new NullReferenceException();
+            this.ratingAlgoritm = _ratingAlgoritm ?? throw new NullReferenceException();
             this.ratingAlgoritm.DivergentRatings += this.OnDivergentRatings;
         }
 

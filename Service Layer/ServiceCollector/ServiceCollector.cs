@@ -5,6 +5,7 @@ using Logic_Layer.AlgoritmRatings;
 using Logic_Layer.CategoryReverser;
 using Logic_Layer.Handlers;
 using Logic_Layer.Interfaces;
+using Logic_Layer.JsonReader;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Service_Layer.RequestHandlers;
@@ -37,6 +38,7 @@ namespace Service_Layer.ServiceCollector
             services.AddTransient<IRatingAlgoritm, RatingAlgoritm>();
             services.AddTransient<ICategoryManager, CategoryManager>();
             services.AddTransient<IAllCategories, AllCategories>();
+            services.AddTransient<IReaderJson, ReaderJson>();
 
             return services;
         }

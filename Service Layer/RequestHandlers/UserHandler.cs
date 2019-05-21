@@ -23,10 +23,10 @@ namespace Service_Layer.RequestHandlers
 
         public UserHandler(ILogin loginHandler, IRegister registerHandler, IUserRepository userRepo, SessionHandler sessionHandler)
         {
-            this.loginHandler = loginHandler;
-            this.registerHandler = registerHandler;
-            this.userRepo = userRepo;
-            this.sessionHandler = sessionHandler;
+            this.loginHandler = loginHandler ?? throw new NullReferenceException();
+            this.registerHandler = registerHandler ?? throw new NullReferenceException();
+            this.userRepo = userRepo ?? throw new NullReferenceException();
+            this.sessionHandler = sessionHandler ?? throw new NullReferenceException();
         }
 
         public bool ValidateLoginAttempt(LoginViewModel vm)
