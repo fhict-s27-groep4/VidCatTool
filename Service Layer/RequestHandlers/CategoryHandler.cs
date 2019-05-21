@@ -10,10 +10,10 @@ namespace Service_Layer.RequestHandlers
 {
     public class CategoryHandler
     {
-        private readonly CategoryManager categoryManager;
-        public CategoryHandler(ICategoryRepository _categories)
+        private readonly ICategoryManager categoryManager;
+        public CategoryHandler(ICategoryManager categoryManager)
         {
-            categoryManager = new CategoryManager(_categories.GetAll());
+            this.categoryManager = categoryManager ?? throw new NullReferenceException();
         }
 
         public ReviewViewModel GetTier1s()

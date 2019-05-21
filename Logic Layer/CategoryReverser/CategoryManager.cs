@@ -5,12 +5,12 @@ using System.Linq;
 
 namespace Logic_Layer.CategoryReverser
 {
-    public class CategoryManager
+    public class CategoryManager : ICategoryManager
     {
-        IEnumerable<ICategory> categories;
-        public CategoryManager(IEnumerable<ICategory> _categories)
+        private IEnumerable<ICategory> categories;
+        public CategoryManager(IAllCategories _categories)
         {
-            categories = _categories;
+            categories = _categories.Categories;
         }
 
         public IObjectPair<int, int> GetParentTiers(int _categoryID)

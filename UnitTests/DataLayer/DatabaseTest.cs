@@ -18,6 +18,7 @@ namespace UnitTests.DataLayer
         [Fact]
         public void Add_WhenHaveNoEmail()
         {
+            IDBContext context = new InMemoryDBContext();
 
         }
     }

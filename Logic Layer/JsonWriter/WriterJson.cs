@@ -1,4 +1,5 @@
-﻿using Model_Layer.Interface;
+﻿using Logic_Layer.CategoryReverser;
+using Model_Layer.Interface;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -10,10 +11,10 @@ using System.Threading.Tasks;
 
 namespace Logic_Layer.JsonWriter
 {
-    public class WriterJson
+    public class WriterJson : IWriterJson
     {
-        CategoryReverser.CategoryManager categroyReverser;
-        public WriterJson(CategoryReverser.CategoryManager _categroyReverser)
+        ICategoryManager categroyReverser;
+        public WriterJson(ICategoryManager _categroyReverser)
         {
             categroyReverser = _categroyReverser;
         }

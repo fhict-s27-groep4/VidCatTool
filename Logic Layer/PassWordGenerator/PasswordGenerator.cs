@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Logic_Layer
+namespace Logic_Layer.PassWordGenerator
 {
-    public class PasswordGenerator
+    public class PasswordGenerator : IPasswordGenerator
     {
         public string GeneratePassword(bool includelower, bool includeupper, bool includenumeric, bool includespecial, bool includespaces, int length)
         {

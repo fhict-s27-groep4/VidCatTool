@@ -10,6 +10,7 @@ using System.Linq;
 using Logic_Layer;
 using Logic_Layer.SMTPMessageSender;
 using Logic_Layer.Hasher;
+using Logic_Layer.PassWordGenerator;
 
 namespace Service_Layer.RequestHandlers
 {
@@ -22,10 +23,10 @@ namespace Service_Layer.RequestHandlers
 
         public UserHandler(ILogin loginHandler, IRegister registerHandler, IUserRepository userRepo, SessionHandler sessionHandler)
         {
-            this.loginHandler = loginHandler;
-            this.registerHandler = registerHandler;
-            this.userRepo = userRepo;
-            this.sessionHandler = sessionHandler;
+            this.loginHandler = loginHandler ?? throw new NullReferenceException();
+            this.registerHandler = registerHandler ?? throw new NullReferenceException();
+            this.userRepo = userRepo ?? throw new NullReferenceException();
+            this.sessionHandler = sessionHandler ?? throw new NullReferenceException();
         }
 
         public bool ValidateLoginAttempt(LoginViewModel vm)
@@ -45,10 +46,9 @@ namespace Service_Layer.RequestHandlers
             return false;
         }
 
-        // City vergeten in de UI te zetten
         public void CreateUser(RegisterViewModel vm)
         {
-            IRegisterUser generatedUser = registerHandler.CreateUser(userRepo.GetAll(), vm.Firstname, vm.Lastname, vm.Email, vm.Phonenumber, vm.Country, null, vm.Streetname, vm.Zip);
+            IRegisterUser generatedUser = registerHandler.CreateUser(userRepo.GetAll(), vm.Firstname, vm.Lastname, vm.Email, vm.Phonenumber, vm.Country, vm.City, vm.Streetname, vm.Zip);
             userRepo.AddUser(generatedUser);
         }
 
@@ -94,7 +94,7 @@ namespace Service_Layer.RequestHandlers
         public void ResetPassWord(string _userName)
         {
             PasswordHasher hasher = new PasswordHasher();
-            PasswordGenerator gen = new PasswordGenerator();
+            IPasswordGenerator gen = new PasswordGenerator();
             ILoginUser loggedInUser = userRepo.GetUserByName(_userName) as ILoginUser;
             string generatedPassword = gen.GeneratePassword(true, true, true, true, false, 12);
             userRepo.UpdatePassword(loggedInUser.UserID, hasher.HashWithSalt(generatedPassword), hasher.Key);

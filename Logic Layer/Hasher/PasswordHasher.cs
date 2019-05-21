@@ -5,10 +5,15 @@ using System.Security.Cryptography;
 
 namespace Logic_Layer.Hasher
 {
-    public class PasswordHasher
+    public class PasswordHasher : IPasswordHasher
     {
         #region Properties
         private string key;
+
+        public PasswordHasher()
+        {
+
+        }
 
         public string Key
         {

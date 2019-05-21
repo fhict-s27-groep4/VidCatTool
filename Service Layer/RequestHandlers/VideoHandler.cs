@@ -18,22 +18,21 @@ namespace Service_Layer.RequestHandlers
     {
         private readonly IVideoRepository videoRepo;
         private readonly IRatingRepository ratingRepo;
-        private readonly RatingAlgoritm ratingAlgoritm;
-        private readonly WriterJson writer;
-        private readonly CategoryManager categoryManager;
+        private readonly IRatingAlgoritm ratingAlgoritm;
+        private readonly IWriterJson writer;
+        private readonly IReaderJson jsonReader;
 
-        public VideoHandler(IVideoRepository videoRepo, IRatingRepository _ratingRepo, ICategoryRepository _catRepo)
+        public VideoHandler(IVideoRepository videoRepo, IRatingRepository _ratingRepo, IRatingAlgoritm ratingAlgoritm, IReaderJson readerJson, IWriterJson writerJson)
         {
-            this.videoRepo = videoRepo;
-            this.ratingRepo = _ratingRepo;
-            categoryManager = new CategoryManager(_catRepo.GetAll());
-            ratingAlgoritm = new RatingAlgoritm(categoryManager);
-            writer = new WriterJson(categoryManager);
+            this.videoRepo = videoRepo ?? throw new NullReferenceException();
+            this.ratingRepo = _ratingRepo ?? throw new NullReferenceException();
+            this.ratingAlgoritm = ratingAlgoritm ?? throw new NullReferenceException();
+            this.jsonReader = readerJson ?? throw new NullReferenceException();
+            writer = writerJson ?? throw new NullReferenceException();
         }
 
         public IEnumerable<VideoManagementViewModel> GetVideoManagementViewModel()
         {
-            ReaderJson reader = new ReaderJson();
             IList<VideoManagementViewModel> videos = new List<VideoManagementViewModel>();
             IEnumerable<ISearchVideo> vids = videoRepo.GetAll();
             IEnumerable<IRating> ratings = ratingRepo.GetAll();
@@ -41,14 +40,15 @@ namespace Service_Layer.RequestHandlers
             {
                 VideoManagementViewModel model = new VideoManagementViewModel();
                 model.Video = video;
-                IObjectPair<string, string> titleImage = reader.GetVideoTitleAndImage(video.UrlIdentity);
+                IObjectPair<string, string> titleImage = jsonReader.GetVideoTitleAndImage(video.UrlIdentity);
                 model.Title = titleImage.Object1;
                 model.Thumbnail = titleImage.Object2;
                 model.WatchCount = ratings.Where(x => x.VideoIdentity == video.UrlIdentity).Count();
                 IList<IObjectPair<int, int>> catCount = new List<IObjectPair<int, int>>();
                 foreach (IRating rating in ratings.Where(x => x.VideoIdentity == video.UrlIdentity))
                 {
-                    catCount = ratingAlgoritm.CatagoryInList(catCount, categoryManager.GetParentTiers(rating.CategoryID).Object2);
+                    throw new NotImplementedException();
+                    //catCount = ratingAlgoritm.CatagoryInList(catCount, categoryManager.GetParentTiers(rating.CategoryID).Object2);
                 }
                 if (catCount.Count() > 0)
                 {

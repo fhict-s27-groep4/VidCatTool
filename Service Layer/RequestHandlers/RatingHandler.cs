@@ -6,6 +6,7 @@ using System.Linq;
 using Logic_Layer.AlgoritmRatings;
 using System.Threading.Tasks;
 using Logic_Layer.CategoryReverser;
+using System;
 
 namespace Service_Layer.RequestHandlers
 {
@@ -15,16 +16,16 @@ namespace Service_Layer.RequestHandlers
         private readonly IVideoRepository videoRepo;
         private readonly SessionHandler sessionHandler;
         private readonly ICategoryRepository categoryRepo;
-        private readonly RatingAlgoritm ratingAlgoritm;
+        private readonly IRatingAlgoritm ratingAlgoritm;
 
-        public RatingHandler(IRatingRepository ratingRepo, IVideoRepository videoRepo, ICategoryRepository categoryRepo, SessionHandler sessionHandler)
+        public RatingHandler(IRatingRepository ratingRepo, IVideoRepository videoRepo, ICategoryRepository categoryRepo, SessionHandler sessionHandler, IRatingAlgoritm _ratingAlgoritm)
         {
-            this.ratingRepo = ratingRepo;
-            this.videoRepo = videoRepo;
-            this.sessionHandler = sessionHandler;
-            this.categoryRepo = categoryRepo;
-            ratingAlgoritm = new RatingAlgoritm(new CategoryManager(categoryRepo.GetAll()));
-            ratingAlgoritm.DivergentRatings += this.OnDivergentRatings;
+            this.ratingRepo = ratingRepo ?? throw new NullReferenceException();
+            this.videoRepo = videoRepo ?? throw new NullReferenceException();
+            this.sessionHandler = sessionHandler ?? throw new NullReferenceException();
+            this.categoryRepo = categoryRepo ?? throw new NullReferenceException();
+            this.ratingAlgoritm = _ratingAlgoritm ?? throw new NullReferenceException();
+            this.ratingAlgoritm.DivergentRatings += this.OnDivergentRatings;
         }
 
         private void OnDivergentRatings(object sender, DivergentRatings e)

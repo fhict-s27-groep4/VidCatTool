@@ -149,7 +149,8 @@ namespace UnitTests.LogicLayer.AccountHand
             user.IsDisabled = false;
 
             //assert
-            Assert.False(account.ValidateAccountDisabled(user));
+            throw new NotImplementedException();
+            //Assert.False(account.ValidateAccountDisabled(user));
         }
         [Fact]
         public void ValidateDisabledAccountTest()
@@ -163,7 +164,8 @@ namespace UnitTests.LogicLayer.AccountHand
             user.IsDisabled = true;
 
             //assert
-            Assert.True(account.ValidateAccountDisabled(user));
+            throw new NotImplementedException();
+            //Assert.True(account.ValidateAccountDisabled(user));
         }
     }
 }
