@@ -36,6 +36,7 @@ namespace Service_Layer.ServiceCollector
             services.AddSingleton<IRatingSettings, RatingSettings>();
             services.AddTransient<IRatingAlgoritm, RatingAlgoritm>();
             services.AddTransient<ICategoryManager, CategoryManager>();
+            services.AddTransient<IAllCategories, AllCategories>();
 
             return services;
         }
