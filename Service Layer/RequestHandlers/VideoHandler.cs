@@ -20,15 +20,14 @@ namespace Service_Layer.RequestHandlers
         private readonly IRatingRepository ratingRepo;
         private readonly IRatingAlgoritm ratingAlgoritm;
         private readonly WriterJson writer;
-        private readonly ICategoryManager categoryManager;
 
-        public VideoHandler(IVideoRepository videoRepo, IRatingRepository _ratingRepo, ICategoryRepository _catRepo, IRatingAlgoritm ratingAlgoritm)
+        public VideoHandler(IVideoRepository videoRepo, IRatingRepository _ratingRepo, IRatingAlgoritm ratingAlgoritm)
         {
             this.videoRepo = videoRepo;
             this.ratingRepo = _ratingRepo;
-            categoryManager = new CategoryManager(_catRepo.GetAll());
             this.ratingAlgoritm = ratingAlgoritm;
-            writer = new WriterJson(categoryManager);
+            throw new NotImplementedException();
+            //writer = new WriterJson();
         }
 
         public IEnumerable<VideoManagementViewModel> GetVideoManagementViewModel()

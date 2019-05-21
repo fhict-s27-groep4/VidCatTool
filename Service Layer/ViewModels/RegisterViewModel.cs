@@ -16,6 +16,9 @@ namespace Service_Layer.ViewModels
         [Display(Name = "Country", Prompt = "Country")]
         public string Country { get; set; }
 
+        [Display(Name = "City", Prompt = "City")]
+        public string City { get; set; }
+
         [Display(Name = "StreetName", Prompt = "Street Name")]
         public string Streetname { get; set; }
 

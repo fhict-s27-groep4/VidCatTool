@@ -1,6 +1,7 @@
 ﻿using Logic_Layer;
 using Logic_Layer.Hasher;
 using Logic_Layer.Interfaces;
+using Logic_Layer.PassWordGenerator;
 using Logic_Layer.SMTPMessageSender;
 using Model_Layer.Interface;
 using Model_Layer.Models;
@@ -15,29 +16,27 @@ namespace Logic_Layer.Handlers
 {
     public class AccountManager : ILogin, IRegister
     {
-        public AccountManager()
+        IPasswordHasher hasher;
+        public AccountManager(IPasswordHasher passwordHasher)
         {
+            hasher = passwordHasher;
         }
 
         public bool ValidateUser(string password, ILoginUser queryUser)
         {
-            PasswordHasher hasher = new PasswordHasher();
-            
             if (queryUser.PassWord == hasher.CheckPassword(password, queryUser.PassWordSalt))
             {
                 return true;
             }
             return false;
         }
-
-        // NOG VERANDEREN NAAR INTERFACE DIE NOG GEMAAKT MOET WORDEN 
-        public IRegisterUser CreateUser(IEnumerable<User> allUsers, string firstname, string lastname, string email, string phonenumber = null, string country = null, string city = null, string streetaddress = null, string zipcode = null)
+        
+        public IRegisterUser CreateUser(IEnumerable<IUser> allUsers, string firstname, string lastname, string email, string phonenumber = null, string country = null, string city = null, string streetaddress = null, string zipcode = null)
         {
-            PasswordHasher hasher = new PasswordHasher();
-            PasswordGenerator gen = new PasswordGenerator();
+            IPasswordGenerator gen = new PasswordGenerator();
             string generatedPassword = gen.GeneratePassword(true, true, true, true, false, 12);
 
-            User newUser = new User();
+            IRegisterUser newUser = new User();
             newUser.UserName = GenerateUsername(firstname, lastname, allUsers);
             newUser.FirstName = firstname;
             newUser.LastName = lastname;
@@ -60,7 +59,7 @@ namespace Logic_Layer.Handlers
         }
 
         // Need changing to not use database
-        private string GenerateUsername(string firstname, string lastname, IEnumerable<User> allUsers)
+        private string GenerateUsername(string firstname, string lastname, IEnumerable<IUser> allUsers)
         {
             string generatedUsername = string.Empty;
             generatedUsername = firstname.Substring(0, 1).ToLower() + "." + lastname.ToLower();
@@ -70,11 +69,6 @@ namespace Logic_Layer.Handlers
                 generatedUsername += count;
             }
             return generatedUsername;
-        }
-
-        public bool ValidateAccountDisabled(ILoginUser queryUser)
-        {
-            return queryUser.IsDisabled;
         }
     }
 }

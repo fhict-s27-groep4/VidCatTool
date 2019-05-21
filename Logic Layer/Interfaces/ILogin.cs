@@ -8,7 +8,5 @@ namespace Logic_Layer.Interfaces
     public interface ILogin
     {
         bool ValidateUser(string password, ILoginUser queryUser);
-
-        bool ValidateAccountDisabled(ILoginUser queryUser);
     }
 }

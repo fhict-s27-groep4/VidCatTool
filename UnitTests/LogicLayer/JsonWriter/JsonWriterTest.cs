@@ -99,8 +99,8 @@ namespace UnitTests.LogicLayer.JsonWriter
             categories.Add(category11);
 
             #endregion
-
-            writer = new WriterJson(new CategoryManager(categories));
+            throw new NotImplementedException();
+           // writer = new WriterJson(new CategoryManager(categories));
         }
         [Fact]
         public async void WriteJsonFile()
