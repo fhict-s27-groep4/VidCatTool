@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Common;
 using System.Text;
 
@@ -8,64 +9,177 @@ namespace Data_Layer
 {
     public class MySQLDBContext : IDBContext
     {
-        private DbConnection dbConnection;
-        private DbCommand dbCommand;
-        private DbDataAdapter adapter;
+        private MySqlConnection dbConnection;
+        private MySqlCommand dbCommand;
+        private MySqlDataAdapter adapter;
 
         private string connectionString;
 
         public MySQLDBContext()
         {
             connectionString = "Server=blackmania.phy.sx;Port=3306;Database=blackman_VidCatTool;Uid=blackman_vidcattooluser;Pwd=]2T5~s&w(JD&";
+            dbCommand = new MySqlCommand();
+            dbConnection = new MySqlConnection(connectionString);
+            adapter = new MySqlDataAdapter();
         }
 
-
-        public DbConnection DbConnection
+        private void OpenConnection()
         {
-            get
+            try
             {
-                if (dbConnection == null)
-                {
-                    dbConnection = new MySqlConnection(connectionString);
-                }
-                return dbConnection;
+                dbConnection.Open();
             }
-            set
+            catch (DbException exception)
             {
-                dbConnection = value;
-            }
-        }
-        public DbCommand DbCommand
-        {
-            get
-            {
-                if (dbCommand == null)
-                {
-                    dbCommand = new MySqlCommand();
-                    dbCommand.Connection = DbConnection;
-                }
-                return dbCommand;
-            }
-            set
-            {
-                dbCommand = value;
+                Console.WriteLine(exception.Message);
             }
         }
 
-        public DbDataAdapter DataAdapter
+        private void CloseConnection()
         {
-            get
+            try
             {
-                if (adapter == null)
+                dbConnection.Close();
+            }
+            catch (DbException exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+        }
+
+        public IEnumerable<T> SelectQuery<T>()
+        {
+            Type type = typeof(T);
+
+            string query = "SELECT * FROM " + type.Name;
+            dbCommand = new MySqlCommand(query, dbConnection);
+            IEnumerable<T> result = new List<T>();
+            DataSet dataSet = new DataSet();
+            dbCommand.CommandText = query;
+            dbCommand.CommandType = CommandType.Text;
+            dbCommand.Parameters.Clear();
+            try
+            {
+                dbConnection.CreateCommand();
+                OpenConnection();
+                adapter.SelectCommand = dbCommand;
+                adapter.Fill(dataSet, type.Name);
+            }
+            catch (DbException exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+            finally
+            {
+                CloseConnection();
+            }
+
+            result = Converter.ConvertDatasetToModel<T>(dataSet);
+            return result;
+        }
+
+
+        public void ExecuteStoredProcedure(string procedurename, DbParameter[] parameters)
+        {
+            dbCommand.CommandText = procedurename;
+            dbCommand.CommandType = CommandType.StoredProcedure;
+            dbCommand.Connection = dbConnection;
+            dbCommand.Parameters.Clear();
+            if (parameters != null)
+            {
+                foreach (DbParameter parameter in parameters)
                 {
-                    adapter = new MySqlDataAdapter();
+                    dbCommand.Parameters.Add(parameter);
                 }
-                return adapter;
             }
-            set
+
+            try
             {
-                adapter = value;
+                OpenConnection();
+                dbCommand.ExecuteNonQuery();
             }
+            catch (DbException exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+
+        public IEnumerable<T> ExecuteReturnStoredProcedure<T>(string procedurename, DbParameter[] parameters)
+        {
+            Type type = typeof(T);
+            dbCommand.CommandText = procedurename;
+            dbCommand.CommandType = CommandType.StoredProcedure;
+            dbCommand.Connection = dbConnection;
+            adapter.SelectCommand = dbCommand;
+            dbCommand.Parameters.Clear();
+            if (parameters != null)
+            {
+                foreach (DbParameter parameter in parameters)
+                {
+                    dbCommand.Parameters.Add(parameter);
+                }
+            }
+            DataSet dbSet = new DataSet();
+
+            try
+            {
+                OpenConnection();
+                adapter.Fill(dbSet, type.Name);
+            }
+            catch (DbException exc)
+            {
+                Console.WriteLine(exc.Message);
+            }
+            finally
+            {
+                CloseConnection();
+            }
+
+            return Converter.ConvertDatasetToModel<T>(dbSet);
+        }
+
+        public IEnumerable<Tuple<int, string>> ExecuteNonObjectStoredProcedure(string procedurename, DbParameter[] parameters)
+        {
+            List<Tuple<int, string>> items = new List<Tuple<int, string>>();
+            dbCommand.CommandText = procedurename;
+            dbCommand.CommandType = CommandType.StoredProcedure;
+            adapter.SelectCommand = dbCommand;
+            dbCommand.Connection = dbConnection;
+            dbCommand.Parameters.Clear();
+            if (parameters != null)
+            {
+                foreach (DbParameter parameter in parameters)
+                {
+                    dbCommand.Parameters.Add(parameter);
+                }
+            }
+
+            try
+            {
+                OpenConnection();
+                DbDataReader reader = dbCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    items.Add(new Tuple<int, string>(reader.GetInt32(0), reader.GetString(1)));
+                }
+
+            }
+            catch (DbException exc)
+            {
+                Console.WriteLine(exc.Message);
+            }
+            finally
+            {
+                CloseConnection();
+            }
+
+            return items;
         }
     }
+
+    
 }
