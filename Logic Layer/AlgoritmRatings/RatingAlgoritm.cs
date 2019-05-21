@@ -1,4 +1,5 @@
-﻿using Model_Layer.Interface;
+﻿using Logic_Layer.CategoryReverser;
+using Model_Layer.Interface;
 using Model_Layer.Models;
 using System;
 using System.Collections.Generic;
@@ -9,22 +10,27 @@ using System.Threading.Tasks;
 
 namespace Logic_Layer.AlgoritmRatings
 {
-    public class RatingAlgoritm
+    public class RatingAlgoritm : IRatingAlgoritm
     {
-        private readonly double iabToleranceTier1 = 0.85;
-        private readonly double iabToleranceTier2 = 0.75;
-        private readonly double biggestPercentIAB = 0.9;
-        private readonly double padTolerance = 0.7;
-        private readonly int maximumRatings = 80;
-        private readonly CategoryReverser.CategoryManager categoryReverser;
+        private readonly double iabToleranceTier1;
+        private readonly double iabToleranceTier2;
+        private readonly double biggestPercentIAB;
+        private readonly double padTolerance;
+        private readonly int maximumRatings;
+        private readonly ICategoryManager categoryReverser;
         public event EventHandler<DivergentRatings> DivergentRatings;
 
-        public RatingAlgoritm(CategoryReverser.CategoryManager _categroyReverser)
+        public RatingAlgoritm(ICategoryManager _categroyReverser, IRatingSettings _settings)
         {
             categoryReverser = _categroyReverser;
+            iabToleranceTier1 = _settings.IabToleranceTier1;
+            iabToleranceTier2 = _settings.IabToleranceTier1;
+            biggestPercentIAB = _settings.BiggestPercentIAB;
+            padTolerance = _settings.PadTolerance;
+            maximumRatings = _settings.MaximumRatings;
         }
 
-        public IList<IObjectPair<int, int>> CatagoryInList(IList<IObjectPair<int, int>> _categoryList, int _categoryID)
+        private IList<IObjectPair<int, int>> CatagoryInList(IList<IObjectPair<int, int>> _categoryList, int _categoryID)
         {
             IList<IObjectPair<int, int>> categoryList = new List<IObjectPair<int, int>>();
             foreach (IObjectPair<int, int> pair in _categoryList)

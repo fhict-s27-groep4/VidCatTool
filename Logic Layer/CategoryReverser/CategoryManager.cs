@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Logic_Layer.CategoryReverser
 {
-    public class CategoryManager
+    public class CategoryManager : ICategoryManager
     {
         IEnumerable<ICategory> categories;
         public CategoryManager(IEnumerable<ICategory> _categories)

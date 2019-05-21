@@ -1,6 +1,8 @@
 ﻿using Data_Layer;
 using Data_Layer.Interface;
 using Data_Layer.Repository;
+using Logic_Layer.AlgoritmRatings;
+using Logic_Layer.CategoryReverser;
 using Logic_Layer.Handlers;
 using Logic_Layer.Interfaces;
 using Microsoft.Extensions.Configuration;
@@ -30,6 +32,10 @@ namespace Service_Layer.ServiceCollector
             services.AddTransient<VideoAssignHandler>();
             services.AddTransient<CategoryHandler>();
             services.AddTransient<VideoHandler>();
+
+            services.AddSingleton<IRatingSettings, RatingSettings>();
+            services.AddTransient<IRatingAlgoritm, RatingAlgoritm>();
+            services.AddTransient<ICategoryManager, CategoryManager>();
 
             return services;
         }
