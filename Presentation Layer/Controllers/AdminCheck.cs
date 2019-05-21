@@ -32,6 +32,14 @@ namespace VidCat_Tool.Controllers
                                 { "Action", "Dashboard" }
                                 });
             }
+            else if(string.IsNullOrEmpty(sessionHandler.Session.GetUsernameKey()))
+            {
+                filterContext.Result = new RedirectToRouteResult(
+                    new RouteValueDictionary {
+                                { "Controller", "Account" },
+                                { "Action", "Login" }
+                                });
+            }
             else
             {
                 return;
