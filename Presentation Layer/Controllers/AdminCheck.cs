@@ -24,7 +24,15 @@ namespace VidCat_Tool.Controllers
         // - Attribute checken
         public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
-            if (sessionHandler.IsUserAdmin() == false)
+            if (string.IsNullOrEmpty(sessionHandler.Session.GetUsernameKey()))
+            {
+                filterContext.Result = new RedirectToRouteResult(
+                    new RouteValueDictionary {
+                                { "Controller", "Account" },
+                                { "Action", "Login" }
+                                });
+            }
+            else if (sessionHandler.IsUserAdmin() == false)
             {
                 filterContext.Result = new RedirectToRouteResult(
                     new RouteValueDictionary {

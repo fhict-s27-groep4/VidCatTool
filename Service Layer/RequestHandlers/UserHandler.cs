@@ -94,8 +94,9 @@ namespace Service_Layer.RequestHandlers
         public void ResetPassWord(string _userName)
         {
             PasswordHasher hasher = new PasswordHasher();
+            PasswordGenerator gen = new PasswordGenerator();
             ILoginUser loggedInUser = userRepo.GetUserByName(_userName) as ILoginUser;
-            string generatedPassword = PasswordGenerator.GeneratePassword(true, true, true, true, false, 12);
+            string generatedPassword = gen.GeneratePassword(true, true, true, true, false, 12);
             userRepo.UpdatePassword(loggedInUser.UserID, hasher.HashWithSalt(generatedPassword), hasher.Key);
             EMailSender eMailer = new EMailSender();
             IMessageSettableMail mail = new MessageMail(new System.Net.Mail.MailMessage());

@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Logic_Layer
 {
-    public static class PasswordGenerator
+    public class PasswordGenerator
     {
-        public static string GeneratePassword(bool includelower, bool includeupper, bool includenumeric, bool includespecial, bool includespaces, int length)
+        public string GeneratePassword(bool includelower, bool includeupper, bool includenumeric, bool includespecial, bool includespaces, int length)
         {
             const string LOWERCASE_CHARACTERS = "abcdefghijklmnopqrstuvwxyz";
             const string UPPERCASE_CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
