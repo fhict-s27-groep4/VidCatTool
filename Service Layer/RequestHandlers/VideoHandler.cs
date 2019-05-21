@@ -19,17 +19,16 @@ namespace Service_Layer.RequestHandlers
         private readonly IVideoRepository videoRepo;
         private readonly IRatingRepository ratingRepo;
         private readonly IRatingAlgoritm ratingAlgoritm;
-        private readonly WriterJson writer;
+        private readonly IWriterJson writer;
         private readonly IReaderJson jsonReader;
 
-        public VideoHandler(IVideoRepository videoRepo, IRatingRepository _ratingRepo, IRatingAlgoritm ratingAlgoritm, IReaderJson readerJson)
+        public VideoHandler(IVideoRepository videoRepo, IRatingRepository _ratingRepo, IRatingAlgoritm ratingAlgoritm, IReaderJson readerJson, IWriterJson writerJson)
         {
             this.videoRepo = videoRepo ?? throw new NullReferenceException();
             this.ratingRepo = _ratingRepo ?? throw new NullReferenceException();
             this.ratingAlgoritm = ratingAlgoritm ?? throw new NullReferenceException();
             this.jsonReader = readerJson ?? throw new NullReferenceException();
-            throw new NotImplementedException();
-            //writer = new WriterJson();
+            writer = writerJson ?? throw new NullReferenceException();
         }
 
         public IEnumerable<VideoManagementViewModel> GetVideoManagementViewModel()

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Logic_Layer.JsonWriter
 {
-    public class WriterJson
+    public class WriterJson : IWriterJson
     {
         ICategoryManager categroyReverser;
         public WriterJson(ICategoryManager _categroyReverser)
