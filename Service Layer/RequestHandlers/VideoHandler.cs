@@ -49,29 +49,39 @@ namespace Service_Layer.RequestHandlers
                 model.Thumbnail = titleImage.Object2;
                 IEnumerable<IDuncan> videoRatings = ratings.Where(x => x.VideoIdentity == video.UrlIdentity);
                 model.WatchCount = videoRatings.Count();
-                model.PleaureAverageAndDeviation = new ObjectPair<double, double>() { Object1 = videoRatings.Average(x => x.PleasureIndex), Object2 = calculator.Deviation(videoRatings.Select(x => x.PleasureIndex)) };
-                model.ArrouselAverageAndDeviation = new ObjectPair<double, double>() { Object1 = videoRatings.Average(x => x.ArrousalIndex), Object2 = calculator.Deviation(videoRatings.Select(x => x.ArrousalIndex)) };
-                model.DominanceAverageAndDeviation = new ObjectPair<double, double>() { Object1 = videoRatings.Average(x => x.DominanceIndex), Object2 = calculator.Deviation(videoRatings.Select(x => x.DominanceIndex)) };
-                IList<IObjectPair<string, int>> iabCategoriesNamesAndAverage = new List<IObjectPair<string, int>>();
-                IList<IObjectPair<int, int>> catCount = new List<IObjectPair<int, int>>();
-                foreach(int category in videoRatings.Select(x => x.CategoryID))
+                if (model.WatchCount > 0)
                 {
-                    foreach (IObjectPair<int, int> catAndCount in catCount)
+                    model.PleaureAverageAndDeviation = new ObjectPair<double, double>() { Object1 = videoRatings.Average(x => x.PleasureIndex), Object2 = calculator.Deviation(videoRatings.Select(x => x.PleasureIndex)) };
+                    model.ArrouselAverageAndDeviation = new ObjectPair<double, double>() { Object1 = videoRatings.Average(x => x.ArrousalIndex), Object2 = calculator.Deviation(videoRatings.Select(x => x.ArrousalIndex)) };
+                    model.DominanceAverageAndDeviation = new ObjectPair<double, double>() { Object1 = videoRatings.Average(x => x.DominanceIndex), Object2 = calculator.Deviation(videoRatings.Select(x => x.DominanceIndex)) };
+                    IList<IObjectPair<string, int>> iabCategoriesNamesAndAverage = new List<IObjectPair<string, int>>();
+                    IList<IObjectPair<int, int>> catCount = new List<IObjectPair<int, int>>();
+                    foreach (int category in videoRatings.Select(x => x.CategoryID))
                     {
-                        if (catAndCount.Object1 == category)
+                        foreach (IObjectPair<int, int> catAndCount in catCount)
                         {
-                            catAndCount.Object2 += 1;
+                            if (catAndCount.Object1 == category)
+                            {
+                                catAndCount.Object2 += 1;
+                                break;
+                            }
+
+                        }
+                        catCount.Add(new ObjectPair<int, int>() { Object1 = category, Object2 = 1 });
+                    }
+                    for (int i = 0; i < 4; i++)
+                    {
+                        IEnumerable<IObjectPair<int, int>> currTierCounts = catCount.Where(x => categoryManager.IsTier(i, x.Object1));
+                        if (currTierCounts.Count() > 0)
+                        {
+                            IObjectPair<int, int> biggestCat = currTierCounts.Where(x => x.Object2 == currTierCounts.Max(y => y.Object2)).First();
+                            iabCategoriesNamesAndAverage.Add(new ObjectPair<string, int>() { Object1 = categoryManager.GetCategory(biggestCat.Object1).Name, Object2 = (int)Math.Round(biggestCat.Object2 / (double)currTierCounts.Sum(x => x.Object2), MidpointRounding.AwayFromZero) });
+                        }
+                        else
+                        {
                             break;
                         }
-
                     }
-                    catCount.Add(new ObjectPair<int, int>() { Object1 = category, Object2 = 1 });
-                }
-                for(int i = 0; i < 4; i++)
-                {
-                    IEnumerable<IObjectPair<int, int>> currTierCounts = catCount.Where(x => categoryManager.IsTier(i, x.Object1));
-                    IObjectPair<int, int> biggestCat = currTierCounts.Where(x => x.Object2 == currTierCounts.Max(y => y.Object2)).First();
-                    iabCategoriesNamesAndAverage.Add(new ObjectPair<string, int>() { Object1 = categoryManager.GetCategory(biggestCat.Object1).Name, Object2 = (int)Math.Round(biggestCat.Object2 / (double)currTierCounts.Sum(x => x.Object2), MidpointRounding.AwayFromZero)});
                 }
                 videos.Add(model);
             }
