@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Xunit;
 using System.Text;
-using Logic_Layer;
+using Logic_Layer.PassWordGenerator;
 
 namespace UnitTests.LogicLayer.RandomPassword
 {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Logic_Layer.Handlers;
+using Logic_Layer.Hasher;
 using Model_Layer.Interface;
 using Model_Layer.Models;
 using Xunit;
@@ -13,7 +14,7 @@ namespace UnitTests.LogicLayer.AccountHand
         private readonly AccountManager account;
         public AccountHandlerTests()
         {
-            account = new AccountManager();
+            account = new AccountManager(new PasswordHasher());
         }
         [Fact]
         public void ValidateUserTest()

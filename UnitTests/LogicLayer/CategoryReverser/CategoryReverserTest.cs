@@ -10,6 +10,10 @@ using Xunit;
 
 namespace UnitTests.LogicLayer.CategoryReverser
 {
+    public class Makelist : IAllCategories
+    {
+        public IEnumerable<ICategory> Categories { get; set; }
+    }
     public class CategoryReverserTest
     {
         private readonly CategoryManager category;
@@ -100,8 +104,8 @@ namespace UnitTests.LogicLayer.CategoryReverser
             categories.Add(category11);
 
             #endregion
-
-            category = new CategoryManager(categories);
+            
+            category = new CategoryManager(new Makelist() { Categories = categories });
         }
 
         [Fact]
