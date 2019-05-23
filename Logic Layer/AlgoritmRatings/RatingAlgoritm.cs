@@ -29,7 +29,6 @@ namespace Logic_Layer.AlgoritmRatings
             padTolerance = _settings.PadTolerance;
             maximumRatings = _settings.MaximumRatings;
         }
-
         private IList<IObjectPair<int, int>> CatagoryInList(IList<IObjectPair<int, int>> _categoryList, int _categoryID)
         {
             IList<IObjectPair<int, int>> categoryList = new List<IObjectPair<int, int>>();
@@ -49,7 +48,6 @@ namespace Logic_Layer.AlgoritmRatings
             categoryList.Add(new ObjectPair<int, int>() { Object1 = _categoryID, Object2 = 1 });
             return categoryList;
         }
-
         private bool CatagoryBigEnough(IList<IObjectPair<int, int>> _countCategorie, double _passAmount)
         {
             foreach (IObjectPair<int, int> pair in _countCategorie)
@@ -61,7 +59,6 @@ namespace Logic_Layer.AlgoritmRatings
             }
             return false;
         }
-
         private IEnumerable<int> BiggestCategories(IList<IObjectPair<int, int>> _countCategories, int _count)
         {
             IList<int> biggestCategories = new List<int>();
@@ -78,7 +75,6 @@ namespace Logic_Layer.AlgoritmRatings
             }
             return biggestCategories;
         }
-
         protected virtual void OnDivergentRatings(string _vidID, IEnumerable<IRating> _ratings)
         {
             if (DivergentRatings == null)
@@ -87,7 +83,6 @@ namespace Logic_Layer.AlgoritmRatings
             }
             DivergentRatings(this, new DivergentRatings(_vidID, _ratings));
         }
-
         public void FindDivergents(IEnumerable<IRating> _ratings)
         {
             IList<IObjectPair<int, int>> countCatagorie1 = new List<IObjectPair<int, int>>();

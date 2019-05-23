@@ -1,5 +1,6 @@
 ﻿using Logic_Layer.CategoryReverser;
 using Logic_Layer.JsonWriter;
+using Logic_Layer.Maths;
 using Model_Layer.Interface;
 using Model_Layer.Models;
 using System;
@@ -10,6 +11,10 @@ using Xunit;
 
 namespace UnitTests.LogicLayer.JsonWriter
 {
+    public class Makelist : IAllCategories
+    {
+        public IEnumerable<ICategory> Categories { get; set; }
+    }
     public class JsonWriterTest
     {
         private readonly WriterJson writer;
@@ -99,8 +104,8 @@ namespace UnitTests.LogicLayer.JsonWriter
             categories.Add(category11);
 
             #endregion
-            throw new NotImplementedException();
-           // writer = new WriterJson(new CategoryManager(categories));
+            writer = new WriterJson (new CategoryManager(new Makelist() { Categories = categories }), new Calculator());
+            // writer = new WriterJson(new CategoryManager(categories));
         }
         [Fact]
         public async void WriteJsonFile()
