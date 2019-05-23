@@ -6,5 +6,6 @@ namespace Logic_Layer.JsonReader
     {
         IObjectPair<string, string> GetVideoTitleAndImage(string _mediaID);
         string GetVideoUrl(string _mediaID);
+        bool CheckFileFormatting(string filePath);
     }
 }

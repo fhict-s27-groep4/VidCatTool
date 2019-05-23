@@ -96,5 +96,18 @@ namespace Service_Layer.RequestHandlers
             File.Delete(file);
             return bytes;
         }
+
+        public bool ExpandJson(string filePath)
+        {
+            if (!jsonReader.CheckFileFormatting(filePath))
+            {
+                return false;
+            }
+            //new jsonfile
+            //add old to new replace old with new 
+            //send new to db
+            //delete file
+            return true;
+        }
     }
 }
