@@ -157,12 +157,15 @@
                     <div class="userSearchItem" style="border: 1px solid #e91e63; margin-top: 1%; margin-bottom: 1%; padding: 2%; position:relative; overflow: hidden;">
                         <div class="row" style="height: 25%; max-height: 50px;">
                             <div class="col-md-11">
+
+                                @* First- and Last name, inclusing the Username *@
                                 <div style="white-space: nowrap; height: 28px;">
                                     <div style="float: left; height: inherit; line-height:28px;"><h3 style="margin: 0; display: inline-block; height: inherit;" id="fullName">@user.User.FirstName @user.User.LastName</h3></div>
                                     <div style="float: left; height: inherit; line-height:28px; margin-left: 2.5%;"><p style="margin: 0; display: inline-block; height: inherit; color: #707070;" id="userName">@user.User.UserName</p></div>
                                 </div>
                                 <div>
-                                    <div class="row" style="margin-top:2%;">
+                                    @* Stats *@
+                                    <div class="row" style="margin-top: 2%;">
                                         <div class="col-sm-1" style="width:auto;"><div class="userStatView"><i class="fas fa-eye"></i> @user.RatingCount</div></div>
                                         <div class="col-sm-1" style="width:auto;"><div class="userStatView">@user.ProcentDivergent</div></div>
 
@@ -175,19 +178,20 @@
                         </div>
 
                         <div class="dropdown dropdownVidCat" style="position:absolute; top: 0; right: 0;">
+                            
                             <button class="btn btn-secondary dropdown-toggle prim-btn actionMenu" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-caret-down"></i>
                             </button>
+                            
                             <div class="dropdown-menu dropdown-menu-center" aria-labelledby="dropdownMenuButton">
-                                @if (user.User.IsDisabled == true)
-                                {
+                                @if (user.User.IsDisabled == true) {
                                     <a class="dropdown-item" asp-action="EnableAccount" asp-controller="Admin" asp-route-userid="@user.User.UserID">Enable</a>
                                 }
-                                else
-                                {
+                                else {
                                     <a class="dropdown-item" asp-action="DisableAccount" asp-controller="Admin" asp-route-userid="@user.User.UserID">Disable</a>
                                     @* <a class="dropdown-item open-ValidateAction" href="#ValidateAction" data-id="@user.User.UserID" data-name="@user.User.FirstName">Disable</a> *@
                                 }
+
                                 <a class="dropdown-item" asp-action="" asp-controller="Admin">Reset Password</a>
                             </div>
                         </div>
