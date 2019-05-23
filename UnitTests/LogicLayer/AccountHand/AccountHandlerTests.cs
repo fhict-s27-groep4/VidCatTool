@@ -137,36 +137,6 @@ namespace UnitTests.LogicLayer.AccountHand
 
             //assert
             Assert.Equal("d.schoenmakers2", fulluser2.UserName);
-        }
-        [Fact]
-        public void ValidateEnabledAccountTest()
-        {
-            //arrange
-            User user = new User();
-            user.UserID = "5";
-            user.PassWord = "F6-BE-64-90-A0-58-83-D4-1E-D5-8A-1D-72-94-CF-9A-10-94-4A-41-D9-9A-CE-4B-A4-C3-84-F0-C0-77-DF-57";
-            user.PassWordSalt = "vvFZoAwtYHaHVmfNnS9vXnvlsIJZKFnPcTNb4Es9XqVjftiMmoWHXl5/D9t2RLZReSlhUwTTFwDK01s67mOukw==";
-            user.IsAdmin = false;
-            user.IsDisabled = false;
-
-            //assert
-            throw new NotImplementedException();
-            //Assert.False(account.ValidateAccountDisabled(user));
-        }
-        [Fact]
-        public void ValidateDisabledAccountTest()
-        {
-            //arrange
-            User user = new User();
-            user.UserID = "5";
-            user.PassWord = "F6-BE-64-90-A0-58-83-D4-1E-D5-8A-1D-72-94-CF-9A-10-94-4A-41-D9-9A-CE-4B-A4-C3-84-F0-C0-77-DF-57";
-            user.PassWordSalt = "vvFZoAwtYHaHVmfNnS9vXnvlsIJZKFnPcTNb4Es9XqVjftiMmoWHXl5/D9t2RLZReSlhUwTTFwDK01s67mOukw==";
-            user.IsAdmin = false;
-            user.IsDisabled = true;
-
-            //assert
-            throw new NotImplementedException();
-            //Assert.True(account.ValidateAccountDisabled(user));
-        }
+        }        
     }
 }

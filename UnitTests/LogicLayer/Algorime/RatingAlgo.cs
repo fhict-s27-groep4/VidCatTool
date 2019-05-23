@@ -5,9 +5,14 @@ using System.Text;
 using Logic_Layer.AlgoritmRatings;
 using Model_Layer.Models;
 using Model_Layer.Interface;
+using Logic_Layer.CategoryReverser;
 
 namespace UnitTests.LogicLayer.Algorime
 {
+    public class Makelist : IAllCategories
+    {
+        public IEnumerable<ICategory> Categories { get; set; }
+    }
     public class RatingAlgo
     {
         private readonly RatingAlgoritm ratalgo;
@@ -97,9 +102,8 @@ namespace UnitTests.LogicLayer.Algorime
 
             #endregion
 
-            //ratalgo = new RatingAlgoritm(new Logic_Layer.CategoryReverser.CategoryManager(categories));
+            ratalgo = new RatingAlgoritm(new CategoryManager(new Makelist() { Categories = categories }), new RatingSettings() { BiggestPercentIAB = 0.9, PadTolerance = 0.7, IabToleranceTier1 = 0.85, IabToleranceTier2 = 0.75 });
         }
-
         [Fact]
         public void CheckDivergentRating()
         {
@@ -144,12 +148,10 @@ namespace UnitTests.LogicLayer.Algorime
             //assert
             Assert.True(rating10.IsPADDivergent);
         }
-
         private void Ratalgo_DivergentRatings(object sender, DivergentRatings e)
         {
             
         }
-
         [Fact]
         public void CheckAllOke()
         {
@@ -221,7 +223,6 @@ namespace UnitTests.LogicLayer.Algorime
             //assert
             Assert.Throws<System.NotImplementedException>(act);
         }
-
         [Fact]
         public void NotEnoughRatings()
         {
@@ -249,8 +250,7 @@ namespace UnitTests.LogicLayer.Algorime
             //assert
             Assert.False(rating1.IsPADDivergent);
 
-        }
-       
+        }       
         [Fact]
         public void CheckEventWorkingCorrect()
         {
@@ -271,7 +271,7 @@ namespace UnitTests.LogicLayer.Algorime
             Rating rating10 = new Rating { CategoryID = 5, DominanceIndex = 4, PleasureIndex = 4, ArrousalIndex = 4 };
             Rating rating11 = new Rating { CategoryID = 5, DominanceIndex = 1, PleasureIndex = 1, ArrousalIndex = 1 };
             Rating rating12 = new Rating { CategoryID = 5, DominanceIndex = 1, PleasureIndex = 1, ArrousalIndex = 1 };
-            Rating rating13 = new Rating { CategoryID = 3, DominanceIndex = 1, PleasureIndex = 1, ArrousalIndex = 1 };
+            Rating rating13 = new Rating { CategoryID = 5, DominanceIndex = 1, PleasureIndex = 1, ArrousalIndex = 1 };
 
             #endregion
 
@@ -301,7 +301,6 @@ namespace UnitTests.LogicLayer.Algorime
             //assert
             Assert.Equal(3, CheckCorrect.Count);
         }
-
         private void Ratalgo_DivergentRatings2(object sender, DivergentRatings e)
         {
             CheckCorrect = new List<IRating>();
