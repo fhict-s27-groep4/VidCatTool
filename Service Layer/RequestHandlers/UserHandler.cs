@@ -56,19 +56,28 @@ namespace Service_Layer.RequestHandlers
         public IReadOnlyCollection<UserManagementViewModel> GetUserManagementViewModel()
         {
             List<UserManagementViewModel> usermodels = new List<UserManagementViewModel>();
-            IEnumerable<IObjectPair<int, string>> ratingcount = userRepo.GetRatingCountFromAllUsers();
-            IEnumerable<IObjectPair<int, string>> divergentIABRatings = userRepo.GetDivergentIABRatingsFromAllUser();
-            IEnumerable<IObjectPair<int, string>> divergentPADRatings = userRepo.GetDivergentPADRatingsFromAllUser();
-            IObjectPair<int, string> defaultPair = new ObjectPair<int, string>() { Object1 = -1 };
+            IEnumerable<IObjectPair<long, string>> ratingcount = userRepo.GetRatingCountFromAllUsers();
+            IEnumerable<IObjectPair<long, string>> divergentIABRatings = userRepo.GetDivergentIABRatingsFromAllUser();
+            IEnumerable<IObjectPair<long, string>> divergentPADRatings = userRepo.GetDivergentPADRatingsFromAllUser();
+            IObjectPair<long, string> defaultPair = new ObjectPair<long, string>() { Object1 = 0 };
             foreach (ISearchUser user in userRepo.GetAll())
             {
-                usermodels.Add(new UserManagementViewModel
+                UserManagementViewModel userVM = new UserManagementViewModel();
+                userVM.User = user;
+                userVM.RatingCount = ratingcount.Where((t) => t.Object2 == user.UserID).Select(x => x.Object1).DefaultIfEmpty(0).FirstOrDefault();
+                try
                 {
-                    User = user,
-                    RatingCount = ratingcount.Where((t) => t.Object2 == user.UserID).Select(x => x.Object1).DefaultIfEmpty(0).FirstOrDefault(),
-                    ProcentIABDivergent = divergentIABRatings.Where(x => x.Object2 == user.UserID).DefaultIfEmpty(defaultPair).First().Object1,
-                    ProcentPADDivergent = divergentPADRatings.Where(x => x.Object2 == user.UserID).DefaultIfEmpty(defaultPair).First().Object1
-            });
+                    userVM.ProcentIABDivergent = Convert.ToInt32(divergentIABRatings.Where(x => x.Object2 == user.UserID).DefaultIfEmpty(defaultPair).First().Object1 / (double)userVM.RatingCount * (double)100);
+                    userVM.ProcentPADDivergent = Convert.ToInt32(divergentPADRatings.Where(x => x.Object2 == user.UserID).DefaultIfEmpty(defaultPair).First().Object1 / (double)userVM.RatingCount * (double)100);
+                }
+                catch
+                {
+                    userVM.ProcentIABDivergent = -1;
+                    userVM.ProcentPADDivergent = -1;
+                }
+                if (userVM.ProcentIABDivergent == 0) userVM.ProcentIABDivergent = 100;
+                if (userVM.ProcentPADDivergent == 0) userVM.ProcentPADDivergent = 100;
+                usermodels.Add(userVM);
             }
 
             return usermodels;

@@ -166,7 +166,7 @@ namespace Data_Layer
                 DbDataReader reader = dbCommand.ExecuteReader();
                 while (reader.Read())
                 {
-                    items.Add(new ObjectPair<T1, T2>() { Object1 = (T1)(object)reader.GetString(0), Object2 = (T2)(object)reader.GetString(1) });
+                    items.Add(new ObjectPair<T1, T2>() { Object1 = (T1)reader.GetValue(0), Object2 = (T2)reader.GetValue(1) });
                 }
 
             }
