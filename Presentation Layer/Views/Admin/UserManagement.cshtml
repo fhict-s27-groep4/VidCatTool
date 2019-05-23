@@ -154,10 +154,13 @@
                 <div class="userSearchResults">
                     @foreach (var user in Model)
                     {
-                    <div class="userSearchItem" style="border: 1px solid #e91e63; margin-top: 1%; margin-bottom: 1%; padding: 3%; position:relative;">
+                    <div class="userSearchItem" style="border: 1px solid #e91e63; margin-top: 1%; margin-bottom: 1%; padding: 2%; position:relative; overflow: hidden;">
                         <div class="row" style="height: 25%; max-height: 50px;">
                             <div class="col-md-11">
-                                <h3 style="margin: 0%;" id="fullName">@user.User.FirstName @user.User.LastName (@user.User.UserName)</h3>
+                                <div style="white-space: nowrap; height: 28px;">
+                                    <div style="float: left; height: inherit; line-height:28px;"><h3 style="margin: 0; display: inline-block; height: inherit;" id="fullName">@user.User.FirstName @user.User.LastName</h3></div>
+                                    <div style="float: left; height: inherit; line-height:28px; margin-left: 2.5%;"><p style="margin: 0; display: inline-block; height: inherit; color: #707070;" id="userName">@user.User.UserName</p></div>
+                                </div>
                                 <div>
                                     <div class="row" style="margin-top:2%;">
                                         <div class="col-sm-1" style="width:auto;"><div class="userStatView"><i class="fas fa-eye"></i> @user.RatingCount</div></div>
