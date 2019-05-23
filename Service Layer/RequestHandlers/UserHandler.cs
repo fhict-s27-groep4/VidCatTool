@@ -55,28 +55,28 @@ namespace Service_Layer.RequestHandlers
         public IReadOnlyCollection<UserManagementViewModel> GetUserManagementViewModel()
         {
             List<UserManagementViewModel> usermodels = new List<UserManagementViewModel>();
-            var ratingcount = userRepo.GetRatingCountFromAllUsers();
-            var divergentRatings = userRepo.GetDivergentRatingsFromAllUser();
-            foreach (ISearchUser user in userRepo.GetAll())
-            {
-                string divergent = "More ratings needed";
-                if(ratingcount.Where((t) => t.Item2 == user.UserID).Select(x => x.Item1).FirstOrDefault() < 6)
-                {
-                    divergent = "More ratings needed";
-                }
-                else if(divergentRatings.Any(x => x.Item2.Contains(user.UserID)))
-                {
-                    divergent = Math.Round(divergentRatings.Where((t) => t.Item2 == user.UserID).Select(x => x.Item1).FirstOrDefault() / Convert.ToDouble(ratingcount.Where((t) => t.Item2 == user.UserID).Select(x => x.Item1).FirstOrDefault()) * 100, 2, MidpointRounding.AwayFromZero).ToString();
-                    divergent += "%";
-                }
+            //var ratingcount = userRepo.GetRatingCountFromAllUsers();
+            //var divergentRatings = userRepo.GetDivergentRatingsFromAllUser();
+            //foreach (ISearchUser user in userRepo.GetAll())
+            //{
+            //    string divergent = "More ratings needed";
+            //    if(ratingcount.Where((t) => t.Item2 == user.UserID).Select(x => x.Item1).FirstOrDefault() < 6)
+            //    {
+            //        divergent = "More ratings needed";
+            //    }
+            //    else if(divergentRatings.Any(x => x.Item2.Contains(user.UserID)))
+            //    {
+            //        divergent = Math.Round(divergentRatings.Where((t) => t.Item2 == user.UserID).Select(x => x.Item1).FirstOrDefault() / Convert.ToDouble(ratingcount.Where((t) => t.Item2 == user.UserID).Select(x => x.Item1).FirstOrDefault()) * 100, 2, MidpointRounding.AwayFromZero).ToString();
+            //        divergent += "%";
+            //    }
 
-                usermodels.Add(new UserManagementViewModel
-                {
-                    User = user,
-                    RatingCount = ratingcount.Where((t) => t.Item2 == user.UserID).Select(x => x.Item1).DefaultIfEmpty(0).FirstOrDefault(),
-                    ProcentDivergent = divergent
-                });
-            }
+            //    usermodels.Add(new UserManagementViewModel
+            //    {
+            //        User = user,
+            //        RatingCount = ratingcount.Where((t) => t.Item2 == user.UserID).Select(x => x.Item1).DefaultIfEmpty(0).FirstOrDefault(),
+            //        ProcentDivergent = divergent
+            //    });
+            //}
 
             return usermodels;
         }
