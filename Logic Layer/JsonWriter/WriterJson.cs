@@ -1,4 +1,5 @@
 ﻿using Logic_Layer.CategoryReverser;
+using Logic_Layer.Maths;
 using Model_Layer.Interface;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -14,27 +15,16 @@ namespace Logic_Layer.JsonWriter
     public class WriterJson : IWriterJson
     {
         ICategoryManager categroyReverser;
-        public WriterJson(ICategoryManager _categroyReverser)
+        ICalculator calculator;
+        public WriterJson(ICategoryManager _categroyReverser, ICalculator calculator)
         {
             categroyReverser = _categroyReverser;
-        }
-        private Task<double> Deviation(IEnumerable<int> _scores)
-        {
-            return Task.Run(() =>
-            {
-                double average = _scores.Average();
-                IList<double> squareRoots = new List<double>();
-                foreach (int score in _scores)
-                {
-                    squareRoots.Add(Math.Pow((average + score) % score, 2));
-                }
-                return Math.Round(Math.Pow(squareRoots.Average(), 0.5), 1, MidpointRounding.AwayFromZero);
-            });
+            this.calculator = calculator;
         }
         private async Task<JObject> PADScore(IEnumerable<int> _padScores)
         {
             JObject padScore = new JObject();
-            Task<double> deviation = Task.Run(() => Deviation(_padScores));
+            Task<double> deviation = Task.Run(() => calculator.Deviation(_padScores));
             padScore.Add("average", Math.Round(_padScores.Average(), 1, MidpointRounding.AwayFromZero));
             await deviation;
             padScore.Add("deviation", deviation.Result);

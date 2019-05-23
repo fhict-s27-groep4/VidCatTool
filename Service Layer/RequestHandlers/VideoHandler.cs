@@ -3,7 +3,9 @@ using Logic_Layer.AlgoritmRatings;
 using Logic_Layer.CategoryReverser;
 using Logic_Layer.JsonReader;
 using Logic_Layer.JsonWriter;
+using Logic_Layer.Maths;
 using Model_Layer.Interface;
+using Model_Layer.Models;
 using Service_Layer.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -18,16 +20,16 @@ namespace Service_Layer.RequestHandlers
     {
         private readonly IVideoRepository videoRepo;
         private readonly IRatingRepository ratingRepo;
-        private readonly IRatingAlgoritm ratingAlgoritm;
         private readonly IWriterJson writer;
         private readonly IReaderJson jsonReader;
+        private readonly ICalculator calculator;
 
-        public VideoHandler(IVideoRepository videoRepo, IRatingRepository _ratingRepo, IRatingAlgoritm ratingAlgoritm, IReaderJson readerJson, IWriterJson writerJson)
+        public VideoHandler(IVideoRepository videoRepo, IRatingRepository _ratingRepo, IReaderJson readerJson, IWriterJson writerJson, ICalculator calculator)
         {
             this.videoRepo = videoRepo ?? throw new NullReferenceException();
             this.ratingRepo = _ratingRepo ?? throw new NullReferenceException();
-            this.ratingAlgoritm = ratingAlgoritm ?? throw new NullReferenceException();
             this.jsonReader = readerJson ?? throw new NullReferenceException();
+            this.calculator = calculator ?? throw new NullReferenceException();
             writer = writerJson ?? throw new NullReferenceException();
         }
 
@@ -43,21 +45,11 @@ namespace Service_Layer.RequestHandlers
                 IObjectPair<string, string> titleImage = jsonReader.GetVideoTitleAndImage(video.UrlIdentity);
                 model.Title = titleImage.Object1;
                 model.Thumbnail = titleImage.Object2;
-                model.WatchCount = ratings.Where(x => x.VideoIdentity == video.UrlIdentity).Count();
-                IList<IObjectPair<int, int>> catCount = new List<IObjectPair<int, int>>();
-                foreach (IRating rating in ratings.Where(x => x.VideoIdentity == video.UrlIdentity))
-                {
-                    throw new NotImplementedException();
-                    //catCount = ratingAlgoritm.CatagoryInList(catCount, categoryManager.GetParentTiers(rating.CategoryID).Object2);
-                }
-                if (catCount.Count() > 0)
-                {
-                    model.BiggestTier2 = (catCount.Max(x => x.Object2) / (double)model.WatchCount) * (double)100;
-                }
-                else
-                {
-                    model.BiggestTier2 = 0;
-                }
+                IEnumerable<IRating> videoRatings = ratings.Where(x => x.VideoIdentity == video.UrlIdentity);
+                model.WatchCount = videoRatings.Count();
+                model.PleaureAverageAndDeviation = new ObjectPair<double, double>() { Object1 = videoRatings.Average(x => x.PleasureIndex), Object2 = calculator.Deviation(videoRatings.Select(x => x.PleasureIndex)) };
+                model.ArrouselAverageAndDeviation = new ObjectPair<double, double>() { Object1 = videoRatings.Average(x => x.ArrousalIndex), Object2 = calculator.Deviation(videoRatings.Select(x => x.ArrousalIndex)) };
+                model.DominanceAverageAndDeviation = new ObjectPair<double, double>() { Object1 = videoRatings.Average(x => x.DominanceIndex), Object2 = calculator.Deviation(videoRatings.Select(x => x.DominanceIndex)) };
                 videos.Add(model);
             }
             return videos;

@@ -7,6 +7,7 @@ using Logic_Layer.Handlers;
 using Logic_Layer.Interfaces;
 using Logic_Layer.JsonReader;
 using Logic_Layer.JsonWriter;
+using Logic_Layer.Maths;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Service_Layer.RequestHandlers;
@@ -41,6 +42,7 @@ namespace Service_Layer.ServiceCollector
             services.AddTransient<IAllCategories, AllCategories>();
             services.AddTransient<IReaderJson, ReaderJson>();
             services.AddTransient<IWriterJson, WriterJson>();
+            services.AddTransient<ICalculator, Calculator>();
 
             return services;
         }

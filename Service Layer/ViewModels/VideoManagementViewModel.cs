@@ -12,9 +12,9 @@ namespace Service_Layer.ViewModels
         public string Title { get; set; }
         public string Thumbnail { get; set; }
         public int WatchCount { get; set; }
-        public IObjectPair<double, int> PleaureAverageAndDeviation { get; set; }
-        public IObjectPair<double, int> ArrouselAverageAndDeviation { get; set; }
-        public IObjectPair<double, int> DominanceAverageAndDeviation { get; set; }
+        public IObjectPair<double, double> PleaureAverageAndDeviation { get; set; }
+        public IObjectPair<double, double> ArrouselAverageAndDeviation { get; set; }
+        public IObjectPair<double, double> DominanceAverageAndDeviation { get; set; }
         public IEnumerable<IObjectPair<string, int>> IABCategoryNameAndPercentage { get; set; }
     }
 }
