@@ -157,3 +157,48 @@ input#Housenumber {
 .actionMenu {
     border-top-right-radius: 0px;
 }
+
+
+/*-------------------------------------------*/
+/*      Tooltip for details at User Data     */
+/*-------------------------------------------*/
+
+.user_private_data {
+    position: relative;
+    display: inline-block;
+}
+
+.user_private_data .user_private_data_text {
+    visibility: hidden;
+    background-color: #ffffff;
+    border: 1px solid #707070;
+    color: #000000;
+    text-align: center;
+    border-radius: 6px;
+    padding: 0 40px 0 32px;
+    position: absolute;
+    overflow: hidden;
+    top: 130%;
+    margin-left: -75px;
+    opacity: 0;
+    transition: opacity 0.2s;
+    z-index: 100;
+}
+
+.user_private_data .user_private_data_text::after {
+    content: " ";
+    position: absolute;
+    bottom: 100%;  /* At the top of the tooltip */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent black transparent;
+}
+
+.user_private_data:hover .user_private_data_text {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+    z-index: 101;
+}

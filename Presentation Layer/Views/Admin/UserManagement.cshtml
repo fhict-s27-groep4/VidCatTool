@@ -118,22 +118,22 @@
 
 
 
-
+                
                 @* All buttons in the menu
-                    <div class="col-sm-10 userSelActionsContainer">
-                        <a class="btn btn-default" asp-controller="Admin" asp-action="BanUser" style="font-size: 14px; margin: 5px 2px 5px -9px;">
-                            <i class="fas fa-times"></i>&nbsp Ban
-                        </a>
-                        <a class="btn btn-default" asp-controller="" asp-action="" style="font-size: 14px; margin: 5px 2px 5px 0px;">
-                            <i class="fas fa-user-check"></i>&nbsp Check Ratings
-                        </a>
-                        <a class="btn btn-default" asp-controller="" asp-action="" style="font-size: 14px; margin: 5px 2px 5px 0px;">
-                            <i class="far fa-comment-dots"></i>&nbsp Send Message
-                        </a>
-                        <a class="btn btn-default" asp-controller="" asp-action="" style="font-size: 14px; margin: 5px -9px 5px 0px;">
-                            <i class="fas fa-exclamation-circle"></i>&nbsp Warn User
-                        </a>
-                    </div>*@
+        <div class="col-sm-10 userSelActionsContainer">
+            <a class="btn btn-default" asp-controller="Admin" asp-action="BanUser" style="font-size: 14px; margin: 5px 2px 5px -9px;">
+                <i class="fas fa-times"></i>&nbsp Ban
+            </a>
+            <a class="btn btn-default" asp-controller="" asp-action="" style="font-size: 14px; margin: 5px 2px 5px 0px;">
+                <i class="fas fa-user-check"></i>&nbsp Check Ratings
+            </a>
+            <a class="btn btn-default" asp-controller="" asp-action="" style="font-size: 14px; margin: 5px 2px 5px 0px;">
+                <i class="far fa-comment-dots"></i>&nbsp Send Message
+            </a>
+            <a class="btn btn-default" asp-controller="" asp-action="" style="font-size: 14px; margin: 5px -9px 5px 0px;">
+                <i class="fas fa-exclamation-circle"></i>&nbsp Warn User
+            </a>
+        </div>*@
 
                 @* The "Add User" Button, which is outside the other box *@
 
@@ -154,79 +154,101 @@
                 <div class="userSearchResults">
                     @foreach (var user in Model)
                     {
-                        <div class="userSearchItem" style="border: 1px solid #e91e63; margin-top: 1%; margin-bottom: 1%; padding: 2%; position:relative; overflow: hidden;">
-                            <div class="row" style="height: 25%; max-height: 50px;">
-                                <div class="col-md-11">
+                    <div class="userSearchItem" style="border: 1px solid #e91e63; margin-top: 1%; margin-bottom: 1%; padding: 1.5%; position:relative; overflow: visible;">
+                        <div class="row" style="height: 25%; max-height: 80px;"> @* letter spacing? *@
+                            <div class="col-md-11">
 
-                                    @* First- and Last name, inclusing the Username *@
-                                    <div style="white-space: nowrap; height: 28px;">
-                                        <div style="float: left; height: inherit; line-height:28px;"><h3 style="margin: 0; display: inline-block; height: inherit;" id="fullName">@user.User.FirstName @user.User.LastName</h3></div>
-                                        <div style="float: left; height: inherit; line-height:28px; margin-left: 2.5%;"><p style="margin: 0; display: inline-block; height: inherit; color: #707070;" id="userName">@user.User.UserName</p></div>
-                                    </div>
+                                @* First- and Last name, inclusing the Username *@
+                                <div style="white-space: nowrap; height: 28px;">
+                                    <div style="float: left; height: inherit; line-height:28px;"><h3 style="margin: 0; display: inline-block; height: inherit;" id="fullName">@user.User.FirstName @user.User.LastName</h3></div>
+                                    <div style="float: left; height: inherit; line-height:28px; margin-left: 2.5%;"><p style="margin: 0; display: inline-block; height: inherit; color: #707070;" id="userName">@user.User.UserName</p></div>
+                                </div>
 
-                                    @* Small piece of extra user details (City, Country, EMail)*@
-                                    @{
-                                        List<string> userData = new List<string>();
-                                        if (user.User.City != null) { userData.Add(user.User.City); }
-                                        if (user.User.Country != null) { userData.Add(user.User.Country); }
-                                        if (user.User.Email != null) { userData.Add(user.User.Email); }
-                                    }
-                                    @if (userData != null)
-                                    {
-                                        <div style="white-space: nowrap; height: 20px; margin-top: 1%;">
-                                            <div style="float: left; height: inherit; line-height: 20px;"><h5 style="margin: 0; display: inline-block; height: inherit;">@string.Join(", ", userData)</h5></div>
-                                        </div>
-                                    }
-
-                                    @* Platform Stats of User *@
-                                    <div style="white-space: nowrap; height: 28px; margin-top: 1%;">
-                                        <div>
-                                            <div style="white-space: nowrap; padding: 0; float: left;">
-                                                <div style="float: left; height: inherit; line-height: 28px; font-size: 16px;">
-                                                    <i class="fas fa-eye" style="color: #e91e63;"></i>&nbsp;@user.RatingCount
+                                @* Small piece of extra user details (City, Country, EMail)*@
+                                @{
+                                    List<string> userData = new List<string>();
+                                    if (user.User.City != null) { userData.Add(user.User.City); }
+                                    if (user.User.Country != null) { userData.Add(user.User.Country); }
+                                    if (user.User.Email != null) { userData.Add("(" + user.User.Email + ")"); }
+                                }
+                                @if (userData != null) {
+                                    <div style="white-space: nowrap; height: 20px;">
+                                        
+                                        @if (user.User.PhoneNumber == null) { <div style="float: left; height: inherit; line-height: 20px;"><h5 style="margin: 0; display: inline-block; height: inherit; font-size: 11px; color: #707070; font-style: italic;">@string.Join(", ", userData)</h5></div> }
+                                        else {
+                                            <div style="float: left; height: inherit; line-height: 20px; font-size: 11px;">
+                                                <h5 style="margin: 0; display: inline-block; height: inherit; color: #707070; font-style: italic;">@string.Join(", ", userData)</h5>
+                                                <div class="user_private_data" style="margin-left: 2%;">
+                                                    <i class="fas fa-info"></i>
+                                                    <div class="user_private_data_text">
+                                                        @if(user.User.PhoneNumber != null) { <div style="margin: 3px 0 0 0; font-size: 12px;"><i class="fas fa-phone" style="margin: 0 8% 0 2%; color: #e91e63;"></i>@user.User.PhoneNumber</div> }
+                                                        @if(user.User.StreetAddress != null && user.User.ZipCode != null && user.User.City != null) { <div style="margin: 4px; font-size: 12px;"><i class="fas fa-address-card" style="margin: 0 8% 0 5%; color: #e91e63;"></i>@user.User.StreetAddress @user.User.ZipCode @user.User.City</div> }
+                                                        @if(user.User.Country != null) { <div style="margin: 3px 0 3px 0; font-size: 12px;"><i class="fas fa-globe-europe" style="margin: 0 8% 0 2%; color: #e91e63;"></i>@user.User.Country</div> }
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div style="padding: 0; float: left; margin-left: 4%;">
-                                                <div style="float: left; height: inherit; line-height: 28px; font-size: 16px;"><i style="color: #e91e63;" class="fas fa-video-slash"></i>&nbsp; @user.ProcentIABDivergent</div>
-                                                <div style="float: left; height: inherit; line-height: 28px; font-size: 16px;"><i style="color: #e91e63;" class="fas fa-video-slash"></i>&nbsp; @user.ProcentPADDivergent</div>
+                                            @*<script> $(document).ready(function () { $('[data-toggle="user_private_data"]').tooltip(); }); </script>*@
+                                        }
+                                    </div>
+                                }
+
+                                @* Platform Stats of User *@
+                                <div style="white-space: nowrap; height: 28px; margin-top: 1%;">
+                                    <div>
+                                        <div style="white-space: nowrap; padding: 0; float: left;">
+                                            <div style="float: left; height: inherit; line-height: 28px; font-size: 16px;">
+                                                <i class="fas fa-eye" style="color: #e91e63;"></i>&nbsp;@user.RatingCount
+                                            </div>
+                                        </div>
+                                        <div style="padding: 0; float: left; margin-left: 4.5%;">
+                                            @if(user.RatingCount > 6) {
+                                                <div style="float: left; height: inherit; line-height: 28px; font-size: 16px;">
+                                                    <i style="color: #e91e63;" class="fas fa-video-slash"></i>&nbsp; @user.ProcentDivergent
+                                                </div>
+                                            }
+                                            else { <div style="float: left; height: inherit; line-height: 28px; font-size: 16px;"><i style="color: #e91e63;" class="fas fa-video-slash"></i>&nbsp; nvt</div> }
+                                        </div>
+                                        <div style="padding: 0; float: left; margin-left: 4.5%;">
+                                            <div style="float: left; height: inherit; line-height: 28px; font-size: 28px; font-size: 16px;">
+                                                @if(user.User.IsDisabled == true) { <div><i class="fas fa-gavel" style="color: #e91e63;"></i>&nbsp;Disabled</div> }
+                                                else { <div><i class="fas fa-gavel" style="color: #e91e63;"></i>&nbsp;Enabled</div> }
                                             </div>
                                         </div>
                                     </div>
-
-                                    @*<div>
-                                            <div class="row" style="margin-top: 1.5%;">
-                                                <div class="col-sm-1" style="width:auto;"><div class="userStatView"><i class="fas fa-eye"></i> @user.RatingCount</div></div>
-                                                <div class="col-sm-1" style="width:auto;"><div class="userStatView">@user.ProcentDivergent</div></div>
-                                            </div>
-                                        </div>*@
                                 </div>
 
-                                @* User Profile Image  !! GRAVATAR & PROFILE PICTURE ADDED LATER !! *@
-                                <div class="col-md-1"><img height="64" width="64" src="~/images/user-placeholder.png" style="float: right;" /></div>
-
+                                @*<div>
+                                    <div class="row" style="margin-top: 1.5%;">
+                                        <div class="col-sm-1" style="width:auto;"><div class="userStatView"><i class="fas fa-eye"></i> @user.RatingCount</div></div>
+                                        <div class="col-sm-1" style="width:auto;"><div class="userStatView">@user.ProcentDivergent</div></div>
+                                    </div>
+                                </div>*@
                             </div>
 
-                            <div class="dropdown dropdownVidCat" style="position:absolute; top: 0; right: 0;">
+                            @* User Profile Image  !! GRAVATAR & PROFILE PICTURE ADDED LATER !! *@
+                            <div class="col-md-1"><img height="64" width="64" src="~/images/user-placeholder.png" style="float: right;" /></div>
 
-                                <button class="btn btn-secondary dropdown-toggle prim-btn actionMenu" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-caret-down"></i>
-                                </button>
+                        </div>
 
-                                <div class="dropdown-menu dropdown-menu-center" aria-labelledby="dropdownMenuButton">
-                                    @if (user.User.IsDisabled == true)
-                                    {
-                                        <a class="dropdown-item" asp-action="EnableAccount" asp-controller="Admin" asp-route-userid="@user.User.UserID">Enable</a>
-                                    }
-                                    else
-                                    {
-                                        <a class="dropdown-item" asp-action="DisableAccount" asp-controller="Admin" asp-route-userid="@user.User.UserID">Disable</a>
-                                        @* <a class="dropdown-item open-ValidateAction" href="#ValidateAction" data-id="@user.User.UserID" data-name="@user.User.FirstName">Disable</a> *@
-                                    }
+                        <div class="dropdown dropdownVidCat" style="position:absolute; top: 0; right: 0;">
+                            
+                            <button class="btn btn-secondary dropdown-toggle prim-btn actionMenu" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-caret-down"></i>
+                            </button>
+                            
+                            <div class="dropdown-menu dropdown-menu-center" aria-labelledby="dropdownMenuButton">
+                                @if (user.User.IsDisabled == true) {
+                                    <a class="dropdown-item" asp-action="EnableAccount" asp-controller="Admin" asp-route-userid="@user.User.UserID">Enable</a>
+                                }
+                                else {
+                                    <a class="dropdown-item" asp-action="DisableAccount" asp-controller="Admin" asp-route-userid="@user.User.UserID">Disable</a>
+                                    @* <a class="dropdown-item open-ValidateAction" href="#ValidateAction" data-id="@user.User.UserID" data-name="@user.User.FirstName">Disable</a> *@
+                                }
 
-                                    <a class="dropdown-item" asp-action="" asp-controller="Admin">Reset Password</a>
-                                </div>
+                                <a class="dropdown-item" asp-action="" asp-controller="Admin">Reset Password</a>
                             </div>
                         </div>
+                    </div>
                     }
                 </div>
 
@@ -265,7 +287,7 @@
                 <h4 class="modal-title">Disable Account</h4>
             </div>
             <div class="modal-body">
-                <p>Are you sure you want to disable the account from: <b><span id="username" value="" /></b></p>
+                <p>Are you sure you want to disable the account from: <b><span id="username" value=""/></b></p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
@@ -279,7 +301,7 @@
     $(document).on("click", ".open-ValidateAction", function () {
         var nameElement = document.getElementById("fullName").innerHTML;
         var mnameElement = document.getElementById("username");
-
+        
         mnameElement.innerHTML = nameElement;
     });
 </script>
