@@ -11,7 +11,6 @@ namespace Logic_Layer.JsonReader
         JObject json;
         public ReaderJson()
         {
-            //make sure you're using this nuget package Newtonsoft.Json and using Newtonsoft.Json.Linq;
             try
             {
                 json = JObject.Parse(File.ReadAllText(@"..\..\..\..\Logic Layer\JsonReader\VideoFeed.json"));
@@ -67,6 +66,32 @@ namespace Logic_Layer.JsonReader
                 }
             }
             return titleImage;
+        }
+
+        public bool CheckFileFormatting(string filePath)
+        {
+            if (!filePath.EndsWith(".json"))
+            {
+                return false;
+            }
+            try
+            {
+                JObject newFile = JObject.Parse(File.ReadAllText(filePath));
+                foreach(JObject video in newFile["playlist"])
+                {
+                    string mediaID = (string)video["mediaid"];
+                    if(mediaID.Length != 8)
+                    {
+                        return false;
+                    }
+                    string desc = (string)video["description"];
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

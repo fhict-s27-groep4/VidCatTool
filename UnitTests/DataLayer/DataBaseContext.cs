@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Common;
 using Data_Layer;
+using Model_Layer.Interface;
 
 namespace UnitTests.DataLayer
 {
@@ -14,6 +15,11 @@ namespace UnitTests.DataLayer
         public DbDataAdapter DataAdapter => throw new System.NotImplementedException();
 
         public IEnumerable<Tuple<int, string>> ExecuteNonObjectStoredProcedure(string procedurename, DbParameter[] parameters)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<IObjectPair<T1, T2>> ExecuteNonObjectStoredProcedure<T1, T2>(string procedurename, DbParameter[] parameters)
         {
             throw new NotImplementedException();
         }
