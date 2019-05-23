@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Model_Layer.Interface;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
@@ -11,6 +12,6 @@ namespace Data_Layer
         IEnumerable<T> SelectQuery<T>();
         void ExecuteStoredProcedure(string procedurename, DbParameter[] parameters);
         IEnumerable<T> ExecuteReturnStoredProcedure<T>(string procedurename, DbParameter[] parameters);
-        IEnumerable<Tuple<int, string>> ExecuteNonObjectStoredProcedure(string procedurename, DbParameter[] parameters);
+        IEnumerable<IObjectPair<T1, T2>> ExecuteNonObjectStoredProcedure<T1, T2>(string procedurename, DbParameter[] parameters);
     }
 }

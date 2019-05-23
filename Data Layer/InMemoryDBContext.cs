@@ -5,6 +5,7 @@ using System.Data.Common;
 using System.Data.SqlClient;
 using System.Text;
 using System.Linq;
+using Model_Layer.Interface;
 
 namespace Data_Layer
 {
@@ -67,13 +68,11 @@ namespace Data_Layer
 
         public IEnumerable<T> ExecuteReturnStoredProcedure<T>(string procedurename, DbParameter[] parameters)
         {
-
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Tuple<int, string>> ExecuteNonObjectStoredProcedure(string procedurename, DbParameter[] parameters)
+        public IEnumerable<IObjectPair<T1, T2>> ExecuteNonObjectStoredProcedure<T1, T2>(string procedurename, DbParameter[] parameters)
         {
-
             throw new NotImplementedException();
         }
     }

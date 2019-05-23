@@ -11,6 +11,7 @@ using Logic_Layer;
 using Logic_Layer.SMTPMessageSender;
 using Logic_Layer.Hasher;
 using Logic_Layer.PassWordGenerator;
+using Model_Layer.Models;
 
 namespace Service_Layer.RequestHandlers
 {
@@ -32,9 +33,9 @@ namespace Service_Layer.RequestHandlers
         public bool ValidateLoginAttempt(LoginViewModel vm)
         {
             ILoginUser loggedInUser = userRepo.GetUserByName(vm.Username) as ILoginUser;
-            if(loginHandler.ValidateUser(vm.Password, loggedInUser))
+            if (loginHandler.ValidateUser(vm.Password, loggedInUser))
             {
-                if(loggedInUser.IsDisabled)
+                if (loggedInUser.IsDisabled)
                 {
                     return false;
                 }
@@ -55,27 +56,28 @@ namespace Service_Layer.RequestHandlers
         public IReadOnlyCollection<UserManagementViewModel> GetUserManagementViewModel()
         {
             List<UserManagementViewModel> usermodels = new List<UserManagementViewModel>();
-            var ratingcount = userRepo.GetRatingCountFromAllUsers();
-            var divergentRatings = userRepo.GetDivergentRatingsFromAllUser();
+            IEnumerable<IObjectPair<long, string>> ratingcount = userRepo.GetRatingCountFromAllUsers();
+            IEnumerable<IObjectPair<long, string>> divergentIABRatings = userRepo.GetDivergentIABRatingsFromAllUser();
+            IEnumerable<IObjectPair<long, string>> divergentPADRatings = userRepo.GetDivergentPADRatingsFromAllUser();
+            IObjectPair<long, string> defaultPair = new ObjectPair<long, string>() { Object1 = 0 };
             foreach (ISearchUser user in userRepo.GetAll())
             {
-                string divergent = "More ratings needed";
-                if(ratingcount.Where((t) => t.Item2 == user.UserID).Select(x => x.Item1).FirstOrDefault() < 6)
+                UserManagementViewModel userVM = new UserManagementViewModel();
+                userVM.User = user;
+                userVM.RatingCount = ratingcount.Where((t) => t.Object2 == user.UserID).Select(x => x.Object1).DefaultIfEmpty(0).FirstOrDefault();
+                try
                 {
-                    divergent = "More ratings needed";
+                    userVM.ProcentIABDivergent = Convert.ToInt32(divergentIABRatings.Where(x => x.Object2 == user.UserID).DefaultIfEmpty(defaultPair).First().Object1 / (double)userVM.RatingCount * (double)100);
+                    userVM.ProcentPADDivergent = Convert.ToInt32(divergentPADRatings.Where(x => x.Object2 == user.UserID).DefaultIfEmpty(defaultPair).First().Object1 / (double)userVM.RatingCount * (double)100);
                 }
-                else if(divergentRatings.Any(x => x.Item2.Contains(user.UserID)))
+                catch
                 {
-                    divergent = Math.Round(divergentRatings.Where((t) => t.Item2 == user.UserID).Select(x => x.Item1).FirstOrDefault() / Convert.ToDouble(ratingcount.Where((t) => t.Item2 == user.UserID).Select(x => x.Item1).FirstOrDefault()) * 100, 2, MidpointRounding.AwayFromZero).ToString();
-                    divergent += "%";
+                    userVM.ProcentIABDivergent = -1;
+                    userVM.ProcentPADDivergent = -1;
                 }
-
-                usermodels.Add(new UserManagementViewModel
-                {
-                    User = user,
-                    RatingCount = ratingcount.Where((t) => t.Item2 == user.UserID).Select(x => x.Item1).DefaultIfEmpty(0).FirstOrDefault(),
-                    ProcentDivergent = divergent
-                });
+                if (userVM.ProcentIABDivergent == 0) userVM.ProcentIABDivergent = 100;
+                if (userVM.ProcentPADDivergent == 0) userVM.ProcentPADDivergent = 100;
+                usermodels.Add(userVM);
             }
 
             return usermodels;

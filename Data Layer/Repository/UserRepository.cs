@@ -58,13 +58,17 @@ namespace Data_Layer.Repository
             context.ExecuteStoredProcedure("AddUser", parameters);
         }
 
-        public IEnumerable<Tuple<int, string>> GetRatingCountFromAllUsers()
+        public IEnumerable<IObjectPair<long, string>> GetRatingCountFromAllUsers()
         {
-            return context.ExecuteNonObjectStoredProcedure("GetRatingCountFromAllUsers", null);
+            return context.ExecuteNonObjectStoredProcedure<long, string>("GetRatingCountFromAllUsers", null);
         }
-        public IEnumerable<Tuple<int, string>> GetDivergentRatingsFromAllUser()
+        public IEnumerable<IObjectPair<long, string>> GetDivergentIABRatingsFromAllUser()
         {
-            return context.ExecuteNonObjectStoredProcedure("GetDivergentRatingsFromAllUser", null);
+            return context.ExecuteNonObjectStoredProcedure<long, string>("GetDivergentRatingsFromAllUser", null);
+        }
+        public IEnumerable<IObjectPair<long, string>> GetDivergentPADRatingsFromAllUser()
+        {
+            return context.ExecuteNonObjectStoredProcedure<long, string>("GetPADDivergentPerUser", null);
         }
 
         public void UpdatePassword(string userid, string password, string passwordsalt)

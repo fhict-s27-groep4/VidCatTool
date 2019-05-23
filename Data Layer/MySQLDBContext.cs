@@ -1,4 +1,6 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Model_Layer.Interface;
+using Model_Layer.Models;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -142,9 +144,9 @@ namespace Data_Layer
             return Converter.ConvertDatasetToModel<T>(dbSet);
         }
 
-        public IEnumerable<Tuple<int, string>> ExecuteNonObjectStoredProcedure(string procedurename, DbParameter[] parameters)
+        public IEnumerable<IObjectPair<T1, T2>> ExecuteNonObjectStoredProcedure<T1, T2>(string procedurename, DbParameter[] parameters)
         {
-            List<Tuple<int, string>> items = new List<Tuple<int, string>>();
+            IList<IObjectPair<T1, T2>> items = new List<IObjectPair<T1, T2>>();
             dbCommand.CommandText = procedurename;
             dbCommand.CommandType = CommandType.StoredProcedure;
             adapter.SelectCommand = dbCommand;
@@ -164,7 +166,7 @@ namespace Data_Layer
                 DbDataReader reader = dbCommand.ExecuteReader();
                 while (reader.Read())
                 {
-                    items.Add(new Tuple<int, string>(reader.GetInt32(0), reader.GetString(1)));
+                    items.Add(new ObjectPair<T1, T2>() { Object1 = (T1)reader.GetValue(0), Object2 = (T2)reader.GetValue(1) });
                 }
 
             }
