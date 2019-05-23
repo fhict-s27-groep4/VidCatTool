@@ -154,8 +154,8 @@
                 <div class="userSearchResults">
                     @foreach (var user in Model)
                     {
-                    <div class="userSearchItem" style="border: 1px solid #e91e63; margin-top: 1%; margin-bottom: 1%; padding: 2%; position:relative; overflow: hidden;">
-                        <div class="row" style="height: 25%; max-height: 50px;">
+                    <div class="userSearchItem" style="border: 1px solid #e91e63; margin-top: 1%; margin-bottom: 1%; padding: 1.5%; position:relative; overflow: visible;">
+                        <div class="row" style="height: 25%; max-height: 80px;"> @* letter spacing? *@
                             <div class="col-md-11">
 
                                 @* First- and Last name, inclusing the Username *@
@@ -169,11 +169,26 @@
                                     List<string> userData = new List<string>();
                                     if (user.User.City != null) { userData.Add(user.User.City); }
                                     if (user.User.Country != null) { userData.Add(user.User.Country); }
-                                    if (user.User.Email != null) { userData.Add(user.User.Email); }
+                                    if (user.User.Email != null) { userData.Add("(" + user.User.Email + ")"); }
                                 }
                                 @if (userData != null) {
-                                    <div style="white-space: nowrap; height: 20px; margin-top: 1%;">
-                                        <div style="float: left; height: inherit; line-height: 20px;"><h5 style="margin: 0; display: inline-block; height: inherit;">@string.Join(", ", userData)</h5></div>
+                                    <div style="white-space: nowrap; height: 20px;">
+                                        
+                                        @if (user.User.PhoneNumber == null) { <div style="float: left; height: inherit; line-height: 20px;"><h5 style="margin: 0; display: inline-block; height: inherit; font-size: 11px; color: #707070; font-style: italic;">@string.Join(", ", userData)</h5></div> }
+                                        else {
+                                            <div style="float: left; height: inherit; line-height: 20px; font-size: 11px;">
+                                                <h5 style="margin: 0; display: inline-block; height: inherit; color: #707070; font-style: italic;">@string.Join(", ", userData)</h5>
+                                                <div class="user_private_data" style="margin-left: 2%;">
+                                                    <i class="fas fa-info"></i>
+                                                    <div class="user_private_data_text">
+                                                        @if(user.User.PhoneNumber != null) { <div style="margin: 3px 0 0 0; font-size: 12px;"><i class="fas fa-phone" style="margin: 0 8% 0 2%; color: #e91e63;"></i>@user.User.PhoneNumber</div> }
+                                                        @if(user.User.StreetAddress != null && user.User.ZipCode != null && user.User.City != null) { <div style="margin: 4px; font-size: 12px;"><i class="fas fa-address-card" style="margin: 0 8% 0 5%; color: #e91e63;"></i>@user.User.StreetAddress @user.User.ZipCode @user.User.City</div> }
+                                                        @if(user.User.Country != null) { <div style="margin: 3px 0 3px 0; font-size: 12px;"><i class="fas fa-globe-europe" style="margin: 0 8% 0 2%; color: #e91e63;"></i>@user.User.Country</div> }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @*<script> $(document).ready(function () { $('[data-toggle="user_private_data"]').tooltip(); }); </script>*@
+                                        }
                                     </div>
                                 }
 
@@ -185,12 +200,19 @@
                                                 <i class="fas fa-eye" style="color: #e91e63;"></i>&nbsp;@user.RatingCount
                                             </div>
                                         </div>
-                                        <div style="padding: 0; float: left; margin-left: 4%;">
-                                            @{ int percent; }
-                                            @if(int.TryParse(user.ProcentDivergent, out percent) == true) {
-                                                <div style="float: left; height: inherit; line-height: 28px; font-size: 16px;"><i style="color: #e91e63;" class="fas fa-video-slash"></i>&nbsp; @percent%</div>
+                                        <div style="padding: 0; float: left; margin-left: 4.5%;">
+                                            @if(user.RatingCount > 6) {
+                                                <div style="float: left; height: inherit; line-height: 28px; font-size: 16px;">
+                                                    <i style="color: #e91e63;" class="fas fa-video-slash"></i>&nbsp; @user.ProcentDivergent
+                                                </div>
                                             }
                                             else { <div style="float: left; height: inherit; line-height: 28px; font-size: 16px;"><i style="color: #e91e63;" class="fas fa-video-slash"></i>&nbsp; nvt</div> }
+                                        </div>
+                                        <div style="padding: 0; float: left; margin-left: 4.5%;">
+                                            <div style="float: left; height: inherit; line-height: 28px; font-size: 28px; font-size: 16px;">
+                                                @if(user.User.IsDisabled == true) { <div><i class="fas fa-gavel" style="color: #e91e63;"></i>&nbsp;Disabled</div> }
+                                                else { <div><i class="fas fa-gavel" style="color: #e91e63;"></i>&nbsp;Enabled</div> }
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

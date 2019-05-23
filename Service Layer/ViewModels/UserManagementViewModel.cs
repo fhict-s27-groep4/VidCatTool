@@ -10,11 +10,13 @@ namespace Service_Layer.ViewModels
         public UserManagementViewModel()
         {
             RatingCount = 0;
-            ProcentDivergent = "More ratings needed";
+            ProcentIABDivergent = 0;
+            ProcentPADDivergent = 0;
         }
 
         public ISearchUser User { get; set; }
-        public int RatingCount { get; set; }
-        public string ProcentDivergent { get; set; }
+        public long RatingCount { get; set; }
+        public int ProcentIABDivergent { get; set; }
+        public int ProcentPADDivergent { get; set; }
     }
 }

@@ -68,7 +68,6 @@ namespace Data_Layer
 
         public IEnumerable<T> ExecuteReturnStoredProcedure<T>(string procedurename, DbParameter[] parameters)
         {
-
             throw new NotImplementedException();
         }
 
