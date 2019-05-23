@@ -4,6 +4,7 @@ using Data_Layer.Repository;
 using Logic_Layer.AlgoritmRatings;
 using Logic_Layer.CategoryReverser;
 using Logic_Layer.Handlers;
+using Logic_Layer.Hasher;
 using Logic_Layer.Interfaces;
 using Logic_Layer.JsonReader;
 using Logic_Layer.JsonWriter;
@@ -27,6 +28,7 @@ namespace Service_Layer.ServiceCollector
 
             services.AddTransient<ILogin, AccountManager>();
             services.AddTransient<IRegister, AccountManager>();
+            services.AddTransient<IPasswordHasher, PasswordHasher>();
 
             services.AddTransient<RatingHandler>();
             services.AddTransient<SessionHandler>();
