@@ -31,6 +31,8 @@ namespace UnitTests.ServiceLayer.ViewModelTests
             help.Object2 = 5;
             help1.Add(help);
             IEnumerable<IObjectPair<string, int>> pls2 = help1;
+            List<ObjectPair<string, int>> god = new List<ObjectPair<string, int>>();
+            god = pls2;
             video.IABCategoryNameAndPercentage = pls2;
             video.Title = "IOBJECTPAIRSUK";
             video.WatchCount = 50;
@@ -44,12 +46,11 @@ namespace UnitTests.ServiceLayer.ViewModelTests
             Assert.Equal(8, video.DominanceAverageAndDeviation.Object2);
             Assert.Equal(5, video.PleaureAverageAndDeviation.Object1);
             Assert.Equal(8, video.PleaureAverageAndDeviation.Object2);
-            Assert.Equal("LOL", video.IABCategoryNameAndPercentage)
+            Assert.Equal("LOL", video.
             Assert.Equal("KEKPIC", video.Thumbnail);
             Assert.Equal("IOBJECTPAIRSUK", video.Title);
             Assert.Equal(50, video.WatchCount);
-            Assert.True(video.Video.Finished);
-            
+            Assert.True(video.Video.Finished);            
         }
     }
 }
