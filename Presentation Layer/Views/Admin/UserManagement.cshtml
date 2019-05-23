@@ -163,16 +163,31 @@
                                     <div style="float: left; height: inherit; line-height:28px;"><h3 style="margin: 0; display: inline-block; height: inherit;" id="fullName">@user.User.FirstName @user.User.LastName</h3></div>
                                     <div style="float: left; height: inherit; line-height:28px; margin-left: 2.5%;"><p style="margin: 0; display: inline-block; height: inherit; color: #707070;" id="userName">@user.User.UserName</p></div>
                                 </div>
+
+                                @* Small piece of extra user details (City, Country, EMail)*@
+                                @{
+                                    List<string> userData = new List<string>();
+                                    if (user.User.City != null) { userData.Add(user.User.City); }
+                                    if (user.User.Country != null) { userData.Add(user.User.Country); }
+                                    if (user.User.Email != null) { userData.Add(user.User.Email); }
+                                }
+                                @if (userData != null)
+                                {
+                                    <div style="white-space: nowrap; height: 20px; margin-top: 1%;">
+                                        <div style="float: left; height: inherit; line-height: 20px;"><h5 style="margin: 0; display: inline-block; height: inherit;">@string.Join(", ", userData)</h5></div>
+                                    </div>
+                                }
+
+                                @* Platform Stats of User *@
                                 <div>
-                                    @* Stats *@
-                                    <div class="row" style="margin-top: 2%;">
+                                    <div class="row" style="margin-top: 1.5%;">
                                         <div class="col-sm-1" style="width:auto;"><div class="userStatView"><i class="fas fa-eye"></i> @user.RatingCount</div></div>
                                         <div class="col-sm-1" style="width:auto;"><div class="userStatView">@user.ProcentDivergent</div></div>
-
                                     </div>
                                 </div>
                             </div>
 
+                            @* User Profile Image  !! GRAVATAR & PROFILE PICTURE ADDED LATER !! *@
                             <div class="col-md-1"><img height="64" width="64" src="~/images/user-placeholder.png" style="float: right;" /></div>
 
                         </div>
