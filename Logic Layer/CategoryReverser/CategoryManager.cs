@@ -13,6 +13,23 @@ namespace Logic_Layer.CategoryReverser
             categories = _categories.Categories;
         }
 
+        public bool IsTier(int tier, int catID)
+        {
+            int tierCount = 1;
+            ICategory currCat = GetCategory(catID);
+            while(currCat.ParentID != null)
+            {
+                currCat = GetCategory((int)currCat.ParentID);
+                tierCount++;
+            }
+            return tier == tierCount;
+        }
+
+        public ICategory GetCategory(int catID)
+        {
+            return categories.Where(x => x.UniqueID == catID).First();
+        }
+
         public IObjectPair<int, int> GetParentTiers(int _categoryID)
         {
             IObjectPair<int, int> parentTiers = new ObjectPair<int, int>();
@@ -21,7 +38,7 @@ namespace Logic_Layer.CategoryReverser
             {
                 parentTiers.Object1 = (int)current.ParentID;
                 parentTiers.Object2 = current.UniqueID;
-                current = categories.Where(x => x.UniqueID == parentTiers.Object1).First();
+                current = GetCategory(parentTiers.Object1);
             }
             return parentTiers;
         }
