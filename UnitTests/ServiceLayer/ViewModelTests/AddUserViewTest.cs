@@ -8,7 +8,7 @@ namespace UnitTests.ServiceLayer.ViewModelTests
 {
     public class AddUserViewTest
     {
-        AddUserViewModel user;
+         private readonly AddUserViewModel user;
         public AddUserViewTest()
         {
             user = new AddUserViewModel();

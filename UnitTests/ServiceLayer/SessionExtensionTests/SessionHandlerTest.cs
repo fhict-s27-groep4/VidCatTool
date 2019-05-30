@@ -8,7 +8,7 @@ namespace UnitTests.ServiceLayer.SessionExtensionTests
 {
     public class SessionHandlerTest
     {
-        SessionHandler session;
+        private readonly SessionHandler session;
         public SessionHandlerTest()
         {
             //session = new SessionHandler();

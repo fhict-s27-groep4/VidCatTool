@@ -1,28 +1,23 @@
-﻿using Service_Layer.ViewModels;
+﻿using Logic_Layer.CategoryReverser;
 using Model_Layer.Models;
-using Model_Layer.Interface;
+using Service_Layer.RequestHandlers;
+using Service_Layer.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using UnitTests.LogicLayer.CategoryReverser;
 using Xunit;
 
-namespace UnitTests.ServiceLayer.ViewModelTests
+namespace UnitTests.ServiceLayer.RequestHandlersTests
 {
-    public class ReviewViewTest
+    public class RequestHandlertest
     {
-        private readonly ReviewViewModel review;
-        private readonly ReviewViewModelGet reviewget;
-        private readonly ReviewViewModelPost reviewpost;
-        public ReviewViewTest()
+        readonly CategoryHandler cathandler;
+        readonly List<Category> categories;
+        readonly CategoryManager reverser;
+        public RequestHandlertest()
         {
-            review = new ReviewViewModel();
-            reviewget = new ReviewViewModelGet();
-            reviewpost = new ReviewViewModelPost();
-        }
-        [Fact]
-        public void TestGetSetModel()
-        {
-            List<Category> categories = new List<Category>();
+            categories = new List<Category>();
 
             #region Make Category Objects
 
@@ -104,22 +99,18 @@ namespace UnitTests.ServiceLayer.ViewModelTests
 
             #endregion
 
-            reviewget.Categories = categories;
-
-            reviewpost.VideoIdentity = "HiThereCodeReader :D";
-            reviewpost.Pleasure = 4;
-            reviewpost.IABID = 2;
-            reviewpost.Dominance = 3;
-            reviewpost.Arrousal = 1;
-            review.Get = reviewget;
-            review.Post = reviewpost;
-
-            Assert.NotEmpty(review.Get.Categories);
-            Assert.Equal(1, review.Post.Arrousal);
-            Assert.Equal(4, review.Post.Pleasure);
-            Assert.Equal(2, review.Post.IABID);
-            Assert.Equal(3, review.Post.Dominance);
-            Assert.Equal("HiThereCodeReader :D", review.Post.VideoIdentity);
+            cathandler = new CategoryHandler(new CategoryManager(new Makelist() { Categories = categories }));
+            reverser = new CategoryManager(new Makelist() { Categories = categories });
+        }
+        [Fact]
+        public void CheckTierOne()
+        {
+            Assert.Equal(reverser.GetAllTierOne(), cathandler.GetTier1s().Get.Categories);
+        }
+        [Fact]
+        public void CheckSubCats()
+        {
+            Assert.Equal(reverser.GetSubTiers(1), cathandler.GetSubTiers(1));
         }
     }
 }
