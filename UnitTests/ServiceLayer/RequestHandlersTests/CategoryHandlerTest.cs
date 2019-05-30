@@ -1,19 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Logic_Layer.CategoryReverser;
+﻿using Logic_Layer.CategoryReverser;
 using Model_Layer.Models;
 using Service_Layer.RequestHandlers;
+using Service_Layer.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Text;
 using UnitTests.LogicLayer.CategoryReverser;
 using Xunit;
 
 namespace UnitTests.ServiceLayer.RequestHandlersTests
 {
-    public class CategoryHandlerTest
+    public class RequestHandlertest
     {
-        CategoryHandler category;
+        CategoryHandler cathandler;
         List<Category> categories;
-        public CategoryHandlerTest()
+        CategoryManager reverser;
+        public RequestHandlertest()
         {
             categories = new List<Category>();
 
@@ -96,7 +98,19 @@ namespace UnitTests.ServiceLayer.RequestHandlersTests
             categories.Add(category11);
 
             #endregion
-            category = new CategoryHandler(new CategoryManager(new Makelist() { Categories = categories }));
+
+            cathandler = new CategoryHandler(new CategoryManager(new Makelist() { Categories = categories }));
+            reverser = new CategoryManager(new Makelist() { Categories = categories });
+        }
+        [Fact]
+        public void CheckTierOne()
+        {
+            Assert.Equal(reverser.GetAllTierOne(), cathandler.GetTier1s().Get.Categories);
+        }
+        [Fact]
+        public void CheckSubCats()
+        {
+            Assert.Equal(reverser.GetSubTiers(1), cathandler.GetSubTiers(1));
         }
     }
 }

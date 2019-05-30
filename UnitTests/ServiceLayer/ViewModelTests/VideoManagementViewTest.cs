@@ -31,7 +31,6 @@ namespace UnitTests.ServiceLayer.ViewModelTests
             help.Object2 = 5;
             help1.Add(help);
             IEnumerable<IObjectPair<string, int>> pls2 = help1;
-            List<ObjectPair<string, int>> god = new List<ObjectPair<string, int>>();
             video.IABCategoryNameAndPercentage = pls2;
             video.Title = "IOBJECTPAIRSUK";
             video.WatchCount = 50;
