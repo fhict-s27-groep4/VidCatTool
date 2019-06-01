@@ -92,5 +92,16 @@ namespace VidCat_Tool.Controllers
             throw new System.NotImplementedException();
             return View();
         }
+
+        [HttpPost]
+        public IActionResult Settings(AlgoritmSettingsModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                videoHandler.SetAlgoritmSensitiveness(model);
+                return VideoManagement();
+            }
+            return Settings();
+        }
     }
 }
