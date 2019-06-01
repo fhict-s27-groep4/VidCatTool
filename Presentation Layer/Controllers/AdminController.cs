@@ -84,5 +84,16 @@ namespace VidCat_Tool.Controllers
         public IActionResult Settings() {
             return View();
         }
+
+        [HttpPost]
+        public IActionResult Settings(AlgoritmSettingsModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                videoHandler.SetAlgoritmSensitiveness(model);
+                return VideoManagement();
+            }
+            return Settings();
+        }
     }
 }
