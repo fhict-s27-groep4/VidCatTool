@@ -109,5 +109,29 @@ namespace Service_Layer.RequestHandlers
             //delete file
             return true;
         }
+
+        public void SetAlgoritmSensitiveness(AlgoritmSettings settings)
+        {
+            IRatingSettings aSettings = new RatingSettings();
+            aSettings.IabToleranceTier1 = settings.IabToleranceTier1;
+            aSettings.IabToleranceTier2 = settings.IabToleranceTier2;
+            aSettings.MaximumRatings = settings.MaximumRatings;
+            aSettings.PadTolerance = settings.PadTolerance;
+            aSettings.BiggestPercentIAB = settings.BiggestPercentIAB;
+        }
+
+        public AlgoritmSettings GetAlgoritmSettings()
+        {
+
+            IRatingSettings settings = new RatingSettings();
+            return new AlgoritmSettings()
+            {
+                IabToleranceTier1 = settings.IabToleranceTier1,
+                IabToleranceTier2 = settings.IabToleranceTier2,
+                MaximumRatings = settings.MaximumRatings,
+                PadTolerance = settings.PadTolerance,
+                BiggestPercentIAB = settings.BiggestPercentIAB
+            };
+        }
     }
 }
