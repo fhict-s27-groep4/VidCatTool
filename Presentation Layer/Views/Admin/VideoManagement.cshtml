@@ -107,18 +107,29 @@
 
                 </div>
 
+                @* To Download all Video's in JSON *@
                 <div class="videoDownloadJSON" style="padding: 10% 24% 0% 24%;">
-                    <a class="btn btn-warning center-block" asp-controller="Admin" asp-action="ExportToJSON"
+                    <a class="btn btn-success center-block" asp-controller="Admin" asp-action="ExportToJSON"
                        style="font-weight: 200;">
                         <i class="fas fa-file-download"></i>&nbsp Export all to JSON
                     </a>
                 </div>
+
+                @* To Upload JSON File. *@
+                <div class="videoUploadJSON" style="padding: 10% 24% 0% 24%;">
+                    <input type="file" name="file" style="margin: 1%;" /> @* MAXIMUM MB FILE UPLOAD PLS?! *@
+                    <a class="btn btn-warning center-block" asp-controller="Admin" asp-action="UploadJSON"
+                       style="font-weight: 200;">
+                        <i class="fas fa-file-upload"></i>&nbsp Upload JSON File
+                    </a>
+                </div>
+
                 @*<div class="videoUploadJSON" style="padding: 5% 28% 0% 28%">
-                        <a class="btn btn-success center-block" asp-controller="" asp-action=""
-                           style="font-weight: 200;">
-                            <i class="fas fa-upload"></i>&nbsp JSON Upload
-                        </a>
-                    </div>*@
+            <a class="btn btn-success center-block" asp-controller="" asp-action=""
+               style="font-weight: 200;">
+                <i class="fas fa-upload"></i>&nbsp JSON Upload
+            </a>
+        </div>*@
             </div>
 
 

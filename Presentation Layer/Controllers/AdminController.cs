@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Linq;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Service_Layer.RequestHandlers;
 using Service_Layer.SessionExtension;
@@ -77,6 +78,14 @@ namespace VidCat_Tool.Controllers
             byte[] fileBytes = videoHandler.ExportAllVideosToJson();
             return File(fileBytes, "application/json", "JsonExport");
         }
+
+        [HttpPost]
+        public IActionResult UploadJSON(IFormFile file)
+        {
+            videoHandler.ExpandJson(null); //Filestream must be read, NOT A TASK FOR THE FRONT END
+            return View();
+        }
+
 
         /*____________________________________________________________*/
 
