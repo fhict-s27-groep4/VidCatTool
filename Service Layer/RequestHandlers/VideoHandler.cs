@@ -113,11 +113,11 @@ namespace Service_Layer.RequestHandlers
         public void SetAlgoritmSensitiveness(AlgoritmSettingsModel settings)
         {
             IRatingSettings aSettings = new RatingSettings();
-            aSettings.IabToleranceTier1 = settings.IabToleranceTier1;
-            aSettings.IabToleranceTier2 = settings.IabToleranceTier2;
+            aSettings.IabToleranceTier1 = settings.IabToleranceTier1 / 100;
+            aSettings.IabToleranceTier2 = settings.IabToleranceTier2 / 100;
             aSettings.MaximumRatings = settings.MaximumRatings;
             aSettings.PadTolerance = settings.PadTolerance;
-            aSettings.BiggestPercentIAB = settings.BiggestPercentIAB;
+            aSettings.BiggestPercentIAB = settings.BiggestPercentIAB / 100;
         }
 
         public AlgoritmSettingsModel GetAlgoritmSettings()
