@@ -5,29 +5,48 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<div class="row">
 
-@* Algorithm Settings *@
-<div style="background-color: white; padding: 1%; margin: 5%; border: 1px solid #e91e63;">
-    <h3 style="margin: 0;">IAB Percentages</h3>
-    <form method="post">
-        <div style="margin: 2%; height: 36px;">
-            <div style="float: left; margin-right: 2%; line-height: 36px; height: 36px;">Tier 1</div>
-            <div>
-                <span asp-validation-for="IabToleranceTier1"></span>
-                <input asp-for="IabToleranceTier1" class="form-control inputField" type="number" min="1" max="100" style="width: 11%; min-width: 100px;" />
+    @* Algorithm Settings *@
+    <div class="col-md-4" style="background-color: white; padding: 1%; margin: 5%; border: 1px solid #e91e63;">
+        <h3 style="margin: 0; text-decoration: underline;">IAB Percentages</h3>
+        <form method="post">
+
+            @* IAB Percentage 1 *@
+            <div style="margin: 5%; height: 36px;">
+                <div style="float: left; margin-right: 2%; line-height: 36px; height: 36px;">Tier 1</div>
+                <div>
+                    <span asp-validation-for="IabToleranceTier1"></span>
+                    <input asp-for="IabToleranceTier1" class="form-control inputField" type="number" min="1" max="100" style="width: 11%; min-width: 100px;" />
+                </div>
             </div>
-        </div>
-        <div style="margin: 2%; height: 36px;">
-            <div style="float: left; margin-right: 2%; line-height: 36px; height: inherit: 36px;">Tier 2</div>
-            <div>
-                <span asp-validation-for="IabToleranceTier2"></span>
-                <input asp-for="IabToleranceTier2" class="form-control inputField" type="number" min="1" max="100" style="width: 11%; min-width: 100px;" />
+
+            @* IAB Percentage 2 *@
+            <div style="margin: 5%; height: 36px;">
+                <div style="float: left; margin-right: 2%; line-height: 36px; height: inherit: 36px;">Tier 2</div>
+                <div>
+                    <span asp-validation-for="IabToleranceTier2"></span>
+                    <input asp-for="IabToleranceTier2" class="form-control inputField" type="number" min="1" max="100" style="width: 11%; min-width: 100px;" />
+                </div>
             </div>
-        </div>
-        @*<div><input type="number" />%</div>
-        <div><input type="number" />%</div>*@
-        <div><input type="submit" value="Send" class="btn" /></div>
-    </form>
+
+            <div style="margin: 5%; height: 36px;">
+                <div style="float: left; margin-right: 2%; line-height: 36px; height: inherit: 36px;">Biggest Tier IAB</div>
+                <div>
+                    <span asp-validation-for="BiggestPercentIAB"></span>
+                    <input asp-for="BiggestPercentIAB" class="form-control inputField" type="number" min="1" max="100" style="width: 11%; min-width: 100px;" />
+                </div>
+            </div>
+
+            @* Submit Button *@
+            <div><input type="submit" value="Send" class="btn" /></div>
+        </form>
+    </div>
+
+    @* Other Settings *@
+
+
+
 </div>
 
 
@@ -35,7 +54,6 @@
 
     @* iabToleranceTier1 *@
     @* iabToleranceTier2 *@
-    @* iabToleranceTier3 *@
     @* biggestPercentIAB *@
     @* padTolerance *@
     @* maximumRatings *@
