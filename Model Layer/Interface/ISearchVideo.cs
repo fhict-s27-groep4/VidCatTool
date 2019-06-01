@@ -6,6 +6,6 @@ namespace Model_Layer.Interface
 {
     public interface ISearchVideo : IVideo
     {
-        bool Finished { get; }
+        bool Finished { get; set; }
     }
 }

@@ -20,12 +20,14 @@ namespace UnitTests.LogicLayer.AccountHand
         public void ValidateUserTest()
         {
             //arrange
-            User user = new User();
-            user.UserID = "5";
-            user.PassWord = "F6-BE-64-90-A0-58-83-D4-1E-D5-8A-1D-72-94-CF-9A-10-94-4A-41-D9-9A-CE-4B-A4-C3-84-F0-C0-77-DF-57";
-            user.PassWordSalt = "vvFZoAwtYHaHVmfNnS9vXnvlsIJZKFnPcTNb4Es9XqVjftiMmoWHXl5/D9t2RLZReSlhUwTTFwDK01s67mOukw==";
-            user.IsAdmin = false;
-            user.IsDisabled = false;
+            User user = new User
+            {
+                UserID = "5",
+                PassWord = "F6-BE-64-90-A0-58-83-D4-1E-D5-8A-1D-72-94-CF-9A-10-94-4A-41-D9-9A-CE-4B-A4-C3-84-F0-C0-77-DF-57",
+                PassWordSalt = "vvFZoAwtYHaHVmfNnS9vXnvlsIJZKFnPcTNb4Es9XqVjftiMmoWHXl5/D9t2RLZReSlhUwTTFwDK01s67mOukw==",
+                IsAdmin = false,
+                IsDisabled = false
+            };
 
             //assert
             Assert.True(account.ValidateUser("ultra_safe_P455w0rD", user));            
@@ -34,12 +36,14 @@ namespace UnitTests.LogicLayer.AccountHand
         public void ValidateUserFailTest()
         {
             //arrange
-            User user = new User();
-            user.UserID = "5";
-            user.PassWord = "F6-BE-64-90-A0-58-83-D4-1E-D5-8A-1D-72-94-CF-9A-10-94-4A-41-D9-9A-CE-4B-A4-C3-84-F0-C0-";
-            user.PassWordSalt = "vvFZoAwtYHaHVmfNnS9vXnvlsIJZKFnPcTNb4Es9XqVjftiMmoWHXl5/D9t2RLZReSlhUwTTFwDK01s67mOukw==";
-            user.IsAdmin = false;
-            user.IsDisabled = false;
+            User user = new User
+            {
+                UserID = "5",
+                PassWord = "F6-BE-64-90-A0-58-83-D4-1E-D5-8A-1D-72-94-CF-9A-10-94-4A-41-D9-9A-CE-4B-A4-C3-84-F0-C0-",
+                PassWordSalt = "vvFZoAwtYHaHVmfNnS9vXnvlsIJZKFnPcTNb4Es9XqVjftiMmoWHXl5/D9t2RLZReSlhUwTTFwDK01s67mOukw==",
+                IsAdmin = false,
+                IsDisabled = false
+            };
 
             //assert
             Assert.False(account.ValidateUser("ultra_safe_P455w0rD", user));

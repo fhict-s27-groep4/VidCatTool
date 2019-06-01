@@ -8,7 +8,7 @@ namespace UnitTests.LogicLayer.RandomPassword
 {
     public class RandomPass
     {
-        PasswordGenerator gen;
+        readonly PasswordGenerator gen;
         public RandomPass()
         {
             gen = new PasswordGenerator();
