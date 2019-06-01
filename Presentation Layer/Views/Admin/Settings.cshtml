@@ -7,21 +7,21 @@
 
 
 @* Algorithm Settings *@
-<div style="background-color: white; padding: 5%; border: 1px solid #e91e63;">
-    <h3>IAB Percentages</h3>
+<div style="background-color: white; padding: 1%; margin: 5%; border: 1px solid #e91e63;">
+    <h3 style="margin: 0;">IAB Percentages</h3>
     <form method="post">
         <div style="margin: 2%; height: 36px;">
             <div style="float: left; margin-right: 2%; line-height: 36px; height: 36px;">Tier 1</div>
             <div>
                 <span asp-validation-for="IabToleranceTier1"></span>
-                <input asp-for="IabToleranceTier1" class="form-control inputField" type="number" min="0" max="1" style="width: 11%; min-width: 100px;" />
+                <input asp-for="IabToleranceTier1" class="form-control inputField" type="number" min="1" max="100" style="width: 11%; min-width: 100px;" />
             </div>
         </div>
         <div style="margin: 2%; height: 36px;">
             <div style="float: left; margin-right: 2%; line-height: 36px; height: inherit: 36px;">Tier 2</div>
             <div>
                 <span asp-validation-for="IabToleranceTier2"></span>
-                <input asp-for="IabToleranceTier2" class="form-control inputField" type="number" min="0" max="1" style="width: 11%; min-width: 100px;" />
+                <input asp-for="IabToleranceTier2" class="form-control inputField" type="number" min="1" max="100" style="width: 11%; min-width: 100px;" />
             </div>
         </div>
         @*<div><input type="number" />%</div>
