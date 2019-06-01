@@ -110,7 +110,7 @@ namespace Service_Layer.RequestHandlers
             return true;
         }
 
-        public void SetAlgoritmSensitiveness(AlgoritmSettings settings)
+        public void SetAlgoritmSensitiveness(AlgoritmSettingsModel settings)
         {
             IRatingSettings aSettings = new RatingSettings();
             aSettings.IabToleranceTier1 = settings.IabToleranceTier1;
@@ -120,11 +120,10 @@ namespace Service_Layer.RequestHandlers
             aSettings.BiggestPercentIAB = settings.BiggestPercentIAB;
         }
 
-        public AlgoritmSettings GetAlgoritmSettings()
+        public AlgoritmSettingsModel GetAlgoritmSettings()
         {
-
             IRatingSettings settings = new RatingSettings();
-            return new AlgoritmSettings()
+            return new AlgoritmSettingsModel()
             {
                 IabToleranceTier1 = settings.IabToleranceTier1,
                 IabToleranceTier2 = settings.IabToleranceTier2,
