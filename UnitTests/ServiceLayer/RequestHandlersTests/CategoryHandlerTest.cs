@@ -12,9 +12,9 @@ namespace UnitTests.ServiceLayer.RequestHandlersTests
 {
     public class RequestHandlertest
     {
-        CategoryHandler cathandler;
-        List<Category> categories;
-        CategoryManager reverser;
+        readonly CategoryHandler cathandler;
+        readonly List<Category> categories;
+        readonly CategoryManager reverser;
         public RequestHandlertest()
         {
             categories = new List<Category>();

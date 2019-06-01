@@ -20,6 +20,8 @@ namespace VidCat_Tool.Controllers
             this.videoHandler = videoHandler;
         }
 
+        /*____________________________________________________________*/
+
         public IActionResult AddUser()
         {
             return View();
@@ -34,6 +36,8 @@ namespace VidCat_Tool.Controllers
             }
             return View();
         }
+
+        /*____________________________________________________________*/
 
         [HttpGet]
         public IActionResult UserManagement()
@@ -60,6 +64,8 @@ namespace VidCat_Tool.Controllers
             return View();
         }
 
+        /*____________________________________________________________*/
+        
         [HttpGet]
         public IActionResult VideoManagement()
         {
@@ -70,6 +76,13 @@ namespace VidCat_Tool.Controllers
         {
             byte[] fileBytes = videoHandler.ExportAllVideosToJson();
             return File(fileBytes, "application/json", "JsonExport");
+        }
+
+        /*____________________________________________________________*/
+
+        [HttpGet] //Settings page where admins can set stuff, such as percentages of the algorithm.
+        public IActionResult Settings() {
+            return View();
         }
     }
 }
