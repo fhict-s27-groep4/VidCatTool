@@ -47,10 +47,18 @@ namespace Service_Layer.RequestHandlers
             return false;
         }
 
-        public void CreateUser(RegisterViewModel vm)
+        public bool CreateUser(RegisterViewModel vm)
         {
             IRegisterUser generatedUser = registerHandler.CreateUser(userRepo.GetAll(), vm.Firstname, vm.Lastname, vm.Email, vm.Phonenumber, vm.Country, vm.City, vm.Streetname, vm.Zip);
-            userRepo.AddUser(generatedUser);
+            try
+            {
+                userRepo.AddUser(generatedUser);
+            }
+            catch(Exception excepton)
+            {
+                throw new ArgumentException("Something went wrong with the registration. Check Inner Exception for specific information: /n" + excepton.InnerException.Message);
+            }
+            return true;
         }
 
         public IReadOnlyCollection<UserManagementViewModel> GetUserManagementViewModel()
