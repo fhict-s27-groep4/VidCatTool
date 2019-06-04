@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - VidCat Tool</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <script data-search-pseudo-elements defer src="https://use.fontawesome.com/releases/latest/js/all.js" integrity="sha384-L469/ELG4Bg9sDQbl0hvjMq8pOcqFgkSpwhwnslzvVVGpDjYJ6wJJyYjvG3u8XW7" crossorigin="anonymous"></script>
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -68,8 +69,12 @@
         <div class="maincontainer col-9">
             <div class="pageTitleAndUser">
                 <div class="pageTitle">@ViewData["Title"]</div>
-                <div class="pageUser">
-                    @Context.Session.GetUsernameKey()  <img src="~/images/user-placeholder.png" />
+                <div class="pageUser dropdown">
+                    <button class="noButton" dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@Context.Session.GetUsernameKey()  <img src="~/images/user-placeholder.png" /></button>
+                    <div class="dropdown-menu dropdown-menu-center sessionDropdown">
+                        <div class="dropdown-item profileItem">Profile</div>
+                        <div class="dropdown-item profileItem"><a href="@Url.Action("Logout", "Account")">Logout</a></div>
+                    </div>
                 </div>
             </div>
             <div class="contentcontainer">
@@ -104,3 +109,6 @@
     @RenderSection("Scripts", required: false)
 </body>
 </html>
+
+<script>
+</script>

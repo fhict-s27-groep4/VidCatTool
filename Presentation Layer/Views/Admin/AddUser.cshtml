@@ -22,38 +22,49 @@
 
 
         <div class="row col-sm-9">
-            <div class="row noMarginRow">
-                <div class="userContent" id="rightUserContentBox">
-                    <div class="col-sm-12 inputField specialShowField">
-                        <span>Basic User Information</span>
+            <form method="post">
+                <div class="row noMarginRow">
+                    <div class="userContent" id="rightUserContentBox">
+                        <div class="col-sm-12 inputField specialShowField">
+                            <span>Basic User Information</span>
+                        </div>
+                        <div class="col-sm-6 inputField"><input class="form-control" asp-for="Firstname" /></div>
+                        <div class="col-sm-6 inputField"><input class="form-control" asp-for="Lastname" /></div>
+                        <div class="col-sm-12 inputField"><input class="form-control" asp-for="Email" /></div>
+                        <div class="col-sm-12 inputField specialShowField" id="secondSubHeader">
+                            <span>Contact Information</span>
+                        </div>
+                        <div class="col-sm-9 inputField"><input class="form-control" asp-for="Streetname" /></div>
+                        <div class="col-sm-3 inputField"><input class="form-control" asp-for="Housenumber" /></div>
+                        <div class="col-sm-4 inputField">
+                            <select class="form-control" asp-for="Country">
+                                <option value="Netherlands">Netherlands</option>
+                                <option value="Belgium">Belgium</option>
+                                <option value="Germany">Germany</option>
+                                <option value="United Kingdom">United Kingdom</option>
+                                <option value="United States">United States</option>
+                                <option value="Spain">Spain</option>
+                                <option value="France">France</option>
+                                <option value="Austria">Austria</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-4 inputField"><input class="form-control" asp-for="City" /></div>
+                        <div class="col-sm-4 inputField"><input class="form-control" asp-for="Zip" /></div>
+                        <div class="col-sm-12 inputField specialShowField" id="secondSubHeader">
+                            <span>Role Information</span>
+                        </div>
+                        <fieldset class="col-sm-12">
+                            <div class="checkbox checkbox-primary">
+                                <input id="checkAdmin" type="checkbox" asp-for="IsAdmin" />
+                                <label for="checkAdmin">
+                                    Admin
+                                </label>
+                            </div>
+                        </fieldset>
                     </div>
-                    <div class="col-sm-6 inputField"><input class="form-control" asp-for="Firstname" /></div>
-                    <div class="col-sm-6 inputField"><input class="form-control" asp-for="Lastname" /></div>
-                    <div class="col-sm-12 inputField specialShowField" id="secondSubHeader">
-                        <span>Contact Information</span>
-                    </div>
-                    <div class="col-sm-9 inputField"><input class="form-control" asp-for="Streetname" /></div>
-                    <div class="col-sm-3 inputField"><input class="form-control" asp-for="Housenumber" /></div>
-                    <div class="col-sm-4 inputField">
-                        <select class="form-control" asp-for="Country">
-                            <option value="Netherlands">Netherlands</option>
-                            <option value="Belgium">Belgium</option>
-                            <option value="Germany">Germany</option>
-                            <option value="United Kingdom">United Kingdom</option>
-                            <option value="United States">United States</option>
-                            <option value="Spain">Spain</option>
-                            <option value="France">France</option>
-                            <option value="Austria">Austria</option>
-                        </select>
-                    </div>
-                    <div class="col-sm-4 inputField"><input class="form-control" asp-for="City" /></div>
-                    <div class="col-sm-4 inputField"><input class="form-control" asp-for="Zip" /></div>
-                    <div class="col-sm-12 inputField specialShowField" id="secondSubHeader">
-                        <span>Role Information</span>
-                    </div>
-                    <div class="col-sm-6 inputField"><input type="checkbox" value="Admin:" class="form-control" asp-for="IsAdmin" /></div>
                 </div>
-            </div>
+                <input type="submit" class="btn prim-btn submitButon" value="Add User" />
+            </form>
         </div>
     </div>
 </div>
