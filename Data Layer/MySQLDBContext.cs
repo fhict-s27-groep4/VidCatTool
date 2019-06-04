@@ -103,6 +103,7 @@ namespace Data_Layer
             catch (DbException exception)
             {
                 Console.WriteLine(exception.Message);
+                throw exception;
             }
             finally
             {
