@@ -23,7 +23,7 @@ namespace Data_Layer.Repository
 
         public void Create(T entity)
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException(); 
         }
 
         public void Delete(T entity)
