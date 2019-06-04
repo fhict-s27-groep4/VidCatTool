@@ -43,7 +43,7 @@ namespace Data_Layer.Repository
 
         public void AddUser(IRegisterUser user)
         {
-            MySqlParameter[] parameters = new MySqlParameter[11];
+            MySqlParameter[] parameters = new MySqlParameter[12];
             parameters[0] = new MySqlParameter("@username", user.UserName);
             parameters[1] = new MySqlParameter("@pass", user.PassWord);
             parameters[2] = new MySqlParameter("@passwordsalt", user.PassWordSalt);
@@ -55,6 +55,7 @@ namespace Data_Layer.Repository
             parameters[8] = new MySqlParameter("@city", user.City);
             parameters[9] = new MySqlParameter("@streetaddress", user.StreetAddress);
             parameters[10] = new MySqlParameter("@zipcode", user.ZipCode);
+            parameters[11] = new MySqlParameter("@isadmin", user.IsAdmin);
             context.ExecuteStoredProcedure("AddUser", parameters);
         }
 

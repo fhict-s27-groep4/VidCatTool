@@ -1,2 +1,40 @@
 ﻿/*body {
 }*/
+
+.userContent {
+    background-color: #ffffff;
+    padding: 1%;
+    border: 1px solid #bdbdbd;
+    overflow: hidden;
+}
+
+#rightUserContentBox {
+    margin-left: 8.33333333%;
+}
+
+.inputField {
+    margin-top: 1%;
+}
+
+.userContent span {
+    font-size: 20px;
+    font-weight: bold;
+    position: relative;
+    top: -15px;
+    background-color: #ffffff;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+.specialShowField {
+    text-align: center;
+    border-top: 1px solid #bdbdbd;
+    display: inline-block;
+    margin-top: 2%;
+    color: #e91e63;
+}
+
+#secondSubHeader {
+    margin-top: 5%;
+}
+

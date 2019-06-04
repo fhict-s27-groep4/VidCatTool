@@ -49,7 +49,7 @@ namespace Service_Layer.RequestHandlers
 
         public bool CreateUser(RegisterViewModel vm)
         {
-            IRegisterUser generatedUser = registerHandler.CreateUser(userRepo.GetAll(), vm.Firstname, vm.Lastname, vm.Email, vm.Phonenumber, vm.Country, vm.City, vm.Streetname, vm.Zip);
+            IRegisterUser generatedUser = registerHandler.CreateUser(userRepo.GetAll(), vm.Firstname, vm.Lastname, vm.Email, vm.IsAdmin, vm.Phonenumber, vm.Country, vm.City, vm.Streetname, vm.Zip);
             try
             {
                 userRepo.AddUser(generatedUser);
