@@ -103,11 +103,32 @@ namespace Service_Layer.RequestHandlers
             {
                 return false;
             }
-            //new jsonfile
             //add old to new replace old with new 
             //send new to db
-            //delete file
             return true;
+        }
+
+        public void SetAlgoritmSensitiveness(AlgoritmSettingsModel settings)
+        {
+            IRatingSettings aSettings = new RatingSettings();
+            aSettings.IabToleranceTier1 = settings.IabToleranceTier1 / 100;
+            aSettings.IabToleranceTier2 = settings.IabToleranceTier2 / 100;
+            aSettings.MaximumRatings = settings.MaximumRatings;
+            aSettings.PadTolerance = settings.PadTolerance;
+            aSettings.BiggestPercentIAB = settings.BiggestPercentIAB / 100;
+        }
+
+        public AlgoritmSettingsModel GetAlgoritmSettings()
+        {
+            IRatingSettings settings = new RatingSettings();
+            return new AlgoritmSettingsModel()
+            {
+                IabToleranceTier1 = settings.IabToleranceTier1 * 100,
+                IabToleranceTier2 = settings.IabToleranceTier2 * 100,
+                MaximumRatings = settings.MaximumRatings,
+                PadTolerance = settings.PadTolerance,
+                BiggestPercentIAB = settings.BiggestPercentIAB * 100
+            };
         }
     }
 }

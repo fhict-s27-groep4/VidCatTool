@@ -8,7 +8,7 @@ namespace UnitTests.ServiceLayer.ViewModelTests
 {
     public class RegisterViewTest
     {
-        RegisterViewModel review;
+        private readonly RegisterViewModel review;
         public RegisterViewTest()
         {
             review = new RegisterViewModel();

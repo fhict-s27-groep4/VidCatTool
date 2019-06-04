@@ -218,10 +218,8 @@ namespace UnitTests.LogicLayer.Algorime
 
             #endregion
 
-            Action act = () => ratalgo.FindDivergents(test);
-
             //assert
-            Assert.Throws<System.NotImplementedException>(act);
+            Assert.Throws<System.NotImplementedException>(() => ratalgo.FindDivergents(test));
         }
         [Fact]
         public void NotEnoughRatings()

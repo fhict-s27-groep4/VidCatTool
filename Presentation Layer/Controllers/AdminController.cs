@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Linq;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Service_Layer.RequestHandlers;
 using Service_Layer.SessionExtension;
@@ -20,6 +21,8 @@ namespace VidCat_Tool.Controllers
             this.videoHandler = videoHandler;
         }
 
+        /*____________________________________________________________*/
+
         public IActionResult AddUser()
         {
             return View();
@@ -34,6 +37,8 @@ namespace VidCat_Tool.Controllers
             }
             return View();
         }
+
+        /*____________________________________________________________*/
 
         [HttpGet]
         public IActionResult UserManagement()
@@ -60,6 +65,8 @@ namespace VidCat_Tool.Controllers
             return View();
         }
 
+        /*____________________________________________________________*/
+        
         [HttpGet]
         public IActionResult VideoManagement()
         {
@@ -70,6 +77,33 @@ namespace VidCat_Tool.Controllers
         {
             byte[] fileBytes = videoHandler.ExportAllVideosToJson();
             return File(fileBytes, "application/json", "JsonExport");
+        }
+
+        [HttpPost]
+        public IActionResult UploadJSON(IFormFile file)
+        {
+            videoHandler.ExpandJson(null); //Filestream must be read, NOT A TASK FOR THE FRONT END
+            return View();
+        }
+
+
+        /*____________________________________________________________*/
+
+        [HttpGet] //Settings page where admins can set stuff, such as percentages of the algorithm.
+        public IActionResult Settings() {
+            AlgoritmSettingsModel settings = videoHandler.GetAlgoritmSettings();
+            return View(settings);
+        }
+
+        [HttpPost]
+        public IActionResult Settings(AlgoritmSettingsModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                videoHandler.SetAlgoritmSensitiveness(model);
+                return VideoManagement();
+            }
+            return Settings();
         }
     }
 }
