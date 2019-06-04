@@ -33,5 +33,8 @@ namespace Service_Layer.ViewModels
 
         [Required(ErrorMessage = "Email is required"), Display(Name = "Email", Prompt = "E-mail")]
         public string Email { get; set; }
+
+        [Required(ErrorMessage = "User role is required"), Display(Name = "Role")]
+        public bool IsAdmin { get; set; }
     }
 }

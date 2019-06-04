@@ -31,7 +31,7 @@ namespace Logic_Layer.Handlers
             return false;
         }
         
-        public IRegisterUser CreateUser(IEnumerable<IUser> allUsers, string firstname, string lastname, string email, string phonenumber = null, string country = null, string city = null, string streetaddress = null, string zipcode = null)
+        public IRegisterUser CreateUser(IEnumerable<IUser> allUsers, string firstname, string lastname, string email, bool isAdmin, string phonenumber = null, string country = null, string city = null, string streetaddress = null, string zipcode = null)
         {
             IPasswordGenerator gen = new PasswordGenerator();
             string generatedPassword = gen.GeneratePassword(true, true, true, true, false, 12);
@@ -41,6 +41,7 @@ namespace Logic_Layer.Handlers
             newUser.FirstName = firstname;
             newUser.LastName = lastname;
             newUser.Email = email;
+            newUser.IsAdmin = isAdmin;
             newUser.PassWord = hasher.HashWithSalt(generatedPassword);
             newUser.PassWordSalt = hasher.Key;
             if (phonenumber != null) newUser.PhoneNumber = phonenumber;

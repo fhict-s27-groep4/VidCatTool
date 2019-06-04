@@ -451,3 +451,8 @@ body {
     display: inline-block;
     margin: auto;
 }
+
+
+.noMarginRow {
+    margin: 0px;
+}

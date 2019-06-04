@@ -10,12 +10,12 @@ using Xunit;
 
 namespace UnitTests.ServiceLayer.RequestHandlersTests
 {
-    public class RequestHandlertest
+    public class CategoryHandlerTest
     {
-        readonly CategoryHandler cathandler;
-        readonly List<Category> categories;
-        readonly CategoryManager reverser;
-        public RequestHandlertest()
+        private readonly CategoryHandler cathandler;
+        private readonly List<Category> categories;
+        private readonly CategoryManager reverser;
+        public CategoryHandlerTest()
         {
             categories = new List<Category>();
 
