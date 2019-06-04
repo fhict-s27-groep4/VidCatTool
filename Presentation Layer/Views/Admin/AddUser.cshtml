@@ -72,19 +72,30 @@
                 <div id="profileInfoTitle" style="margin-top: 3%;">
                     <b style="text-decoration: underline">Role Specification</b>
                     @*<div class="row" style="margin-top: 1%; margin-bottom: 1%" ;>
-                        <div class="checkbox">
-                            <label><input class="form-control" type="checkbox" value="" />Teeeeeest00</label>
-                        </div>
-                    </div>*@
+                            <div class="checkbox">
+                                <label><input class="form-control" type="checkbox" value="" />Teeeeeest00</label>
+                            </div>
+                        </div>*@
                     @* ADD ISADMIN OR ISMODERATOR STUFF *@
                 </div>
 
                 <div style="margin-top: 3%;">
-                    <button type="submit" class="btn btn-success">Add User</button>
+                    <button onclick="Success" type="submit" class="btn btn-success">Add User</button>
                     <button type="reset" class="btn btn-warning" style="float: right;">Reset Fields</button>
                 </div>
 
             </form>
+            @if (ViewBag.Message != null)
+            {
+                <script type="text/javascript">
+
+                    window.onload = function() {
+                        alert('@ViewBag.Message');
+                        var url = '@Url.Action("UserManagement", "Admin")';
+                        window.location.href = url;
+                    };
+                </script>
+            }
         </div>
     </div>
 </div>
