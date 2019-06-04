@@ -9,34 +9,10 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    @*<script type="text/javascript" src="~/js/site.js"></script>
-        <script type="text/javascript" src="~/js/site.min.js"></script>*@
-    @*<link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/flick/jquery-ui.css">
-        <link rel="stylesheet" href="https://simeydotme.github.io/jQuery-ui-Slider-Pips/dist/css/jqueryui.min.css" />
-        <link rel="stylesheet" href="https://simeydotme.github.io/jQuery-ui-Slider-Pips/dist/css/jquery-ui-slider-pips.min.css" />*@
-    @*<link rel="stylesheet" href="https://simeydotme.github.io/jQuery-ui-Slider-Pips/dist/css/app.min.css" />*@
-
-    @*<script type="text/javascript" src="~/lib/jquery/dist/jquery.js"></script>
-        <script type="text/javascript" src="https://simeydotme.github.io/jQuery-ui-Slider-Pips/dist/js/jquery-plus-ui.min.js"></script>
-        <script type="text/javascript" src="https://simeydotme.github.io/jQuery-ui-Slider-Pips/dist/js/jquery-ui-slider-pips.js"></script>*@
-
-
-
-    @*<link rel="stylesheet" href="~/lib/jquery-ui/dist/css/jquery-ui.css" />
-        <link rel="stylesheet" href="~/lib/jquery-ui/dist/css/jquery-ui.min.css" />*@
 
     <script type="text/javascript" src="~/lib/jquery/dist/jquery.js"></script>
-    @*<script type="text/javascript" src="~/lib/jquery-ui/dist/js/jquery-ui.js"></script>*@
 
     <link href="~/css/videomanagement.css" rel="stylesheet" />
-
-    @*<script type="text/javascript" src="~/js/elements/multirange.js"></script>*@
-
-    @*---------------------------------------------------*@
-
-    @*<script>
-            var sliderA = new Slider("#slider1a", { min: 0, max: 10, value: [3, 9], focus: true });
-        </script>*@
 
     @*------------------------------------------------------------*@
 
@@ -118,57 +94,13 @@
                 @* To Upload JSON File. *@
                 <div class="videoUploadJSON" style="padding: 10% 24% 0% 24%;">
                     <input type="file" name="file" style="margin: 1%;" /> @* MAXIMUM MB FILE UPLOAD PLS?! *@
-                    <a class="btn btn-warning center-block" asp-controller="Admin" asp-action="UploadJSON"
+                    <a class="btn btn-warning center-block disabled" asp-controller="Admin" asp-action="UploadJSON"
                        style="font-weight: 200;">
                         <i class="fas fa-file-upload"></i>&nbsp Upload JSON File
                     </a>
                 </div>
 
-                @*<div class="videoUploadJSON" style="padding: 5% 28% 0% 28%">
-            <a class="btn btn-success center-block" asp-controller="" asp-action=""
-               style="font-weight: 200;">
-                <i class="fas fa-upload"></i>&nbsp JSON Upload
-            </a>
-        </div>*@
             </div>
-
-
-            @* ------------------------------------------------------------------------------------ *@
-
-            @* THE USER ACTIONS BOX WITH POSSIBLE BUTTONS SUCH AS *@
-            @* DISABLING ACCOUNTS AND REFERENCES TO OTHER PAGES (VIDEO'S RATED FOR EXAMPLE)*@
-
-            @* ------------------------------------------------------------------- -----------------*@
-
-
-            @*<div class="col-sm-7 userActionsColumn" style="margin-left: 4%;">*@
-
-            @* All buttons in the menu *@
-            @*<div class="col-sm-10 userSelActionsContainer">
-                <a class="btn btn-default" asp-controller="" asp-action="" style="font-size: 14px; margin: 5px 2px 5px -9px;">
-                    <i class="fas fa-times"></i>&nbsp Ban
-                </a>
-                <a class="btn btn-default" asp-controller="" asp-action="" style="font-size: 14px; margin: 5px 2px 5px 0px;">
-                    <i class="fas fa-user-check"></i>&nbsp Check Ratings
-                </a>
-                <a class="btn btn-default" asp-controller="" asp-action="" style="font-size: 14px; margin: 5px 2px 5px 0px;">
-                    <i class="far fa-comment-dots"></i>&nbsp Send Message
-                </a>
-                <a class="btn btn-default" asp-controller="" asp-action="" style="font-size: 14px; margin: 5px -9px 5px 0px;">
-                    <i class="fas fa-exclamation-circle"></i>&nbsp Warn User
-                </a>
-                </div>*@
-
-            @* The "Add User" Button, which is outside the other box *@
-            @*<div class="col-sm-1 userAddContainer" style="margin-left: 6.2%; padding: 5px 0px 5px 0px;">
-                <a class="btn btn-warning userAddButton" asp-controller="Admin" asp-action="AddUser"
-                   style="background-color: #e91e63; color: #ffffff; font-weight: 200;">
-                    <i class="fas fa-plus"></i>&nbsp Add User
-                </a>
-                </div>*@
-
-            @*</div>*@
-
 
             @* ------------------------------------------------------------------- *@
 
@@ -176,35 +108,81 @@
 
             @* ------------------------------------------------------------------- *@
 
-
             <div class="col-sm-7 videoResultsColumn" style="margin-left: 5%; padding: 1.6%; padding-top: 0.5%; background-color: #ffffff; margin-bottom: 1%; border: 1px solid #bdbdbd">
                 <h3 class="text-center" style="color: #e91e63; margin: 3%;">Search Results</h3>
 
                 @* The List of Search Results, looping users *@
-                @foreach (var video in Model)
-                {
-                    <div class="userSearchItem" style="border: 1px solid #e91e63; margin-top: 1%; margin-bottom: 1%; padding: 1.8%; position:relative;">
-                        <div class="row" style="height: 25%;">
-                            <div class="col-md-11">
-                                <h3 style="margin: 0%;" id="fullName">@video.Title (@video.Video.UrlIdentity)</h3>
-                                <div>
-                                    <div class="row" style="margin-top:2%; margin-bottom: 1%;">
-                                        <div class="col-sm-1" style="width:auto;"><div class="videoStatView">@video.Video.Finished</div></div>
-                                        <div class="col-sm-1" style="width:auto;"><div class="videoStatView"><i class="fas fa-eye"></i> @video.WatchCount</div></div>
-                                        @*<div class="col-sm-1" style="width:auto;"><div class="videoStatView">@video.BiggestTier2%</div></div>*@
+                <div class="videoSearchResults">
+                    @foreach (var video in Model)
+                    {
+                        <div class="videoSearchItem" style="border: 1px solid #e91e63; margin-top: 1%; margin-bottom: 1%; padding: 1.5%; position:relative; overflow: visible;">
 
+                            @* User Profile Image  !! GRAVATAR & PROFILE PICTURE ADDED LATER !! *@
+                            <img height="64" width="64" src="@Html.Raw(video.Thumbnail)" style="float: left; margin: 0 10px 0 0; border: 1px solid #e91e63;" />
+
+                            <div style="height: 25%; max-height: 80px; width: 100%; margin: 0;">
+                                <div>
+
+                                    @{ 
+                                        string title = video.Title;
+                                        if(title.Length > 45) { title = (video.Title.Substring(0, 43) + ".."); }
+                                    }
+
+                                    @* First- and Last name, inclusing the Username *@
+                                    <div style="white-space: nowrap; height: 28px;">
+                                        <div style="float: left; height: inherit; line-height:28px;"><h3 style="margin: 0; display: inline-block; height: inherit;" id="title">@title</h3></div>
+                                        <div style="float: left; height: inherit; line-height:28px; margin-left: 1.5%;"><p style="margin: 0; display: inline-block; height: inherit; color: #707070;" id="userName">(@video.Video.UrlIdentity)</p></div>
                                     </div>
+
+                                    @* Other Stats *@
+                                    <div style="white-space: nowrap; height: 28px; margin-top: 1%;">
+                                        <div>
+
+                                            @*----------------------------------------------*@
+
+                                            @* Watch Count of Video *@
+                                            <div style="white-space: nowrap; padding: 0; float: left;">
+                                                <div style="float: left; height: inherit; line-height: 28px; font-size: 16px;">
+                                                    <i class="fas fa-eye" style="color: #e91e63;"></i>&nbsp;@video.WatchCount
+                                                </div>
+                                            </div>
+
+                                            @* Category *@
+                                            <div style="padding: 0; float: left; margin-left: 4.5%;">
+                                                @if (video.WatchCount > 0) {
+                                                    <div style="float: left; height: inherit; line-height: 28px; font-size: 16px;">
+                                                        <i class="fas fa-tag" style="color: #e91e63;"></i>&nbsp;"@video.IABCategoryNameAndPercentage"
+                                                    </div>
+                                                }
+                                                else {
+                                                    <div><i class="fas fa-tag" style="color: #e91e63;"></i>&nbsp;nvt</div>
+                                                }
+                                            </div>
+                                            @*<div style="padding: 0; float: left; margin-left: 4.5%;">
+                                                <div style="float: left; height: inherit; line-height: 28px; font-size: 28px; font-size: 16px;">
+                                                    @if (user.User.IsDisabled == true)
+                                                    {<div><i class="fas fa-gavel" style="color: #e91e63;"></i>&nbsp;Disabled</div> }
+                                                    else
+                                                    { <div><i class="fas fa-gavel" style="color: #e91e63;"></i>&nbsp;Enabled</div>}
+                                                </div>
+                                            </div>*@
+                                        </div>
+                                    </div>
+
+                                    @*<div>
+                                    <div class="row" style="margin-top: 1.5%;">
+                                        <div class="col-sm-1" style="width:auto;"><div class="userStatView"><i class="fas fa-eye"></i> @user.RatingCount</div></div>
+                                        <div class="col-sm-1" style="width:auto;"><div class="userStatView">@user.ProcentDivergent</div></div>
+                                    </div>
+                                </div>*@
                                 </div>
                             </div>
-
-                            <div class="col-md-1"><img height="64" width="64" src="@Html.Raw(video.Thumbnail)" style="float: right;" /></div>
-
                         </div>
-                    </div>
-                }
+                    }
+                </div>
 
                 @* Bottom text and actions, such as the amount of pages. *@
-                <div class="videoSearchCount" style="margin: 4%;">
+                <div class="userSearchCount" style="margin: 4%;">
                     <h6 class="text-center" style="width: 100%; color: #707070;">@Model.Count Results found</h6>
                 </div>
             </div>
@@ -212,11 +190,65 @@
         </div>
 
 
-        @* ------------------------------------------------------------------- *@
 
-        @* THE END OF THE HTML. HET WERD TIJD. *@
 
-        @* ------------------------------------------------------------------- *@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            @*<div class="col-sm-7 videoResultsColumn" style="margin-left: 5%; padding: 1.6%; padding-top: 0.5%; background-color: #ffffff; margin-bottom: 1%; border: 1px solid #bdbdbd">
+                <h3 class="text-center" style="color: #e91e63; margin: 3%;">Search Results</h3>*@
+
+                @* The List of Search Results, looping users *@
+                @*<div class="videoSearchResults">
+                    @foreach (var video in Model)
+                    {
+                        <div class="userSearchItem" style="border: 1px solid #e91e63; margin-top: 1%; margin-bottom: 1%; padding: 1.8%; position:relative;">
+                            <div class="row" style="height: 25%;">
+                                <div class="col-md-11">
+                                    <h3 style="margin: 0%;" id="fullName">@video.Title (@video.Video.UrlIdentity)</h3>
+                                    <div>
+                                        <div class="row" style="margin-top:2%; margin-bottom: 1%;">
+                                            <div class="col-sm-1" style="width:auto;"><div class="videoStatView">@video.Video.Finished</div></div>
+                                            <div class="col-sm-1" style="width:auto;"><div class="videoStatView"><i class="fas fa-eye"></i> @video.WatchCount</div></div>*@
+                                            @*<div class="col-sm-1" style="width:auto;"><div class="videoStatView">@video.BiggestTier2%</div></div>*@
+
+                                        @*</div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-1"><img height="64" width="64" src="@Html.Raw(video.Thumbnail)" style="float: right;" /></div>
+
+                            </div>
+                        </div>
+                    }*@
+
+                    @* Bottom text and actions, such as the amount of pages. *@
+                    @*<div class="videoSearchCount" style="margin: 4%;">
+                        <h6 class="text-center" style="width: 100%; color: #707070;">@Model.Count Results found</h6>
+                    </div>
+                </div>
+
+            </div>*@
+
+
+            @* ------------------------------------------------------------------- *@
+
+            @* THE END OF THE HTML. HET WERD TIJD. *@
+
+            @* ------------------------------------------------------------------- *@
 
 
     </div>
