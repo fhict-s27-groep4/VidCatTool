@@ -142,30 +142,60 @@
 
                                             @* Watch Count of Video *@
                                             <div style="white-space: nowrap; padding: 0; float: left;">
-                                                <div style="float: left; height: inherit; line-height: 28px; font-size: 16px;">
+                                                <div style="float: left; height: 28px; line-height: 28px;">
                                                     <i class="fas fa-eye" style="color: #e91e63;"></i>&nbsp;@video.WatchCount
                                                 </div>
                                             </div>
 
                                             @* Category *@
                                             <div style="padding: 0; float: left; margin-left: 4.5%;">
-                                                @if (video.WatchCount > 0) {
-                                                    <div style="float: left; height: inherit; line-height: 28px; font-size: 16px;">
-                                                        <i class="fas fa-tag" style="color: #e91e63;"></i>&nbsp;"@video.IABCategoryNameAndPercentage"
+                                                @if (video.WatchCount > 0 && video.IABCategoryNameAndPercentage != null) {
+                                                    <div style="float: left; height: 28px; line-height: 28px; font-size: 16px;">
+                                                        <i class="fas fa-tag" style="color: #e91e63;"></i>&nbsp;@video.IABCategoryNameAndPercentage
                                                     </div>
                                                 }
-                                                else {
-                                                    <div><i class="fas fa-tag" style="color: #e91e63;"></i>&nbsp;nvt</div>
-                                                }
+                                                else { <div><i class="fas fa-tag" style="color: #e91e63;"></i>&nbsp;nvt</div> }
                                             </div>
-                                            @*<div style="padding: 0; float: left; margin-left: 4.5%;">
-                                                <div style="float: left; height: inherit; line-height: 28px; font-size: 28px; font-size: 16px;">
-                                                    @if (user.User.IsDisabled == true)
-                                                    {<div><i class="fas fa-gavel" style="color: #e91e63;"></i>&nbsp;Disabled</div> }
-                                                    else
-                                                    { <div><i class="fas fa-gavel" style="color: #e91e63;"></i>&nbsp;Enabled</div>}
-                                                </div>
-                                            </div>*@
+
+                                            @* PAD-Score (Pleasure) *@
+                                            <div style="padding: 0; float: left; margin-left: 4.5%;">
+                                                @if (video.WatchCount > 0 && video.PleaureAverageAndDeviation.Object2 != 0)
+                                                {
+                                                    <div style="float: left; height: 28px; line-height: 28px; font-size: 16px;">
+                                                        <span style="float: left; color: #e91e63;"><i class="far fa-laugh-beam"></i></span>
+                                                        <div class="progress" style="height: 5px; width: 70px; float: left; margin: 10% 0 0 6px;"><div class="progress-bar progress-bar-success" style="height: inherit; width: inherit;" aria-valuenow="@video.PleaureAverageAndDeviation.Object2" aria-valuemin="0" aria-valuemax="5">@video.PleaureAverageAndDeviation.Object2</div></div>
+                                                        @*<i class="far fa-laugh-beam" style="color: #e91e63;"></i>&nbsp;"@video.PleaureAverageAndDeviation.Object2" & "@video.ArrouselAverageAndDeviation.Object2"*@
+                                                    </div>
+                                                }
+                                                else { <div><i class="far fa-laugh-beam" style="color: #e91e63;"></i>&nbsp;nvt</div>}
+                                            </div>
+
+                                            @* PAD-Score (Arrousal) *@
+                                            <div style="padding: 0; float: left; margin-left: 4.5%;">
+                                                @if (video.WatchCount > 0 && video.ArrouselAverageAndDeviation.Object2 != 0)
+                                                {
+                                                    <div style="float: left; height: 28px; line-height: 28px; font-size: 16px;">
+                                                        <span style="float: left; color: #e91e63;"><i class="far fa-laugh-beam"></i></span>
+                                                        <div class="progress" style="height: 5px; width: 70px; float: left; margin: 10% 0 0 6px;"><div class="progress-bar progress-bar-success" style="height: inherit; width: inherit;" aria-valuenow="@video.ArrouselAverageAndDeviation.Object2" aria-valuemin="0" aria-valuemax="5">@video.ArrouselAverageAndDeviation.Object2</div></div>
+                                                        @*<i class="far fa-laugh-beam" style="color: #e91e63;"></i>&nbsp;"@video.PleaureAverageAndDeviation.Object2" & "@video.ArrouselAverageAndDeviation.Object2"*@
+                                                    </div>
+                                                }
+                                                else { <div><i class="far fa-laugh-beam" style="color: #e91e63;"></i>&nbsp;nvt</div>}
+                                            </div>
+
+                                            @* PAD-Score (Dominance) *@
+                                            <div style="padding: 0; float: left; margin-left: 4.5%;">
+                                                @if (video.WatchCount > 0 && video.DominanceAverageAndDeviation.Object2 != 0)
+                                                {
+                                                    <div style="float: left; height: 28px; line-height: 28px; font-size: 16px;">
+                                                        <span style="float: left; color: #e91e63;"><i class="far fa-laugh-beam"></i></span>
+                                                        <div class="progress" style="height: 5px; width: 70px; float: left; margin: 10% 0 0 6px;"><div class="progress-bar progress-bar-success" style="height: inherit; width: inherit;" aria-valuenow="@video.DominanceAverageAndDeviation.Object2" aria-valuemin="0" aria-valuemax="5">@video.DominanceAverageAndDeviation.Object2</div></div>
+                                                        @*<i class="far fa-laugh-beam" style="color: #e91e63;"></i>&nbsp;"@video.PleaureAverageAndDeviation.Object2" & "@video.ArrouselAverageAndDeviation.Object2"*@
+                                                    </div>
+                                                }
+                                                else { <div><i class="far fa-laugh-beam" style="color: #e91e63;"></i>&nbsp;nvt</div>}
+                                            </div>
+
                                         </div>
                                     </div>
 

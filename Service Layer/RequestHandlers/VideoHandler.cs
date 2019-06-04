@@ -42,8 +42,10 @@ namespace Service_Layer.RequestHandlers
             IEnumerable<IDuncan> ratings = ratingRepo.GetAll();
             foreach (ISearchVideo video in vids)
             {
-                VideoManagementViewModel model = new VideoManagementViewModel();
-                model.Video = video;
+                VideoManagementViewModel model = new VideoManagementViewModel
+                {
+                    Video = video
+                };
                 IObjectPair<string, string> titleImage = jsonReader.GetVideoTitleAndImage(video.UrlIdentity);
                 model.Title = titleImage.Object1;
                 model.Thumbnail = titleImage.Object2;
@@ -110,12 +112,14 @@ namespace Service_Layer.RequestHandlers
 
         public void SetAlgoritmSensitiveness(AlgoritmSettingsModel settings)
         {
-            IRatingSettings aSettings = new RatingSettings();
-            aSettings.IabToleranceTier1 = settings.IabToleranceTier1 / 100;
-            aSettings.IabToleranceTier2 = settings.IabToleranceTier2 / 100;
-            aSettings.MaximumRatings = settings.MaximumRatings;
-            aSettings.PadTolerance = settings.PadTolerance;
-            aSettings.BiggestPercentIAB = settings.BiggestPercentIAB / 100;
+            IRatingSettings aSettings = new RatingSettings
+            {
+                IabToleranceTier1 = settings.IabToleranceTier1 / 100,
+                IabToleranceTier2 = settings.IabToleranceTier2 / 100,
+                MaximumRatings = settings.MaximumRatings,
+                PadTolerance = settings.PadTolerance,
+                BiggestPercentIAB = settings.BiggestPercentIAB / 100
+            };
         }
 
         public AlgoritmSettingsModel GetAlgoritmSettings()
