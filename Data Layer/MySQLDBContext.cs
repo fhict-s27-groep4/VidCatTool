@@ -15,7 +15,7 @@ namespace Data_Layer
         private MySqlCommand dbCommand;
         private MySqlDataAdapter adapter;
 
-        private string connectionString;
+        private readonly string connectionString;
 
         public MySQLDBContext()
         {
