@@ -77,7 +77,7 @@ namespace VidCat_Tool.Controllers
         [HttpGet]
         public IActionResult VideoManagement()
         {
-            return View(videoHandler.GetVideoManagementViewModel());
+            return View("Videomanagement", videoHandler.GetVideoManagementViewModel());
         }
         
         public FileResult ExportToJSON()

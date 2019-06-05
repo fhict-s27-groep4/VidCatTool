@@ -85,6 +85,14 @@ namespace Logic_Layer.JsonReader
                         return false;
                     }
                     string desc = (string)video["description"];
+                    int pubDate = (int)video["pubdate"];
+                    string image = (string)video["image"];
+                    if (!image.EndsWith(".jpg"))
+                    {
+                        throw new Exception();
+                    }
+                    JObject variations = (JObject)video["variations"];
+                    string feedid = (string)video["feedid"];
                 }
                 return true;
             }
