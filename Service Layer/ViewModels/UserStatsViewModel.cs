@@ -12,6 +12,6 @@ namespace Service_Layer.ViewModels
         public ulong TotalVideos { get; set; }
         public ulong FinishedVideos { get; set; }
         public ulong UnFinishedVideos { get; set; }
-        public int AverageViewedVideos { get; set; }
+        public double AverageViewedVideos { get; set; }
     }
 }

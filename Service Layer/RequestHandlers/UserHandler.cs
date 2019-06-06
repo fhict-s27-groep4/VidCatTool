@@ -12,6 +12,7 @@ using Logic_Layer.SMTPMessageSender;
 using Logic_Layer.Hasher;
 using Logic_Layer.PassWordGenerator;
 using Model_Layer.Models;
+using Data_Layer.Repository;
 
 namespace Service_Layer.RequestHandlers
 {
@@ -20,10 +21,12 @@ namespace Service_Layer.RequestHandlers
         private readonly ILogin loginHandler;
         private readonly IRegister registerHandler;
         private readonly IUserRepository userRepo;
+        private readonly IUserStatsRepository userStatsRepository;
         private readonly SessionHandler sessionHandler;
 
-        public UserHandler(ILogin loginHandler, IRegister registerHandler, IUserRepository userRepo, SessionHandler sessionHandler)
+        public UserHandler(IUserStatsRepository userStatsRepository, ILogin loginHandler, IRegister registerHandler, IUserRepository userRepo, SessionHandler sessionHandler)
         {
+            this.userStatsRepository = userStatsRepository ?? throw new NullReferenceException();
             this.loginHandler = loginHandler ?? throw new NullReferenceException();
             this.registerHandler = registerHandler ?? throw new NullReferenceException();
             this.userRepo = userRepo ?? throw new NullReferenceException();
@@ -58,7 +61,7 @@ namespace Service_Layer.RequestHandlers
             {
                 userRepo.AddUser(generatedUser);
             }
-            catch(Exception excepton)
+            catch (Exception excepton)
             {
                 throw new ArgumentException("Something went wrong with the registration. Check Inner Exception for specific information: /n" + excepton.InnerException.Message);
             }
@@ -116,6 +119,20 @@ namespace Service_Layer.RequestHandlers
             IMessageSettableMail mail = new MessageMail(new System.Net.Mail.MailMessage());
             mail.MakeMail("New Password For VidCatTool", String.Format("Dear Sir/Madam, \n\n The password of this account has been reset.\n Please login with the following password: {0} \n\n Kind regards, \n The staff of JWPlayer", generatedPassword), loggedInUser.Email);
             eMailer.Send(mail);
+        }
+
+        public UserStatsViewModel GetUserStats()
+        {
+            UserStats stats = userStatsRepository.GetUserStats(sessionHandler.Session.GetUserIDKey());
+            return new UserStatsViewModel()
+            {
+                User = userRepo.GetByUUID(sessionHandler.Session.GetUserIDKey()),
+                ViewedCount = stats.ViewCount,
+                AverageViewedVideos = stats.AverageViewedVideos,
+                FinishedVideos = stats.FinishedVideos,
+                TotalVideos = stats.TotalVideos,
+                UnFinishedVideos = stats.TotalVideos - stats.FinishedVideos
+            };
         }
     }
 }
