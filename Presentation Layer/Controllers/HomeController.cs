@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Service_Layer.RequestHandlers;
+using Service_Layer.ViewModels;
 using VidCat_Tool.Models;
 
 namespace VidCat_Tool.Controllers
@@ -23,7 +24,6 @@ namespace VidCat_Tool.Controllers
         {
             return View(userHandler.GetUserStats());
         }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
