@@ -25,6 +25,7 @@ namespace Service_Layer.ServiceCollector
             services.AddTransient<IRatingRepository, RatingRepository>();
             services.AddTransient<IVideoRepository, VideoRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
+            services.AddTransient<IJsonAddRepository, JsonAddRepository>();
             services.AddTransient<IDBContext, MySQLDBContext>();
 
             services.AddTransient<ILogin, AccountManager>();

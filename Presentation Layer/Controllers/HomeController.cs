@@ -13,21 +13,16 @@ namespace VidCat_Tool.Controllers
     [SessionCheck]
     public class HomeController : Controller
     {
-        private readonly PictureHandler picturehandler ;
-        public HomeController(PictureHandler picturehandler)
+        UserHandler userHandler;
+
+        public HomeController(UserHandler userHandler)
         {
-            this.picturehandler = picturehandler;
+            this.userHandler = userHandler;
         }
+
         public IActionResult Dashboard()
         {
-            PictureManagementViewModel picVM = new PictureManagementViewModel();
-            picVM.Get = picturehandler.GetUserIdWithPicture();
-            return View(picVM);
-        }
-        [HttpPost]
-        public void PictureUpload(PictureManagementViewModel model)
-        {
-            Task.Run(() => picturehandler.PictureCopy(model.Post.File));
+            return View(userHandler.GetUserStats());
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

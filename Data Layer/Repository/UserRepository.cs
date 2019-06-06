@@ -14,15 +14,14 @@ namespace Data_Layer.Repository
     {
         public UserRepository(IDBContext context) : base(context)
         {
-
         }
 
-        public User GetByUUID(string uid)
+        public ILoginUser GetByUUID(string uid)
         {
             return context.SelectQuery<User>().Where(id => id.UserID == uid).FirstOrDefault();
         }
 
-        public User GetUserByName(string username)
+        public ILoginUser GetUserByName(string username)
         {
             return context.SelectQuery<User>().Where(user => user.UserName == username).FirstOrDefault();
         }

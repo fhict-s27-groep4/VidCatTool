@@ -5,8 +5,8 @@ using System.Text;
 
 namespace Data_Layer.Interface
 {
-    public interface IJsonAddRepository : IRepository<AddJson>
+    public interface IJsonAddRepository : IRepository<string>
     {
-        void AddJsonVideos(IEnumerable<AddJson> ids);
+        void AddJsonVideos(IEnumerable<string> ids);
     }
 }

@@ -91,27 +91,15 @@
                     </a>
                 </div>
 
-                @*@* To Upload JSON File.
-        <div class="videoUploadJSON" style="padding: 10% 24% 0% 24%;">
-            <input type="file" name="file" style="margin: 1%;" /> @* MAXIMUM MB FILE UPLOAD PLS?!
-            <a class="btn btn-warning center-block disabled" asp-controller="Admin" asp-action="UploadJSON"
-               style="font-weight: 200;">
-                <i class="fas fa-file-upload"></i>&nbsp Upload JSON File
-            </a>
-        </div>*@
-                <form method="post" enctype="multipart/form-data" asp-controller="Admin" asp-action="UploadJSON">
-                    <div class="form-group">
-                        <div class="col-md-10">
-                            <p>Upload one or more files using this form:</p>
-                            <input asp-for="Post.File" type="file">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-10">
-                            <input type="submit" value="Upload">
-                        </div>
-                    </div>
-                </form>
+                @* Upload JSON *@
+                <div style="padding: 10% 15% 0% 15%; overflow: hidden;">
+                    <form class="form-group" method="post" enctype="multipart/form-data" asp-controller="Admin" asp-action="UploadJSON">
+                        <div style="text-align: center; margin: auto;"><input style="width: 100%; padding: 0 20px 0 30px;" asp-for="Post.File" type="file" /></div>
+                        <div style="text-align: center; margin-top: 6px;"><input class="btn btn-warning" type="submit" value="Upload JSON File"/></div>
+                        @if(TempData["JSONUpload_Error"] != null) { 
+                            <div style="text-align: center; margin: 6px auto auto auto;"><span style="color: red; width: 100%;">@TempData["JSONUpload_Error"]</span></div> }
+                    </form>
+                </div>
 
             </div>
 

@@ -7,19 +7,19 @@ using System.Text;
 
 namespace Data_Layer.Repository
 {
-    public class JsonAddRepository : Repository<AddJson>, IJsonAddRepository
+    public class JsonAddRepository : Repository<string>, IJsonAddRepository
     {
         public JsonAddRepository(IDBContext context) : base(context)
         {
 
         }
 
-        public void AddJsonVideos(IEnumerable<AddJson> ids)
+        public void AddJsonVideos(IEnumerable<string> ids)
         {
-            foreach (AddJson json in ids)
+            foreach (string id in ids)
             {
                 MySqlParameter[] parameters = new MySqlParameter[1];
-                parameters[0] = new MySqlParameter("@VidID", json.VidID);
+                parameters[0] = new MySqlParameter("@VidID", id);
                 context.ExecuteStoredProcedure("AddJson", parameters);
             }
         }

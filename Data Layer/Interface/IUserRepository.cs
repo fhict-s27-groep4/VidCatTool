@@ -8,8 +8,8 @@ namespace Data_Layer.Interface
 {
     public interface IUserRepository : IRepository<User>
     {
-        User GetUserByName(string username);
-        User GetByUUID(string uid);
+        ILoginUser GetUserByName(string username);
+        ILoginUser GetByUUID(string uid);
         void DisableUser(string userid);
         void EnableUser(string userid);
         void AddUser(IRegisterUser user);
