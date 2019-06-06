@@ -70,7 +70,7 @@ namespace Service_Layer.RequestHandlers
             string path = null;
             if(pictures.Count() > 0)
             {
-                path = Path.GetFullPath(pictures[0].DirectoryName);
+                path = pictures[0].FullName;
             }
             return new PictureManagementViewModelGet() { PicturePath = path } ;
         }
