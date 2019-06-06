@@ -15,8 +15,12 @@
             <div class="" style="margin: 10%;">
                 <img class="userProfileImage" src="~/images/user-placeholder.png" style="width: 100%;" />
             </div>
-            <div style="width: 100%; margin-top: 10%; margin-bottom: 10%;">
-                <button class="btn editButton prim-btn center-block">Upload Picture</button>
+            <div class="form-group">
+                <div class="row">
+                    <label for="file" class="btn-file-upload col-sm-3">Browse...</label>
+                    <label class="filename col-sm-9">pathfile.jpg</label>
+                    <input type="file" asp-for="ProfilePicture" name="file" id="file" class="form-control" style="display: none;">
+                </div>
             </div>
         </div>
 
