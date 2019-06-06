@@ -15,7 +15,7 @@ namespace Data_Layer.Repository
 
         public UserStats GetUserStats(string userID)
         {
-            MySqlParameter[] parameters = new MySqlParameter[] { new MySqlParameter("@UserID", userID) };
+            MySqlParameter[] parameters = new MySqlParameter[] { new MySqlParameter("@userid", userID) };
             return context.ExecuteReturnStoredProcedure<UserStats>("GetUserStats", parameters).FirstOrDefault(null);
         } 
     }
