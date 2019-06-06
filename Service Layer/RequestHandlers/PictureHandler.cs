@@ -61,26 +61,12 @@ namespace Service_Layer.RequestHandlers
             }
             return true;
         }
-        public PictureManagementViewModelGet GetUserIdWithPicture()
+        public PictureManagementViewModelGet GetPictureWithUserID(string userID)
         {
+            string folderPath = ;
+            DirectoryInfo dir = new DirectoryInfo(folderPath);
+            FileInfo[] files = dir.GetFiles(userID + "*");
             PictureManagementViewModelGet picVM = new PictureManagementViewModelGet();
-            string path = @"..\..\..\..\ProfilePictures\" + sessionHandler.Session.GetUserIDKey().ToString();
-            if (File.Exists(path + ".jpg"))
-            {
-                picVM = new PictureManagementViewModelGet() { PicturePath = path + ".jpg" };
-            }
-            else if (File.Exists(path + ".jpeg"))
-            {
-                picVM = new PictureManagementViewModelGet() { PicturePath = path + ".jpeg" };
-            }
-            else if (File.Exists(path + ".png"))
-            {
-                picVM = new PictureManagementViewModelGet() { PicturePath = path + ".png" };
-            }
-            else
-            {
-                picVM = new PictureManagementViewModelGet() { PicturePath = null };
-            }
             return picVM;
         }
     }
