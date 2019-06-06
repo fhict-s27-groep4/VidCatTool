@@ -102,13 +102,36 @@ namespace Service_Layer.RequestHandlers
             return bytes;
         }
 
-        public bool ExpandJson(string filePath)
+        public bool ExpandJson(IFormFile file)
         {
-            if (!jsonReader.CheckFileFormatting(filePath))
+            string filePath = Path.GetFullPath(DateTime.Now.ToString("dd-mm-yyyy hh-mm-ss") + "." + file.ContentType.Substring(12));
+            bool fail = false;
+            FileStream fileStream = null;
+            try
+            {
+                fileStream = File.Create(filePath);
+                file.CopyTo(fileStream);
+            }
+            catch
+            {
+                fail = true;
+            }
+            finally
+            {
+                fileStream.Close();
+            }
+            if (fail)
             {
                 return false;
             }
-            //add old to new replace old with new 
+            IEnumerable<string> newIDs = jsonReader.CheckFileFormatting(filePath);
+            if (newIDs == null)
+            {
+                File.Delete(filePath);
+                return false;
+            }
+            writer.ExtendJson(filePath);
+            Task.Run(() => File.Delete(filePath));
             //send new to db
             return true;
         }
@@ -119,7 +142,7 @@ namespace Service_Layer.RequestHandlers
             settings.IabToleranceTier2 = model.IabToleranceTier2 / 100;
             settings.MaximumRatings = model.MaximumRatings;
             settings.PadTolerance = model.PadTolerance;
-                settings.BiggestPercentIAB = model.BiggestPercentIAB / 100;
+            settings.BiggestPercentIAB = model.BiggestPercentIAB / 100;
         }
 
         public AlgoritmSettingsModel GetAlgoritmSettings()
