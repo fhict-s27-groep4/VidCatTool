@@ -4,6 +4,7 @@ using Service_Layer.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace Service_Layer.RequestHandlers
@@ -20,7 +21,7 @@ namespace Service_Layer.RequestHandlers
 
         public bool PictureCopy(IFormFile file)
         {
-            string filePath = @"..\..\..\..\ProfilePictures\" + sessionHandler.Session.GetUserIDKey();
+            string filePath = @"..\ProfilePictures\" + sessionHandler.Session.GetUserIDKey();
             switch (file.ContentType)
             {
                 case "image/jpg":
@@ -63,11 +64,15 @@ namespace Service_Layer.RequestHandlers
         }
         public PictureManagementViewModelGet GetPictureWithUserID(string userID)
         {
-            string folderPath = ;
+            string folderPath = Path.GetFullPath(@"..\ProfilePictures");
             DirectoryInfo dir = new DirectoryInfo(folderPath);
-            FileInfo[] files = dir.GetFiles(userID + "*");
-            PictureManagementViewModelGet picVM = new PictureManagementViewModelGet();
-            return picVM;
+            FileInfo[] pictures = dir.GetFiles(userID + "*");
+            string path = null;
+            if(pictures.Count() > 0)
+            {
+                path = Path.GetFullPath(pictures[0].DirectoryName);
+            }
+            return new PictureManagementViewModelGet() { PicturePath = path } ;
         }
     }
 }
