@@ -89,7 +89,7 @@ namespace UnitTests.LogicLayer.AccountHand
             users.Add(user1);
             users.Add(user2);
 
-            //var fulluser2 = account.CreateUser(users, "Vinnie", "DeGekkert", "DeenigeEchteVinnie@gmail.com", "0651489306", "Netherlands", "Maastricht", "Geenideestraat 5", "5061GS");
+            var fulluser2 = account.CreateUser(users, "Vinnie", "DeGekkert", "DeenigeEchteVinnie@gmail.com", true, "0651489306", "Netherlands", "Maastricht", "Geenideestraat 5", "5061GS");
 
             //assert
             //Assert.NotEmpty(fulluser2.UserName);
@@ -137,7 +137,7 @@ namespace UnitTests.LogicLayer.AccountHand
             users.Add(user1);
             users.Add(user2);
 
-            //var fulluser2 = account.CreateUser(users, "Duncan", "Schoenmakers", "DeenigeEchteVinnie@gmail.com", "0651489306", "Netherlands", "Maastricht", "Geenideestraat 5", "5061GS");
+            var fulluser2 = account.CreateUser(users, "Duncan", "Schoenmakers", "DeenigeEchteVinnie@gmail.com", true, "0651489306", "Netherlands", "Maastricht", "Geenideestraat 5", "5061GS");
 
             //assert
             //Assert.Equal("d.schoenmakers2", fulluser2.UserName);

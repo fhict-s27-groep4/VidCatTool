@@ -1,5 +1,4 @@
-﻿using Data_Layer;
-using Data_Layer.Interface;
+﻿
 using Microsoft.EntityFrameworkCore;
 using Model_Layer.Models;
 using System;
@@ -9,17 +8,17 @@ using Xunit;
 
 namespace UnitTests.DataLayer
 {
-    public class DatabaseTest
-    {
-        public DatabaseTest()
-        {
+    //public class DatabaseTest
+    //{
+    //    public DatabaseTest()
+    //    {
 
-        }
-        [Fact]
-        public void Add_WhenHaveNoEmail()
-        {
-            IDBContext context = new InMemoryDBContext();
+    //    }
+    //    [Fact]
+    //    public void Add_WhenHaveNoEmail()
+    //    {
+    //        IDBContext context = new InMemoryDBContext();
 
-        }
-    }
+    //    }
+    //}
 }
