@@ -8,10 +8,10 @@ namespace Service_Layer.ViewModels
     public class UserStatsViewModel
     {
         public IUser User { get; set; }
-        public ulong ViewedCount { get; set; }
-        public ulong TotalVideos { get; set; }
-        public ulong FinishedVideos { get; set; }
-        public ulong UnFinishedVideos { get; set; }
-        public double AverageViewedVideos { get; set; }
+        public Int64 ViewedCount { get; set; }
+        public Int64 TotalVideos { get; set; }
+        public Int64 FinishedVideos { get; set; }
+        public Int64 UnFinishedVideos { get; set; }
+        public decimal AverageViewedVideos { get; set; }
     }
 }

@@ -43,7 +43,7 @@ namespace VidCat_Tool.Controllers
                 {
                     sessionHandler.SetUsernameKey(vm.Username);
 
-                    return View("../Home/Dashboard");
+                    return RedirectToAction("Dashboard", "Home");
                 }
             }
             TempData["FailedLoginAttempt"] = "The username or password were incorrect";

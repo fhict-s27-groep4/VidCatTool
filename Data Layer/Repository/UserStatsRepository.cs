@@ -16,15 +16,15 @@ namespace Data_Layer.Repository
         public UserStats GetUserStats(string userID)
         {
             MySqlParameter[] parameters = new MySqlParameter[] { new MySqlParameter("@userid", userID) };
-            return context.ExecuteReturnStoredProcedure<UserStats>("GetUserStats", parameters).FirstOrDefault(null);
+            return context.ExecuteReturnStoredProcedure<UserStats>("GetUserStats", parameters).FirstOrDefault();
         } 
     }
 
     public class UserStats
     {
-        public ulong TotalVideos { get; set; }
-        public ulong FinishedVideos { get; set; }
-        public double AverageViewedVideos { get; set; }
-        public ulong ViewCount { get; set; }
+        public Int64 TotalVideos { get; set; }
+        public Int64 FinishedVideos { get; set; }
+        public decimal AverageViewedVideos { get; set; }
+        public Int64 ViewCount { get; set; }
     }
 }
