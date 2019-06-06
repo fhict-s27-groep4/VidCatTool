@@ -26,8 +26,9 @@ namespace Service_Layer.RequestHandlers
         private readonly ICalculator calculator;
         private readonly ICategoryManager categoryManager;
         private readonly IRatingSettings settings;
+        private readonly IJsonAddRepository jsonAddRepository;
 
-        public VideoHandler(IVideoRepository videoRepo, IRatingRepository _ratingRepo, IReaderJson readerJson, IWriterJson writerJson, ICalculator calculator, ICategoryManager categoryManager, IRatingSettings settings)
+        public VideoHandler(IVideoRepository videoRepo, IRatingRepository _ratingRepo, IReaderJson readerJson, IWriterJson writerJson, ICalculator calculator, ICategoryManager categoryManager, IRatingSettings settings, IJsonAddRepository jsonAddRepository)
         {
             this.videoRepo = videoRepo ?? throw new NullReferenceException();
             this.ratingRepo = _ratingRepo ?? throw new NullReferenceException();
@@ -35,6 +36,7 @@ namespace Service_Layer.RequestHandlers
             this.calculator = calculator ?? throw new NullReferenceException();
             this.categoryManager = categoryManager ?? throw new NullReferenceException();
             this.settings = settings ?? throw new NullReferenceException();
+            this.jsonAddRepository = jsonAddRepository ?? throw new NullReferenceException();
             writer = writerJson ?? throw new NullReferenceException();
         }
 
@@ -132,7 +134,7 @@ namespace Service_Layer.RequestHandlers
             }
             writer.ExtendJson(filePath);
             Task.Run(() => File.Delete(filePath));
-            //send new to db
+            jsonAddRepository.AddJsonVideos(newIDs);
             return true;
         }
 
