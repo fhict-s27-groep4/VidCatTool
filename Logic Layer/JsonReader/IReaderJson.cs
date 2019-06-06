@@ -1,4 +1,5 @@
 ﻿using Model_Layer.Interface;
+using System.Collections.Generic;
 
 namespace Logic_Layer.JsonReader
 {
@@ -6,6 +7,6 @@ namespace Logic_Layer.JsonReader
     {
         IObjectPair<string, string> GetVideoTitleAndImage(string _mediaID);
         string GetVideoUrl(string _mediaID);
-        bool CheckFileFormatting(string filePath);
+        IEnumerable<string> CheckFileFormatting(string filePath);
     }
 }
