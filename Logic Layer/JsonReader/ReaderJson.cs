@@ -3,6 +3,7 @@ using Model_Layer.Models;
 using Newtonsoft.Json.Linq;
 using System;
 using System.IO;
+using System.Linq;
 
 namespace Logic_Layer.JsonReader
 {
@@ -74,32 +75,25 @@ namespace Logic_Layer.JsonReader
             {
                 return false;
             }
-            try
+            JObject newFile = JObject.Parse(File.ReadAllText(filePath));
+            foreach (JObject video in newFile["playlist"])
             {
-                JObject newFile = JObject.Parse(File.ReadAllText(filePath));
-                foreach(JObject video in newFile["playlist"])
+                if (((string)video["mediaid"]).Length != 8 || 
+                    ((string)video["description"]) == null ||
+                    ((int)video["pubdate"]).ToString().Length != 10 ||
+                    !((string)video["image"]).EndsWith(".jpg") ||
+                    (JObject)video["variations"] == null ||
+                    ((string)video["feedid"]).Length != 8 ||
+                    !((JArray)video["sources"]).Any(x => ((string)x["file"]).EndsWith(".mp4")) ||
+                    !((JArray)video["tracks"]).All(x => (string)x["kind"] != null || (string)x["file"] != null) ||
+                    ((string)video["link"]) == null ||
+                    ((int)video["duration"]) < 0 ||
+                    ((string)video["preview"]).Length != 8)
                 {
-                    string mediaID = (string)video["mediaid"];
-                    if(mediaID.Length != 8)
-                    {
-                        return false;
-                    }
-                    string desc = (string)video["description"];
-                    int pubDate = (int)video["pubdate"];
-                    string image = (string)video["image"];
-                    if (!image.EndsWith(".jpg"))
-                    {
-                        throw new Exception();
-                    }
-                    JObject variations = (JObject)video["variations"];
-                    string feedid = (string)video["feedid"];
+                    return false;
                 }
-                return true;
             }
-            catch
-            {
-                return false;
-            }
+            return true;
         }
     }
 }

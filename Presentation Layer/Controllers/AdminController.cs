@@ -87,7 +87,7 @@ namespace VidCat_Tool.Controllers
         }
 
         [HttpPost]
-        public IActionResult UploadJSON(IFormFile file)
+        public IActionResult UploadJSON(VideoManagementViewModel model)
         {
             videoHandler.ExpandJson(null); //Filestream must be read, NOT A TASK FOR THE FRONT END
             return View();

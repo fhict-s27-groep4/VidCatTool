@@ -4,6 +4,7 @@ using Logic_Layer.CategoryReverser;
 using Logic_Layer.JsonReader;
 using Logic_Layer.JsonWriter;
 using Logic_Layer.Maths;
+using Microsoft.AspNetCore.Http;
 using Model_Layer.Interface;
 using Model_Layer.Models;
 using Service_Layer.ViewModels;
@@ -37,14 +38,14 @@ namespace Service_Layer.RequestHandlers
             writer = writerJson ?? throw new NullReferenceException();
         }
 
-        public IEnumerable<VideoManagementViewModel> GetVideoManagementViewModel()
+        public VideoManagementViewModel GetVideoManagementViewModel()
         {
-            IList<VideoManagementViewModel> videos = new List<VideoManagementViewModel>();
+            IList<VideoManagementViewModelGet> videos = new List<VideoManagementViewModelGet>();
             IEnumerable<ISearchVideo> vids = videoRepo.GetAll();
             IEnumerable<IDuncan> ratings = ratingRepo.GetAll();
             foreach (ISearchVideo video in vids)
             {
-                VideoManagementViewModel model = new VideoManagementViewModel
+                VideoManagementViewModelGet model = new VideoManagementViewModelGet
                 {
                     Video = video
                 };
@@ -89,7 +90,7 @@ namespace Service_Layer.RequestHandlers
                 }
                 videos.Add(model);
             }
-            return videos;
+            return new VideoManagementViewModel() { Get = videos };
         }
 
         public byte[] ExportAllVideosToJson()
