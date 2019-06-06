@@ -10,93 +10,73 @@
 @* ------------------------------------------------------------ *@
 
 <div class="ProfileContent">
-    <div class="row userProfileRow">
-        <div class="col-sm-2 userProfileColumn" style="background-color: #ffffff; overflow: hidden; border: 1px solid #bdbdbd">
+    <div class="row noMarginRow">
+        <div class="col-sm-2 userContent">
             <div class="" style="margin: 10%;">
                 <img class="userProfileImage" src="~/images/user-placeholder.png" style="width: 100%;" />
             </div>
             <div style="width: 100%; margin-top: 10%; margin-bottom: 10%;">
-                <button class="btn editButton center-block">Upload Picture</button>
+                <button class="btn editButton prim-btn center-block">Upload Picture</button>
             </div>
-
         </div>
-        <div class="col-sm-7 userInformationColumn" style="background-color: #ffffff; margin-left: 3%; padding: 1%; border: 1px solid #bdbdbd">
+
+
+        <div class="row col-sm-9">
             <form method="post">
-
-                <div id="profileInfoTitle">
-                    <b style="text-decoration: underline">Basic User Information</b>
-                    <div class="row" style="margin-top: 1%; margin-bottom: 1%;">
-                        <div class="col-md-3" style="margin-right: -1%;">
-                            <input asp-for="Firstname" class="form-control input-field" />
-                            <span asp-validation-for=" Firstname"></span>
+                <div class="row noMarginRow">
+                    <div class="userContent" id="rightUserContentBox">
+                        <div class="col-sm-12 inputField specialShowField">
+                            <span>Basic User Information</span>
                         </div>
-                        <div class="col-md-5" style="margin-left: -1%;">
-                            <input asp-for="Lastname" class="form-control inputField" />
-                            <span asp-validation-for=" Lastname"></span>
+                        <div class="col-sm-6 inputField"><input class="form-control" asp-for="Firstname" /></div>
+                        <div class="col-sm-6 inputField"><input class="form-control" asp-for="Lastname" /></div>
+                        <div class="col-sm-12 inputField"><input class="form-control" asp-for="Email" /></div>
+                        <div class="col-sm-12 inputField specialShowField" id="secondSubHeader">
+                            <span>Contact Information</span>
                         </div>
-                    </div>
-                </div>
-
-                <div id="profileInfoTitle" style="margin-top: 3%;">
-                    <b style="text-decoration: underline">Address Details</b>
-                    <div class="row" style="margin-top: 1%; margin-bottom: 1%;">
-                        <div class="col-md-6"><input asp-for="Country" class="form-control inputField"></div>
-                    </div>
-                    <div class="row" style="margin-top: 1%; margin-bottom: 1%;">
-                        <div class="col-md-4" style="margin-right: -1%;">
-                            <input asp-for="Streetname" class="form-control inputField">
-                            <span asp-validation-for=" Streetname"></span>
+                        <div class="col-sm-9 inputField"><input class="form-control" asp-for="Streetname" /></div>
+                        <div class="col-sm-3 inputField"><input class="form-control" asp-for="Housenumber" /></div>
+                        <div class="col-sm-4 inputField">
+                            <select class="form-control" asp-for="Country">
+                                <option value="Netherlands">Netherlands</option>
+                                <option value="Belgium">Belgium</option>
+                                <option value="Germany">Germany</option>
+                                <option value="United Kingdom">United Kingdom</option>
+                                <option value="United States">United States</option>
+                                <option value="Spain">Spain</option>
+                                <option value="France">France</option>
+                                <option value="Austria">Austria</option>
+                            </select>
                         </div>
-                        <div class="col-md-3 NumberInput" style="margin-left: -1%; margin-right: -1%;">
-                            <input asp-for="Housenumber" class="form-control inputFieldHouse" type="number">
-                            <span asp-validation-for=" Housenumber"></span>
+                        <div class="col-sm-4 inputField"><input class="form-control" asp-for="City" /></div>
+                        <div class="col-sm-4 inputField"><input class="form-control" asp-for="Zip" /></div>
+                        <div class="col-sm-12 inputField specialShowField" id="secondSubHeader">
+                            <span>Role Information</span>
                         </div>
-                        <div class="col-md-3" style="margin-left: -1%;"><input asp-for="Zip" class="form-control inputField"></div>
-                    </div>
-                </div>
-
-                <div id="profileInfoTitle" style="margin-top: 3%;">
-                    <b style="text-decoration: underline">Contact Information</b>
-                    <div class="row" style="margin-top: 1%; margin-bottom: 1%;">
-                        <div class="col-md-5" style="margin-right: -1%">
-                            <input asp-for="Phonenumber" class="form-control inputField" type="tel">
-                            <span asp-validation-for=" Phonenumber"></span>
-                        </div>
-                        <div class="col-md-5" style="margin-left: -1%">
-                            <input asp-for="Email" class="form-control inputField" type="email">
-                            <span asp-validation-for=" Email"></span>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="profileInfoTitle" style="margin-top: 3%;">
-                    <b style="text-decoration: underline">Role Specification</b>
-                    @*<div class="row" style="margin-top: 1%; margin-bottom: 1%" ;>
-                            <div class="checkbox">
-                                <label><input class="form-control" type="checkbox" value="" />Teeeeeest00</label>
+                        <fieldset class="col-sm-12">
+                            <div class="checkbox checkbox-primary">
+                                <input id="checkAdmin" type="checkbox" asp-for="IsAdmin" />
+                                <label for="checkAdmin">
+                                    Admin
+                                </label>
                             </div>
-                        </div>*@
-                    @* ADD ISADMIN OR ISMODERATOR STUFF *@
+                        </fieldset>
+                    </div>
                 </div>
-
-                <div style="margin-top: 3%;">
-                    <button onclick="Success" type="submit" class="btn btn-success">Add User</button>
-                    <button type="reset" class="btn btn-warning" style="float: right;">Reset Fields</button>
-                </div>
-
+                <input type="submit" class="btn prim-btn submitButon" value="Add User" />
             </form>
-            @if (ViewBag.Message != null)
-            {
-                <script type="text/javascript">
-
-                    window.onload = function() {
-                        alert('@ViewBag.Message');
-                        var url = '@Url.Action("UserManagement", "Admin")';
-                        window.location.href = url;
-                    };
-                </script>
-            }
         </div>
     </div>
 </div>
 
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+
+        window.onload = function() {
+            alert('@ViewBag.Message');
+            var url = '@Url.Action("UserManagement", "Admin")';
+            window.location.href = url;
+        };
+    </script>
+}

@@ -8,5 +8,6 @@ namespace Model_Layer.Interface
     {
         string PassWord { get; set; }
         string PassWordSalt { get; set; }
+        bool IsAdmin { get; set; }
     }
 }

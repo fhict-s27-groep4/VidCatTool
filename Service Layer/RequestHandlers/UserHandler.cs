@@ -33,23 +33,27 @@ namespace Service_Layer.RequestHandlers
         public bool ValidateLoginAttempt(LoginViewModel vm)
         {
             ILoginUser loggedInUser = userRepo.GetUserByName(vm.Username) as ILoginUser;
-            if (loginHandler.ValidateUser(vm.Password, loggedInUser))
+            if (loggedInUser != null)
             {
-                if (loggedInUser.IsDisabled)
+                if (loginHandler.ValidateUser(vm.Password, loggedInUser))
                 {
-                    return false;
+                    if (loggedInUser.IsDisabled)
+                    {
+                        return false;
+                    }
+                    sessionHandler.SetIDKey(loggedInUser.UserID);
+                    sessionHandler.SetUsernameKey(loggedInUser.UserName);
+                    sessionHandler.SetAdminKey(loggedInUser.IsAdmin.ToString());
+                    return true;
                 }
-                sessionHandler.SetIDKey(loggedInUser.UserID);
-                sessionHandler.SetUsernameKey(loggedInUser.UserName);
-                sessionHandler.SetAdminKey(loggedInUser.IsAdmin.ToString());
-                return true;
+                return false;
             }
-            return false;
+            else return false;
         }
 
         public bool CreateUser(RegisterViewModel vm)
         {
-            IRegisterUser generatedUser = registerHandler.CreateUser(userRepo.GetAll(), vm.Firstname, vm.Lastname, vm.Email, vm.Phonenumber, vm.Country, vm.City, vm.Streetname, vm.Zip);
+            IRegisterUser generatedUser = registerHandler.CreateUser(userRepo.GetAll(), vm.Firstname, vm.Lastname, vm.Email, vm.IsAdmin, vm.Phonenumber, vm.Country, vm.City, vm.Streetname, vm.Zip);
             try
             {
                 userRepo.AddUser(generatedUser);
