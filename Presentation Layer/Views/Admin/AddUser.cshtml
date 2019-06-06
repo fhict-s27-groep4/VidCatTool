@@ -11,7 +11,7 @@
 
 <div class="ProfileContent">
     <div class="row noMarginRow">
-        <form method="post">
+        <form method="post" enctype="multipart/form-data" >
             <div class="col-sm-2 userContent">
                 <div class="" style="margin: 10%;">
                     <img class="userProfileImage" src="~/images/user-placeholder.png" style="width: 100%;" />
@@ -20,7 +20,7 @@
                     <div class="row">
                         <label for="file" class="btn-file-upload col-sm-3">Browse...</label>
                         <label class="filename col-sm-9">pathfile.jpg</label>
-                        <input type="file" asp-for="ProfilePicture" name="file" id="file" class="form-control" style="display: none;">
+                        <input type="file" asp-for="ProfilePicture">
                     </div>
                 </div>
             </div>
