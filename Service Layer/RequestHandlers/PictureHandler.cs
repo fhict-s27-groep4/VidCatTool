@@ -41,10 +41,12 @@ namespace Service_Layer.RequestHandlers
                     break;
             }
             bool fail = false;
+            bool opened = false;
             FileStream fileStream = null;
             try
             {
                 fileStream = File.Create(filePath);
+                opened = true;
                 file.CopyTo(fileStream);
             }
             catch
@@ -53,7 +55,10 @@ namespace Service_Layer.RequestHandlers
             }
             finally
             {
-                fileStream.Close();
+                if (opened)
+                {
+                    fileStream.Close();
+                }
             }
             if (fail)
             {
@@ -67,7 +72,7 @@ namespace Service_Layer.RequestHandlers
             string path = @"..\..\..\..\ProfilePictures\" + sessionHandler.Session.GetUserIDKey().ToString();
             if (File.Exists(path + ".jpg"))
             {
-                picVM = new PictureManagementViewModelGet() { PicturePath = path + ".jpg"};
+                picVM = new PictureManagementViewModelGet() { PicturePath = path + ".jpg" };
             }
             else if (File.Exists(path + ".jpeg"))
             {
