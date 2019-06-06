@@ -10,10 +10,10 @@ namespace UnitTests.ServiceLayer.ViewModelTests
 {
     public class VideoManagementViewTest
     {
-        private readonly VideoManagementViewModel video;
+        private readonly VideoManagementViewModelGet video;
         public VideoManagementViewTest()
         {
-            video = new VideoManagementViewModel();
+            video = new VideoManagementViewModelGet();
         }
         [Fact]
         public void ChecGetSetEqual()

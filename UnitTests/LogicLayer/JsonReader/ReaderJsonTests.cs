@@ -40,5 +40,11 @@ namespace UnitTests.LogicLayer.JsonReader
             Assert.Null(titleImage.Object1);
             Assert.Null(titleImage.Object2);
         }
+
+        [Fact]
+        public void FormatCheck()
+        {
+            readerJson.CheckFileFormatting(@"..\..\..\..\Logic Layer\JsonReader\VideoFeed.json");
+        }
     }
 }

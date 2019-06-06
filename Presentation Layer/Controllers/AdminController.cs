@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Service_Layer.RequestHandlers;
@@ -87,10 +88,11 @@ namespace VidCat_Tool.Controllers
         }
 
         [HttpPost]
-        public IActionResult UploadJSON(IFormFile file)
+        public IActionResult UploadJSON(VideoManagementViewModel model)
         {
-            videoHandler.ExpandJson(null); //Filestream must be read, NOT A TASK FOR THE FRONT END
-            return View();
+            bool result = videoHandler.ExpandJson(model.Post.File);
+            if (result == false) { TempData["JSONUpload_Error"] = "Failed to upload JSON File."; }
+            return VideoManagement();
         }
 
 

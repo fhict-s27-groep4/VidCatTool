@@ -1,4 +1,5 @@
-﻿@{
+﻿
+@{
     ViewData["Title"] = "Dashboard";
 }
 
@@ -6,16 +7,85 @@
     <div class="userImage">
         <img src="~/images/user-placeholder.png" />
     </div>
-    <div class="statsContainer">
-        <div class="row statsRow">
-            <div class="col-sm-4 statsTitle">My Stats</div>
-            <div class="col-sm-4 statsTitle" id="middleStatsBox">Global Stats</div>
-            <div class="col-sm-4 statsTitle">Notifications</div>
+    <div class="row statsContainer" style="height: 1000px; padding: 6%;">
+
+        @* Introduction message *@
+        <div class="col-md-6" style="padding-top: 5%;">
+            <h2 style="font-weight: bold; color: #e91e63; margin: 0;">Welcome back, [name]</h2>
         </div>
-        <div class="row statsRow">
-            <div class="col-sm-4 statsColumn"></div>
-            <div class="col-sm-4 statsColumn" id="middleStatsBox"></div>
-            <div class="col-sm-4 statsColumn"></div>
+
+
+        @* User Stats (right panel of the menu) *@
+        <div class="col-md-4" style="padding: 1%; width: 40%; min-width: 350px; height: 330px; border: 1px solid #e91e63; float: right; overflow: hidden;">
+
+            @* Personal Details *@
+            <div class="">
+
+                @* Edit Icon *@
+                <a style="position: absolute; top: 0; right: 0; margin: 2%;">
+                    <i style="font-size: 20px; color: #707070;" class="fas fa-pen"></i>
+                </a>
+
+                @* Title *@
+                <h3 style="margin: 3% 0 6% 0; text-align: center; text-decoration: underline;">Personal Details</h3>
+
+                @* EMail address *@
+                <div class="row" style="background-color: #ffffff; padding: 2%; margin: 2.5% 3.5% 0% 3.5%; border: 1px solid #dddddd;">
+                    <div class="col-md-4" style="padding: 0;">
+                        <i style="font-size: 16px; color: #e91e63; margin-right: 3%;" class="fas fa-envelope-open-text"></i>
+                        <span style="color: #e91e63; font-weight: bold; font-size: 16px;">EMail:</span>
+                    </div>
+                    <div class="col-md-7" style="padding: 0;"><span style="font-size: 16px;">blablabla</span></div>
+                </div>
+
+                @* Living Address *@
+                <div class="row" style="background-color: #ffffff; padding: 2%; margin: 2.5% 3.5% 0% 3.5%; border: 1px solid #dddddd;">
+                    <div class="col-md-4" style="padding: 0;">
+                        <i style="font-size: 16px; color: #e91e63; margin-right: 3%;" class="fas fa-home"></i>
+                        <span style="color: #e91e63; font-weight: bold; font-size: 16px;">Address:</span>
+                    </div>
+                    <div class="col-md-7" style="padding: 0;"><span style="font-size: 16px;">Populierenlaantje 69</span></div>
+                </div>
+
+                @* Postal Codes *@
+                <div class="row" style="background-color: #ffffff; padding: 2%; margin: 2.5% 3.5% 0% 3.5%; border: 1px solid #dddddd;">
+                    <div class="col-md-4" style="padding: 0;">
+                        <i style="font-size: 16px; color: #e91e63; margin-right: 3%;" class="fas fa-address-card"></i>
+                        <span style="color: #e91e63; font-weight: bold; font-size: 16px;">ZIP Code:</span>
+                    </div>
+                    <div class="col-md-7" style="padding: 0;"><span style="font-size: 16px;">7612 AB Eindhoven</span></div>
+                </div>
+
+                @* Country *@
+                <div class="row" style="background-color: #ffffff; padding: 2%; margin: 2.5% 3.5% 0% 3.5%; border: 1px solid #dddddd;">
+                    <div class="col-md-4" style="padding: 0;">
+                        <i style="font-size: 16px; color: #e91e63; margin-right: 3%;" class="fas fa-map-marker-alt"></i>
+                        <span style="color: #e91e63; font-weight: bold; font-size: 16px;">Country:</span>
+                    </div>
+                    <div class="col-md-7" style="padding: 0;"><span style="font-size: 16px;">The Netherlands</span></div>
+                </div>
+
+            </div>
+
+            
+            @* User Stats on Platform *@
+            @*<div class="row" style="overflow: hidden;">
+                <div class="col-md-3" style="height: 100px;">
+
+                </div>
+                <div class="col-md-3" style="margin-bottom: -99999px; padding-bottom: 99999px; border: 1px solid #e91e63;">
+
+                </div>
+                <div class="col-md-3" style="margin-bottom: -99999px; padding-bottom: 99999px; border: 1px solid #e91e63;">
+                </div>
+
+            </div>*@
+
+
         </div>
+
+
+
+
     </div>
 </div>
