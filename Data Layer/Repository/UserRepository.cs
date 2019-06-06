@@ -80,5 +80,13 @@ namespace Data_Layer.Repository
             parameters[2] = new MySqlParameter("@passwordsalt", passwordsalt);
             context.ExecuteStoredProcedure("UpdatePassword", parameters);
         }
+        public void MakeUserAdmin(int userid)
+        {
+            MySqlParameter[] parameters = new MySqlParameter[1];
+            parameters[0] = new MySqlParameter("@userID", userid);
+            context.ExecuteStoredProcedure("MakeAdmin", parameters);
+            throw new NotImplementedException();
+            // check naam van stored procedure "MakeAdmin"
+        }
     }
 }

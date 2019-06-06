@@ -1,4 +1,4 @@
-﻿@model IReadOnlyCollection<Service_Layer.ViewModels.VideoManagementViewModel>
+﻿@model Service_Layer.ViewModels.VideoManagementViewModel
 
 @{
     ViewData["Title"] = "Video Management";
@@ -91,14 +91,27 @@
                     </a>
                 </div>
 
-                @* To Upload JSON File. *@
-                <div class="videoUploadJSON" style="padding: 10% 24% 0% 24%;">
-                    <input type="file" name="file" style="margin: 1%;" /> @* MAXIMUM MB FILE UPLOAD PLS?! *@
-                    <a class="btn btn-warning center-block disabled" asp-controller="Admin" asp-action="UploadJSON"
-                       style="font-weight: 200;">
-                        <i class="fas fa-file-upload"></i>&nbsp Upload JSON File
-                    </a>
-                </div>
+                @*@* To Upload JSON File.
+        <div class="videoUploadJSON" style="padding: 10% 24% 0% 24%;">
+            <input type="file" name="file" style="margin: 1%;" /> @* MAXIMUM MB FILE UPLOAD PLS?!
+            <a class="btn btn-warning center-block disabled" asp-controller="Admin" asp-action="UploadJSON"
+               style="font-weight: 200;">
+                <i class="fas fa-file-upload"></i>&nbsp Upload JSON File
+            </a>
+        </div>*@
+                <form method="post" enctype="multipart/form-data" asp-controller="Admin" asp-action="UploadJSON">
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <p>Upload one or more files using this form:</p>
+                            <input asp-for="Post.File" type="file">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <input type="submit" value="Upload">
+                        </div>
+                    </div>
+                </form>
 
             </div>
 
@@ -113,7 +126,7 @@
 
                 @* The List of Search Results, looping users *@
                 <div class="videoSearchResults">
-                    @foreach (var video in Model)
+                    @foreach (var video in Model.Get)
                     {
                         <div class="videoSearchItem" style="border: 1px solid #e91e63; margin-top: 1%; margin-bottom: 1%; padding: 1.5%; position:relative; overflow: visible;">
 
@@ -240,7 +253,7 @@
 
                 @* Bottom text and actions, such as the amount of pages. *@
                 <div class="userSearchCount" style="margin: 4%;">
-                    <h6 class="text-center" style="width: 100%; color: #707070;">@Model.Count Results found</h6>
+                    <h6 class="text-center" style="width: 100%; color: #707070;">@Model.Get.Count() Results found</h6>
                 </div>
             </div>
 
