@@ -11,7 +11,7 @@
 
 <div class="ProfileContent">
     <div class="row noMarginRow">
-        <form method="post" enctype="multipart/form-data" >
+        <form method="post" enctype="multipart/form-data">
             <div class="col-sm-2 userContent">
                 <div class="" style="margin: 10%;">
                     <img class="userProfileImage" src="~/images/user-placeholder.png" style="width: 100%;" />
@@ -19,13 +19,11 @@
                 <div class="form-group uploadbox">
                     <div class="row">
                         <label for="file" class="btn-file-upload col-sm-4">Browse..</label>
-                        <label class="filename col-sm-8">pathfile.jpg</label>
-                        <input type="file" asp-for="ProfilePicture" id="file", style="display: none;">
+                        <label class="filename col-sm-8" id="pathname">Choose image</label>
+                        <input class="file" type="file" asp-for="ProfilePicture" id="file" style="display: none;">
                     </div>
                 </div>
             </div>
-
-            <a onclick="GetFileName()">Test</a>
 
             <div class="row col-sm-9">
                 <div class="row noMarginRow">
@@ -77,6 +75,9 @@
     </div>
 </div>
 
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
 @if (ViewBag.Message != null)
 {
     <script type="text/javascript">
@@ -89,13 +90,14 @@
     </script>
 }
 
-    <script type='text/javascript'>
-        function GetFileName() {
-            // Get your file input (by it's id)
-            var fileInput = document.getElementById('file');
-            // Use a regular expression to pull the file name only
-            var fileName = fileInput.value;
-            // Alert the file name (example)
-            alert(fileName);
-        }
-    </script>
+<script type="text/javascript">
+
+    $(function () {
+        $('#file').on('change', function () {
+            var filePath = $(this).val();
+            var pathname = document.getElementById('pathname');
+            pathname.innerHTML = filePath.split("\\").pop();
+        });
+    });
+
+</script>
