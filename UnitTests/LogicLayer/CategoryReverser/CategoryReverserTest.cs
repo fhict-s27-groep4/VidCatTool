@@ -145,5 +145,20 @@ namespace UnitTests.LogicLayer.CategoryReverser
             }
             Assert.Equal(2, test.Count);        
         }
+        [Fact]
+        public void CheckUpperGetTier()
+        {
+            Assert.True(category.IsTier(1, 2));
+        }
+        [Fact]
+        public void CheckLowerGetTier()
+        {
+            Assert.True(category.IsTier(2, 4));
+        }
+        [Fact]
+        public void CheckFailTier()
+        {
+            Assert.False(category.IsTier(2, 7));
+        }
     }
 }
