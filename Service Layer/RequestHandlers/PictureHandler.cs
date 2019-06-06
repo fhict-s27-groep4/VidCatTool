@@ -11,7 +11,6 @@ namespace Service_Layer.RequestHandlers
     public class PictureHandler
     {
         private readonly SessionHandler sessionHandler;
-        private string filePath = "";
 
         public PictureHandler(SessionHandler sessionHandler)
         {
@@ -21,24 +20,20 @@ namespace Service_Layer.RequestHandlers
 
         public bool PictureCopy(IFormFile file)
         {
-            if (!string.Equals(file.ContentType, "image/jpg", StringComparison.OrdinalIgnoreCase) &&
-                !string.Equals(file.ContentType, "image/jpeg", StringComparison.OrdinalIgnoreCase) &&
-                !string.Equals(file.ContentType, "image/png", StringComparison.OrdinalIgnoreCase))
-            {
-                return false;
-            }
-            string userid = sessionHandler.Session.GetUserIDKey();
+            string filePath = @"..\..\..\..\ProfilePictures\" + sessionHandler.Session.GetUserIDKey();
             switch (file.ContentType)
             {
                 case "image/jpg":
-                    filePath = @"..\..\..\..\ProfilePictures\" + userid + ".jpg";
+                    filePath += ".jpg";
                     break;
                 case "image/jpeg":
-                    filePath = @"..\..\..\..\ProfilePictures\" + userid + ".jpeg";
+                    filePath += ".jpeg";
                     break;
                 case "image/png":
-                    filePath = @"..\..\..\..\ProfilePictures\" + userid + ".png";
+                    filePath += ".png";
                     break;
+                default:
+                    return false;
             }
             bool fail = false;
             bool opened = false;
