@@ -1,4 +1,4 @@
-﻿@model = 
+﻿@model Service_Layer.ViewModels.UserStatsViewModel
 
 @{
     ViewData["Title"] = "Dashboard";
@@ -12,7 +12,7 @@
 
         @* Introduction message *@
         <div class="col-md-6" style="padding-top: 5%;">
-            <h2 style="font-weight: bold; color: #e91e63; margin: 0;">Welcome back, [name]</h2>
+            <h2 style="font-weight: bold; color: #e91e63; margin: 0;">Welcome back, @Model.User.FirstName @Model.User.LastName</h2>
         </div>
 
 
@@ -36,7 +36,7 @@
                         <i style="font-size: 16px; color: #e91e63; margin-right: 3%;" class="fas fa-envelope-open-text"></i>
                         <span style="color: #e91e63; font-weight: bold; font-size: 16px;">EMail:</span>
                     </div>
-                    <div class="col-md-7" style="padding: 0;"><span style="font-size: 16px;">blablabla</span></div>
+                    <div class="col-md-7" style="padding: 0;"><span style="font-size: 16px;">@Model.User.Email</span></div>
                 </div>
 
                 @* Living Address *@
@@ -45,7 +45,7 @@
                         <i style="font-size: 16px; color: #e91e63; margin-right: 3%;" class="fas fa-home"></i>
                         <span style="color: #e91e63; font-weight: bold; font-size: 16px;">Address:</span>
                     </div>
-                    <div class="col-md-7" style="padding: 0;"><span style="font-size: 16px;">Populierenlaantje 69</span></div>
+                    <div class="col-md-7" style="padding: 0;"><span style="font-size: 16px;">@Model.User.StreetAddress</span></div>
                 </div>
 
                 @* Postal Codes *@
@@ -54,7 +54,7 @@
                         <i style="font-size: 16px; color: #e91e63; margin-right: 3%;" class="fas fa-address-card"></i>
                         <span style="color: #e91e63; font-weight: bold; font-size: 16px;">ZIP Code:</span>
                     </div>
-                    <div class="col-md-7" style="padding: 0;"><span style="font-size: 16px;">7612 AB Eindhoven</span></div>
+                    <div class="col-md-7" style="padding: 0;"><span style="font-size: 16px;">@Model.User.ZipCode @Model.User.City</span></div>
                 </div>
 
                 @* Country *@
@@ -63,24 +63,24 @@
                         <i style="font-size: 16px; color: #e91e63; margin-right: 3%;" class="fas fa-map-marker-alt"></i>
                         <span style="color: #e91e63; font-weight: bold; font-size: 16px;">Country:</span>
                     </div>
-                    <div class="col-md-7" style="padding: 0;"><span style="font-size: 16px;">The Netherlands</span></div>
+                    <div class="col-md-7" style="padding: 0;"><span style="font-size: 16px;">@Model.User.Country</span></div>
                 </div>
 
             </div>
 
-            
+
             @* User Stats on Platform *@
             @*<div class="row" style="overflow: hidden;">
-                <div class="col-md-3" style="height: 100px;">
+                    <div class="col-md-3" style="height: 100px;">
 
-                </div>
-                <div class="col-md-3" style="margin-bottom: -99999px; padding-bottom: 99999px; border: 1px solid #e91e63;">
+                    </div>
+                    <div class="col-md-3" style="margin-bottom: -99999px; padding-bottom: 99999px; border: 1px solid #e91e63;">
 
-                </div>
-                <div class="col-md-3" style="margin-bottom: -99999px; padding-bottom: 99999px; border: 1px solid #e91e63;">
-                </div>
+                    </div>
+                    <div class="col-md-3" style="margin-bottom: -99999px; padding-bottom: 99999px; border: 1px solid #e91e63;">
+                    </div>
 
-            </div>*@
+                </div>*@
 
 
         </div>
