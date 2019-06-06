@@ -11,22 +11,22 @@
 
 <div class="ProfileContent">
     <div class="row noMarginRow">
-        <div class="col-sm-2 userContent">
-            <div class="" style="margin: 10%;">
-                <img class="userProfileImage" src="~/images/user-placeholder.png" style="width: 100%;" />
-            </div>
-            <div class="form-group">
-                <div class="row">
-                    <label for="file" class="btn-file-upload col-sm-3">Browse...</label>
-                    <label class="filename col-sm-9">pathfile.jpg</label>
-                    <input type="file" asp-for="ProfilePicture" name="file" id="file" class="form-control" style="display: none;">
+        <form method="post">
+            <div class="col-sm-2 userContent">
+                <div class="" style="margin: 10%;">
+                    <img class="userProfileImage" src="~/images/user-placeholder.png" style="width: 100%;" />
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <label for="file" class="btn-file-upload col-sm-3">Browse...</label>
+                        <label class="filename col-sm-9">pathfile.jpg</label>
+                        <input type="file" asp-for="ProfilePicture" name="file" id="file" class="form-control" style="display: none;">
+                    </div>
                 </div>
             </div>
-        </div>
 
 
-        <div class="row col-sm-9">
-            <form method="post">
+            <div class="row col-sm-9">
                 <div class="row noMarginRow">
                     <div class="userContent" id="rightUserContentBox">
                         <div class="col-sm-12 inputField specialShowField">
@@ -71,8 +71,8 @@
                     </div>
                 </div>
                 <input type="submit" class="btn prim-btn submitButon" value="Add User" />
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
 </div>
 
