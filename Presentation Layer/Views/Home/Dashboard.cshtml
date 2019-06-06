@@ -1,11 +1,33 @@
-﻿@{
+﻿@model Service_Layer.ViewModels.PictureManagementViewModel
+
+@{
     ViewData["Title"] = "Dashboard";
 }
 
 <div class="dashboardContent">
     <div class="userImage">
-        <img src="~/images/user-placeholder.png" />
+        @if (Model.Get.PicturePath == null)
+        {
+            <img src="~/images/user-placeholder.png" />
+        }
+        else
+        {
+            <img src="@Html.Raw(Model.Get.PicturePath)"  />
+        }
     </div>
+    <form method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="PictureUpload">
+        <div class="form-group">
+            <div class="col-md-10">
+                <p>Upload one or more files using this form:</p>
+                <input asp-for="Post.File" type="file">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="submit" value="Upload">
+            </div>
+        </div>
+    </form>
     <div class="statsContainer">
         <div class="row statsRow">
             <div class="col-sm-4 statsTitle">My Stats</div>

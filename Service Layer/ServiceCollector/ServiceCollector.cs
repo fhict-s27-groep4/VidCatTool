@@ -37,6 +37,7 @@ namespace Service_Layer.ServiceCollector
             services.AddTransient<VideoAssignHandler>();
             services.AddTransient<CategoryHandler>();
             services.AddTransient<VideoHandler>();
+            services.AddTransient<PictureHandler>();
 
             services.AddSingleton<IRatingSettings, RatingSettings>();
             services.AddTransient<IRatingAlgoritm, RatingAlgoritm>();
