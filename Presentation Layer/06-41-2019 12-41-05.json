@@ -1,0 +1,325 @@
+{
+  "errorlog": [
+    {
+      "query": "INSERT INTO `user`(`UserID`, `UserName`, `EMail`, `PassWord`, `PassWordHash`) VALUES (NULL,'Test','Test@Test.Test','FC-87-23-84-09-C2-53-96-B6-B1-25-78-30-7B-99-97-C6-32-73-9D-60-A4-38-24-A5-3D-B3-22-1F-06-8D-7D','8i1dgVfF+UuWmoCCzklalSeSIdCnVT1ii+MHpt/NnASPHLuKk8QRJIKxqQHfC0wVD97GUFsb8uYRhsnBfgZLXg==')",
+      "errormessage": "Unable to connect to any of the specified MySQL hosts.",
+      "callstack": [
+        {
+          "call": "at MySql.Data.MySqlClient.NativeDriver.Open()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.Driver.Open()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.Driver.Create(MySqlConnectionStringBuilder settings)"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlPool.CreateNewPooledConnection()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlPool.GetPooledConnection()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlPool.TryToGetDriver()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlPool.GetConnection()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlConnection.Open()"
+        },
+        {
+          "call": "at DataLayer.DataBase.DataBase.ExecuteInsertQuery() in D:\\Semester2\\Software\\KillerAppS2\\DataAccessLayer\\DataBase\\Database.cs:line 37"
+        }
+      ],
+      "datetime": "29/05/2019 21:18:35"
+    },
+    {
+      "query": "Call GetAllCategories()",
+      "errormessage": "PROCEDURE s2riddle#3.GetAllCategories does not exist",
+      "callstack": [
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlStream.ReadPacket()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlDataReader.NextResult()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)"
+        },
+        {
+          "call": "at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)"
+        },
+        {
+          "call": "at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)"
+        },
+        {
+          "call": "at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)"
+        },
+        {
+          "call": "at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)"
+        },
+        {
+          "call": "at DataLayer.DataBase.DataBase.ExecuteStoredProcedure[T](Type _instanciatedObjectType) in D:\\Semester2\\Software\\KillerAppS2\\DataAccessLayer\\DataBase\\Database.cs:line 63"
+        }
+      ],
+      "datetime": "30/05/2019 14:05:16"
+    },
+    {
+      "query": "Call GetCategoryNamesByRiddleName('TestRiddle')",
+      "errormessage": "PROCEDURE s2riddle#4.GetCategoryNamesByRiddleName does not exist",
+      "callstack": [
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlStream.ReadPacket()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlDataReader.NextResult()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)"
+        },
+        {
+          "call": "at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)"
+        },
+        {
+          "call": "at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)"
+        },
+        {
+          "call": "at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)"
+        },
+        {
+          "call": "at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)"
+        },
+        {
+          "call": "at DataLayer.DataBase.DataBase.ExecuteStoredProcedure[T](Type _instanciatedObjectType) in D:\\Semester2\\Software\\KillerAppS2\\DataAccessLayer\\DataBase\\Database.cs:line 63"
+        }
+      ],
+      "datetime": "30/05/2019 20:41:12"
+    },
+    {
+      "query": "Call GetAllCategories()",
+      "errormessage": "Unable to connect to any of the specified MySQL hosts.",
+      "callstack": [
+        {
+          "call": "at MySql.Data.MySqlClient.NativeDriver.Open()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.Driver.Open()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.Driver.Create(MySqlConnectionStringBuilder settings)"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlPool.CreateNewPooledConnection()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlPool.GetPooledConnection()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlPool.TryToGetDriver()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlPool.GetConnection()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlConnection.Open()"
+        },
+        {
+          "call": "at DataLayer.DataBase.DataBase.ExecuteStoredProcedure[T](Type _instanciatedObjectType) in D:\\Semester2\\Software\\KillerAppS2\\DataAccessLayer\\DataBase\\Database.cs:line 62"
+        }
+      ],
+      "datetime": "31/05/2019 12:39:20"
+    },
+    {
+      "query": "INSERT INTO `user`(`UserID`, `UserName`, `EMail`, `PassWord`, `PassWordHash`) VALUES (NULL,'Admin','n.sleddens@student.fontys.nl','F6-25-1C-1F-58-DF-1D-3E-CB-B1-C0-24-CE-0A-5E-C5-8A-BD-49-2E-DB-24-67-A6-57-40-43-D1-97-D4-10-FA','GaUO7hlvGNkCZ2ja9SAbJo5JdWNrgmkI3LFYsrCivp1zPlK4SJwtiNYPotAaXT2UUq8ImqiE9RsECzC2nXHagg==')",
+      "errormessage": "Duplicate entry 'Admin' for key 'uc_User_UserName'",
+      "callstack": [
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlStream.ReadPacket()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlDataReader.NextResult()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlCommand.ExecuteNonQuery()"
+        },
+        {
+          "call": "at DataLayer.DataBase.DataBase.ExecuteInsertQuery() in D:\\Semester2\\Software\\KillerAppS2\\DataAccessLayer\\DataBase\\Database.cs:line 40"
+        }
+      ],
+      "datetime": "31/05/2019 13:18:12"
+    },
+    {
+      "query": "Call InsertMessage('bc397b21-8395-11e9-b55e-1062e58ec6e2','TestRiddle','Testing',31/05/2019 21:27:22)",
+      "errormessage": "You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '21:27:22)' at line 1",
+      "callstack": [
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlStream.ReadPacket()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlDataReader.NextResult()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlCommand.ExecuteNonQuery()"
+        },
+        {
+          "call": "at DataLayer.DataBase.DataBase.ExecuteInsertQuery() in D:\\Semester2\\Software\\KillerAppS2\\DataAccessLayer\\DataBase\\Database.cs:line 40"
+        }
+      ],
+      "datetime": "31/05/2019 21:27:22"
+    },
+    {
+      "query": "Call GetMessagesByRiddleName('TestRiddle')",
+      "errormessage": "PROCEDURE s2riddle#4.GetMessagesByRiddleName does not exist",
+      "callstack": [
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlStream.ReadPacket()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.NativeDriver.GetResult(Int32& affectedRow, Int64& insertedId)"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.Driver.NextResult(Int32 statementId, Boolean force)"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlDataReader.NextResult()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlCommand.ExecuteReader(CommandBehavior behavior)"
+        },
+        {
+          "call": "at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)"
+        },
+        {
+          "call": "at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)"
+        },
+        {
+          "call": "at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)"
+        },
+        {
+          "call": "at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)"
+        },
+        {
+          "call": "at DataLayer.DataBase.DataBase.ExecuteStoredProcedure[T](Type _instanciatedObjectType) in D:\\Semester2\\Software\\KillerAppS2\\DataAccessLayer\\DataBase\\Database.cs:line 63"
+        }
+      ],
+      "datetime": "31/05/2019 21:50:04"
+    },
+    {
+      "query": "Call GetMessagesByRiddleName('TestRiddle')",
+      "errormessage": "Unable to convert MySQL date/time value to System.DateTime",
+      "callstack": [
+        {
+          "call": "at MySql.Data.Types.MySqlDateTime.GetDateTime()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlDataReader.GetValue(Int32 i)"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlDataReader.GetValues(Object[] values)"
+        },
+        {
+          "call": "at System.Data.ProviderBase.DataReaderContainer.CommonLanguageSubsetDataReader.GetValues(Object[] values)"
+        },
+        {
+          "call": "at System.Data.ProviderBase.SchemaMapping.LoadDataRow()"
+        },
+        {
+          "call": "at System.Data.Common.DataAdapter.FillLoadDataRow(SchemaMapping mapping)"
+        },
+        {
+          "call": "at System.Data.Common.DataAdapter.FillFromReader(DataSet dataset, DataTable datatable, String srcTable, DataReaderContainer dataReader, Int32 startRecord, Int32 maxRecords, DataColumn parentChapterColumn, Object parentChapterValue)"
+        },
+        {
+          "call": "at System.Data.Common.DataAdapter.Fill(DataTable[] dataTables, IDataReader dataReader, Int32 startRecord, Int32 maxRecords)"
+        },
+        {
+          "call": "at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)"
+        },
+        {
+          "call": "at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)"
+        },
+        {
+          "call": "at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)"
+        },
+        {
+          "call": "at DataLayer.DataBase.DataBase.ExecuteStoredProcedure[T](Type _instanciatedObjectType) in D:\\Semester2\\Software\\KillerAppS2\\DataAccessLayer\\DataBase\\Database.cs:line 63"
+        }
+      ],
+      "datetime": "31/05/2019 21:51:09"
+    },
+    {
+      "query": "Call GetMessagesByRiddleName('TestRiddle')",
+      "errormessage": "Unable to convert MySQL date/time value to System.DateTime",
+      "callstack": [
+        {
+          "call": "at MySql.Data.Types.MySqlDateTime.GetDateTime()"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlDataReader.GetValue(Int32 i)"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlDataReader.GetValues(Object[] values)"
+        },
+        {
+          "call": "at System.Data.ProviderBase.DataReaderContainer.CommonLanguageSubsetDataReader.GetValues(Object[] values)"
+        },
+        {
+          "call": "at System.Data.ProviderBase.SchemaMapping.LoadDataRow()"
+        },
+        {
+          "call": "at System.Data.Common.DataAdapter.FillLoadDataRow(SchemaMapping mapping)"
+        },
+        {
+          "call": "at System.Data.Common.DataAdapter.FillFromReader(DataSet dataset, DataTable datatable, String srcTable, DataReaderContainer dataReader, Int32 startRecord, Int32 maxRecords, DataColumn parentChapterColumn, Object parentChapterValue)"
+        },
+        {
+          "call": "at System.Data.Common.DataAdapter.Fill(DataTable[] dataTables, IDataReader dataReader, Int32 startRecord, Int32 maxRecords)"
+        },
+        {
+          "call": "at System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)"
+        },
+        {
+          "call": "at System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)"
+        },
+        {
+          "call": "at System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)"
+        },
+        {
+          "call": "at DataLayer.DataBase.DataBase.ExecuteStoredProcedure[T](Type _instanciatedObjectType) in D:\\Semester2\\Software\\KillerAppS2\\DataAccessLayer\\DataBase\\Database.cs:line 63"
+        }
+      ],
+      "datetime": "31/05/2019 21:53:12"
+    }
+  ]
+}
