@@ -1,9 +1,8 @@
 ﻿
-/*_______________________________________________________________________*/
-/*                                                                       */
-/*             CSS CODE FOR ELEMENTS, CODED BY @MARTIN                   */
-/*_______________________________________________________________________*/
 
+    /*---------------------------*/
+    /*      Left Filter box      */
+    /*---------------------------*/
 
 .horizontal-line {
     height: 1px;
@@ -13,15 +12,100 @@
     margin-bottom: 10%;
 }
 
-/*.user-filter-box {
-    margin-bottom: 12%;
-    margin-top: 12%;
-}*/
+user-filter-box {
+    text-align: center;
+    width: 90%;
+    margin: auto;
+}
 
-.userSelActionsContainer {
-    background-color: #ffffff;
+.user-filter-row {
+    width: 100%;
+    min-height: 28px;
+    max-height: 28px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.user-filter-contentbox {
+    float: left;
+}
+
+    /*--------------------------*/
+    /*      "Add User"-Box      */
+    /*--------------------------*/
+
+.user-adduser-box {
+    padding: 5px 0px 5px 0px;
+    width: 40%;
+    margin-left: 30%;
+    margin-top: 3%;
+}
+
+
+
+    /*-------------------------------*/
+    /*      User Search Results      */
+    /*-------------------------------*/
+
+
+.user-search-item {
+    border: 1px solid #e91e63;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    padding: 1.5%;
+    position: relative;
+    overflow: visible;
+}
+
+.user-search-content {
+    height: 25%; 
+    max-height: 80px; 
+    width: 80%; 
+    margin: 0;
+}
+
+.user-profile-picture {
+    float: left;
+    margin-right: 2%;
+    margin-top: 3px;
+    margin-left: 3px;
+    margin-bottom: 3px;
+    border: 1px solid #707070;
+    border-radius: 39px;
+}
+
+.user-titlebox {
+    float: left;
+    height: inherit;
+    line-height: 28px;
+}
+
+.user-titletext {
+    margin: 0;
+    display: inline-block;
+    height: inherit;
+}
+
+.user-descriptionbox {
+    float: left;
+    height: inherit;
+    line-height: 20px;
+}
+
+.user-descriptiontext {
+    margin: 0;
+    display: inline-block;
+    height: inherit;
+    font-size: 11px;
     color: #707070;
-    border: 1px solid #bdbdbd;
+    font-style: italic;
+}
+
+.user-stats-textbox {
+    float: left;
+    height: inherit;
+    line-height: 28px;
+    font-size: 16px;
 }
 
 
@@ -33,17 +117,10 @@
 
 
 
+    /*----------------------------------*/
+    /*      Other CSS of some pages     */
+    /*----------------------------------*/
 
-
-
-
-
-
-
-/*_______________________________________________________________________*/
-/*                                                                       */
-/*             OLD BASIC CODE FOR THE TABLES AND ROWS                    */
-/*_______________________________________________________________________*/
 
 .contentcontainer {
     margin-top: 2%;
