@@ -30,7 +30,10 @@
                         </div>
                         <div class="col-sm-6 inputField"><input class="form-control" asp-for="Firstname" /></div>
                         <div class="col-sm-6 inputField"><input class="form-control" asp-for="Lastname" /></div>
+                        <span class="col-sm-6 addUserError" style="font-size: 12px;" asp-validation-for="Firstname"></span>
+                        <span class="col-sm-6 addUserError" style="font-size: 12px;" asp-validation-for="Lastname"></span>
                         <div class="col-sm-12 inputField"><input class="form-control" asp-for="Email" /></div>
+                        <span class="col-sm-12 addUserError" style="font-size: 12px;" asp-validation-for="Email"></span>
                         <div class="col-sm-12 inputField specialShowField" id="secondSubHeader">
                             <span>Contact Information</span>
                         </div>

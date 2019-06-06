@@ -10,7 +10,9 @@
 
 <head>
     <link href="~/css/review.css" rel="stylesheet" />
+    <link href="~/css/bootstrap-select.css" rel="stylesheet" />
 </head>
+<script src="~/js/bootstrap-select.js"></script>
 
 <div class="reviewContainer">
 
@@ -30,6 +32,9 @@
                         <input onclick="SliderClick()" type="range" min="0" max="5" value="0" class="slider" id="pleasureSlider">
                     </div>
                     <input asp-for="Post.Pleasure" class="col-sm-4 padInput" id="pleasureValue" value="0" readonly />
+                    <div class="col-sm-12">
+                        <span class="errorMessage" asp-validation-for="Post.Pleasure"></span>
+                    </div>
                 </div>
                 <div class="row padmodelItem">
                     <div class="col-sm-4">Arrousal</div>
@@ -37,6 +42,9 @@
                         <input onclick="SliderClick()" type="range" min="0" max="5" value="0" class="slider" id="arrousalSlider">
                     </div>
                     <input asp-for="Post.Arrousal" class="col-sm-4 padInput" id="arrousalValue" value="0" readonly />
+                    <div class="col-sm-12">
+                        <span class="errorMessage" asp-validation-for="Post.Arrousal"></span>
+                    </div>
                 </div>
                 <div class="row padmodelItem">
                     <div class="col-sm-4">Dominance</div>
@@ -44,73 +52,63 @@
                         <input onclick="SliderClick()" type="range" min="0" max="5" value="0" class="slider" id="dominanceSlider">
                     </div>
                     <input asp-for="Post.Dominance" class="col-sm-4 padInput" id="dominanceValue" value="0" readonly />
+                    <div class="col-sm-12">
+                        <span class="errorMessage" asp-validation-for="Post.Dominance"></span>
+                    </div>
                 </div>
             </div>
 
+
+            <input asp-for="Post.IABID" value="" id="iabValue" type="hidden"/>
             <div class="reviewPart col-sm-6" id="Category">
                 <h1>Category</h1>
                 <div class="row reviewRow">
-                    <div class="custom-select col-sm-4">
-                        <div class="mainselect">
-                            <select id='categorymain' onchange="GetSubCategories()">
-
+                    <div class="dropdown col-sm-6 customReviewDrop" style="margin-right: 2%;">
+                        <button class="btn btn-review dropdown-toggle reviewDropMenu" id="dropdownText" type="button" data-toggle="dropdown">
+                            Main Category
+                            <span class="caret custom-caret"></span>
+                        </button>
+                        <ul class="dropdown-menu scrollable-menu" id="maincat">
+                            <li><input type="search" class="form-control customSearch" id="maincatSearch" onkeyup="SearchMainCat()" placeholder="Search" /></li>
+                            <div id="maincatDatalist">
                                 @foreach (var cat in Model.Get.Categories)
                                 {
-                                    <option value="@cat.Name" data-id="@cat.UniqueID">@cat.Name</option>
+                                    <li><a data-id="@cat.UniqueID" data-display="@cat.Name">@cat.Name</a></li>
                                 }
-                            </select>
-                        </div>
+                            </div>
+                        </ul>
                     </div>
 
-                    <div class="custom-select col-sm-6" id="subCategory ">
-                        <div class="subselect">
-                            <input id="iabValueModel" type="hidden" asp-for="Post.IABID" value="" />
-                            <select onchange="SetValueToModel()" id="categorysub"></select>
-                        </div>
+                    <div class="dropdown col-sm-6 customReviewDrop">
+                        <button class="btn btn-review dropdown-toggle reviewDropMenu" id="subdropdownText" type="button" data-toggle="dropdown">
+                            Sub Category
+                            <span class="caret custom-caret"></span>
+                        </button>
+                        <ul class="dropdown-menu scrollable-menu" id="categorysub">
+
+                            <li><input type="search" class="form-control customSearch" id="subcatSearch" onkeyup="SearchSubCat()" placeholder="Search" /></li>
+                            <div id="subcatList">
+                                <li class="noCat">Select main category first</li>
+                            </div>
+                        </ul>
+                    </div>
+                    <div class="col-sm-6"></div>
+                    <div class="col-sm-6">
+                        <span class="errorMessage" asp-validation-for="Post.IABID"></span>
                     </div>
                 </div>
             </div>
         </div>
-        <div>
-            <span class="errorMessage" asp-validation-for="Post.Pleasure"></span>
-        </div>
-        <div>
-            <span class="errorMessage" asp-validation-for="Post.Arrousal"></span>
-        </div>
-        <div>
-            <span class="errorMessage" asp-validation-for="Post.Dominance"></span>
-        </div>
-        <div>
-            <span class="errorMessage" asp-validation-for="Post.IABID"></span>
-        </div>
-        <div><button name="next" value="true" type="submit" class="btn prim-btn btn-submit disabled" id="submitNextBtn">Submit & Next Video</button></div>
-        <div><button name="next" value="false" type="submit" class="btn prim-btn btn-submit-close disabled" id="submitCloseBtn">Submit & Close</button></div>
+        <div><button name="next" onchange="SetValueToModel()" value="true" type="submit" class="btn prim-btn btn-submit disabled" id="submitNextBtn">Submit & Next Video</button></div>
+        <div><button name="next" onchange="SetValueToModel()" value="false" type="submit" class="btn prim-btn btn-submit-close disabled" id="submitCloseBtn">Submit & Close</button></div>
     </form>
 </div>
 
 
-
 <script>
-    function GetSubCategories() {
-        var subcategory = $("#categorysub");
-        subcategory.empty().append('<option selected="selected" value="Loading..." disabled = "disabled"></option>');
-        $.ajax({
-            type: "GET",
-            url: "/Review/GetSubCategories?id=" + $("#categorymain option[value='" + document.getElementById("categorymain").value + "']").attr('data-id'),
-            dataType: 'JSON',
-            contentType: "application/json",
-            success: function (data) {
-                subcategory.empty();
-                for (var i = 0; i < data.length; i++) {
-                    subcategory.append('<option value="' + data[i].name + '" data-id="' + data[i].uniqueID + '">' + data[i].name + '</option > ');
-                }
-            }
-        });
-    }
-
-    function SetValueToModel() {
-        var subcatvalue = document.getElementById("iabValueModel");
-        subcatvalue.value = $('#categorysub option[value="' + $("#categorysub").val() + '"]').data('id');
+    function SetValueToModel(dataid) {
+        var subcatvalue = document.getElementById("iabValue");
+        subcatvalue.value = dataid;
     }
 
     function SliderValue(nameOfSlider, nameOfValue) {
@@ -144,6 +142,99 @@
             submitCloseButton.add("active");
             submitNextBtn.remove("disabled");
             submitNextBtn.add("active");
+        }
+    }
+</script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+
+    $('#maincat li a').on('click', function () {
+        var dropdown = document.getElementById('dropdownText');
+        var value = this.getAttribute('data-id');
+        var name = this.getAttribute('data-display');
+        dropdown.innerHTML = name + ' <span class="caret custom-caret" ></span>';
+        GetSubCategories(value);
+    });
+
+    $('#categorysub li a').on('click', function () {
+        var subdropdown = document.getElementById('subdropdownText');
+        var value = this.getAttribute('data-id');
+        var name = this.getAttribute('data-display');
+        subdropdown.setAttribute('data-id', value);
+        subdropdown.innerHTML = name;
+    });
+
+
+    function GetSubCategories(catid) {
+        var subcategory = $("#subcatList");
+        subcategory.empty().append('<option selected="selected" value="Loading..." disabled = "disabled"></option>');
+        $.ajax({
+            type: "GET",
+            url: "/Review/GetSubCategories?id=" + catid,
+            dataType: 'JSON',
+            contentType: "application/json",
+            success: function (data) {
+                subcategory.empty();
+                for (var i = 0; i < data.length; i++) {
+                    var el = document.createElement('li');
+                    var el2 = document.createElement('a');
+                    el2.setAttribute('data-id', data[i].uniqueID);
+                    el2.setAttribute('data-display', data[i].name);
+                    el2.innerHTML = data[i].name;
+                    el2.onclick = function () {
+                        var subdropdown = document.getElementById('subdropdownText');
+                        var name = this.getAttribute('data-display');
+                        subdropdown.innerHTML = name + ' <span class="caret custom-caret" ></span>';
+                        SetValueToModel(this.getAttribute('data-id'));
+                    };
+                    el.append(el2);
+                    subcategory.append(el);
+                }
+            }
+        });
+    }
+
+    function SearchMainCat() {
+        // Declare variables
+        var input, filter, ul, li, a, i, txtValue;
+        input = document.getElementById('maincatSearch');
+        filter = input.value.toUpperCase();
+        ul = document.getElementById("maincatDatalist");
+        li = ul.getElementsByTagName('li');
+
+        // Loop through all list items, and hide those who don't match the search query
+        for (i = 0; i < li.length; i++) {
+            a = li[i].getElementsByTagName("a")[0];
+            txtValue = a.textContent || a.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                li[i].style.display = "";
+            } else {
+                li[i].style.display = "none";
+
+            }
+        }
+    }
+
+
+    function SearchSubCat() {
+        // Declare variables
+        var input, filter, ul, li, a, i, txtValue;
+        input = document.getElementById('subcatSearch');
+        filter = input.value.toUpperCase();
+        ul = document.getElementById("subcatList");
+        li = ul.getElementsByTagName('li');
+
+        // Loop through all list items, and hide those who don't match the search query
+        for (i = 0; i < li.length; i++) {
+            a = li[i].getElementsByTagName("a")[0];
+            txtValue = a.textContent || a.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                li[i].style.display = "";
+            } else {
+                li[i].style.display = "none";
+
+            }
         }
     }
 </script>

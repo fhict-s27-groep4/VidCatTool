@@ -1,5 +1,8 @@
-﻿/*body {
-}*/
+﻿
+
+/*For This Demo CSS*/
+@import url('https://fonts.googleapis.com/css?family=Nunito:100,300,400,600,700');
+@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
 
 .userContent {
     background-color: #ffffff;
@@ -44,10 +47,6 @@
     margin-left: 91%;
     margin-top: 1%;
 }
-
-/*For This Demo CSS*/
-@import url('https://fonts.googleapis.com/css?family=Nunito:100,300,400,600,700');
-@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
 
 body {
     font-family: Nunito,arial,sans-serif !important;
@@ -132,4 +131,10 @@ body {
 
 .checkbox-primary input[type=checkbox]:checked + label::after {
     color: #fff
+}
+
+.addUserError{
+    margin-top: 2%;
+    font-size: 12px;
+    color: #e91e63;
 }
