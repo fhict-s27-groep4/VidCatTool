@@ -20,12 +20,10 @@ namespace VidCat_Tool.Controllers
     public class AccountController : Controller
     {
         private readonly UserHandler userHandler;
-        private readonly SessionHandler sessionHandler;
 
-        public AccountController(UserHandler userHandler, SessionHandler sessionHandler)
+        public AccountController(UserHandler userHandler)
         {
             this.userHandler = userHandler;
-            this.sessionHandler = sessionHandler;
         }
 
         [HttpGet]
@@ -41,8 +39,6 @@ namespace VidCat_Tool.Controllers
             {
                 if(userHandler.ValidateLoginAttempt(vm))
                 {
-                    sessionHandler.SetUsernameKey(vm.Username);
-
                     return RedirectToAction("Dashboard", "Home");
                 }
             }
@@ -52,7 +48,7 @@ namespace VidCat_Tool.Controllers
         
         public IActionResult Logout()
         {
-            sessionHandler.ClearSession();
+            HttpContext.Session.Clear();
             return View();
         }
 

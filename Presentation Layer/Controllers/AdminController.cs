@@ -15,11 +15,13 @@ namespace VidCat_Tool.Controllers
     {
         private readonly UserHandler userHandler;
         private readonly VideoHandler videoHandler;
+        private readonly PictureHandler pictureHandler;
 
-        public AdminController(UserHandler userHandler, VideoHandler videoHandler)
+        public AdminController(UserHandler userHandler, VideoHandler videoHandler, PictureHandler pictureHandler)
         {
             this.userHandler = userHandler;
             this.videoHandler = videoHandler;
+            this.pictureHandler = pictureHandler;
         }
 
         /*____________________________________________________________*/
