@@ -90,7 +90,8 @@ namespace VidCat_Tool.Controllers
         [HttpPost]
         public IActionResult UploadJSON(VideoManagementViewModel model)
         {
-            Task.Run(() => videoHandler.ExpandJson(model.Post.File));
+            bool result = videoHandler.ExpandJson(model.Post.File);
+            if (result == false) { TempData["JSONUpload_Error"] = "Failed to upload JSON File."; }
             return VideoManagement();
         }
 

@@ -69,12 +69,8 @@
         <div class="maincontainer col-9">
             <div class="pageTitleAndUser">
                 <div class="pageTitle">@ViewData["Title"]</div>
-                <div class="pageUser dropdown">
-                    <button class="noButton" dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@Context.Session.GetUsernameKey()  <img src="~/images/user-placeholder.png" /></button>
-                    <div class="dropdown-menu dropdown-menu-center sessionDropdown">
-                        <div class="dropdown-item profileItem">Profile</div>
-                        <div class="dropdown-item profileItem"><a href="@Url.Action("Logout", "Account")">Logout</a></div>
-                    </div>
+                <div class="pageUser">
+                    <div>@Context.Session.GetUsernameKey()  <img src="~/images/user-placeholder.png" /></div>
                 </div>
             </div>
             <div class="contentcontainer">

@@ -42,7 +42,7 @@ namespace VidCat_Tool
                 options.Cookie.IsEssential = true
             );
             services.AddMvc(options => options.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor(
-            (_) => "The field is required")).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            (_) => "This field is required")).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
