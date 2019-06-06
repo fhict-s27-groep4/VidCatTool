@@ -19,9 +19,9 @@ namespace Service_Layer.RequestHandlers
             this.sessionHandler = sessionHandler ?? throw new NullReferenceException();
         }
 
-        public bool PictureCopy(IFormFile file)
+        public bool PictureCopy(IFormFile file, string userid)
         {
-            string filePath = @"..\ProfilePictures\" + sessionHandler.Session.GetUserIDKey();
+            string filePath = @"..\ProfilePictures\" + userid;
             switch (file.ContentType)
             {
                 case "image/jpg":
