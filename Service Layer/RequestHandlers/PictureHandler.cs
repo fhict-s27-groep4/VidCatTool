@@ -62,6 +62,7 @@ namespace Service_Layer.RequestHandlers
             }
             return true;
         }
+
         public PictureManagementViewModelGet GetPictureWithUserID(string userID)
         {
             string folderPath = @"..\ProfilePictures";

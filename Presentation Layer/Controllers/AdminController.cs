@@ -36,11 +36,11 @@ namespace VidCat_Tool.Controllers
         {
             //if (ModelState.IsValid)
             //{
-                if(vm.ProfilePicture != null)
-                {
-                    // misschien iets doen met de bool die returned wordt? not sure :D
-                    pictureHandler.PictureCopy(vm.ProfilePicture);
-                }
+                //if(vm.ProfilePicture != null)
+                //{
+                //    // misschien iets doen met de bool die returned wordt? not sure :D
+                //    pictureHandler.PictureCopy(vm.ProfilePicture);
+                //}
                if( userHandler.CreateUser(vm))
                 {
                     ViewBag.Message = "User succesfully created. You will now be redirected to User Management";
