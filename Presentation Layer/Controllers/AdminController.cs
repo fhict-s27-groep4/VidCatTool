@@ -39,7 +39,7 @@ namespace VidCat_Tool.Controllers
                 if(vm.ProfilePicture != null)
                 {
                     // misschien iets doen met de bool die returned wordt? not sure :D
-                    pictureHandler.PictureCopy(vm.ProfilePicture);
+                    pictureHandler.PictureCopy(vm.ProfilePicture, "");
                 }
                if( userHandler.CreateUser(vm))
                 {
