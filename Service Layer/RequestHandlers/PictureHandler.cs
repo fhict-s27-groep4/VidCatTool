@@ -64,7 +64,7 @@ namespace Service_Layer.RequestHandlers
         }
         public PictureManagementViewModelGet GetPictureWithUserID(string userID)
         {
-            string folderPath = ;
+            string folderPath = @"..\ProfilePictures";
             DirectoryInfo dir = new DirectoryInfo(folderPath);
             FileInfo[] pictures = dir.GetFiles(userID + "*");
             string path = null;
