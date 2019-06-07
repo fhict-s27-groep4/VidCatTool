@@ -1,4 +1,5 @@
-﻿using Model_Layer.Interface;
+﻿using Data_Layer.ErrorLog;
+using Model_Layer.Interface;
 using Model_Layer.Models;
 using MySql.Data.MySqlClient;
 using System;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Data_Layer
 {
@@ -14,6 +16,7 @@ namespace Data_Layer
         private MySqlConnection dbConnection;
         private MySqlCommand dbCommand;
         private MySqlDataAdapter adapter;
+        private IDataBaseErrorLogger errorLogger;
 
         private readonly string connectionString;
 
@@ -23,6 +26,7 @@ namespace Data_Layer
             dbCommand = new MySqlCommand();
             dbConnection = new MySqlConnection(connectionString);
             adapter = new MySqlDataAdapter();
+            errorLogger = new JSonLogger();
         }
 
         private void OpenConnection()
@@ -31,8 +35,9 @@ namespace Data_Layer
             {
                 dbConnection.Open();
             }
-            catch (DbException exception)
+            catch (Exception exception)
             {
+                Task.Run(() => errorLogger.LogDataBaseError(dbCommand.CommandText, exception.Message, exception.StackTrace, DateTime.Now.ToString()));
                 Console.WriteLine(exception.Message);
             }
         }
@@ -45,6 +50,7 @@ namespace Data_Layer
             }
             catch (DbException exception)
             {
+                Task.Run(() => errorLogger.LogDataBaseError(dbCommand.CommandText, exception.Message, exception.StackTrace, DateTime.Now.ToString()));
                 Console.WriteLine(exception.Message);
             }
         }
@@ -69,6 +75,7 @@ namespace Data_Layer
             }
             catch (DbException exception)
             {
+                Task.Run(() => errorLogger.LogDataBaseError(dbCommand.CommandText, exception.Message, exception.StackTrace, DateTime.Now.ToString()));
                 Console.WriteLine(exception.Message);
             }
             finally
@@ -102,6 +109,7 @@ namespace Data_Layer
             }
             catch (DbException exception)
             {
+                Task.Run(() => errorLogger.LogDataBaseError(dbCommand.CommandText, exception.Message, exception.StackTrace, DateTime.Now.ToString()));
                 Console.WriteLine(exception.Message);
                 throw exception;
             }
@@ -135,6 +143,7 @@ namespace Data_Layer
             }
             catch (DbException exc)
             {
+                Task.Run(() => errorLogger.LogDataBaseError(dbCommand.CommandText, exception.Message, exception.StackTrace, DateTime.Now.ToString()));
                 Console.WriteLine(exc.Message);
             }
             finally
@@ -173,6 +182,7 @@ namespace Data_Layer
             }
             catch (DbException exc)
             {
+                Task.Run(() => errorLogger.LogDataBaseError(dbCommand.CommandText, exception.Message, exception.StackTrace, DateTime.Now.ToString()));
                 Console.WriteLine(exc.Message);
             }
             finally

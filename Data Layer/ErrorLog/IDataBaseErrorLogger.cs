@@ -1,4 +1,4 @@
-﻿namespace DataLayer.DataLogger
+﻿namespace Data_Layer.ErrorLog
 {
     internal interface IDataBaseErrorLogger
     {

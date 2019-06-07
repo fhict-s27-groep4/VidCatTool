@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace DataLayer.DataLogger
+namespace Data_Layer.ErrorLog
 {
     internal class JSonLogger : IDataBaseErrorLogger
     {
