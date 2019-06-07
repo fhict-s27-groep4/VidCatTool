@@ -30,7 +30,7 @@ namespace Data_Layer.ErrorLog
             error.Add("callstack", callstack);
             error.Add("datetime", _dateTime);
             ((JArray)dbErrors["errorlog"]).Add(error);
-            StreamWriter stream = new StreamWriter(@"..\DataAccessLayer\DataLogger\DataBaseErrorLog.json");
+            StreamWriter stream = new StreamWriter(@"..\Data Layer\ErrorLog\DataBaseErrorLog.json");
             stream.Write(JsonConvert.SerializeObject(dbErrors, Formatting.Indented));
             stream.Close();
         }

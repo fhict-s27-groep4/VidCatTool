@@ -48,7 +48,7 @@ namespace Data_Layer
             {
                 dbConnection.Close();
             }
-            catch (DbException exception)
+            catch (Exception exception)
             {
                 Task.Run(() => errorLogger.LogDataBaseError(dbCommand.CommandText, exception.Message, exception.StackTrace, DateTime.Now.ToString()));
                 Console.WriteLine(exception.Message);
@@ -73,7 +73,7 @@ namespace Data_Layer
                 adapter.SelectCommand = dbCommand;
                 adapter.Fill(dataSet, type.Name);
             }
-            catch (DbException exception)
+            catch (Exception exception)
             {
                 Task.Run(() => errorLogger.LogDataBaseError(dbCommand.CommandText, exception.Message, exception.StackTrace, DateTime.Now.ToString()));
                 Console.WriteLine(exception.Message);
@@ -107,7 +107,7 @@ namespace Data_Layer
                 OpenConnection();
                 dbCommand.ExecuteNonQuery();
             }
-            catch (DbException exception)
+            catch (Exception exception)
             {
                 Task.Run(() => errorLogger.LogDataBaseError(dbCommand.CommandText, exception.Message, exception.StackTrace, DateTime.Now.ToString()));
                 Console.WriteLine(exception.Message);
@@ -141,10 +141,10 @@ namespace Data_Layer
                 OpenConnection();
                 adapter.Fill(dbSet, type.Name);
             }
-            catch (DbException exc)
+            catch (Exception exception)
             {
                 Task.Run(() => errorLogger.LogDataBaseError(dbCommand.CommandText, exception.Message, exception.StackTrace, DateTime.Now.ToString()));
-                Console.WriteLine(exc.Message);
+                Console.WriteLine(exception.Message);
             }
             finally
             {
@@ -180,10 +180,10 @@ namespace Data_Layer
                 }
 
             }
-            catch (DbException exc)
+            catch (Exception exception)
             {
                 Task.Run(() => errorLogger.LogDataBaseError(dbCommand.CommandText, exception.Message, exception.StackTrace, DateTime.Now.ToString()));
-                Console.WriteLine(exc.Message);
+                Console.WriteLine(exception.Message);
             }
             finally
             {
