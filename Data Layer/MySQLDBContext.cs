@@ -143,7 +143,7 @@ namespace Data_Layer
             }
             catch (DbException exc)
             {
-                Task.Run(() => errorLogger.LogDataBaseError(dbCommand.CommandText, exception.Message, exception.StackTrace, DateTime.Now.ToString()));
+                Task.Run(() => errorLogger.LogDataBaseError(dbCommand.CommandText, exc.Message, exc.StackTrace, DateTime.Now.ToString()));
                 Console.WriteLine(exc.Message);
             }
             finally
@@ -182,7 +182,7 @@ namespace Data_Layer
             }
             catch (DbException exc)
             {
-                Task.Run(() => errorLogger.LogDataBaseError(dbCommand.CommandText, exception.Message, exception.StackTrace, DateTime.Now.ToString()));
+                Task.Run(() => errorLogger.LogDataBaseError(dbCommand.CommandText, exc.Message, exc.StackTrace, DateTime.Now.ToString()));
                 Console.WriteLine(exc.Message);
             }
             finally

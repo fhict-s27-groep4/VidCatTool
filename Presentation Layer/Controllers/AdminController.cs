@@ -34,13 +34,13 @@ namespace VidCat_Tool.Controllers
         [HttpPost]
         public IActionResult AddUser(RegisterViewModel vm)
         {
-            //if (ModelState.IsValid)
-            //{
-                if(vm.ProfilePicture != null)
-                {
-                    // misschien iets doen met de bool die returned wordt? not sure :D
-                    pictureHandler.PictureCopy(vm.ProfilePicture, "");
-                }
+            if (ModelState.IsValid)
+            {
+                //if(vm.ProfilePicture != null)
+                //{
+                //    // misschien iets doen met de bool die returned wordt? not sure :D
+                //    pictureHandler.PictureCopy(vm.ProfilePicture, "");
+                //}
                if( userHandler.CreateUser(vm))
                 {
                     ViewBag.Message = "User succesfully created. You will now be redirected to User Management";
@@ -49,7 +49,7 @@ namespace VidCat_Tool.Controllers
                 {
                     ViewBag["FailedAddUserAttempt"] = "An error appeared by creating the user";
                 }
-            //}
+            }
             return View();
         }
 
