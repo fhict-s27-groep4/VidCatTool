@@ -100,7 +100,6 @@ namespace Service_Layer.RequestHandlers
                 if (userVM.ProcentPADDivergent == 0) userVM.ProcentPADDivergent = 100;
                 usermodels.Add(userVM);
             }
-
             return usermodels;
         }
 

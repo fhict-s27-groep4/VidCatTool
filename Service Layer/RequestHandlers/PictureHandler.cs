@@ -71,7 +71,7 @@ namespace Service_Layer.RequestHandlers
             {
                 return pictures[0].FullName;
             }
-            return null;
+            return "not available";
         }
     }
 }
