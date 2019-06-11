@@ -17,14 +17,24 @@
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />    
+        <link href="~/css/AddUser.css" rel="stylesheet" />
+        <link href="~/css/Logoutpage.css" rel="stylesheet" />
+        <link href="~/css/Profile.css" rel="stylesheet" />
+        <link href="~/css/ResetCredentials.css" rel="stylesheet" />
+        <link href="~/css/review.css" rel="stylesheet" />
+        <link href="~/css/site.css" rel="stylesheet" />
+        <link href="~/css/UserManagement.css" rel="stylesheet" />
+        <link href="~/css/videomanagement.css" rel="stylesheet" />
     </environment>
+
+
 </head>
 <body>
     <div class="row mainRow">
         <div class="nav-side-menu col-3">
             <div class="mainLogo">
-                <img src="~/images/JWPlayerLogo.png" />
+                <a asp-controller="Home" asp-action="Dashboard"><img src="~/images/JWPlayerLogo.png" /></a>
             </div>
             <div class="brand">VidCat Tool</div>
             <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Mail;
 using System.Text;
 
@@ -7,18 +8,15 @@ namespace Logic_Layer.SMTPMessageSender
 {
     public class EMailSender
     {
-        private SmtpClient SmtpServer;
+        private SmtpClient smtpServer;
         public EMailSender()
         {
-            SmtpServer = new SmtpClient("smtp.gmail.com");
-            SmtpServer.Port = 587;
-            SmtpServer.Credentials = new System.Net.NetworkCredential("jw.player.vidcattool.pt@gmail.com", "Vliegende25Pinguin$");
-            SmtpServer.EnableSsl = true;
+            smtpServer = new SmtpClient("mailrelay.fhict.local");
         }
         public void Send(IMessageMail _messageMail)
         {
-            _messageMail.MailMessage.From = new MailAddress("jw.player.vidcattool.pt@gmail.com");
-            SmtpServer.Send(_messageMail.MailMessage);
+            _messageMail.MailMessage.From = new MailAddress("i413747@hera.fhict.nl");
+            smtpServer.Send(_messageMail.MailMessage);
         }
     }
 }
