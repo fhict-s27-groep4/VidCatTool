@@ -15,7 +15,6 @@ namespace Service_Layer.RequestHandlers
 
         public PictureHandler(SessionHandler sessionHandler)
         {
-            this.sessionHandler = null;
             this.sessionHandler = sessionHandler ?? throw new NullReferenceException();
         }
 
@@ -63,17 +62,16 @@ namespace Service_Layer.RequestHandlers
             return true;
         }
 
-        public PictureManagementViewModelGet GetPictureWithUserID(string userID)
+        public string GetPictureWithUserID(string userID)
         {
             string folderPath = @"..\ProfilePictures";
             DirectoryInfo dir = new DirectoryInfo(folderPath);
             FileInfo[] pictures = dir.GetFiles(userID + "*");
-            string path = null;
             if(pictures.Count() > 0)
             {
-                path = pictures[0].FullName;
+                return pictures[0].FullName;
             }
-            return new PictureManagementViewModelGet() { PicturePath = path } ;
+            return "not available";
         }
     }
 }

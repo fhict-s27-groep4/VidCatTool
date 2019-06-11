@@ -22,15 +22,17 @@ namespace Service_Layer.RequestHandlers
         private readonly IRegister registerHandler;
         private readonly IUserRepository userRepo;
         private readonly IUserStatsRepository userStatsRepository;
+        private readonly PictureHandler pictureHandler;
         private readonly SessionHandler sessionHandler;
 
-        public UserHandler(IUserStatsRepository userStatsRepository, ILogin loginHandler, IRegister registerHandler, IUserRepository userRepo, SessionHandler sessionHandler)
+        public UserHandler(PictureHandler pictureHandler, IUserStatsRepository userStatsRepository, ILogin loginHandler, IRegister registerHandler, IUserRepository userRepo, SessionHandler sessionHandler)
         {
             this.userStatsRepository = userStatsRepository ?? throw new NullReferenceException();
             this.loginHandler = loginHandler ?? throw new NullReferenceException();
             this.registerHandler = registerHandler ?? throw new NullReferenceException();
             this.userRepo = userRepo ?? throw new NullReferenceException();
             this.sessionHandler = sessionHandler ?? throw new NullReferenceException();
+            this.pictureHandler = pictureHandler ?? throw new NullReferenceException();
         }
 
         public bool ValidateLoginAttempt(LoginViewModel vm)
@@ -47,6 +49,7 @@ namespace Service_Layer.RequestHandlers
                     sessionHandler.SetIDKey(loggedInUser.UserID);
                     sessionHandler.SetUsernameKey(loggedInUser.UserName);
                     sessionHandler.SetAdminKey(loggedInUser.IsAdmin.ToString());
+                    sessionHandler.SetProfilePicture(pictureHandler.GetPictureWithUserID(loggedInUser.UserID));
                     return true;
                 }
                 return false;
@@ -60,10 +63,13 @@ namespace Service_Layer.RequestHandlers
             try
             {
                 userRepo.AddUser(generatedUser);
+                ILoginUser user = userRepo.GetUserByName(generatedUser.UserName);
+                pictureHandler.PictureCopy(vm.ProfilePicture, user.UserID);
             }
-            catch (Exception excepton)
+            catch
             {
-                throw new ArgumentException("Something went wrong with the registration. Check Inner Exception for specific information: /n" + excepton.InnerException.Message);
+                return false;
+                //throw new ArgumentException("Something went wrong with the registration. Check Inner Exception for specific information: /n" + excepton.InnerException.Message);
             }
             return true;
         }
@@ -94,7 +100,6 @@ namespace Service_Layer.RequestHandlers
                 if (userVM.ProcentPADDivergent == 0) userVM.ProcentPADDivergent = 100;
                 usermodels.Add(userVM);
             }
-
             return usermodels;
         }
 
