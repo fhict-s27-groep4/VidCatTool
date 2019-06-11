@@ -36,12 +36,7 @@ namespace VidCat_Tool.Controllers
         {
             if (ModelState.IsValid)
             {
-                //if(vm.ProfilePicture != null)
-                //{
-                //    // misschien iets doen met de bool die returned wordt? not sure :D
-                //    pictureHandler.PictureCopy(vm.ProfilePicture, "");
-                //}
-               if( userHandler.CreateUser(vm))
+                if (userHandler.CreateUser(vm))
                 {
                     ViewBag.Message = "User succesfully created. You will now be redirected to User Management";
                 }
@@ -81,13 +76,13 @@ namespace VidCat_Tool.Controllers
         }
 
         /*____________________________________________________________*/
-        
+
         [HttpGet]
         public IActionResult VideoManagement()
         {
             return View("Videomanagement", videoHandler.GetVideoManagementViewModel());
         }
-        
+
         public FileResult ExportToJSON()
         {
             byte[] fileBytes = videoHandler.ExportAllVideosToJson();
@@ -106,7 +101,8 @@ namespace VidCat_Tool.Controllers
         /*____________________________________________________________*/
 
         [HttpGet] //Settings page where admins can set stuff, such as percentages of the algorithm.
-        public IActionResult Settings() {
+        public IActionResult Settings()
+        {
             AlgoritmSettingsModel settings = videoHandler.GetAlgoritmSettings();
             return View(settings);
         }

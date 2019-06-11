@@ -11,14 +11,13 @@ namespace Service_Layer.SessionExtension
 {
     public class SessionHandler
     {
-        private readonly IHttpContextAccessor httpContextAccessor;
         private readonly IUserRepository userRepo;
 
-        public ISession Session { get => httpContextAccessor.HttpContext.Session; }
+        public ISession Session { get; private set; }
 
         public SessionHandler(IHttpContextAccessor httpContextAccessor, IUserRepository userRepo)
         {
-            this.httpContextAccessor = httpContextAccessor;
+            this.Session = httpContextAccessor.HttpContext.Session;
             this.userRepo = userRepo;
         }
 
@@ -35,6 +34,11 @@ namespace Service_Layer.SessionExtension
         public void SetAdminKey(string value)
         {
             Session.SetString("IsAdmin", value);
+        }
+
+        public void SetProfilePicture(string location)
+        {
+            Session.SetString("ProfilePicture", location);
         }
 
         public void ClearSession()
