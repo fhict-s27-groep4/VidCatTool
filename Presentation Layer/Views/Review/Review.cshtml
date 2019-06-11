@@ -31,7 +31,7 @@
                     <div class="slidecontainer col-sm-4">
                         <input onclick="SliderClick()" type="range" min="0" max="5" value="0" class="slider" id="pleasureSlider">
                     </div>
-                    <input asp-for="Post.Pleasure" class="col-sm-4 padInput" id="pleasureValue" value="0" readonly />
+                    <input asp-for="Post.Pleasure" tabindex="1" class="col-sm-4 padInput" id="pleasureValue" value="0" readonly />
                     <div class="col-sm-12">
                         <span class="errorMessage" asp-validation-for="Post.Pleasure"></span>
                     </div>
@@ -41,7 +41,7 @@
                     <div class="slidecontainer col-sm-4">
                         <input onclick="SliderClick()" type="range" min="0" max="5" value="0" class="slider" id="arrousalSlider">
                     </div>
-                    <input asp-for="Post.Arrousal" class="col-sm-4 padInput" id="arrousalValue" value="0" readonly />
+                    <input asp-for="Post.Arrousal" tabindex="2" class="col-sm-4 padInput" id="arrousalValue" value="0" readonly />
                     <div class="col-sm-12">
                         <span class="errorMessage" asp-validation-for="Post.Arrousal"></span>
                     </div>
@@ -51,7 +51,7 @@
                     <div class="slidecontainer col-sm-4">
                         <input onclick="SliderClick()" type="range" min="0" max="5" value="0" class="slider" id="dominanceSlider">
                     </div>
-                    <input asp-for="Post.Dominance" class="col-sm-4 padInput" id="dominanceValue" value="0" readonly />
+                    <input asp-for="Post.Dominance" tabindex="3" class="col-sm-4 padInput" id="dominanceValue" value="0" readonly />
                     <div class="col-sm-12">
                         <span class="errorMessage" asp-validation-for="Post.Dominance"></span>
                     </div>
@@ -64,12 +64,12 @@
                 <h1>Category</h1>
                 <div class="row reviewRow">
                     <div class="dropdown col-sm-6 customReviewDrop" style="margin-right: 2%;">
-                        <button class="btn btn-review dropdown-toggle reviewDropMenu" id="dropdownText" type="button" data-toggle="dropdown">
+                        <button tabindex="4" class="btn btn-review dropdown-toggle reviewDropMenu" id="dropdownText" type="button" data-toggle="dropdown">
                             Main Category
                             <span class="caret custom-caret"></span>
                         </button>
                         <ul class="dropdown-menu scrollable-menu" id="maincat">
-                            <li><input type="search" class="form-control customSearch" id="maincatSearch" onkeyup="SearchMainCat()" placeholder="Search" /></li>
+                            <li><input type="search" tabindex="5" class="form-control customSearch" id="maincatSearch" onkeyup="SearchMainCat()" placeholder="Search" /></li>
                             <div id="maincatDatalist">
                                 @foreach (var cat in Model.Get.Categories)
                                 {
@@ -80,13 +80,13 @@
                     </div>
 
                     <div class="dropdown col-sm-6 customReviewDrop">
-                        <button class="btn btn-review dropdown-toggle reviewDropMenu" id="subdropdownText" type="button" data-toggle="dropdown">
+                        <button tabindex="6" class="btn btn-review dropdown-toggle reviewDropMenu" id="subdropdownText" type="button" data-toggle="dropdown">
                             Sub Category
                             <span class="caret custom-caret"></span>
                         </button>
                         <ul class="dropdown-menu scrollable-menu" id="categorysub">
 
-                            <li><input type="search" class="form-control customSearch" id="subcatSearch" onkeyup="SearchSubCat()" placeholder="Search" /></li>
+                            <li><input type="search" tabindex="7" class="form-control customSearch" id="subcatSearch" onkeyup="SearchSubCat()" placeholder="Search" /></li>
                             <div id="subcatList">
                                 <li class="noCat">Select main category first</li>
                             </div>
