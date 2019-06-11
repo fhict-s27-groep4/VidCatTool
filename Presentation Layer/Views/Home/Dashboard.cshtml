@@ -11,16 +11,18 @@
     <div class="row statsContainer" style="height: 1000px; padding: 6%;">
 
         @* Introduction message *@
-        <div class="col-md-6" style="padding-top: 5%;">
-            <h2 style="font-weight: bold; color: #e91e63; margin: 0;">Welcome back, @Model.User.FirstName @Model.User.LastName</h2>
+        <div class="col-md-6" style="padding-top: 5%; font-weight: bold;">
+            <h2 style="color: #707070; margin: 0; display: inline-block; height: auto; width: auto">Welcome back, </h2>
+            <h2 style="color: #e91e63; margin: 0; display: inline-block; height: auto; width: auto;"> @Model.User.FirstName @Model.User.LastName</h2>
         </div>
 
 
         @* User Stats (right panel of the menu) *@
-        <div class="col-md-4" style="padding: 1%; width: 40%; min-width: 350px; height: 330px; border: 1px solid #e91e63; float: right; overflow: hidden;">
+        <div class="col-md-4" style="padding: 0; width: 40%; min-width: 350px; float: right;">
+
 
             @* Personal Details *@
-            <div class="">
+            <div class="" style="height: 320px; border: 1px solid #e91e63; overflow: hidden; padding: 1%; background-color: #f9f9f9;">
 
                 @* Edit Icon *@
                 <a style="position: absolute; top: 0; right: 0; margin: 2%;">
@@ -70,23 +72,41 @@
 
 
             @* User Stats on Platform *@
-            @*<div class="row" style="overflow: hidden;">
-                    <div class="col-md-3" style="height: 100px;">
+            <div class="" style="height: 140px; border: 1px solid #e91e63; overflow: hidden; padding: 1%; background-color: #f1f1f1; margin-top: 10%;">
 
-                    </div>
-                    <div class="col-md-3" style="margin-bottom: -99999px; padding-bottom: 99999px; border: 1px solid #e91e63;">
+                @* Title *@
+                <h3 style="margin: 3% 0 6% 0; text-align: center; text-decoration: underline;">User Statistics</h3>
 
+                <div class="row" style="background-color: #ffffff; padding: 2%; margin: 2.5% 3.5% 0% 3.5%; border: 1px solid #dddddd;">
+                    <div class="col-md-6" style="padding: 0;">
+                        <i style="font-size: 16px; color: #e91e63; margin-right: 3%;" class="fas fa-video"></i>
+                        <span style="color: #e91e63; font-weight: bold; font-size: 16px;">Reviewed Video's:</span>
                     </div>
-                    <div class="col-md-3" style="margin-bottom: -99999px; padding-bottom: 99999px; border: 1px solid #e91e63;">
-                    </div>
+                    <div class="col-md-5" style="padding: 0;"><span style="font-size: 16px;">@Model.ViewedCount</span></div>
+                </div>
+            </div>
 
-                </div>*@
+            @* Global Stats on Platform *@
+            <div class="" style="height: 330px; border: 1px solid #e91e63; overflow: hidden; padding: 1%; background-color: #f1f1f1; margin-top: 10%;">
+
+                @* Title *@
+                <h3 style="margin: 3% 0 6% 0; text-align: center; text-decoration: underline;">Platform Details</h3>
+
+                <div class="row" style="background-color: #ffffff; padding: 2%; margin: 2.5% 3.5% 0% 3.5%; border: 1px solid #dddddd;">
+                    <div class="col-md-6" style="padding: 0;">
+                        <i style="font-size: 16px; color: #e91e63; margin-right: 3%;" class="fas fa-clipboard-list"></i>
+                        <span style="color: #e91e63; font-weight: bold; font-size: 16px;">Finished Video's:</span>
+                    </div>
+                    <div class="col-md-5" style="padding: 2% 0 0 0; height: 8.5px;">
+                        @*<span style="font-size: 16px;">@Model.ViewedCount</span>*@
+                        <div class="progress" style="margin-left: auto; margin-right: auto; height: 5px; width: 100%;">
+                            @{ int finishedPercentage = Decimal.ToInt32(100 * 30 / Model.TotalVideos); }
+                            <div role="progressbar" class="progress-bar progress-bar-success" style="width: @finishedPercentage%;"></div>
+                        </div>
+                    </div>
+                </div>
 
 
         </div>
-
-
-
-
     </div>
 </div>
