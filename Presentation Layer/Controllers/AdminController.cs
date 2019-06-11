@@ -34,8 +34,8 @@ namespace VidCat_Tool.Controllers
         [HttpPost]
         public IActionResult AddUser(RegisterViewModel vm)
         {
-            //if (ModelState.IsValid)
-            //{
+            if (ModelState.IsValid)
+            {
                 //if(vm.ProfilePicture != null)
                 //{
                 //    // misschien iets doen met de bool die returned wordt? not sure :D
@@ -49,7 +49,7 @@ namespace VidCat_Tool.Controllers
                 {
                     ViewBag["FailedAddUserAttempt"] = "An error appeared by creating the user";
                 }
-            //}
+            }
             return View();
         }
 
