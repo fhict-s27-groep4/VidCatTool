@@ -8,10 +8,9 @@
 <div class="row">
 
     @* Algorithm Settings *@
-    <div class="col-md-4" style="background-color: white; padding: 1%; margin: 5%; border: 1px solid #bdbdbd;">
+    <div class="col-sm-8" style="background-color: white; padding: 1%; margin: 5%; border: 1px solid #bdbdbd;">
         <h3 style="margin: 0; text-decoration: none;">IAB Percentages</h3>
         <form method="post">
-
             @* IAB Percentage 1 *@
             <div style="margin: 5%; height: 36px;">
                 <div style="float: left; margin-right: 2%; line-height: 36px; height: 36px;">Tier 1</div>
@@ -23,7 +22,7 @@
 
             @* IAB Percentage 2 *@
             <div style="margin: 5%; height: 36px;">
-                <div style="float: left; margin-right: 2%; line-height: 36px; height: inherit: 36px;">Tier 2</div>
+                <div style="float: left; margin-right: 2%; line-height: 36px;">Tier 2</div>
                 <div>
                     <span asp-validation-for="IabToleranceTier2"></span>
                     <input asp-for="IabToleranceTier2" class="form-control inputField" type="number" min="1" max="100" style="width: 11%; min-width: 100px;" />
@@ -37,7 +36,6 @@
                     <input asp-for="BiggestPercentIAB" class="form-control inputField" type="number" min="1" max="100" style="width: 11%; min-width: 100px;" />
                 </div>
             </div>
-
             <div style="margin: 5%; height: 36px;">
                 <div style="float: left; margin-right: 2%; line-height: 36px; height: inherit: 36px;">PAD Tolerance</div>
                 <div>
@@ -55,7 +53,7 @@
             </div>
 
             @* Submit Button *@
-            <div><input type="submit" value="Send" class="btn prim-btn" /></div>
+            <div><input type="submit" value="Send" class="btn prim-btn" style="float: right" /></div>
         </form>
     </div>
 
@@ -68,9 +66,9 @@
 
 
 
-    @* iabToleranceTier1 *@
-    @* iabToleranceTier2 *@
-    @* biggestPercentIAB *@
-    @* padTolerance *@
-    @* maximumRatings *@
+@* iabToleranceTier1 *@
+@* iabToleranceTier2 *@
+@* biggestPercentIAB *@
+@* padTolerance *@
+@* maximumRatings *@
 
