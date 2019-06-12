@@ -39,7 +39,7 @@ namespace VidCat_Tool
             services.AddHttpContextAccessor();
             services.AddDistributedMemoryCache();
             services.AddSession(options =>
-                options.Cookie.IsEssential = true
+                options.Cookie.IsEssential = true   
             );
             services.AddMvc(options => options.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor(
             (_) => "The field is required")).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
