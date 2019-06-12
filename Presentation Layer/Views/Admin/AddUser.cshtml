@@ -11,52 +11,72 @@
 
 <div class="ProfileContent">
     <div class="row noMarginRow">
-        <div class="col-sm-2 userContent">
-            <div class="" style="margin: 10%;">
-                <img class="userProfileImage" src="~/images/user-placeholder.png" style="width: 100%;" />
-            </div>
-            <div style="width: 100%; margin-top: 10%; margin-bottom: 10%;">
-                <button class="btn editButton prim-btn center-block">Upload Picture</button>
-            </div>
-        </div>
-
-
-        <div class="row col-sm-9">
-            <div class="row noMarginRow">
-                <div class="userContent" id="rightUserContentBox">
-                    <div class="col-sm-12 inputField specialShowField">
-                        <span>Basic User Information</span>
+        <form method="post" enctype="multipart/form-data">
+            <div class="col-sm-2 userContent">
+                <div class="" style="margin: 10%;">
+                    <img class="userProfileImage" src="~/images/user-placeholder.png" style="width: 100%;" />
+                </div>
+                <div class="form-group uploadbox">
+                    <div class="row">
+                        <label for="file" class="btn-file-upload col-sm-4">Browse..</label>
+                        <label class="filename col-sm-8" id="pathname">Choose image</label>
+                        <input class="file" type="file" asp-for="ProfilePicture" id="file" style="display: none;">
                     </div>
-                    <div class="col-sm-6 inputField"><input class="form-control" asp-for="Firstname" /></div>
-                    <div class="col-sm-6 inputField"><input class="form-control" asp-for="Lastname" /></div>
-                    <div class="col-sm-12 inputField specialShowField" id="secondSubHeader">
-                        <span>Contact Information</span>
-                    </div>
-                    <div class="col-sm-9 inputField"><input class="form-control" asp-for="Streetname" /></div>
-                    <div class="col-sm-3 inputField"><input class="form-control" asp-for="Housenumber" /></div>
-                    <div class="col-sm-4 inputField">
-                        <select class="form-control" asp-for="Country">
-                            <option value="Netherlands">Netherlands</option>
-                            <option value="Belgium">Belgium</option>
-                            <option value="Germany">Germany</option>
-                            <option value="United Kingdom">United Kingdom</option>
-                            <option value="United States">United States</option>
-                            <option value="Spain">Spain</option>
-                            <option value="France">France</option>
-                            <option value="Austria">Austria</option>
-                        </select>
-                    </div>
-                    <div class="col-sm-4 inputField"><input class="form-control" asp-for="City" /></div>
-                    <div class="col-sm-4 inputField"><input class="form-control" asp-for="Zip" /></div>
-                    <div class="col-sm-12 inputField specialShowField" id="secondSubHeader">
-                        <span>Role Information</span>
-                    </div>
-                    <div class="col-sm-6 inputField"><input type="checkbox" value="Admin:" class="form-control" asp-for="IsAdmin" /></div>
                 </div>
             </div>
-        </div>
+
+            <div class="row col-sm-9">
+                <div class="row noMarginRow">
+                    <div class="userContent" id="rightUserContentBox">
+                        <div class="col-sm-12 inputField specialShowField">
+                            <span>Basic User Information</span>
+                        </div>
+                        <div class="col-sm-6 inputField"><input class="form-control" asp-for="Firstname" /></div>
+                        <div class="col-sm-6 inputField"><input class="form-control" asp-for="Lastname" /></div>
+                        <span class="col-sm-6 addUserError" style="font-size: 12px;" asp-validation-for="Firstname"></span>
+                        <span class="col-sm-6 addUserError" style="font-size: 12px;" asp-validation-for="Lastname"></span>
+                        <div class="col-sm-12 inputField"><input class="form-control" asp-for="Email" /></div>
+                        <span class="col-sm-12 addUserError" style="font-size: 12px;" asp-validation-for="Email"></span>
+                        <div class="col-sm-12 inputField specialShowField" id="secondSubHeader">
+                            <span>Contact Information</span>
+                        </div>
+                        <div class="col-sm-9 inputField"><input class="form-control" asp-for="Streetname" /></div>
+                        <div class="col-sm-3 inputField"><input class="form-control" asp-for="Housenumber" /></div>
+                        <div class="col-sm-4 inputField">
+                            <select class="form-control" asp-for="Country">
+                                <option value="Netherlands">Netherlands</option>
+                                <option value="Belgium">Belgium</option>
+                                <option value="Germany">Germany</option>
+                                <option value="United Kingdom">United Kingdom</option>
+                                <option value="United States">United States</option>
+                                <option value="Spain">Spain</option>
+                                <option value="France">France</option>
+                                <option value="Austria">Austria</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-4 inputField"><input class="form-control" asp-for="City" /></div>
+                        <div class="col-sm-4 inputField"><input class="form-control" asp-for="Zip" /></div>
+                        <div class="col-sm-12 inputField specialShowField" id="secondSubHeader">
+                            <span>Role Information</span>
+                        </div>
+                        <fieldset class="col-sm-12">
+                            <div class="checkbox checkbox-primary">
+                                <input id="checkAdmin" type="checkbox" asp-for="IsAdmin" />
+                                <label for="checkAdmin">
+                                    Admin
+                                </label>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+                <input type="submit" class="btn prim-btn submitButon" value="Add User" />
+            </div>
+        </form>
     </div>
 </div>
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
 @if (ViewBag.Message != null)
 {
@@ -69,3 +89,15 @@
         };
     </script>
 }
+
+<script type="text/javascript">
+
+    $(function () {
+        $('#file').on('change', function () {
+            var filePath = $(this).val();
+            var pathname = document.getElementById('pathname');
+            pathname.innerHTML = filePath.split("\\").pop();
+        });
+    });
+
+</script>

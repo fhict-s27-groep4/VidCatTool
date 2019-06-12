@@ -2,7 +2,9 @@
 using Model_Layer.Models;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace Logic_Layer.JsonReader
 {
@@ -68,30 +70,41 @@ namespace Logic_Layer.JsonReader
             return titleImage;
         }
 
-        public bool CheckFileFormatting(string filePath)
+        public IEnumerable<string> CheckFileFormatting(string filePath)
         {
             if (!filePath.EndsWith(".json"))
             {
-                return false;
+                return null;
             }
+            IList<string> mediaIDs = new List<string>();
+            JObject newFile = JObject.Parse(File.ReadAllText(filePath));
             try
             {
-                JObject newFile = JObject.Parse(File.ReadAllText(filePath));
-                foreach(JObject video in newFile["playlist"])
+                foreach (JObject video in newFile["playlist"])
                 {
                     string mediaID = (string)video["mediaid"];
-                    if(mediaID.Length != 8)
+                    mediaIDs.Add(mediaID);
+                    if (mediaID.Length != 8 ||
+                        ((string)video["description"]) == null ||
+                        ((int)video["pubdate"]).ToString().Length != 10 ||
+                        !((string)video["image"]).EndsWith(".jpg") ||
+                        (JObject)video["variations"] == null ||
+                        ((string)video["feedid"]).Length != 8 ||
+                        !((JArray)video["sources"]).Any(x => ((string)x["file"]).EndsWith(".mp4")) ||
+                        !((JArray)video["tracks"]).All(x => (string)x["kind"] != null || (string)x["file"] != null) ||
+                        ((string)video["link"]) == null ||
+                        ((int)video["duration"]) < 0 ||
+                        ((string)video["preview"]).Length != 8)
                     {
-                        return false;
+                        return null;
                     }
-                    string desc = (string)video["description"];
                 }
-                return true;
             }
             catch
             {
-                return false;
+                return null;
             }
+            return mediaIDs;
         }
     }
 }

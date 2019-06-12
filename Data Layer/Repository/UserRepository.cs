@@ -14,15 +14,14 @@ namespace Data_Layer.Repository
     {
         public UserRepository(IDBContext context) : base(context)
         {
-
         }
 
-        public User GetByUUID(string uid)
+        public ILoginUser GetByUUID(string uid)
         {
             return context.SelectQuery<User>().Where(id => id.UserID == uid).FirstOrDefault();
         }
 
-        public User GetUserByName(string username)
+        public ILoginUser GetUserByName(string username)
         {
             return context.SelectQuery<User>().Where(user => user.UserName == username).FirstOrDefault();
         }
@@ -79,6 +78,14 @@ namespace Data_Layer.Repository
             parameters[1] = new MySqlParameter("@pword", password);
             parameters[2] = new MySqlParameter("@passwordsalt", passwordsalt);
             context.ExecuteStoredProcedure("UpdatePassword", parameters);
+        }
+        public void MakeUserAdmin(int userid)
+        {
+            MySqlParameter[] parameters = new MySqlParameter[1];
+            parameters[0] = new MySqlParameter("@userID", userid);
+            context.ExecuteStoredProcedure("MakeAdmin", parameters);
+            throw new NotImplementedException();
+            // check naam van stored procedure "MakeAdmin"
         }
     }
 }

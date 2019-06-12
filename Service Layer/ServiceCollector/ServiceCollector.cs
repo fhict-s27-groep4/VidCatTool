@@ -25,6 +25,8 @@ namespace Service_Layer.ServiceCollector
             services.AddTransient<IRatingRepository, RatingRepository>();
             services.AddTransient<IVideoRepository, VideoRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
+            services.AddTransient<IJsonAddRepository, JsonAddRepository>();
+            services.AddTransient<IUserStatsRepository, UserStatsRepository>();
             services.AddTransient<IDBContext, MySQLDBContext>();
 
             services.AddTransient<ILogin, AccountManager>();
@@ -37,6 +39,7 @@ namespace Service_Layer.ServiceCollector
             services.AddTransient<VideoAssignHandler>();
             services.AddTransient<CategoryHandler>();
             services.AddTransient<VideoHandler>();
+            services.AddTransient<PictureHandler>();
 
             services.AddSingleton<IRatingSettings, RatingSettings>();
             services.AddTransient<IRatingAlgoritm, RatingAlgoritm>();

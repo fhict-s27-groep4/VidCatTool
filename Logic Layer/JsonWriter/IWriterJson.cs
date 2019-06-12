@@ -7,5 +7,6 @@ namespace Logic_Layer.JsonWriter
     public interface IWriterJson
     {
         Task<string> Write(IEnumerable<IDuncan> _ratings);
+        void ExtendJson(string filePath);
     }
 }

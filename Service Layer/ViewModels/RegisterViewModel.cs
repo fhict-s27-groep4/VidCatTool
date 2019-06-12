@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
@@ -36,5 +37,7 @@ namespace Service_Layer.ViewModels
 
         [Required(ErrorMessage = "User role is required"), Display(Name = "Role")]
         public bool IsAdmin { get; set; }
+
+        public IFormFile ProfilePicture { get; set; }
     }
 }

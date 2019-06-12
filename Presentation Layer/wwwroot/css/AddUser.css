@@ -1,11 +1,15 @@
-﻿/*body {
-}*/
+﻿
+
+/*For This Demo CSS*/
+@import url('https://fonts.googleapis.com/css?family=Nunito:100,300,400,600,700');
+@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
 
 .userContent {
     background-color: #ffffff;
     padding: 1%;
     border: 1px solid #bdbdbd;
     overflow: hidden;
+    margin-top: 2%;
 }
 
 #rightUserContentBox {
@@ -35,6 +39,128 @@
 }
 
 #secondSubHeader {
-    margin-top: 5%;
+    margin-top: 8%;
 }
 
+.submitButon {
+    width: 9%;
+    margin-left: 91%;
+    margin-top: 1%;
+}
+
+body {
+    font-family: Nunito,arial,sans-serif !important;
+}
+
+.h1_custom {
+    font-size: 28px;
+}
+
+.design_by {
+    font-size: 20px;
+    clear: both;
+    display: block;
+    margin-top: 8px;
+}
+
+.marT30 {
+    margin-top: 30px;
+}
+
+
+/*Default*/
+.checkbox {
+    padding-left: 20px
+}
+
+    .checkbox label {
+        display: inline-block;
+        position: relative;
+        padding-left: 5px;
+        font-weight: 400;
+    }
+
+        .checkbox label::after, .checkbox label::before {
+            display: inline-block;
+            position: absolute;
+            left: 0;
+            margin-left: -20px
+        }
+
+        .checkbox label::before {
+            content: "";
+            width: 17px;
+            height: 17px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            background-color: #fff;
+            -webkit-transition: border .15s ease-in-out,color .15s ease-in-out;
+            -o-transition: border .15s ease-in-out,color .15s ease-in-out;
+            transition: border .15s ease-in-out,color .15s ease-in-out
+        }
+
+        .checkbox label::after {
+            width: 16px;
+            height: 16px;
+            top: 0;
+            padding-left: 3px;
+            padding-top: 1px;
+            font-size: 11px;
+            color: #555
+        }
+
+    .checkbox input[type=checkbox] {
+        opacity: 0
+    }
+
+        .checkbox input[type=checkbox]:focus + label::before {
+            outline: none;
+        }
+
+        .checkbox input[type=checkbox]:checked + label::after {
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            content: "\f00c";
+        }
+
+/* Primary */
+.checkbox-primary input[type=checkbox]:checked + label::before {
+    background-color: #e91e63;
+    border-color: #e91e63
+}
+
+.checkbox-primary input[type=checkbox]:checked + label::after {
+    color: #fff
+}
+
+.addUserError{
+    margin-top: 2%;
+    font-size: 12px;
+    color: #e91e63;
+}
+
+.btn-file-upload {
+    background-color: #ededed;
+    padding: 3%;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border: 1px solid #bdbdbd;
+}
+
+.filename {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border: 1px solid #bdbdbd;
+    border-left: none;
+    padding: 3%;
+}
+
+.btn-file-upload:hover {
+    
+  background-color: #e5e5e5;
+}
+
+.uploadbox {
+    width: 80%;
+    margin: auto;
+}

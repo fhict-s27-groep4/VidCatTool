@@ -4,6 +4,7 @@ using Logic_Layer.CategoryReverser;
 using Logic_Layer.JsonReader;
 using Logic_Layer.JsonWriter;
 using Logic_Layer.Maths;
+using Microsoft.AspNetCore.Http;
 using Model_Layer.Interface;
 using Model_Layer.Models;
 using Service_Layer.ViewModels;
@@ -24,25 +25,29 @@ namespace Service_Layer.RequestHandlers
         private readonly IReaderJson jsonReader;
         private readonly ICalculator calculator;
         private readonly ICategoryManager categoryManager;
+        private readonly IRatingSettings settings;
+        private readonly IJsonAddRepository jsonAddRepository;
 
-        public VideoHandler(IVideoRepository videoRepo, IRatingRepository _ratingRepo, IReaderJson readerJson, IWriterJson writerJson, ICalculator calculator, ICategoryManager categoryManager)
+        public VideoHandler(IVideoRepository videoRepo, IRatingRepository _ratingRepo, IReaderJson readerJson, IWriterJson writerJson, ICalculator calculator, ICategoryManager categoryManager, IRatingSettings settings, IJsonAddRepository jsonAddRepository)
         {
             this.videoRepo = videoRepo ?? throw new NullReferenceException();
             this.ratingRepo = _ratingRepo ?? throw new NullReferenceException();
             this.jsonReader = readerJson ?? throw new NullReferenceException();
             this.calculator = calculator ?? throw new NullReferenceException();
             this.categoryManager = categoryManager ?? throw new NullReferenceException();
+            this.settings = settings ?? throw new NullReferenceException();
+            this.jsonAddRepository = jsonAddRepository ?? throw new NullReferenceException();
             writer = writerJson ?? throw new NullReferenceException();
         }
 
-        public IEnumerable<VideoManagementViewModel> GetVideoManagementViewModel()
+        public VideoManagementViewModel GetVideoManagementViewModel()
         {
-            IList<VideoManagementViewModel> videos = new List<VideoManagementViewModel>();
+            IList<VideoManagementViewModelGet> videos = new List<VideoManagementViewModelGet>();
             IEnumerable<ISearchVideo> vids = videoRepo.GetAll();
             IEnumerable<IDuncan> ratings = ratingRepo.GetAll();
             foreach (ISearchVideo video in vids)
             {
-                VideoManagementViewModel model = new VideoManagementViewModel
+                VideoManagementViewModelGet model = new VideoManagementViewModelGet
                 {
                     Video = video
                 };
@@ -87,7 +92,7 @@ namespace Service_Layer.RequestHandlers
                 }
                 videos.Add(model);
             }
-            return videos;
+            return new VideoManagementViewModel() { Get = videos };
         }
 
         public byte[] ExportAllVideosToJson()
@@ -99,32 +104,57 @@ namespace Service_Layer.RequestHandlers
             return bytes;
         }
 
-        public bool ExpandJson(string filePath)
+        public bool ExpandJson(IFormFile file)
         {
-            if (!jsonReader.CheckFileFormatting(filePath))
+            string filePath = null;
+            bool fail = false;
+            bool opened = false;
+            FileStream fileStream = null;
+            try
+            {
+                filePath = Path.GetFullPath(DateTime.Now.ToString("dd-mm-yyyy hh-mm-ss") + "." + file.ContentType.Substring(12));
+                fileStream = File.Create(filePath);
+                opened = true;
+                file.CopyTo(fileStream);
+            }
+            catch
+            {
+                fail = true;
+            }
+            finally
+            {
+                if (opened)
+                {
+                    fileStream.Close();
+                }
+            }
+            if (fail)
             {
                 return false;
             }
-            //add old to new replace old with new 
-            //send new to db
+            IEnumerable<string> newIDs = jsonReader.CheckFileFormatting(filePath);
+            if (newIDs == null)
+            {
+                File.Delete(filePath);
+                return false;
+            }
+            writer.ExtendJson(filePath);
+            Task.Run(() => File.Delete(filePath));
+            jsonAddRepository.AddJsonVideos(newIDs);
             return true;
         }
 
-        public void SetAlgoritmSensitiveness(AlgoritmSettingsModel settings)
+        public void SetAlgoritmSensitiveness(AlgoritmSettingsModel model)
         {
-            IRatingSettings aSettings = new RatingSettings
-            {
-                IabToleranceTier1 = settings.IabToleranceTier1 / 100,
-                IabToleranceTier2 = settings.IabToleranceTier2 / 100,
-                MaximumRatings = settings.MaximumRatings,
-                PadTolerance = settings.PadTolerance,
-                BiggestPercentIAB = settings.BiggestPercentIAB / 100
-            };
+            settings.IabToleranceTier1 = model.IabToleranceTier1 / 100;
+            settings.IabToleranceTier2 = model.IabToleranceTier2 / 100;
+            settings.MaximumRatings = model.MaximumRatings;
+            settings.PadTolerance = model.PadTolerance;
+            settings.BiggestPercentIAB = model.BiggestPercentIAB / 100;
         }
 
         public AlgoritmSettingsModel GetAlgoritmSettings()
         {
-            IRatingSettings settings = new RatingSettings();
             return new AlgoritmSettingsModel()
             {
                 IabToleranceTier1 = settings.IabToleranceTier1 * 100,

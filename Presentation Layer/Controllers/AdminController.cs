@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Service_Layer.RequestHandlers;
@@ -14,11 +15,13 @@ namespace VidCat_Tool.Controllers
     {
         private readonly UserHandler userHandler;
         private readonly VideoHandler videoHandler;
+        private readonly PictureHandler pictureHandler;
 
-        public AdminController(UserHandler userHandler, VideoHandler videoHandler)
+        public AdminController(UserHandler userHandler, VideoHandler videoHandler, PictureHandler pictureHandler)
         {
             this.userHandler = userHandler;
             this.videoHandler = videoHandler;
+            this.pictureHandler = pictureHandler;
         }
 
         /*____________________________________________________________*/
@@ -33,7 +36,7 @@ namespace VidCat_Tool.Controllers
         {
             if (ModelState.IsValid)
             {
-               if( userHandler.CreateUser(vm))
+                if (userHandler.CreateUser(vm))
                 {
                     ViewBag.Message = "User succesfully created. You will now be redirected to User Management";
                 }
@@ -60,6 +63,7 @@ namespace VidCat_Tool.Controllers
             return Redirect(Url.Action("UserManagement", "Admin"));
         }
 
+
         public IActionResult EnableAccount(string userid)
         {
             userHandler.EnableUser(userid);
@@ -73,31 +77,33 @@ namespace VidCat_Tool.Controllers
         }
 
         /*____________________________________________________________*/
-        
+
         [HttpGet]
         public IActionResult VideoManagement()
         {
-            return View(videoHandler.GetVideoManagementViewModel());
+            return View("Videomanagement", videoHandler.GetVideoManagementViewModel());
         }
-        
+
         public FileResult ExportToJSON()
         {
             byte[] fileBytes = videoHandler.ExportAllVideosToJson();
-            return File(fileBytes, "application/json", "JsonExport");
+            return File(fileBytes, "application/json", "JsonExport.json");
         }
 
         [HttpPost]
-        public IActionResult UploadJSON(IFormFile file)
+        public IActionResult UploadJSON(VideoManagementViewModel model)
         {
-            videoHandler.ExpandJson(null); //Filestream must be read, NOT A TASK FOR THE FRONT END
-            return View();
+            bool result = videoHandler.ExpandJson(model.Post.File);
+            if (result == false) { TempData["JSONUpload_Error"] = "Failed to upload JSON File."; }
+            return VideoManagement();
         }
 
 
         /*____________________________________________________________*/
 
         [HttpGet] //Settings page where admins can set stuff, such as percentages of the algorithm.
-        public IActionResult Settings() {
+        public IActionResult Settings()
+        {
             AlgoritmSettingsModel settings = videoHandler.GetAlgoritmSettings();
             return View(settings);
         }

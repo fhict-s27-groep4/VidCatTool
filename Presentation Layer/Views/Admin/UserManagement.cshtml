@@ -13,11 +13,11 @@
 
     <link href="~/css/UserManagement.css" rel="stylesheet" />
 
-@*------------------------------------------------------------*@
+    @*------------------------------------------------------------*@
 
 </head>
 <body>
-    <div class="ProfileContent">
+    <div class="ProfileContent" style="margin-top: 2%;">
 
         <div class="row userProfileRow">
 
@@ -34,51 +34,59 @@
 
                     <div class="horizontal-line center-block"></div>
 
-                    @*<input id="slider1a" type="text" /><br/>*@
-
-                    @*<div id="flat-slider" class="slider_element"></div>*@
-
-
-                    <div class="user-filter-box" style="text-align:center; width: 90%; margin: auto;">
+                    @* Box with Slider for PAD *@
+                    <div class="user-filter-box">
                         <h4 style="text-decoration: none; color: #707070;">Divergent PAD-Score</h4>
                         <input type="range" multiple min="1" max="100" value="70,100" class="slider int-slider" />
                     </div>
-                    <div class="user-filter-box" style="text-align:center; width: 90%; margin: auto;">
+
+                    @* Box with Slider for IAB *@
+                    <div class="user-filter-box">
                         <h4 style="text-decoration: none; color: #707070;">Divergent IAB-Score</h4>
                         <input type="range" multiple min="1" max="100" value="70,100" class="slider int-slider" />
                     </div>
 
-
                     <div class="horizontal-line center-block"></div>
 
-                    <div class="user-filter-box" style="text-align:center; width: 90%; margin: auto;">
-                        <h4 style="text-decoration: none; color: #707070;">Times Viewed</h4>
-                        <div class="row" style="width: 100%; min-height: 28px; max-height: 28px; margin-left:0px; margin-right: 0px;">
+                    @* Box with 2 input boxes for "Video's watched" *@
+                    <div class="user-filter-box">
+                        <h4 style="text-decoration: none; color: #707070;">Videos Watched</h4>
+                        <div class="row user-filter-row">
                             <div style="margin-left: 5%; margin-right: 5%;">
-                                <div style="float: left; width: 25%; overflow: hidden;">
+
+                                @* Inputbox 1 *@
+                                <div class="user-filter-contentbox" style="width: 25%; overflow: hidden;">
                                     <input type="number" style="width: 100%; border: none; outline: none; background: transparent; border-bottom: 1px solid #707070;" />
                                 </div>
-                                <div style="float: left; margin-left: 4%; margin-right: 4%; margin-top: 1%;"> - </div>
-                                <div style="float: left; width: 25%; overflow: hidden;">
+                                @* Dash between it *@
+                                <div class="user-filter-contentbox" style="margin-left: 4%; margin-right: 4%; margin-top: 1%;"> - </div>
+                                @* Inputbox 2 *@
+                                <div class="user-filter-contentbox" style="width: 25%; overflow: hidden;">
                                     <input type="number" style="width: 100%; border: none; outline: none; background: transparent; border-bottom: 1px solid #707070;" />
                                 </div>
-                                <div style="float: left; margin-left: 4%; margin-top: 1%;">Videos</div>
+                                @* Text after *@
+                                <div class="user-filter-contentbox" style="margin-left: 4%; margin-top: 1%;">Videos</div>
                             </div>
                         </div>
                     </div>
 
-
-
                     <div class="horizontal-line center-block"></div>
 
+                    <div class="btn prim-btn" style="margin-left: 30%; width: 40%">Search</div>
+
                 </div>
-                <div class="" style="padding: 5px 0px 5px 0px; width: 40%; margin-left: 30%; margin-top:3%;">
+
+                @* Add User Button *@
+                <div class="user-adduser-box">
                     <a class="btn userAddButton" asp-controller="Admin" asp-action="AddUser"
                        style="background-color: #e91e63; color: #ffffff; font-weight: 200; width: 100%;">
                         <i class="fas fa-plus"></i>&nbsp Add User
                     </a>
                 </div>
+
             </div>
+
+
 
             @* ------------------------------------------------------------------- *@
 
@@ -94,19 +102,18 @@
                 <div class="userSearchResults">
                     @foreach (var user in Model)
                     {
-                        <div class="userSearchItem" style="border: 1px solid #e91e63; margin-top: 1%; margin-bottom: 1%; padding: 1.5%; position:relative; overflow: visible;">
+                        <div class="user-search-item">
 
-                            @* User Profile Image  !! GRAVATAR & PROFILE PICTURE ADDED LATER !! *@
-                            <img height="76" width="76" src="~/images/user-placeholder.png" style="float: left; margin-right: 2%; margin-top: 3px; margin-left: 3px; margin-bottom: 3px; border: 1.5px solid #e91e63; border-radius: 39px;" />
+                            @* User Profile Image      !! GRAVATAR & PROFILE PICTURE ADDED LATER !! *@
+                            <img height="76" width="76" src="~/images/user-placeholder.png" class="user-profile-picture" />
 
-                            <div style="height: 25%; max-height: 80px; width: 80%; margin: 0;">
-                                @* letter spacing? *@
+                            <div class="user-search-content">
                                 <div>
 
                                     @* First- and Last name, inclusing the Username *@
                                     <div style="white-space: nowrap; height: 28px;">
-                                        <div style="float: left; height: inherit; line-height:28px;"><h3 style="margin: 0; display: inline-block; height: inherit;" id="fullName">@user.User.FirstName @user.User.LastName</h3></div>
-                                        <div style="float: left; height: inherit; line-height:28px; margin-left: 2.5%;"><p style="margin: 0; display: inline-block; height: inherit; color: #707070;" id="userName">@user.User.UserName</p></div>
+                                        <div class="user-titlebox"><h3 class="user-titletext" id="fullName">@user.User.FirstName @user.User.LastName</h3></div>
+                                        <div class="user-titlebox" style="margin-left: 2.5%;"><p class="user-titletext" style="color: #707070;" id="userName">@user.User.UserName</p></div>
                                     </div>
 
                                     @* Small piece of extra user details (City, Country, EMail)*@
@@ -122,14 +129,14 @@
 
                                             @if (user.User.PhoneNumber == null)
                                             {
-                                                <div style="float: left; height: inherit; line-height: 20px;">
-                                                    <h5 style="margin: 0; display: inline-block; height: inherit; font-size: 11px; color: #707070; font-style: italic;">@string.Join(", ", userData)</h5>
+                                                <div class="user-descriptionbox">
+                                                    <h5 class="user-descriptiontext">@string.Join(", ", userData)</h5>
                                                 </div>
                                             }
                                             else
                                             {
-                                                <div style="float: left; height: inherit; line-height: 20px;">
-                                                    <h5 style="margin: 0; display: inline-block; height: inherit; color: #707070; font-style: italic; font-size: 11px;">@string.Join(", ", userData)</h5>
+                                                <div class="user-descriptionbox">
+                                                    <h5 class="user-descriptiontext">@string.Join(", ", userData)</h5>
                                                     <div class="user_private_data" style="margin-left: 2%;">
                                                         <i class="fas fa-info" style="font-size: 11px;"></i>
                                                         <div class="user_private_data_text">
@@ -142,23 +149,30 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                @*<script> $(document).ready(function () { $('[data-toggle="user_private_data"]').tooltip(); }); </script>*@
+
                                             }
                                         </div>
                                     }
 
+
+
+
                                     @* Platform Stats of User *@
                                     <div style="white-space: nowrap; height: 28px; margin-top: 1%;">
                                         <div>
+
+                                            @* Amount of video's watched *@
                                             <div style="white-space: nowrap; padding: 0; float: left;">
-                                                <div style="float: left; height: inherit; line-height: 28px; font-size: 16px;">
+                                                <div class="user-stats-textbox">
                                                     <i class="fas fa-eye" style="color: #e91e63;"></i>&nbsp;@user.RatingCount
                                                 </div>
                                             </div>
+
+                                            @* The divergent of his/her ratings *@
                                             <div style="padding: 0; float: left; margin-left: 4.5%;">
                                                 @if (user.RatingCount > 6)
                                                 {
-                                                    <div style="float: left; height: inherit; line-height: 28px; font-size: 16px;">
+                                                    <div class="user-stats-textbox">
                                                         @if (user.ProcentIABDivergent > 0 && user.ProcentPADDivergent > 0)
                                                         {
                                                             int average = (user.ProcentIABDivergent + user.ProcentPADDivergent) / 2;
@@ -169,8 +183,10 @@
                                                     </div>
                                                 }
                                                 else
-                                                { <div style="float: left; height: inherit; line-height: 28px; font-size: 16px;"><i style="color: #e91e63;" class="fas fa-video-slash"></i>&nbsp; nvt</div>}
+                                                { <div class="user-stats-textbox"><i style="color: #e91e63;" class="fas fa-video-slash"></i>&nbsp; nvt</div>}
                                             </div>
+
+                                            @* Disabled Status *@
                                             <div style="padding: 0; float: left; margin-left: 4.5%;">
                                                 <div style="float: left; height: inherit; line-height: 28px; font-size: 28px; font-size: 16px;">
                                                     @if (user.User.IsDisabled == true)
@@ -179,19 +195,17 @@
                                                     { <div><i class="fas fa-gavel" style="color: #e91e63;"></i>&nbsp;Enabled</div>}
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
-
-                                    @*<div>
-                                <div class="row" style="margin-top: 1.5%;">
-                                    <div class="col-sm-1" style="width:auto;"><div class="userStatView"><i class="fas fa-eye"></i> @user.RatingCount</div></div>
-                                    <div class="col-sm-1" style="width:auto;"><div class="userStatView">@user.ProcentDivergent</div></div>
-                                </div>
-                            </div>*@
                                 </div>
 
                             </div>
 
+
+
+
+                            @* Dropdown Menu with options such as Enabling/Disabling Accounts. (By Vincent) *@
                             <div class="dropdown dropdownVidCat" style="position:absolute; top: 0; right: 0;">
 
                                 <button class="btn btn-secondary dropdown-toggle prim-btn actionMenu" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -199,12 +213,13 @@
                                 </button>
 
                                 <div class="dropdown-menu dropdown-menu-center" aria-labelledby="dropdownMenuButton">
-                                    @if (user.User.IsDisabled == true) {
-                                        <a class="dropdown-item" asp-action="EnableAccount" asp-controller="Admin" asp-route-userid="@user.User.UserID">Enable</a>
+                                    @if (user.User.IsDisabled == true)
+                                    {
+                                        <a class="dropdown-item" data-name="@user.User.FirstName @user.User.LastName" data-id="@user.User.UserID" onclick="AreYouSureBox(this, true)">Enable</a>
                                     }
-                                    else {
-                                        <a class="dropdown-item" asp-action="DisableAccount" asp-controller="Admin" asp-route-userid="@user.User.UserID">Disable</a>
-                                        @* <a class="dropdown-item open-ValidateAction" href="#ValidateAction" data-id="@user.User.UserID" data-name="@user.User.FirstName">Disable</a> *@
+                                    else
+                                    {
+                                        <a class="dropdown-item" data-name="@user.User.FirstName @user.User.LastName" data-id="@user.User.UserID" onclick="AreYouSureBox(this, false)">Disable</a>
                                     }
 
                                     <a class="dropdown-item" asp-action="" asp-controller="Admin">Reset Password</a>
@@ -249,7 +264,7 @@
                 <h4 class="modal-title">Disable Account</h4>
             </div>
             <div class="modal-body">
-                <p>Are you sure you want to disable the account from: <b><span id="username" value=""/></b></p>
+                <p>Are you sure you want to disable the account from: <b><span id="username" value="" /></b></p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
@@ -259,11 +274,76 @@
     </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="row">
+                    <h5 class="modal-title col-sm-11" id="exampleModalLabel">Confirmation</h5>
+                    <button type="button" class="close col-sm-1" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+            <div class="modal-body" id="modalContent">
+                test
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <button type="button" id="saveBtn" class="btn prim-btn">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
     $(document).on("click", ".open-ValidateAction", function () {
         var nameElement = document.getElementById("fullName").innerHTML;
         var mnameElement = document.getElementById("username");
-        
+
         mnameElement.innerHTML = nameElement;
     });
+
+    function AreYouSureBox(element, enableordisable) {
+        $('#exampleModal').modal('show');
+        $('#exampleModal').on('shown.bs.modal', function (e) {
+            document.getElementById('modalContent').innerHTML = "Are you sure you want to disable user: " + "<b>" + element.getAttribute('data-name') + "</b>";
+            $('#saveBtn').on('click', function () {
+                UpdateAccountAccessibility(element, enableordisable);
+            });
+        });
+    }
+
+    function UpdateAccountAccessibility(element, enableordisable) {
+        let value = element.getAttribute('data-id');
+        if (enableordisable == true) {
+            $.ajax({
+                url: '/Admin/EnableAccount/',
+                data: { 'userid': value },
+                type: "GET",
+                success: function () {
+                    window.location.reload();
+                },
+                error: function () {
+                    alert('An error occured when enabling the account');
+                    window.location.reload();
+                }
+            });
+        }
+        else {
+            $.ajax({
+                url: '/Admin/DisableAccount/',
+                data: { 'userid': value },
+                type: "GET",
+                success: function () {
+                    window.location.reload();
+                },
+                error: function () {
+                    alert('An error occured when disabling the account');
+                    window.location.reload();
+                }
+            });
+        }
+    }
 </script>
