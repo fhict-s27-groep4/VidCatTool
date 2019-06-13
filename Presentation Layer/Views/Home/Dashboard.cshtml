@@ -13,21 +13,21 @@
 
 <div class="dashboardContent">
     <div class="userImage">
-        @if (Context.Session.GetString("ProfilePicture") == "not available")
-        {
+        @if (Context.Session.GetString("ProfilePicture") == "not available") {
             <img src="~/images/user-placeholder.png" />
         }
-        else
-        {
+        else {
             <img src="@Html.Raw(Context.Session.GetString("ProfilePicture"))" />
         }
     </div>
+
+
     <div class="row statsContainer" style="height: 1000px; padding: 6%;">
 
-        @* Introduction message *@
+        @* Main Panel *@
         <div class="col-md-6" style="padding-top: 5%; font-weight: bold;">
             <h2 style="color: #707070; margin: 0; display: inline-block; height: auto; width: auto">Welcome back, </h2>
-            <h2 style="color: #e91e63; margin: 0; display: inline-block; height: auto; width: auto;"> @Model.User.FirstName @Model.User.LastName</h2>
+            <h2 style="color: #e91e63; margin: 0; display: inline-block; height: auto; width: auto;"> @Model.User.FirstName @Model.User.LastName</h2>        
         </div>
 
 
