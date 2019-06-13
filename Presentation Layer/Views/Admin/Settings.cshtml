@@ -27,7 +27,7 @@
                         <div class="col-sm-6"><input class="form-control" asp-for="AlgoritmSettings.PadTolerance" /></div>
                         <p class="col-sm-12 settingHeader" id="customSettingHeader">Maximum Ratings:</p>
                         <div class="col-sm-12"><input class="form-control" asp-for="AlgoritmSettings.MaximumRatings" /></div>
-                        <div class="col-lg-12" style="float: right; margin: 2%;"><input type="submit" value="Save Changes" class="btn loginButton" /></div>
+                        <div class="col-sm-12 btn-save-box" style="float: right; margin: 2%;"><input type="submit" value="Save Changes" class="btn setting-save-btn prim-btn" /></div>
                     </div>
                 </div>
             </div>
@@ -39,17 +39,25 @@
                     Email Settings
                 </button>
                 <div class="dropdown-menu setting-menu" id="menu2">
-                    <p class="col-sm-6 settingHeader">SMTP:</p>
-                    <p class="col-sm-6 settingHeader">Mail from what address:</p>
-                    <div class="col-sm-6"><input class="form-control" asp-for="MailSettings.Client" /></div>
-                    <div class="col-sm-6"><input class="form-control" asp-for="MailSettings.FromAddress" /></div>
-                    <p class="col-lg-12 settingHeader">Mailsettings for new User</p>
-                    <div class="col-sm-12"><input class="form-control" asp-for="NewUser.Subject" /></div>
-                    <div class="col-sm-12"><textarea rows="3" class="form-control" style="resize: none; margin-top: 2%;" asp-for="NewUser.Content"></textarea></div>
-                    <p class="col-lg-6 settingHeader">Mailsettings for Passwordreset</p>
-                    <div class="col-sm-12"><input class="form-control" asp-for="ResetPassword.Subject" /></div>
-                    <div class="col-sm-12"><textarea rows="3" cols="20" class="form-control" style="resize: none; margin-top: 2%;" asp-for="ResetPassword.Content"> </textarea></div>
-                    <div class="col-lg-12" style="float: right; margin: 2%;"><input type="submit" value="Save Changes" class="btn loginButton" /></div>
+                    <h2>Mail Client Settings</h2>
+                    <div class="mailClientSettings">
+                        <p class="col-sm-6 settingHeader">SMTP Host:</p>
+                        <p class="col-sm-6 settingHeader">Mailaddress to use:</p>
+                        <div class="col-sm-6"><input class="form-control" asp-for="MailSettings.Client" /></div>
+                        <div class="col-sm-6"><input class="form-control" asp-for="MailSettings.FromAddress" /></div>
+                    </div>
+                    <h2 id="mmsHeader">Mail Message Settings</h2>
+                    <div class="mailsToSendSettings">
+                        <p class="col-lg-12 settingHeader">E-mail settings for new users:</p>
+                        <div class="col-sm-12"><input class="form-control" asp-for="NewUser.Subject" /></div>
+                        <div class="col-sm-12"><textarea rows="3" class="form-control" style="resize: none; margin-top: 2%;" asp-for="NewUser.Content"></textarea></div>
+                        <div class="col-sm-12 infoText">* To place the generated password and username in the email use {0} for the username and {1} for the password. {0} and {1} will be replaced with the generated values.</div>
+                        <p class="col-lg-6 settingHeader">E-mail settings for reset passwords:</p>
+                        <div class="col-sm-12"><input class="form-control" asp-for="ResetPassword.Subject" /></div>
+                        <div class="col-sm-12"><textarea rows="3" cols="20" class="form-control" style="resize: none; margin-top: 2%;" asp-for="ResetPassword.Content"> </textarea></div>
+                        <div class="col-sm-12 infoText">* To place the generated password in the email place use {0}. {0} will be replaced with the new password.</div>
+                    </div>
+                    <div class="col-sm-12 btn-save-box" style="float: right; margin: 2%;"><input type="submit" value="Save Changes" class="btn setting-save-btn prim-btn" /></div>
                 </div>
             </div>
         </div>
