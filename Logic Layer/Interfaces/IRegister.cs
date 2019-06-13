@@ -8,6 +8,6 @@ namespace Logic_Layer.Interfaces
 {
     public interface IRegister
     {
-        IRegisterUser CreateUser(IEnumerable<IUser> allUsers, string firstname, string lastname, string email, bool isadmin, string phonenumber = null, string country = null, string city = null, string streetaddress = null, string zipcode = null);
+        IObjectPair<IRegisterUser, string> CreateUser(IEnumerable<IUser> allUsers, string firstname, string lastname, string email, bool isadmin, string phonenumber = null, string country = null, string city = null, string streetaddress = null, string zipcode = null);
     }
 }

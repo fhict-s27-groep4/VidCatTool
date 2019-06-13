@@ -4,6 +4,12 @@
     ViewData["Title"] = "Dashboard";
 }
 
+<head>
+    <meta charset="utf-8">
+    <link href="~/css/Dashboard.css" rel="stylesheet" />
+</head>
+
+
 <div class="dashboardContent">
     <div class="userImage">
         <img src="~/images/user-placeholder.png" />
@@ -22,7 +28,7 @@
 
 
             @* Personal Details *@
-            <div class="" style="height: 320px; border: 1px solid #e91e63; overflow: hidden; padding: 1%; background-color: #f9f9f9;">
+            <div class="" style="height: 320px; border: 1px solid #e91e63; overflow: hidden; padding: 1%; background-color: #f5f5f5;">
 
                 @* Edit Icon *@
                 <a style="position: absolute; top: 0; right: 0; margin: 2%;">
@@ -72,7 +78,7 @@
 
 
             @* User Stats on Platform *@
-            <div class="" style="height: 140px; border: 1px solid #e91e63; overflow: hidden; padding: 1%; background-color: #f1f1f1; margin-top: 10%;">
+            <div class="" style="height: 140px; border: 1px solid #e91e63; overflow: hidden; padding: 1%; background-color: #f5f5f5; margin-top: 10%;">
 
                 @* Title *@
                 <h3 style="margin: 3% 0 6% 0; text-align: center; text-decoration: underline;">User Statistics</h3>
@@ -87,7 +93,7 @@
             </div>
 
             @* Global Stats on Platform *@
-            <div class="" style="height: 330px; border: 1px solid #e91e63; overflow: hidden; padding: 1%; background-color: #f1f1f1; margin-top: 10%;">
+            <div class="" style="height: 330px; border: 1px solid #e91e63; overflow: hidden; padding: 1%; background-color: #f5f5f5; margin-top: 10%;">
 
                 @* Title *@
                 <h3 style="margin: 3% 0 6% 0; text-align: center; text-decoration: underline;">Platform Details</h3>
@@ -98,15 +104,31 @@
                         <span style="color: #e91e63; font-weight: bold; font-size: 16px;">Finished Video's:</span>
                     </div>
                     <div class="col-md-5" style="padding: 2% 0 0 0; height: 8.5px;">
-                        @*<span style="font-size: 16px;">@Model.ViewedCount</span>*@
-                        <div class="progress" style="margin-left: auto; margin-right: auto; height: 5px; width: 100%;">
-                            @{ int finishedPercentage = Decimal.ToInt32(100 * 30 / Model.TotalVideos); }
-                            <div role="progressbar" class="progress-bar progress-bar-success" style="width: @finishedPercentage%;"></div>
+                        <div class="tooltip_hoverbox">
+
+                            <div class="progress" style="margin-left: auto; margin-right: auto; width: 100%; height: 5px;">
+                                @{ double finishedPercentage = (100 * (double)Model.FinishedVideos / (double)Model.TotalVideos); }
+                                <div role="progressbar" class="progress-bar progress-bar-success" style="width: @Math.Round(finishedPercentage, 0)%;"></div>
+                            </div>
+
+                            <div class="tooltip_resultbox" style="margin-top: 10px; left: 50%; width: 90%; padding: 0;">
+                                <div style="margin: 3px 0 0 0; font-size: 12px;">
+                                    <i class="fas fa-percentage" style="margin: 0 8% 0 2%; color: #e91e63;"></i>@Math.Round(finishedPercentage, 2)%
+                                </div>
+                                <div style="margin: 4px; font-size: 12px;">
+                                    <i class="fas fa-flag-checkered" style="margin: 0 8% 0 5%; color: #e91e63;"></i>@Model.FinishedVideos / @Model.TotalVideos finished
+                                </div>
+                                <div style="margin: 3px 0 3px 0; font-size: 12px;">
+                                    <i class="fas fa-clock" style="margin: 0 8% 0 2%; color: #e91e63;"></i>@Model.UnFinishedVideos pending
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
 
 
         </div>
+
     </div>
 </div>

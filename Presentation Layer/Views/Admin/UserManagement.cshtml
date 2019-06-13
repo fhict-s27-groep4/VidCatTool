@@ -56,13 +56,13 @@
 
                                 @* Inputbox 1 *@
                                 <div class="user-filter-contentbox" style="width: 25%; overflow: hidden;">
-                                    <input type="number" style="width: 100%; border: none; outline: none; background: transparent; border-bottom: 1px solid #707070;" />
+                                    <input type="number" style="width: 100%; border: none; outline: none; background: transparent; border-bottom: 1px solid #707070;" id="vidFilterCountMin" />
                                 </div>
                                 @* Dash between it *@
                                 <div class="user-filter-contentbox" style="margin-left: 4%; margin-right: 4%; margin-top: 1%;"> - </div>
                                 @* Inputbox 2 *@
                                 <div class="user-filter-contentbox" style="width: 25%; overflow: hidden;">
-                                    <input type="number" style="width: 100%; border: none; outline: none; background: transparent; border-bottom: 1px solid #707070;" />
+                                    <input type="number" style="width: 100%; border: none; outline: none; background: transparent; border-bottom: 1px solid #707070;" id="vidFilterCountMax" />
                                 </div>
                                 @* Text after *@
                                 <div class="user-filter-contentbox" style="margin-left: 4%; margin-top: 1%;">Videos</div>
@@ -72,7 +72,7 @@
 
                     <div class="horizontal-line center-block"></div>
 
-                    <div class="btn prim-btn" style="margin-left: 30%; width: 40%">Search</div>
+                    <div class="btn prim-btn" id="searchButton" style="margin-left: 30%; width: 40%">Search</div>
 
                 </div>
 
@@ -102,7 +102,7 @@
                 <div class="userSearchResults">
                     @foreach (var user in Model)
                     {
-                        <div class="user-search-item">
+                        <div class="user-search-item" data-vwatched="@user.RatingCount" data-firstname="@user.User.FirstName" data-lastname="@user.User.LastName">
 
                             @* User Profile Image      !! GRAVATAR & PROFILE PICTURE ADDED LATER !! *@
                             <img height="76" width="76" src="~/images/user-placeholder.png" class="user-profile-picture" />
@@ -137,9 +137,9 @@
                                             {
                                                 <div class="user-descriptionbox">
                                                     <h5 class="user-descriptiontext">@string.Join(", ", userData)</h5>
-                                                    <div class="user_private_data" style="margin-left: 2%;">
+                                                    <div class="tooltip_hoverbox" style="margin-left: 2%; display: inline-block;">
                                                         <i class="fas fa-info" style="font-size: 11px;"></i>
-                                                        <div class="user_private_data_text">
+                                                        <div class="tooltip_resultbox">
                                                             @if (user.User.PhoneNumber != null)
                                                             {<div style="margin: 3px 0 0 0; font-size: 12px;"><i class="fas fa-phone" style="margin: 0 8% 0 2%; color: #e91e63;"></i>@user.User.PhoneNumber</div>}
                                                             @if (user.User.StreetAddress != null && user.User.ZipCode != null && user.User.City != null)
@@ -222,7 +222,7 @@
                                         <a class="dropdown-item" data-name="@user.User.FirstName @user.User.LastName" data-id="@user.User.UserID" data-username="@user.User.UserName" onclick="DisableBox(this, false)">Disable</a>
                                     }
 
-                                    <a class="dropdown-item" asp-action="" asp-controller="Admin">Reset Password</a>
+                                    <a class="dropdown-item" data-name="@user.User.FirstName @user.User.LastName" data-id="@user.User.UserID" data-username="@user.User.UserName" onclick="ResetPasswordBox(this)">Reset Password</a>
                                 </div>
                             </div>
                         </div>
@@ -231,7 +231,7 @@
 
                 @* Bottom text and actions, such as the amount of pages. *@
                 <div class="userSearchCount" style="margin: 4%;">
-                    <h6 class="text-center" style="width: 100%; color: #707070;">@Model.Count Results found</h6>
+                    <h6 class="text-center" id="searchResult" style="width: 100%; color: #707070;">@Model.Count Results found</h6>
                 </div>
             </div>
 
@@ -371,5 +371,38 @@
                 }
             });
         }
+    }
+</script>
+
+<script>
+    // Filter script
+    $('#searchButton').on('click', function () {
+        var minvidvalue = document.getElementById('vidFilterCountMin').value;
+        var maxvidvalue = document.getElementById('vidFilterCountMax').value;
+
+        var allusers = document.getElementsByClassName('user-search-item');
+
+        for (i = 0; i < allusers.length; i++) {
+            if (+minvidvalue <= +allusers[i].getAttribute('data-vwatched') && +allusers[i].getAttribute('data-vwatched') <= +maxvidvalue) {
+                allusers[i].style.display = "";
+            }
+            else {
+                allusers[i].style.display = "none";
+            }
+        }
+        UpdateSearchResults();
+    })
+
+    function UpdateSearchResults() {
+        var searchelement = document.getElementById('searchResult');
+        var count = 0;
+        var allusers = document.getElementsByClassName('user-search-item');
+
+        for (i = 0; i < allusers.length; i++) {
+            if (allusers[i].style.display == "") {
+                count++;
+            };
+        }
+        searchelement.innerHTML = count + " Results Found";
     }
 </script>
