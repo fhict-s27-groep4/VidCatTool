@@ -145,7 +145,7 @@
 
                                             @* Category *@
                                             <div class="col-sm-1 tooltip_hoverbox" style="padding: 0;">
-                                                @if (video.WatchCount > 0 && video.IABCategoryNameAndPercentage != null) {
+                                                @if (video.WatchCount > 0 && video.IABCategoryNameAndPercentage.Count() > 0) {
                                                     <div style="float: left; height: 28px; line-height: 28px; font-size: 16px;">
                                                         <span><i class="fas fa-tag" style="color: #e91e63;"></i>&nbsp;@video.IABCategoryNameAndPercentage</span>
                                                     </div>
