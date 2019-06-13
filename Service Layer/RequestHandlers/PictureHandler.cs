@@ -23,12 +23,6 @@ namespace Service_Layer.RequestHandlers
             string filePath = @"..\ProfilePictures\" + userid;
             switch (file.ContentType)
             {
-                case "image/jpg":
-                    filePath += ".jpg";
-                    break;
-                case "image/jpeg":
-                    filePath += ".jpeg";
-                    break;
                 case "image/png":
                     filePath += ".png";
                     break;
@@ -69,7 +63,7 @@ namespace Service_Layer.RequestHandlers
             FileInfo[] pictures = dir.GetFiles(userID + "*");
             if(pictures.Count() > 0)
             {
-                return pictures[0].FullName;
+                return folderPath + userID + ".png";
             }
             return "not available";
         }
