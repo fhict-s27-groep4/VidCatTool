@@ -13,6 +13,7 @@ using Logic_Layer.Hasher;
 using Logic_Layer.PassWordGenerator;
 using Model_Layer.Models;
 using Data_Layer.Repository;
+using System.Net.Mail;
 
 namespace Service_Layer.RequestHandlers
 {
@@ -24,6 +25,8 @@ namespace Service_Layer.RequestHandlers
         private readonly IUserStatsRepository userStatsRepository;
         private readonly PictureHandler pictureHandler;
         private readonly SessionHandler sessionHandler;
+        public static string Client;
+        public static MailAddress FromAddress;
         public static string ResetSubject;
         public static string ResetContent;
         public static string NewUserSubject;
@@ -68,10 +71,10 @@ namespace Service_Layer.RequestHandlers
             {
                 userRepo.AddUser(generatedUserPassPair.Object1);
                 ILoginUser user = userRepo.GetUserByName(generatedUserPassPair.Object1.UserName);
-                EMailSender eMailer = new EMailSender();
+                EMailSender eMailer = new EMailSender(Client);
                 IMessageSettableMail mail = new MessageMail(new System.Net.Mail.MailMessage());
                 mail.MakeMail(NewUserSubject, String.Format(NewUserContent, user.UserName, generatedUserPassPair.Object2), user.Email);
-                eMailer.Send(mail);
+                eMailer.Send(mail, FromAddress);
                 pictureHandler.PictureCopy(vm.ProfilePicture, user.UserID);
             }
             catch
@@ -128,12 +131,12 @@ namespace Service_Layer.RequestHandlers
             ILoginUser loggedInUser = userRepo.GetUserByName(_userName) as ILoginUser;
             string generatedPassword = gen.GeneratePassword(true, true, true, true, false, 12);
             userRepo.UpdatePassword(loggedInUser.UserID, hasher.HashWithSalt(generatedPassword), hasher.Key);
-            EMailSender eMailer = new EMailSender();
+            EMailSender eMailer = new EMailSender(Client);
             try
             {
                 IMessageSettableMail mail = new MessageMail(new System.Net.Mail.MailMessage());
                 mail.MakeMail(ResetSubject, String.Format(ResetContent, generatedPassword), loggedInUser.Email);
-                eMailer.Send(mail);
+                eMailer.Send(mail, FromAddress);
             }
             catch { }
         }
