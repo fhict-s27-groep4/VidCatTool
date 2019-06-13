@@ -13,6 +13,7 @@ using Logic_Layer.Hasher;
 using Logic_Layer.PassWordGenerator;
 using Model_Layer.Models;
 using Data_Layer.Repository;
+using System.Net.Mail;
 
 namespace Service_Layer.RequestHandlers
 {
@@ -24,6 +25,12 @@ namespace Service_Layer.RequestHandlers
         private readonly IUserStatsRepository userStatsRepository;
         private readonly PictureHandler pictureHandler;
         private readonly SessionHandler sessionHandler;
+        private static SmtpClient client;
+        private static MailAddress fromAddress;
+        private static string resetSubject;
+        private static string resetContent;
+        private static string newUserSubject;
+        private static string newUserContent;
 
         public UserHandler(PictureHandler pictureHandler, IUserStatsRepository userStatsRepository, ILogin loginHandler, IRegister registerHandler, IUserRepository userRepo, SessionHandler sessionHandler)
         {
@@ -59,11 +66,15 @@ namespace Service_Layer.RequestHandlers
 
         public bool CreateUser(RegisterViewModel vm)
         {
-            IRegisterUser generatedUser = registerHandler.CreateUser(userRepo.GetAll(), vm.Firstname, vm.Lastname, vm.Email, vm.IsAdmin, vm.Phonenumber, vm.Country, vm.City, vm.Streetname, vm.Zip);
+            IObjectPair<IRegisterUser, string> generatedUserPassPair = registerHandler.CreateUser(userRepo.GetAll(), vm.Firstname, vm.Lastname, vm.Email, vm.IsAdmin, vm.Phonenumber, vm.Country, vm.City, vm.Streetname, vm.Zip);
             try
             {
-                userRepo.AddUser(generatedUser);
-                ILoginUser user = userRepo.GetUserByName(generatedUser.UserName);
+                userRepo.AddUser(generatedUserPassPair.Object1);
+                ILoginUser user = userRepo.GetUserByName(generatedUserPassPair.Object1.UserName);
+                EMailSender eMailer = new EMailSender(client);
+                IMessageSettableMail mail = new MessageMail(new System.Net.Mail.MailMessage());
+                mail.MakeMail(newUserSubject, String.Format(newUserContent, user.UserName, generatedUserPassPair.Object2), user.Email);
+                eMailer.Send(mail, fromAddress);
                 pictureHandler.PictureCopy(vm.ProfilePicture, user.UserID);
             }
             catch
@@ -120,10 +131,14 @@ namespace Service_Layer.RequestHandlers
             ILoginUser loggedInUser = userRepo.GetUserByName(_userName) as ILoginUser;
             string generatedPassword = gen.GeneratePassword(true, true, true, true, false, 12);
             userRepo.UpdatePassword(loggedInUser.UserID, hasher.HashWithSalt(generatedPassword), hasher.Key);
-            EMailSender eMailer = new EMailSender();
-            IMessageSettableMail mail = new MessageMail(new System.Net.Mail.MailMessage());
-            mail.MakeMail("New Password For VidCatTool", String.Format("Dear Sir/Madam, \n\n The password of this account has been reset.\n Please login with the following password: {0} \n\n Kind regards, \n The staff of JWPlayer", generatedPassword), loggedInUser.Email);
-            eMailer.Send(mail);
+            EMailSender eMailer = new EMailSender(client);
+            try
+            {
+                IMessageSettableMail mail = new MessageMail(new System.Net.Mail.MailMessage());
+                mail.MakeMail(resetSubject, String.Format(resetContent, generatedPassword), loggedInUser.Email);
+                eMailer.Send(mail, fromAddress);
+            }
+            catch { }
         }
 
         public UserStatsViewModel GetUserStats()
@@ -138,6 +153,44 @@ namespace Service_Layer.RequestHandlers
                 TotalVideos = stats.TotalVideos,
                 UnFinishedVideos = stats.TotalVideos - stats.FinishedVideos
             };
+        }
+
+        public bool SetClient(MailSettings mailSettings)
+        {
+            try
+            {
+                client = new SmtpClient(mailSettings.Client);
+                fromAddress = new MailAddress(mailSettings.FromAddress);
+            }
+            catch { return false; }
+            return true;
+        }
+
+        public void SetNewUserSubjectAndContent(MailContent mailContent)
+        {
+            newUserSubject = mailContent.Subject;
+            newUserContent = mailContent.Content;
+        }
+
+        public void ResetSubjectAndContent(MailContent mailContent)
+        {
+            resetSubject = mailContent.Subject;
+            resetContent = mailContent.Content;
+        }
+
+        public MailContent GetResetpassWordMail()
+        {
+            return new MailContent() { Content = resetContent, Subject = resetSubject };
+        }
+
+        public MailContent GetNewUserMail()
+        {
+            return new MailContent() { Content = newUserContent, Subject = newUserSubject };
+        }
+
+        public MailSettings GetMailSettings()
+        {
+            return new MailSettings() { Client = client.Host, FromAddress = fromAddress.Address };
         }
     }
 }

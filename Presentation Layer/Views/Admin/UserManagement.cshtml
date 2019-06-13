@@ -137,9 +137,9 @@
                                             {
                                                 <div class="user-descriptionbox">
                                                     <h5 class="user-descriptiontext">@string.Join(", ", userData)</h5>
-                                                    <div class="user_private_data" style="margin-left: 2%;">
+                                                    <div class="tooltip_hoverbox" style="margin-left: 2%; display: inline-block;">
                                                         <i class="fas fa-info" style="font-size: 11px;"></i>
-                                                        <div class="user_private_data_text">
+                                                        <div class="tooltip_resultbox">
                                                             @if (user.User.PhoneNumber != null)
                                                             {<div style="margin: 3px 0 0 0; font-size: 12px;"><i class="fas fa-phone" style="margin: 0 8% 0 2%; color: #e91e63;"></i>@user.User.PhoneNumber</div>}
                                                             @if (user.User.StreetAddress != null && user.User.ZipCode != null && user.User.City != null)

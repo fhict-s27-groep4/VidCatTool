@@ -8,10 +8,10 @@ namespace UnitTests.ServiceLayer.ViewModelTests
 {
     public class AlgoritmSettingsTest
     {
-        AlgoritmSettingsModel model;
+        SettingsModel model;
         public AlgoritmSettingsTest()
         {
-            model = new AlgoritmSettingsModel();
+            model = new SettingsModel();
         }
         [Fact]
         public void CheckGetSetEqual()
