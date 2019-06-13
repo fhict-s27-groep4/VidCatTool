@@ -25,12 +25,12 @@ namespace Service_Layer.RequestHandlers
         private readonly IUserStatsRepository userStatsRepository;
         private readonly PictureHandler pictureHandler;
         private readonly SessionHandler sessionHandler;
-        public static string Client;
-        public static MailAddress FromAddress;
-        public static string ResetSubject;
-        public static string ResetContent;
-        public static string NewUserSubject;
-        public static string NewUserContent;
+        private static SmtpClient client;
+        private static MailAddress fromAddress;
+        private static string resetSubject;
+        private static string resetContent;
+        private static string newUserSubject;
+        private static string newUserContent;
 
         public UserHandler(PictureHandler pictureHandler, IUserStatsRepository userStatsRepository, ILogin loginHandler, IRegister registerHandler, IUserRepository userRepo, SessionHandler sessionHandler)
         {
@@ -71,10 +71,10 @@ namespace Service_Layer.RequestHandlers
             {
                 userRepo.AddUser(generatedUserPassPair.Object1);
                 ILoginUser user = userRepo.GetUserByName(generatedUserPassPair.Object1.UserName);
-                EMailSender eMailer = new EMailSender(Client);
+                EMailSender eMailer = new EMailSender(client);
                 IMessageSettableMail mail = new MessageMail(new System.Net.Mail.MailMessage());
-                mail.MakeMail(NewUserSubject, String.Format(NewUserContent, user.UserName, generatedUserPassPair.Object2), user.Email);
-                eMailer.Send(mail, FromAddress);
+                mail.MakeMail(newUserSubject, String.Format(newUserContent, user.UserName, generatedUserPassPair.Object2), user.Email);
+                eMailer.Send(mail, fromAddress);
                 pictureHandler.PictureCopy(vm.ProfilePicture, user.UserID);
             }
             catch
@@ -131,12 +131,12 @@ namespace Service_Layer.RequestHandlers
             ILoginUser loggedInUser = userRepo.GetUserByName(_userName) as ILoginUser;
             string generatedPassword = gen.GeneratePassword(true, true, true, true, false, 12);
             userRepo.UpdatePassword(loggedInUser.UserID, hasher.HashWithSalt(generatedPassword), hasher.Key);
-            EMailSender eMailer = new EMailSender(Client);
+            EMailSender eMailer = new EMailSender(client);
             try
             {
                 IMessageSettableMail mail = new MessageMail(new System.Net.Mail.MailMessage());
-                mail.MakeMail(ResetSubject, String.Format(ResetContent, generatedPassword), loggedInUser.Email);
-                eMailer.Send(mail, FromAddress);
+                mail.MakeMail(resetSubject, String.Format(resetContent, generatedPassword), loggedInUser.Email);
+                eMailer.Send(mail, fromAddress);
             }
             catch { }
         }
@@ -153,6 +153,29 @@ namespace Service_Layer.RequestHandlers
                 TotalVideos = stats.TotalVideos,
                 UnFinishedVideos = stats.TotalVideos - stats.FinishedVideos
             };
+        }
+
+        public bool SetClient(IObjectPair<string, string> clientFromPair)
+        {
+            try
+            {
+                client = new SmtpClient(clientFromPair.Object1);
+                fromAddress = new MailAddress(clientFromPair.Object2);
+            }
+            catch { return false; }
+            return true;
+        }
+
+        public void SetNewUserSubjectAndContent(IObjectPair<string, string> subjectContentPair)
+        {
+            newUserSubject = subjectContentPair.Object1;
+            newUserContent = subjectContentPair.Object2;
+        }
+
+        public void ResetSubjectAndContent(IObjectPair<string, string> subjectContentPair)
+        {
+            resetSubject = subjectContentPair.Object1;
+            resetContent = subjectContentPair.Object2;
         }
     }
 }
