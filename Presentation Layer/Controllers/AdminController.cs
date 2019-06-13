@@ -106,7 +106,13 @@ namespace VidCat_Tool.Controllers
         public IActionResult Settings()
         {
             AlgoritmSettingsModel settings = videoHandler.GetAlgoritmSettings();
-            return View(settings);
+            return View(new SettingsModel()
+            {
+                AlgoritmSettings = videoHandler.GetAlgoritmSettings(),
+                MailSettings = userHandler.GetMailSettings(),
+                NewUser = userHandler.GetNewUserMail(),
+                ResetPassword = userHandler.GetResetpassWordMail()
+            });
         }
 
         [HttpPost]
