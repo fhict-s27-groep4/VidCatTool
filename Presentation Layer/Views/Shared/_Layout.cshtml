@@ -17,7 +17,7 @@
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />    
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
         <link href="~/css/AddUser.css" rel="stylesheet" />
         <link href="~/css/Logoutpage.css" rel="stylesheet" />
         <link href="~/css/Profile.css" rel="stylesheet" />
@@ -80,7 +80,14 @@
             <div class="pageTitleAndUser">
                 <div class="pageTitle">@ViewData["Title"]</div>
                 <div class="pageUser">
-                    <div>@Context.Session.GetUsernameKey()  <img src="~/images/user-placeholder.png" /></div>
+                    @if (Context.Session.GetString("ProfilePicture") == "not available")
+                    {
+                        <div>@Context.Session.GetUsernameKey()  <img src="~/images/user-placeholder.png" /></div>
+                    }
+                    else
+                    {
+                        <div>@Context.Session.GetUsernameKey()  <img src=@Context.Session.GetString("ProfilePicture") /></div>
+                    }
                 </div>
             </div>
             <div class="contentcontainer">
