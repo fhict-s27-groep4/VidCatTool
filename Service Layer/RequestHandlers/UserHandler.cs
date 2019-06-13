@@ -172,7 +172,7 @@ namespace Service_Layer.RequestHandlers
             newUserContent = mailContent.Content;
         }
 
-        public void ResetSubjectAndContent(MailContent mailContent)
+        public void SetResetSubjectAndContent(MailContent mailContent)
         {
             resetSubject = mailContent.Subject;
             resetContent = mailContent.Content;
