@@ -25,12 +25,6 @@ namespace Service_Layer.RequestHandlers
         private readonly IUserStatsRepository userStatsRepository;
         private readonly PictureHandler pictureHandler;
         private readonly SessionHandler sessionHandler;
-        private static SmtpClient client = new SmtpClient();
-        private static MailAddress fromAddress = new MailAddress("none.mail@fix.hiero");
-        private static string resetSubject;
-        private static string resetContent;
-        private static string newUserSubject;
-        private static string newUserContent;
 
         public UserHandler(PictureHandler pictureHandler, IUserStatsRepository userStatsRepository, ILogin loginHandler, IRegister registerHandler, IUserRepository userRepo, SessionHandler sessionHandler)
         {
@@ -71,10 +65,10 @@ namespace Service_Layer.RequestHandlers
             {
                 userRepo.AddUser(generatedUserPassPair.Object1);
                 ILoginUser user = userRepo.GetUserByName(generatedUserPassPair.Object1.UserName);
-                EMailSender eMailer = new EMailSender(client);
+                EMailSender eMailer = new EMailSender(GlobalSettings.MailSettings.Client);
                 IMessageSettableMail mail = new MessageMail(new System.Net.Mail.MailMessage());
-                mail.MakeMail(newUserSubject, String.Format(newUserContent, user.UserName, generatedUserPassPair.Object2), user.Email);
-                eMailer.Send(mail, fromAddress);
+                mail.MakeMail(GlobalSettings.MailSettings.NewUserSubject, String.Format(GlobalSettings.MailSettings.NewUserContent, user.UserName, generatedUserPassPair.Object2), user.Email);
+                eMailer.Send(mail, GlobalSettings.MailSettings.NoReplyAdress);
                 pictureHandler.PictureCopy(vm.ProfilePicture, user.UserID);
             }
             catch
@@ -132,12 +126,12 @@ namespace Service_Layer.RequestHandlers
             ILoginUser loggedInUser = userRepo.GetUserByName(_userName) as ILoginUser;
             string generatedPassword = gen.GeneratePassword(true, true, true, true, false, 12);
             userRepo.UpdatePassword(loggedInUser.UserID, hasher.HashWithSalt(generatedPassword), hasher.Key);
-            EMailSender eMailer = new EMailSender(client);
+            EMailSender eMailer = new EMailSender(GlobalSettings.MailSettings.Client);
             try
             {
                 IMessageSettableMail mail = new MessageMail(new System.Net.Mail.MailMessage());
-                mail.MakeMail(resetSubject, String.Format(resetContent, generatedPassword), loggedInUser.Email);
-                eMailer.Send(mail, fromAddress);
+                mail.MakeMail(GlobalSettings.MailSettings.ResetSubject, String.Format(GlobalSettings.MailSettings.ResetContent, generatedPassword), loggedInUser.Email);
+                eMailer.Send(mail, GlobalSettings.MailSettings.NoReplyAdress);
             }
             catch { }
         }
@@ -154,44 +148,6 @@ namespace Service_Layer.RequestHandlers
                 TotalVideos = stats.TotalVideos,
                 UnFinishedVideos = stats.TotalVideos - stats.FinishedVideos
             };
-        }
-
-        public bool SetClient(MailSettings mailSettings)
-        {
-            try
-            {
-                client = new SmtpClient(mailSettings.Client);
-                fromAddress = new MailAddress(mailSettings.FromAddress);
-            }
-            catch { return false; }
-            return true;
-        }
-
-        public void SetNewUserSubjectAndContent(MailContent mailContent)
-        {
-            newUserSubject = mailContent.Subject;
-            newUserContent = mailContent.Content;
-        }
-
-        public void SetResetSubjectAndContent(MailContent mailContent)
-        {
-            resetSubject = mailContent.Subject;
-            resetContent = mailContent.Content;
-        }
-
-        public MailContent GetResetpassWordMail()
-        {
-            return new MailContent() { Content = resetContent, Subject = resetSubject };
-        }
-
-        public MailContent GetNewUserMail()
-        {
-            return new MailContent() { Content = newUserContent, Subject = newUserSubject };
-        }
-
-        public MailSettings GetMailSettings()
-        {
-            return new MailSettings() { Client = client.Host, FromAddress = fromAddress.Address };
         }
     }
 }
