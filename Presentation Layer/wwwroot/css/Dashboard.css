@@ -37,3 +37,7 @@
     display: block;
     z-index: 101;
 }
+
+.userImage img {
+    border-radius: 200px;
+}
