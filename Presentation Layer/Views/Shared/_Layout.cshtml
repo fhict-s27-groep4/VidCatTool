@@ -66,14 +66,13 @@
                 </div>
                 <div class="seperatorLine"> </div>
             }
-            <div class="menu-list">
-
-                <ul id="menu-content" class="menu-content collapse out">
-                    <li>
-                        <a asp-controller="Account" asp-action="Logout">Logout</a>
-                    </li>
-                </ul>
-            </div>
+                <div class="menu-list">
+                    <ul id="menu-content" class="menu-content collapse out">
+                        <li>
+                            <a asp-controller="Account" asp-action="Logout">Logout</a>
+                        </li>
+                    </ul>
+                </div>
 
         </div>
         <div class="maincontainer col-9">
@@ -86,7 +85,7 @@
                     }
                     else
                     {
-                        <div>@Context.Session.GetUsernameKey()  <img src=@Context.Session.GetString("ProfilePicture") /></div>
+                        <div>@Context.Session.GetUsernameKey()  <img src="@Html.Raw(Context.Session.GetString("ProfilePicture"))" /></div>
                     }
                 </div>
             </div>
