@@ -166,16 +166,30 @@
                                             <div style="padding: 0; float: left; margin-left: 4.5%;">
                                                 @if (video.WatchCount > 0 && video.PleaureAverageAndDeviation.Object1 != 0 && Double.IsNaN(video.PleaureAverageAndDeviation.Object1) == false)
                                                 {
-                                                    <div style="float: left; height: 28px; line-height: 28px; font-size: 16px;">
-                                                        @{ double percentage = (video.PleaureAverageAndDeviation.Object1 / 5 * 100); }
+                                                    <div class="tooltip_hoverbox" style="float: left; height: 28px; line-height: 28px; font-size: 16px;">
+                                                        
+                                                        @{ 
+                                                            double percentage1 = (100 * video.PleaureAverageAndDeviation.Object1 / 5);
+                                                            double percentage2 = (100 * video.PleaureAverageAndDeviation.Object2 / 5);
+                                                        }
                                                         <span style="float: left; color: #e91e63;"><i class="far fa-laugh-beam"></i></span>
                                                         <div class="progress" style="float: left; height: 5px; margin: 10% 0 0 5px; width: 70px;">
                                                             @{
-                                                                if(percentage > 60) { <div role="progressbar" class="progress-bar progress-bar-success" style="width: @percentage%"></div> }
-                                                                else if(percentage >= 40) { <div role="progressbar" class="progress-bar progress-bar-warning" style="width: @percentage%"></div> }
-                                                                else { <div role="progressbar" class="progress-bar progress-bar-danger" style="width: @percentage%"></div> }
+                                                                if(percentage1 > 60) { <div role="progressbar" class="progress-bar progress-bar-success" style="width: @percentage1%"></div> }
+                                                                else if(percentage1 >= 40) { <div role="progressbar" class="progress-bar progress-bar-warning" style="width: @percentage1%"></div> }
+                                                                else { <div role="progressbar" class="progress-bar progress-bar-danger" style="width: @percentage1%"></div> }
                                                             }
                                                         </div>
+
+                                                        <div class="tooltip_resultbox" style="left: 100%; top: -240%; width: 90%; padding: 0;">
+                                                            <div style="margin: 3px 0 0 0; font-size: 12px;">
+                                                                <i class="fas fa-handshake" style="margin: 0 8% 0 2%; color: #e91e63;"></i>@percentage1%
+                                                            </div>
+                                                            <div style="margin: 3px 0 3px 0; font-size: 12px;">
+                                                                <i class="fas fa-users" style="margin: 0 8% 0 2%; color: #e91e63;"></i>@percentage2%
+                                                            </div>
+                                                        </div>
+
                                                     </div>
                                                 }
                                                 else { <div><i class="far fa-laugh-beam" style="color: #e91e63;"></i>&nbsp;nvt</div>}
@@ -186,17 +200,31 @@
                                             <div style="padding: 0; float: left; margin-left: 4.5%;">
                                                 @if (video.WatchCount > 0 && video.ArrouselAverageAndDeviation.Object1 != 0 && Double.IsNaN(video.ArrouselAverageAndDeviation.Object1) == false)
                                                 {
-                                                    <div style="float: left; height: 28px; line-height: 28px; font-size: 16px;">
-                                                        @{ double percentage = (video.ArrouselAverageAndDeviation.Object1 / 5 * 100); }
-                                                        <span style="float: left; color: #e91e63;"><i class="far fa-surprise"></i></span>
-                                                        <div class="progress" style="float: left; height: 5px; margin: 10% 0 0 5px; width: 70px;">
-                                                            @{
-                                                                if(percentage > 60) { <div role="progressbar" class="progress-bar progress-bar-success" style="width: @percentage%"></div> }
-                                                                else if(percentage >= 40) { <div role="progressbar" class="progress-bar progress-bar-warning" style="width: @percentage%"></div> }
-                                                                else { <div role="progressbar" class="progress-bar progress-bar-danger" style="width: @percentage%"></div> }
-                                                            }
+                                                <div class="tooltip_hoverbox" style="float: left; height: 28px; line-height: 28px; font-size: 16px;">
+                                                    
+                                                    @{ 
+                                                        double percentage1 = (100 * video.ArrouselAverageAndDeviation.Object1 / 5);
+                                                        double percentage2 = (100 * video.ArrouselAverageAndDeviation.Object2 / 5);
+                                                    }
+                                                    <span style="float: left; color: #e91e63;"><i class="far fa-surprise"></i></span>
+                                                    <div class="progress" style="float: left; height: 5px; margin: 10% 0 0 5px; width: 70px;">
+                                                        @{
+                                                            if (percentage1 > 60) { <div role="progressbar" class="progress-bar progress-bar-success" style="width: @percentage1%"></div> }
+                                                            else if (percentage1 >= 40) { <div role="progressbar" class="progress-bar progress-bar-warning" style="width: @percentage1%"></div> }
+                                                            else { <div role="progressbar" class="progress-bar progress-bar-danger" style="width: @percentage1%"></div> }
+                                                        }
+                                                    </div>
+
+                                                    <div class="tooltip_resultbox" style="left: 100%; top: -240%; width: 90%; padding: 0;">
+                                                        <div style="margin: 3px 0 0 0; font-size: 12px;">
+                                                            <i class="fas fa-handshake" style="margin: 0 8% 0 2%; color: #e91e63;"></i>@percentage1%
+                                                        </div>
+                                                        <div style="margin: 3px 0 3px 0; font-size: 12px;">
+                                                            <i class="fas fa-users" style="margin: 0 8% 0 2%; color: #e91e63;"></i>@percentage2%
                                                         </div>
                                                     </div>
+
+                                                </div>
                                                 }
                                                 else { <div><i class="far fa-surprise" style="color: #e91e63;"></i>&nbsp;nvt</div>}
                                             </div>
@@ -206,17 +234,30 @@
                                             <div style="padding: 0; float: left; margin-left: 4.5%;">
                                                 @if (video.WatchCount > 0 && video.DominanceAverageAndDeviation.Object1 != 0 && Double.IsNaN(video.DominanceAverageAndDeviation.Object1) == false)
                                                 {
-                                                    <div style="float: left; height: 28px; line-height: 28px; font-size: 16px;">
-                                                        @{ double percentage = (video.DominanceAverageAndDeviation.Object1 / 5 * 100); }
-                                                        <span style="float: left; color: #e91e63;"><i class="far fa-angry"></i></span>
-                                                        <div class="progress" style="float: left; height: 5px; margin: 10% 0 0 5px; width: 70px;">
-                                                            @{
-                                                                if(percentage > 60) { <div role="progressbar" class="progress-bar progress-bar-success" style="width: @percentage%"></div> }
-                                                                else if(percentage >= 40) { <div role="progressbar" class="progress-bar progress-bar-warning" style="width: @percentage%"></div> }
-                                                                else { <div role="progressbar" class="progress-bar progress-bar-danger" style="width: @percentage%"></div> }
-                                                            }
+                                                <div class="tooltip_hoverbox" style="float: left; height: 28px; line-height: 28px; font-size: 16px;">
+                                                    @{ 
+                                                        double percentage1 = (100 * video.DominanceAverageAndDeviation.Object1 / 5);
+                                                        double percentage2 = (100 * video.DominanceAverageAndDeviation.Object2 / 5);
+                                                    }
+                                                    <span style="float: left; color: #e91e63;"><i class="far fa-angry"></i></span>
+                                                    <div class="progress" style="float: left; height: 5px; margin: 10% 0 0 5px; width: 70px;">
+                                                        @{
+                                                            if (percentage1 > 60) { <div role="progressbar" class="progress-bar progress-bar-success" style="width: @percentage1%"></div> }
+                                                            else if (percentage1 >= 40) { <div role="progressbar" class="progress-bar progress-bar-warning" style="width: @percentage1%"></div> }
+                                                            else { <div role="progressbar" class="progress-bar progress-bar-danger" style="width: @percentage1%"></div> }
+                                                        }
+                                                    </div>
+
+                                                    <div class="tooltip_resultbox" style="left: 100%; top: -240%; width: 90%; padding: 0;">
+                                                        <div style="margin: 3px 0 0 0; font-size: 12px;">
+                                                            <i class="fas fa-handshake" style="margin: 0 8% 0 2%; color: #e91e63;"></i>@percentage1%
+                                                        </div>
+                                                        <div style="margin: 3px 0 3px 0; font-size: 12px;">
+                                                            <i class="fas fa-users" style="margin: 0 8% 0 2%; color: #e91e63;"></i>@percentage2%
                                                         </div>
                                                     </div>
+
+                                                </div>
                                                 }
                                                 else { <div><i class="far fa-angry" style="color: #e91e63;"></i>&nbsp;nvt</div>}
                                             </div>
