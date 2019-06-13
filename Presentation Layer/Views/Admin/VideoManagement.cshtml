@@ -116,21 +116,17 @@
                 <div class="videoSearchResults">
                     @foreach (var video in Model.Get)
                     {
-                        <div class="videoSearchItem" style="border: 1px solid #e91e63; margin-top: 1%; margin-bottom: 1%; padding: 1.5%; position: static; overflow: hidden; min-width: 550px;">
+                        <div class="videoSearchItem" style="border: 1px solid #e91e63; margin-top: 1%; margin-bottom: 1%; padding: 1.5%; min-width: 550px; overflow: hidden;">
 
                             @* User Profile Image  !! GRAVATAR & PROFILE PICTURE ADDED LATER !! *@
                             <img height="64" width="64" src="@Html.Raw(video.Thumbnail)" style="float: left; margin: 0 10px 0 0; border: 1px solid #707070;" />
 
                             <div style="height: 25%; max-height: 80px; width: 100%; margin: 0;">
                                 <div>
-                                    @{ 
-                                        string title = video.Title;
-                                        if(title.Length > 45) { title = (video.Title.Substring(0, 43) + ".."); }
-                                    }
 
                                     @* First- and Last name, inclusing the Username *@
                                     <div style="white-space: nowrap; height: 28px;">
-                                        <div style="float: left; height: inherit; line-height:28px;"><h3 style="margin: 0; display: inline-block; height: inherit;" id="title">@title</h3></div>
+                                        <div style="float: left; height: inherit; line-height:28px; max-width: 65%;"><h3 style="margin: 0; display: inline-block; height: inherit; width: 100%; text-overflow: ellipsis; overflow: hidden;" id="title">@video.Title</h3></div>
                                         <div style="float: left; height: inherit; line-height:28px; margin-left: 1.5%;"><p style="margin: 0; display: inline-block; height: inherit; color: #707070;" id="userName">(@video.Video.UrlIdentity)</p></div>
                                     </div>
 
