@@ -155,27 +155,27 @@ namespace Service_Layer.RequestHandlers
             };
         }
 
-        public bool SetClient(IObjectPair<string, string> clientFromPair)
+        public bool SetClient(MailSettings mailSettings)
         {
             try
             {
-                client = new SmtpClient(clientFromPair.Object1);
-                fromAddress = new MailAddress(clientFromPair.Object2);
+                client = new SmtpClient(mailSettings.Client);
+                fromAddress = new MailAddress(mailSettings.FromAddress);
             }
             catch { return false; }
             return true;
         }
 
-        public void SetNewUserSubjectAndContent(IObjectPair<string, string> subjectContentPair)
+        public void SetNewUserSubjectAndContent(MailContent mailContent)
         {
-            newUserSubject = subjectContentPair.Object1;
-            newUserContent = subjectContentPair.Object2;
+            newUserSubject = mailContent.Subject;
+            newUserContent = mailContent.Content;
         }
 
-        public void ResetSubjectAndContent(IObjectPair<string, string> subjectContentPair)
+        public void ResetSubjectAndContent(MailContent mailContent)
         {
-            resetSubject = subjectContentPair.Object1;
-            resetContent = subjectContentPair.Object2;
+            resetSubject = mailContent.Subject;
+            resetContent = mailContent.Content;
         }
     }
 }
