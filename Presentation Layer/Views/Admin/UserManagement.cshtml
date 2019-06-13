@@ -72,6 +72,7 @@
 
                     <div class="horizontal-line center-block"></div>
 
+                    <input type="text" class="form-control" id="lastName" placeholder="Lastname"/>
                     <div class="btn prim-btn" id="searchButton" style="margin-left: 30%; width: 40%">Search</div>
 
                 </div>
@@ -377,8 +378,23 @@
 <script>
     // Filter script
     $('#searchButton').on('click', function () {
+
         var minvidvalue = document.getElementById('vidFilterCountMin').value;
         var maxvidvalue = document.getElementById('vidFilterCountMax').value;
+        var lastname = document.getElementById('lastName').value;
+
+        if (minvidvalue != "" && maxvidvalue != "") {
+            SearchBetweenVideos(minvidvalue, maxvidvalue);
+        }
+        else if (lastname != "") {
+            SearchOnName(lastname, 'data-lastname');
+        }
+
+
+        UpdateSearchResults();
+    })
+
+    function SearchBetweenVideos(minvidvalue, maxvidvalue) {
 
         var allusers = document.getElementsByClassName('user-search-item');
 
@@ -390,8 +406,20 @@
                 allusers[i].style.display = "none";
             }
         }
-        UpdateSearchResults();
-    })
+    }
+
+    function SearchOnName(name, dataattribute) {
+        var allusers = document.getElementsByClassName('user-search-item');
+
+        for (i = 0; i < allusers.length; i++) {
+            if (allusers[i].getAttribute(dataattribute).toLowerCase() == name.toLowerCase()) {
+                allusers[i].style.display = "";
+            }
+            else {
+                allusers[i].style.display = "none";
+            }
+        }
+    }
 
     function UpdateSearchResults() {
         var searchelement = document.getElementById('searchResult');
