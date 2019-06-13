@@ -63,7 +63,7 @@ namespace Service_Layer.RequestHandlers
             FileInfo[] pictures = dir.GetFiles(userID + "*");
             if(pictures.Count() > 0)
             {
-                return folderPath + userID + ".png";
+                return folderPath + "\\" + userID + ".png";
             }
             return "not available";
         }
