@@ -33,17 +33,8 @@ namespace Service_Layer.ViewModels
         public double PadTolerance { get; set; }
         [Required, Display(Name = "MaximumRatings", Prompt = "MaximumRatings")]
         public int MaximumRatings { get; set; }
-        [Required, Display(Name ="SMTPClient", Prompt ="SMTPClient")]
-        public string SMTPClient { get; set; }
-        [Required, Display(Name ="FromAddress", Prompt ="FromAddress")]
-        public string FromAddress { get; set; }
-        [Required, Display(Name ="ResetPasswordSubject", Prompt ="ResetPassWordSubject")]
-        public string ResetPassWordSubject { get; set; }
-        [Required, Display(Name ="ResetPassWordContent", Prompt ="ResetPassWordContent")]
-        public string ResetPassWordContent { get; set; }
-        [Required, Display(Name = "NewUserSubject", Prompt = "NewUserSubject")]
-        public string NewUserSubject { get; set; }
-        [Required, Display(Name = "NewUserContent", Prompt = "NewUserContent")]
-        public string NewUserContent { get; set; }
+        public MailSettings MailSettings { get; set; }
+        public MailContent NewUser { get; set; }
+        public MailContent ResetPassword { get; set; }
     }
 }
