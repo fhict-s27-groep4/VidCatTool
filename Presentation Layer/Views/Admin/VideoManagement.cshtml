@@ -30,58 +30,56 @@
             @* ------------------------------------------------------------------- *@
 
             <div class="col-sm-3" style="padding: 0%;">
-                <div class="videoFilterColumn" style="background-color: #ffffff; border: 1px solid #bdbdbd; padding: 0px 6% 0px 6%;">
+                <div class="videoFilterColumn">
 
                     <h3 class="text-center" style="color: #e91e63">Filters</h3>
 
                     <div class="horizontal-line center-block"></div>
 
-                    @*<input id="slider1a" type="text" /><br/>*@
-
-                    @*<div id="flat-slider" class="slider_element"></div>*@
-
-
-                    <div class="video-filter-box" style="overflow: hidden;">
-                        <h4 style="text-decoration: none; color: #707070;">Pleasure</h4>
+                    @* Pleasure, Arousal and Dominance sliders *@
+                    <div class="video-filter-box">
+                        <h4 class="videoFilterHeading">Pleasure</h4>
                         <input type="range" multiple min="1" max="100" value="70,100" class="slider int-slider" />
                     </div>
                     <div class="video-filter-box">
-                        <h4 style="text-decoration: none; color: #707070;">Arousal</h4>
+                        <h4 class="videoFilterHeading">Arousal</h4>
                         <input type="range" multiple min="1" max="100" value="70,100" class="slider int-slider" />
                     </div>
                     <div class="video-filter-box">
-                        <h4 style="text-decoration: none; color: #707070;">Dominance</h4>
+                        <h4 class="videoFilterHeading">Dominance</h4>
                         <input type="range" multiple min="1" max="100" value="70,100" class="slider int-slider" />
                     </div>
-
 
                     <div class="horizontal-line center-block"></div>
 
-
-                    <div class="video-filter-box">
-                        <h4 style="text-decoration: none; color: #707070; text-align: center;">Filter by Search</h4>
+                    @* Search boxes *@
+                    <div>
+                        <h4 class="videoFilterHeading" style="text-align: center;">Filter by Search</h4>
                         <div class="md-form mt-0" style="margin: 5%;">
                             <input class="form-control" type="text" placeholder="Search for Video.." />
                         </div>
                         <div class="md-form mt-0" style="margin: 5%;">
                             <input class="form-control" type="text" placeholder="Search for Users.." />
                         </div>
-                        @* INSERT SEARCH BOX *@
                     </div>
 
                     <div class="horizontal-line center-block"></div>
 
-                    <div class="video-filter-box">
+                    @* Checkbox for "Completed Video?" *@
+                    <div>
                         <div style="float: left;">
                             <input type="checkbox" style="height: 16px; width: 16px; margin: 2px 2px 2px 2px;" checked>
                         </div>
                         <h4 style="color: #707070; margin-left: 25px;">Completed Video?</h4>
                     </div>
 
-
                     <div class="horizontal-line center-block"></div>
 
                 </div>
+
+
+                @*---------------------------------------------------------*@
+
 
                 @* To Download all Video's in JSON *@
                 <div class="videoDownloadJSON" style="padding: 10% 24% 0% 24%;">
@@ -91,13 +89,20 @@
                     </a>
                 </div>
 
-                @* Upload JSON *@
+                @* Upload JSON Button *@
                 <div style="padding: 10% 15% 0% 15%; overflow: hidden;">
                     <form class="form-group" method="post" enctype="multipart/form-data" asp-controller="Admin" asp-action="UploadJSON">
-                        <div style="text-align: center; margin: auto;"><input style="width: 100%; padding: 0 20px 0 30px;" asp-for="Post.File" type="file" /></div>
-                        <div style="text-align: center; margin-top: 6px;"><input class="btn btn-warning" type="submit" value="Upload JSON File"/></div>
+                        <div style="text-align: center; margin: auto;">
+                            <input style="width: 100%; padding: 0 20px 0 30px;" asp-for="Post.File" type="file" />
+                        </div>
+                        <div style="text-align: center; margin-top: 6px;">
+                            <input class="btn btn-warning" type="submit" value="Upload JSON File"/>
+                        </div>
                         @if(TempData["JSONUpload_Error"] != null) { 
-                            <div style="text-align: center; margin: 6px auto auto auto;"><span style="color: red; width: 100%;">@TempData["JSONUpload_Error"]</span></div> }
+                            <div style="text-align: center; margin: 6px auto auto auto;">
+                                <span style="color: red; width: 100%;">@TempData["JSONUpload_Error"]</span>
+                            </div> 
+                        }
                     </form>
                 </div>
 
@@ -109,47 +114,48 @@
 
             @* ------------------------------------------------------------------- *@
 
-            <div class="col-sm-7 videoResultsColumn" style="margin-left: 5%; padding: 1.6%; padding-top: 0.5%; background-color: #ffffff; margin-bottom: 1%; border: 1px solid #bdbdbd; min-width: 600px;">
-                <h3 class="text-center" style="color: #e91e63; margin: 3%;">Search Results</h3>
+            <div class="col-sm-7 videoResultsColumn">
+                <h3 class="text-center videoResultsHeader">Search Results</h3>
 
                 @* The List of Search Results, looping users *@
                 <div class="videoSearchResults">
                     @foreach (var video in Model.Get)
                     {
-                        <div class="videoSearchItem" style="border: 1px solid #e91e63; margin-top: 1%; margin-bottom: 1%; padding: 1.5%; min-width: 550px;">
+                        <div class="videoSearch_MainBox">
 
                             @* User Profile Image  !! GRAVATAR & PROFILE PICTURE ADDED LATER !! *@
-                            <img height="64" width="64" src="@Html.Raw(video.Thumbnail)" style="float: left; margin: 0 10px 0 0; border: 1px solid #707070;" />
+                            <img class="videoSearch_Thumbnail" height="64" width="64" src="@Html.Raw(video.Thumbnail)" />
 
-                            <div style="height: 25%; max-height: 80px; width: 100%; margin: 0;">
+                            <div class="videoSearch_ContentBox">
                                 <div>
 
                                     @* First- and Last name, inclusing the Username *@
                                     <div style="white-space: nowrap; height: 28px;">
-                                        <div style="float: left; height: inherit; line-height:28px; max-width: 65%;"><h3 style="margin: 0; display: inline-block; height: inherit; width: 100%; text-overflow: ellipsis; overflow: hidden;" id="title">@video.Title</h3></div>
-                                        <div style="float: left; height: inherit; line-height:28px; margin-left: 1.5%;"><p style="margin: 0; display: inline-block; height: inherit; color: #707070;" id="userName">(@video.Video.UrlIdentity)</p></div>
+                                        <div class="videoSearch_TitleBox" style="max-width: 65%;"><h3 class="videoSearch_TitleText" style="width: 100%; text-overflow: ellipsis; overflow: hidden;" id="title">@video.Title</h3></div>
+                                        <div class="videoSearch_TitleBox" style="margin-left: 1.5%;"><p class="videoSearch_TitleText" style="color: #707070;" id="userName">(@video.Video.UrlIdentity)</p></div>
                                     </div>
 
                                     @* Other Stats *@
-                                    <div style="white-space: nowrap; height: 28px; margin-top: 1%;">
+                                    <div class="videoSearch_StatsBox" style="font-size: 16px;">
                                         <div class="row">
 
                                             @*----------------------------------------------*@
 
                                             @* Watch Count of Video *@
-                                            <div class="col-sm-1" style="padding: 0;">
-                                                <div style="float: left; height: 28px; line-height: 28px; font-size: 16px;">
+                                            <div class="col-sm-1" style="padding: 0; height: 28px; line-height: 28px;">
+                                                <div style="font-size: 16px;">
                                                     <i class="fas fa-eye" style="color: #e91e63;"></i>&nbsp;@video.WatchCount
                                                 </div>
                                             </div>
 
                                             @* Category *@
-                                            <div class="col-sm-1 tooltip_hoverbox" style="padding: 0;">
+                                            <div class="col-sm-2 tooltip_hoverbox" style="padding: 0; height: 28px; line-height: 28px;">
                                                 @if (video.WatchCount > 0 && video.IABCategoryNameAndPercentage.Count() > 0) {
-                                                    <div style="float: left; height: 28px; line-height: 28px; font-size: 16px;">
-                                                        <span><i class="fas fa-tag" style="color: #e91e63;"></i>&nbsp;@video.IABCategoryNameAndPercentage</span>
+                                                    <div style="font-size: 16px;">
+                                                        <span><i class="fas fa-tag" style="color: #e91e63;"></i>&nbsp;YES!</span>
                                                     </div>
 
+                                                    @* Tooltip itself *@
                                                     <div class="tooltip_resultbox" style="left: 65%; top: -240%; width: 150%; padding: 0;">
                                                         <div style="margin: 3px 0 0 0; font-size: 12px;">
                                                             <i class="fas fa-handshake" style="margin: 0 8% 0 2%; color: #e91e63;"></i>@video.IABCategoryNameAndPercentage.First()
@@ -158,33 +164,33 @@
                                                             <i class="fas fa-users" style="margin: 0 8% 0 2%; color: #e91e63;"></i>@video.IABCategoryNameAndPercentage.Last()
                                                         </div>
                                                     </div>
-                                                }
-                                                else { <div><i class="fas fa-tag" style="color: #e91e63;"></i>&nbsp;nvt</div>}
-                                            </div>
 
+                                                }
+                                                else { <div><i class="fas fa-tag" style="color: #e91e63;"></i>&nbsp;nvt</div> }
+                                            </div>
 
                                             @*----------------------------------------------------------------------------------*@
 
                                             @* PAD-Score (Pleasure) *@
-                                            <div class="col-sm-2" style="padding: 0;">
+                                            <div class="col-sm-2" style="padding: 0; height: 28px; line-height: 28px;">
                                                 @if (video.WatchCount > 0 && video.PleaureAverageAndDeviation.Object1 != 0 && Double.IsNaN(video.PleaureAverageAndDeviation.Object1) == false)
                                                 {
-                                                    <div class="tooltip_hoverbox" style="float: left; height: 28px; line-height: 28px; font-size: 16px;">
-                                                        
+                                                    <div class="tooltip_hoverbox videoSearch_PADScoreBox">                                                        
                                                         @{ 
                                                             double average = (100 * video.PleaureAverageAndDeviation.Object1 / 5);
                                                             double deviation = video.PleaureAverageAndDeviation.Object2;
                                                         }
                                                         <span style="float: left; color: #e91e63;"><i class="far fa-laugh-beam"></i></span>
-                                                        <div class="progress" style="float: left; height: 5px; margin: 10% 0 0 5px; width: 70px;">
-                                                            @{
-                                                                if(average > 60) { <div role="progressbar" class="progress-bar progress-bar-success" style="width: @average%"></div> }
-                                                                else if(average >= 40) { <div role="progressbar" class="progress-bar progress-bar-warning" style="width: @average%"></div> }
-                                                                else { <div role="progressbar" class="progress-bar progress-bar-danger" style="width: @average%"></div> }
-                                                            }
+                                                        <div class="progress videoSearch_ProgressBar">
+                                                        @{
+                                                            if(average > 60) { <div role="progressbar" class="progress-bar progress-bar-success" style="width: @average%"></div> }
+                                                            else if(average >= 40) { <div role="progressbar" class="progress-bar progress-bar-warning" style="width: @average%"></div> }
+                                                            else { <div role="progressbar" class="progress-bar progress-bar-danger" style="width: @average%"></div> }
+                                                        }
                                                         </div>
 
-                                                        <div class="tooltip_resultbox" style="left: 65%; top: -240%; width: 150%; padding: 0;">
+                                                        @* Tooltip *@
+                                                        <div class="tooltip_resultbox" style="left: 65%; top: -265%; width: 150%; padding: 0;">
                                                             <div style="margin: 3px 0 0 0; font-size: 12px;">
                                                                 <i class="fas fa-balance-scale" style="margin: 0 8% 0 2%; color: #e91e63;"></i>@deviation deviation
                                                             </div>
@@ -198,19 +204,20 @@
                                                 else { <div><i class="far fa-laugh-beam" style="color: #e91e63;"></i>&nbsp;nvt</div>}
                                             </div>
 
+                                            @*----------------------------------------------------------------------------------*@
 
                                             @* PAD-Score (Arrousal) *@
-                                            <div class="col-sm-2" style="padding: 0;">
+                                            <div class="col-sm-2" style="padding: 0; height: 28px; line-height: 28px;">
                                                 @if (video.WatchCount > 0 && video.ArrouselAverageAndDeviation.Object1 != 0 && Double.IsNaN(video.ArrouselAverageAndDeviation.Object1) == false)
                                                 {
-                                                <div class="tooltip_hoverbox" style="float: left; height: 28px; line-height: 28px; font-size: 16px;">
+                                                <div class="tooltip_hoverbox videoSearch_PADScoreBox">
                                                     
                                                     @{ 
                                                         double average = (100 * video.ArrouselAverageAndDeviation.Object1 / 5);
                                                         double deviation = video.ArrouselAverageAndDeviation.Object2;
                                                     }
                                                     <span style="float: left; color: #e91e63;"><i class="far fa-surprise"></i></span>
-                                                    <div class="progress" style="float: left; height: 5px; margin: 10% 0 0 5px; width: 70px;">
+                                                    <div class="progress videoSearch_ProgressBar">
                                                         @{
                                                             if (average > 60) { <div role="progressbar" class="progress-bar progress-bar-success" style="width: @average%"></div> }
                                                             else if (average >= 40) { <div role="progressbar" class="progress-bar progress-bar-warning" style="width: @average%"></div> }
@@ -218,7 +225,7 @@
                                                         }
                                                     </div>
 
-                                                    <div class="tooltip_resultbox" style="left: 65%; top: -240%; width: 150%; padding: 0;">
+                                                    <div class="tooltip_resultbox" style="left: 65%; top: -265%; width: 150%; padding: 0;">
                                                         <div style="margin: 3px 0 0 0; font-size: 12px;">
                                                             <i class="fas fa-balance-scale" style="margin: 0 8% 0 2%; color: #e91e63;"></i>@deviation deviation
                                                         </div>
@@ -234,16 +241,16 @@
 
 
                                             @* PAD-Score (Dominance) *@
-                                            <div class="col-sm-2" style="padding: 0;">
+                                            <div class="col-sm-2" style="padding: 0; height: 28px; line-height: 28px;">
                                                 @if (video.WatchCount > 0 && video.DominanceAverageAndDeviation.Object1 != 0 && Double.IsNaN(video.DominanceAverageAndDeviation.Object1) == false)
                                                 {
-                                                <div class="tooltip_hoverbox" style="float: left; height: 28px; line-height: 28px; font-size: 16px;">
+                                                <div class="tooltip_hoverbox videoSearch_PADScoreBox">
                                                     @{ 
                                                         double average = (100 * video.DominanceAverageAndDeviation.Object1 / 5);
                                                         double deviation = video.DominanceAverageAndDeviation.Object2;
                                                     }
                                                     <span style="float: left; color: #e91e63;"><i class="far fa-angry"></i></span>
-                                                    <div class="progress" style="float: left; height: 5px; margin: 10% 0 0 5px; width: 70px;">
+                                                    <div class="progress videoSearch_ProgressBar">
                                                         @{
                                                             if (average > 60) { <div role="progressbar" class="progress-bar progress-bar-success" style="width: @average%"></div> }
                                                             else if (average >= 40) { <div role="progressbar" class="progress-bar progress-bar-warning" style="width: @average%"></div> }
@@ -251,7 +258,7 @@
                                                         }
                                                     </div>
 
-                                                    <div class="tooltip_resultbox" style="left: 65%; top: -240%; width: 150%; padding: 0;">
+                                                    <div class="tooltip_resultbox" style="left: 65%; top: -265%; width: 150%; padding: 0;">
                                                         <div style="margin: 3px 0 0 0; font-size: 12px;">
                                                             <i class="fas fa-balance-scale" style="margin: 0 8% 0 2%; color: #e91e63;"></i>@deviation deviation
                                                         </div>
@@ -268,21 +275,14 @@
 
                                             @*---------------------------------------------------------------*@
 
-                                            <div class="col-sm-1" style="padding: 0;">
-                                                <div style="float: left; height: 28px; line-height: 28px; font-size: 16px;">
+                                            <div class="col-sm-1" style="padding: 0; height: 28px; line-height: 28px;">
+                                                <div style="float: left; font-size: 16px;">
                                                     <span><i class="fas fa-clipboard-check" style="color: #e91e63;"></i>&nbsp;@video.Video.Finished</span>
                                                 </div>           
                                             </div>
 
                                         </div>
                                     </div>
-
-                                    @*<div>
-                                    <div class="row" style="margin-top: 1.5%;">
-                                        <div class="col-sm-1" style="width:auto;"><div class="userStatView"><i class="fas fa-eye"></i> @user.RatingCount</div></div>
-                                        <div class="col-sm-1" style="width:auto;"><div class="userStatView">@user.ProcentDivergent</div></div>
-                                    </div>
-                                </div>*@
                                 </div>
                             </div>
                         </div>
@@ -296,60 +296,6 @@
             </div>
 
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            @*<div class="col-sm-7 videoResultsColumn" style="margin-left: 5%; padding: 1.6%; padding-top: 0.5%; background-color: #ffffff; margin-bottom: 1%; border: 1px solid #bdbdbd">
-                <h3 class="text-center" style="color: #e91e63; margin: 3%;">Search Results</h3>*@
-
-                @* The List of Search Results, looping users *@
-                @*<div class="videoSearchResults">
-                    @foreach (var video in Model)
-                    {
-                        <div class="userSearchItem" style="border: 1px solid #e91e63; margin-top: 1%; margin-bottom: 1%; padding: 1.8%; position:relative;">
-                            <div class="row" style="height: 25%;">
-                                <div class="col-md-11">
-                                    <h3 style="margin: 0%;" id="fullName">@video.Title (@video.Video.UrlIdentity)</h3>
-                                    <div>
-                                        <div class="row" style="margin-top:2%; margin-bottom: 1%;">
-                                            <div class="col-sm-1" style="width:auto;"><div class="videoStatView">@video.Video.Finished</div></div>
-                                            <div class="col-sm-1" style="width:auto;"><div class="videoStatView"><i class="fas fa-eye"></i> @video.WatchCount</div></div>*@
-                                            @*<div class="col-sm-1" style="width:auto;"><div class="videoStatView">@video.BiggestTier2%</div></div>*@
-
-                                        @*</div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-1"><img height="64" width="64" src="@Html.Raw(video.Thumbnail)" style="float: right;" /></div>
-
-                            </div>
-                        </div>
-                    }*@
-
-                    @* Bottom text and actions, such as the amount of pages. *@
-                    @*<div class="videoSearchCount" style="margin: 4%;">
-                        <h6 class="text-center" style="width: 100%; color: #707070;">@Model.Count Results found</h6>
-                    </div>
-                </div>
-
-            </div>*@
 
 
             @* ------------------------------------------------------------------- *@

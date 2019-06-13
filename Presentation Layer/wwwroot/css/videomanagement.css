@@ -1,8 +1,101 @@
-﻿.videoStatView {
-    background-color: #e91e63;
-    color: white;
-    width: 150%;
-    border-radius: 25px;
-    text-align: center;
-    padding: 3%;
+﻿
+    
+
+    /*----------------------------------*/
+    /*        CSS in Filters box        */
+    /*----------------------------------*/
+
+.videoFilterColumn {
+    background-color: #ffffff;
+    border: 1px solid #bdbdbd;
+    padding: 0px 6% 0px 6%;
+}
+
+.videoFilterHeading {
+    text-decoration: none;
+    color: #707070;
+}
+
+
+
+
+/*----------------------------------------------*/
+/*        Results Column with all videos        */
+/*----------------------------------------------*/
+
+.videoResultsColumn {
+    margin-left: 5%;
+    padding: 1.6%;
+    padding-top: 0.5%;
+    background-color: #ffffff;
+    margin-bottom: 1%;
+    border: 1px solid #bdbdbd;
+    min-width: 600px;
+}
+
+.videoResultsHeader {
+    color: #e91e63;
+    margin: 3%;
+}
+
+.videoSearch_MainBox {
+    border: 1px solid #e91e63;
+    margin-top: 1.2%;
+    margin-bottom: 1.2%;
+    padding: 1.5%;
+    min-width: 550px;
+}
+
+.videoSearch_Thumbnail {
+    float: left;
+    margin: 0 10px 0 0;
+    border: 1px solid #707070;
+}
+
+.videoSearch_ContentBox {
+    height: 25%;
+    max-height: 80px;
+    width: 100%;
+    margin: 0;
+}
+
+
+/* Top box with title and video ID */
+
+.videoSearch_TitleBox {
+    float: left;
+    height: inherit;
+    line-height: 28px;
+}
+
+.videoSearch_TitleText {
+    margin: 0;
+    display: inline-block;
+    height: inherit;
+}
+
+
+/* The bottom box with all video stats */
+
+.videoSearch_StatsBox {
+    white-space: nowrap;
+    height: 28px;
+    margin-top: 1%;
+}
+
+
+/* PAD-Score Related Stuff */
+
+.videoSearch_PADScoreBox {
+    float: left;
+    font-size: 16px;
+    line-height: 22px;
+    height: 22px;
+}
+
+.videoSearch_ProgressBar {
+    float: left;
+    height: 5px;
+    margin: 8.2% 0 0 7px;
+    width: 70px;
 }
