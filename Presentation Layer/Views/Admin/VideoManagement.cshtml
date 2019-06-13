@@ -109,14 +109,14 @@
 
             @* ------------------------------------------------------------------- *@
 
-            <div class="col-sm-7 videoResultsColumn" style="margin-left: 5%; padding: 1.6%; padding-top: 0.5%; background-color: #ffffff; margin-bottom: 1%; border: 1px solid #bdbdbd">
+            <div class="col-sm-7 videoResultsColumn" style="margin-left: 5%; padding: 1.6%; padding-top: 0.5%; background-color: #ffffff; margin-bottom: 1%; border: 1px solid #bdbdbd; min-width: 600px;">
                 <h3 class="text-center" style="color: #e91e63; margin: 3%;">Search Results</h3>
 
                 @* The List of Search Results, looping users *@
                 <div class="videoSearchResults">
                     @foreach (var video in Model.Get)
                     {
-                        <div class="videoSearchItem" style="border: 1px solid #e91e63; margin-top: 1%; margin-bottom: 1%; padding: 1.5%; position:relative; overflow: visible;">
+                        <div class="videoSearchItem" style="border: 1px solid #e91e63; margin-top: 1%; margin-bottom: 1%; padding: 1.5%; position: static; overflow: hidden; min-width: 550px;">
 
                             @* User Profile Image  !! GRAVATAR & PROFILE PICTURE ADDED LATER !! *@
                             <img height="64" width="64" src="@Html.Raw(video.Thumbnail)" style="float: left; margin: 0 10px 0 0; border: 1px solid #707070;" />
@@ -141,7 +141,7 @@
                                             @*----------------------------------------------*@
 
                                             @* Watch Count of Video *@
-                                            <div style="white-space: nowrap; padding: 0; float: left;">
+                                            <div style="padding: 0; float: left;">
                                                 <div style="float: left; height: 28px; line-height: 28px; font-size: 16px;">
                                                     <i class="fas fa-eye" style="color: #e91e63;"></i>&nbsp;@video.WatchCount
                                                 </div>
@@ -177,20 +177,20 @@
                                                         
                                                         @{ 
                                                             double average = (100 * video.PleaureAverageAndDeviation.Object1 / 5);
-                                                            double deviation = (100 * video.PleaureAverageAndDeviation.Object2 / 5);
+                                                            double deviation = video.PleaureAverageAndDeviation.Object2;
                                                         }
                                                         <span style="float: left; color: #e91e63;"><i class="far fa-laugh-beam"></i></span>
                                                         <div class="progress" style="float: left; height: 5px; margin: 10% 0 0 5px; width: 70px;">
                                                             @{
-                                                                if(deviation > 60) { <div role="progressbar" class="progress-bar progress-bar-success" style="width: @deviation%"></div> }
-                                                                else if(deviation >= 40) { <div role="progressbar" class="progress-bar progress-bar-warning" style="width: @deviation%"></div> }
-                                                                else { <div role="progressbar" class="progress-bar progress-bar-danger" style="width: @deviation%"></div> }
+                                                                if(average > 60) { <div role="progressbar" class="progress-bar progress-bar-success" style="width: @average%"></div> }
+                                                                else if(average >= 40) { <div role="progressbar" class="progress-bar progress-bar-warning" style="width: @average%"></div> }
+                                                                else { <div role="progressbar" class="progress-bar progress-bar-danger" style="width: @average%"></div> }
                                                             }
                                                         </div>
 
                                                         <div class="tooltip_resultbox" style="left: 65%; top: -240%; width: 150%; padding: 0;">
                                                             <div style="margin: 3px 0 0 0; font-size: 12px;">
-                                                                <i class="fas fa-handshake" style="margin: 0 8% 0 2%; color: #e91e63;"></i>@deviation% deviation
+                                                                <i class="fas fa-balance-scale" style="margin: 0 8% 0 2%; color: #e91e63;"></i>@deviation deviation
                                                             </div>
                                                             <div style="margin: 3px 0 3px 0; font-size: 12px;">
                                                                 <i class="fas fa-users" style="margin: 0 8% 0 2%; color: #e91e63;"></i>@average% average
@@ -211,20 +211,20 @@
                                                     
                                                     @{ 
                                                         double average = (100 * video.ArrouselAverageAndDeviation.Object1 / 5);
-                                                        double deviation = (100 * video.ArrouselAverageAndDeviation.Object2 / 5);
+                                                        double deviation = video.ArrouselAverageAndDeviation.Object2;
                                                     }
                                                     <span style="float: left; color: #e91e63;"><i class="far fa-surprise"></i></span>
                                                     <div class="progress" style="float: left; height: 5px; margin: 10% 0 0 5px; width: 70px;">
                                                         @{
-                                                            if (deviation > 60) { <div role="progressbar" class="progress-bar progress-bar-success" style="width: @deviation%"></div> }
-                                                            else if (deviation >= 40) { <div role="progressbar" class="progress-bar progress-bar-warning" style="width: @deviation%"></div> }
-                                                            else { <div role="progressbar" class="progress-bar progress-bar-danger" style="width: @deviation%"></div> }
+                                                            if (average > 60) { <div role="progressbar" class="progress-bar progress-bar-success" style="width: @average%"></div> }
+                                                            else if (average >= 40) { <div role="progressbar" class="progress-bar progress-bar-warning" style="width: @average%"></div> }
+                                                            else { <div role="progressbar" class="progress-bar progress-bar-danger" style="width: @average%"></div> }
                                                         }
                                                     </div>
 
                                                     <div class="tooltip_resultbox" style="left: 65%; top: -240%; width: 150%; padding: 0;">
                                                         <div style="margin: 3px 0 0 0; font-size: 12px;">
-                                                            <i class="fas fa-handshake" style="margin: 0 8% 0 2%; color: #e91e63;"></i>@deviation% deviation
+                                                            <i class="fas fa-balance-scale" style="margin: 0 8% 0 2%; color: #e91e63;"></i>@deviation deviation
                                                         </div>
                                                         <div style="margin: 3px 0 3px 0; font-size: 12px;">
                                                             <i class="fas fa-users" style="margin: 0 8% 0 2%; color: #e91e63;"></i>@average% average
@@ -244,20 +244,20 @@
                                                 <div class="tooltip_hoverbox" style="float: left; height: 28px; line-height: 28px; font-size: 16px;">
                                                     @{ 
                                                         double average = (100 * video.DominanceAverageAndDeviation.Object1 / 5);
-                                                        double deviation = (100 * video.DominanceAverageAndDeviation.Object2 / 5);
+                                                        double deviation = video.DominanceAverageAndDeviation.Object2;
                                                     }
                                                     <span style="float: left; color: #e91e63;"><i class="far fa-angry"></i></span>
                                                     <div class="progress" style="float: left; height: 5px; margin: 10% 0 0 5px; width: 70px;">
                                                         @{
-                                                            if (deviation > 60) { <div role="progressbar" class="progress-bar progress-bar-success" style="width: @deviation%"></div> }
-                                                            else if (deviation >= 40) { <div role="progressbar" class="progress-bar progress-bar-warning" style="width: @deviation%"></div> }
-                                                            else { <div role="progressbar" class="progress-bar progress-bar-danger" style="width: @deviation%"></div> }
+                                                            if (average > 60) { <div role="progressbar" class="progress-bar progress-bar-success" style="width: @average%"></div> }
+                                                            else if (average >= 40) { <div role="progressbar" class="progress-bar progress-bar-warning" style="width: @average%"></div> }
+                                                            else { <div role="progressbar" class="progress-bar progress-bar-danger" style="width: @average%"></div> }
                                                         }
                                                     </div>
 
                                                     <div class="tooltip_resultbox" style="left: 65%; top: -240%; width: 150%; padding: 0;">
                                                         <div style="margin: 3px 0 0 0; font-size: 12px;">
-                                                            <i class="fas fa-handshake" style="margin: 0 8% 0 2%; color: #e91e63;"></i>@deviation% deviation
+                                                            <i class="fas fa-balance-scale" style="margin: 0 8% 0 2%; color: #e91e63;"></i>@deviation deviation
                                                         </div>
                                                         <div style="margin: 3px 0 3px 0; font-size: 12px;">
                                                             <i class="fas fa-users" style="margin: 0 8% 0 2%; color: #e91e63;"></i>@average% average
