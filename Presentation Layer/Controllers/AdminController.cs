@@ -130,7 +130,7 @@ namespace VidCat_Tool.Controllers
                     userHandler.SetResetSubjectAndContent(model.ResetPassword);
                 }
                 else { return Settings(); }
-                return VideoManagement();
+                return Settings();
         }
     }
 }
