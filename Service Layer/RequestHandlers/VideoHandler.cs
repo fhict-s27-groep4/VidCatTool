@@ -58,9 +58,9 @@ namespace Service_Layer.RequestHandlers
                 model.WatchCount = videoRatings.Count();
                 if (model.WatchCount > 0)
                 {
-                    model.PleaureAverageAndDeviation = new ObjectPair<double, double>() { Object1 = videoRatings.Average(x => x.PleasureIndex), Object2 = calculator.Deviation(videoRatings.Select(x => x.PleasureIndex)) };
-                    model.ArrouselAverageAndDeviation = new ObjectPair<double, double>() { Object1 = videoRatings.Average(x => x.ArrousalIndex), Object2 = calculator.Deviation(videoRatings.Select(x => x.ArrousalIndex)) };
-                    model.DominanceAverageAndDeviation = new ObjectPair<double, double>() { Object1 = videoRatings.Average(x => x.DominanceIndex), Object2 = calculator.Deviation(videoRatings.Select(x => x.DominanceIndex)) };
+                    model.PleaureAverageAndDeviation = new ObjectPair<double, double>() { Object1 = Math.Round(videoRatings.Average(x => x.PleasureIndex), 2, MidpointRounding.AwayFromZero), Object2 = calculator.Deviation(videoRatings.Select(x => x.PleasureIndex)) };
+                    model.ArrouselAverageAndDeviation = new ObjectPair<double, double>() { Object1 = Math.Round(videoRatings.Average(x => x.ArrousalIndex), 2, MidpointRounding.AwayFromZero), Object2 = calculator.Deviation(videoRatings.Select(x => x.ArrousalIndex)) };
+                    model.DominanceAverageAndDeviation = new ObjectPair<double, double>() { Object1 = Math.Round(videoRatings.Average(x => x.DominanceIndex), 2, MidpointRounding.AwayFromZero), Object2 = calculator.Deviation(videoRatings.Select(x => x.DominanceIndex)) };
                     IList<IObjectPair<string, int>> iabCategoriesNamesAndAverage = new List<IObjectPair<string, int>>();
                     IList<IObjectPair<int, int>> catCount = new List<IObjectPair<int, int>>();
                     foreach (int category in videoRatings.Select(x => x.CategoryID))
