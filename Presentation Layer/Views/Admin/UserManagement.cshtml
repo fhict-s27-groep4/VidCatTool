@@ -215,11 +215,11 @@
                                 <div class="dropdown-menu dropdown-menu-center" aria-labelledby="dropdownMenuButton">
                                     @if (user.User.IsDisabled == true)
                                     {
-                                        <a class="dropdown-item" data-name="@user.User.FirstName @user.User.LastName" data-id="@user.User.UserID" onclick="AreYouSureBox(this, true)">Enable</a>
+                                        <a class="dropdown-item" data-name="@user.User.FirstName @user.User.LastName" data-id="@user.User.UserID" data-username="@user.User.UserName" onclick="DisableBox(this, true)">Enable</a>
                                     }
                                     else
                                     {
-                                        <a class="dropdown-item" data-name="@user.User.FirstName @user.User.LastName" data-id="@user.User.UserID" onclick="AreYouSureBox(this, false)">Disable</a>
+                                        <a class="dropdown-item" data-name="@user.User.FirstName @user.User.LastName" data-id="@user.User.UserID" data-username="@user.User.UserName" onclick="DisableBox(this, false)">Disable</a>
                                     }
 
                                     <a class="dropdown-item" asp-action="" asp-controller="Admin">Reset Password</a>
@@ -305,13 +305,39 @@
         mnameElement.innerHTML = nameElement;
     });
 
-    function AreYouSureBox(element, enableordisable) {
+    function DisableBox(element, enableordisable) {
         $('#exampleModal').modal('show');
         $('#exampleModal').on('shown.bs.modal', function (e) {
             document.getElementById('modalContent').innerHTML = "Are you sure you want to disable user: " + "<b>" + element.getAttribute('data-name') + "</b>";
             $('#saveBtn').on('click', function () {
                 UpdateAccountAccessibility(element, enableordisable);
             });
+        });
+    }
+
+    function ResetPasswordBox(element) {
+        $('#exampleModal').modal('show');
+        $('#exampleModal').on('shown.bs.modal', function (e) {
+            document.getElementById('modalContent').innerHTML = "Are you sure you want to reset the password for: " + "<b>" + element.getAttribute('data-name') + "</b>";
+            $('#saveBtn').on('click', function () {
+                ResetPassword(element);
+            });
+        });
+    }
+
+    function ResetPassword(element) {
+        let value = element.getAttribute('data-username');
+        $.ajax({
+            url: '/Admin/ResetPassword/',
+            data: { 'username': value },
+            type: "GET",
+            success: function () {
+                window.location.reload();
+            },
+            error: function () {
+                alert('An error occured when resetting the password for this the account');
+                window.location.reload();
+            }
         });
     }
 
