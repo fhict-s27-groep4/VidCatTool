@@ -26,7 +26,7 @@ namespace Service_Layer.RequestHandlers
         private readonly PictureHandler pictureHandler;
         private readonly SessionHandler sessionHandler;
         private static SmtpClient client = new SmtpClient();
-        private static MailAddress fromAddress = new MailAddress("none");
+        private static MailAddress fromAddress = new MailAddress("none.mail@fix.hiero");
         private static string resetSubject;
         private static string resetContent;
         private static string newUserSubject;
