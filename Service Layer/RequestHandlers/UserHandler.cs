@@ -177,5 +177,20 @@ namespace Service_Layer.RequestHandlers
             resetSubject = mailContent.Subject;
             resetContent = mailContent.Content;
         }
+
+        public MailContent GetResetpassWordMail()
+        {
+            return new MailContent() { Content = resetContent, Subject = resetSubject };
+        }
+
+        public MailContent GetNewUserMail()
+        {
+            return new MailContent() { Content = newUserContent, Subject = newUserSubject };
+        }
+
+        public MailSettings GetMailSettings()
+        {
+            return new MailSettings() { Client = client.Host, FromAddress = fromAddress.Address };
+        }
     }
 }

@@ -105,12 +105,12 @@ namespace VidCat_Tool.Controllers
         [HttpGet] //Settings page where admins can set stuff, such as percentages of the algorithm.
         public IActionResult Settings()
         {
-            SettingsModel settings = videoHandler.GetAlgoritmSettings();
+            AlgoritmSettingsModel settings = videoHandler.GetAlgoritmSettings();
             return View(settings);
         }
 
         [HttpPost]
-        public IActionResult Settings(SettingsModel model)
+        public IActionResult Settings(AlgoritmSettingsModel model)
         {
             if (ModelState.IsValid)
             {
