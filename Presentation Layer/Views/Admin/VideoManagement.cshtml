@@ -142,21 +142,19 @@
 
                                             @* Watch Count of Video *@
                                             <div style="white-space: nowrap; padding: 0; float: left;">
-                                                <div style="float: left; height: 28px; line-height: 28px;">
+                                                <div style="float: left; height: 28px; line-height: 28px; font-size: 16px;">
                                                     <i class="fas fa-eye" style="color: #e91e63;"></i>&nbsp;@video.WatchCount
                                                 </div>
                                             </div>
 
                                             @* Category *@
                                             <div style="padding: 0; float: left; margin-left: 4.5%;">
-                                                @if (video.WatchCount > 0 && video.IABCategoryNameAndPercentage != null)
-                                                {
+                                                @if (video.WatchCount > 0 && video.IABCategoryNameAndPercentage != null) {
                                                 <div style="float: left; height: 28px; line-height: 28px; font-size: 16px;">
                                                     <span><i class="fas fa-tag" style="color: #e91e63;"></i>&nbsp;@video.IABCategoryNameAndPercentage</span>
                                                 </div>
                                                 }
-                                                else
-                                                { <div><i class="fas fa-tag" style="color: #e91e63;"></i>&nbsp;nvt</div>}
+                                                else { <div><i class="fas fa-tag" style="color: #e91e63;"></i>&nbsp;nvt</div>}
                                             </div>
 
 
@@ -264,6 +262,12 @@
 
 
                                             @*---------------------------------------------------------------*@
+
+                                            <div style="padding: 0; float: left; margin-left: 4.5%;">
+                                                <div style="float: left; height: 28px; line-height: 28px; font-size: 16px;">
+                                                    <span><i class="fas fa-clipboard-check" style="color: #e91e63;"></i>&nbsp;@video.Video.Finished</span>
+                                                </div>           
+                                            </div>
 
                                         </div>
                                     </div>
