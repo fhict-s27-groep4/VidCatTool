@@ -71,7 +71,7 @@
 
                     <div class="user-filter-box">
                         <h4 class="filterHeader">Search by Firstname</h4>
-                        <input type="text" class="form-control" id="lastName" placeholder="Firstname" />
+                        <input type="text" class="form-control" id="firstName" placeholder="Firstname" />
                     </div>
 
                     <div class="horizontal-line center-block"></div>
@@ -115,7 +115,7 @@
                         <div class="user-search-item" data-vwatched="@user.RatingCount" data-firstname="@user.User.FirstName" data-lastname="@user.User.LastName">
 
                             @* User Profile Image      !! GRAVATAR & PROFILE PICTURE ADDED LATER !! *@
-                            <img height="76" width="76" src="~/images/user-placeholder.png" class="user-profile-picture" />
+                            <img height="76" width="76" src="@Html.Raw(user.PicturePath)" class="user-profile-picture" />
 
                             <div class="user-search-content">
                                 <div>
@@ -390,6 +390,7 @@
 
         var minvidvalue = document.getElementById('vidFilterCountMin').value;
         var maxvidvalue = document.getElementById('vidFilterCountMax').value;
+        var firstname = document.getElementById('firstName').value;
         var lastname = document.getElementById('lastName').value;
 
         if (minvidvalue != "" && maxvidvalue != "") {
@@ -397,6 +398,9 @@
         }
         else if (lastname != "") {
             SearchOnName(lastname, 'data-lastname');
+        }
+        else if (firstname != "") {
+            SearchOnName(firstname, 'data-firstname');
         }
 
 
