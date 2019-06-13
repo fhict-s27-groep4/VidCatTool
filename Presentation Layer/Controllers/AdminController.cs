@@ -63,16 +63,18 @@ namespace VidCat_Tool.Controllers
             return Redirect(Url.Action("UserManagement", "Admin"));
         }
 
+
         public IActionResult EnableAccount(string userid)
         {
             userHandler.EnableUser(userid);
             return Redirect(Url.Action("UserManagement", "Admin"));
         }
 
-        // Stored Procedure maken
-        public IActionResult ResetPassword(string userid)
+
+        public IActionResult ResetPassword(string username)
         {
-            return View();
+            userHandler.ResetPassWord(username);
+            return Redirect(Url.Action("UserManagement", "Admin"));
         }
 
         /*____________________________________________________________*/

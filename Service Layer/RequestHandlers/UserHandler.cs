@@ -13,6 +13,7 @@ using Logic_Layer.Hasher;
 using Logic_Layer.PassWordGenerator;
 using Model_Layer.Models;
 using Data_Layer.Repository;
+using System.Net.Mail;
 
 namespace Service_Layer.RequestHandlers
 {
@@ -24,6 +25,12 @@ namespace Service_Layer.RequestHandlers
         private readonly IUserStatsRepository userStatsRepository;
         private readonly PictureHandler pictureHandler;
         private readonly SessionHandler sessionHandler;
+        public static string Client;
+        public static MailAddress FromAddress;
+        public static string ResetSubject;
+        public static string ResetContent;
+        public static string NewUserSubject;
+        public static string NewUserContent;
 
         public UserHandler(PictureHandler pictureHandler, IUserStatsRepository userStatsRepository, ILogin loginHandler, IRegister registerHandler, IUserRepository userRepo, SessionHandler sessionHandler)
         {
@@ -59,11 +66,15 @@ namespace Service_Layer.RequestHandlers
 
         public bool CreateUser(RegisterViewModel vm)
         {
-            IRegisterUser generatedUser = registerHandler.CreateUser(userRepo.GetAll(), vm.Firstname, vm.Lastname, vm.Email, vm.IsAdmin, vm.Phonenumber, vm.Country, vm.City, vm.Streetname, vm.Zip);
+            IObjectPair<IRegisterUser, string> generatedUserPassPair = registerHandler.CreateUser(userRepo.GetAll(), vm.Firstname, vm.Lastname, vm.Email, vm.IsAdmin, vm.Phonenumber, vm.Country, vm.City, vm.Streetname, vm.Zip);
             try
             {
-                userRepo.AddUser(generatedUser);
-                ILoginUser user = userRepo.GetUserByName(generatedUser.UserName);
+                userRepo.AddUser(generatedUserPassPair.Object1);
+                ILoginUser user = userRepo.GetUserByName(generatedUserPassPair.Object1.UserName);
+                EMailSender eMailer = new EMailSender(Client);
+                IMessageSettableMail mail = new MessageMail(new System.Net.Mail.MailMessage());
+                mail.MakeMail(NewUserSubject, String.Format(NewUserContent, user.UserName, generatedUserPassPair.Object2), user.Email);
+                eMailer.Send(mail, FromAddress);
                 pictureHandler.PictureCopy(vm.ProfilePicture, user.UserID);
             }
             catch
@@ -100,7 +111,6 @@ namespace Service_Layer.RequestHandlers
                 if (userVM.ProcentPADDivergent == 0) userVM.ProcentPADDivergent = 100;
                 usermodels.Add(userVM);
             }
-
             return usermodels;
         }
 
@@ -121,10 +131,14 @@ namespace Service_Layer.RequestHandlers
             ILoginUser loggedInUser = userRepo.GetUserByName(_userName) as ILoginUser;
             string generatedPassword = gen.GeneratePassword(true, true, true, true, false, 12);
             userRepo.UpdatePassword(loggedInUser.UserID, hasher.HashWithSalt(generatedPassword), hasher.Key);
-            EMailSender eMailer = new EMailSender();
-            IMessageSettableMail mail = new MessageMail(new System.Net.Mail.MailMessage());
-            mail.MakeMail("New Password For VidCatTool", String.Format("Dear Sir/Madam, \n\n The password of this account has been reset.\n Please login with the following password: {0} \n\n Kind regards, \n The staff of JWPlayer", generatedPassword), loggedInUser.Email);
-            eMailer.Send(mail);
+            EMailSender eMailer = new EMailSender(Client);
+            try
+            {
+                IMessageSettableMail mail = new MessageMail(new System.Net.Mail.MailMessage());
+                mail.MakeMail(ResetSubject, String.Format(ResetContent, generatedPassword), loggedInUser.Email);
+                eMailer.Send(mail, FromAddress);
+            }
+            catch { }
         }
 
         public UserStatsViewModel GetUserStats()

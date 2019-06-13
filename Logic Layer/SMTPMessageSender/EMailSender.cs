@@ -9,13 +9,13 @@ namespace Logic_Layer.SMTPMessageSender
     public class EMailSender
     {
         private SmtpClient smtpServer;
-        public EMailSender()
+        public EMailSender(string client)
         {
-            smtpServer = new SmtpClient("mailrelay.fhict.local");
+            smtpServer = new SmtpClient(client);
         }
-        public void Send(IMessageMail _messageMail)
+        public void Send(IMessageMail _messageMail, MailAddress _fromAddress)
         {
-            _messageMail.MailMessage.From = new MailAddress("i413747@hera.fhict.nl");
+            _messageMail.MailMessage.From = _fromAddress;
             smtpServer.Send(_messageMail.MailMessage);
         }
     }

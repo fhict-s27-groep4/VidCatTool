@@ -31,7 +31,7 @@ namespace Logic_Layer.Handlers
             return false;
         }
         
-        public IRegisterUser CreateUser(IEnumerable<IUser> allUsers, string firstname, string lastname, string email, bool isAdmin, string phonenumber = null, string country = null, string city = null, string streetaddress = null, string zipcode = null)
+        public IObjectPair<IRegisterUser, string> CreateUser(IEnumerable<IUser> allUsers, string firstname, string lastname, string email, bool isAdmin, string phonenumber = null, string country = null, string city = null, string streetaddress = null, string zipcode = null)
         {
             IPasswordGenerator gen = new PasswordGenerator();
             string generatedPassword = gen.GeneratePassword(true, true, true, true, false, 12);
@@ -49,14 +49,7 @@ namespace Logic_Layer.Handlers
             if (city != null) newUser.City = city;
             if (streetaddress != null) newUser.StreetAddress = streetaddress;
             if (zipcode != null) newUser.ZipCode = zipcode;
-
-
-            EMailSender eMailer = new EMailSender();
-            IMessageSettableMail mail = new MessageMail(new System.Net.Mail.MailMessage());
-            mail.MakeMail("Account Verification", String.Format("Dear Sir/Madam, \n\n An account has been created with this specific e-mail address. Please login with the following credentials: \n Username: {0} \n Password: {1} \n\n Kind regards, \n The staff of JWPlayer", newUser.UserName, generatedPassword), email);
-            eMailer.Send(mail);
-
-            return newUser;
+            return new ObjectPair<IRegisterUser, string>() { Object1 = newUser, Object2 = generatedPassword };
         }
 
         // Need changing to not use database
