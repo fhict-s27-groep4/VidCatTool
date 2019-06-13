@@ -65,24 +65,31 @@ namespace Service_Layer.RequestHandlers
                     IList<IObjectPair<int, int>> catCount = new List<IObjectPair<int, int>>();
                     foreach (int category in videoRatings.Select(x => x.CategoryID))
                     {
-                        bool added = false;
-                        foreach (IObjectPair<int, int> catAndCount in catCount)
+                        ICategory cat = categoryManager.GetCategory(category);
+                        bool hasParent = true;
+                        while (hasParent)
                         {
-                            if (catAndCount.Object1 == category)
+                            if (catCount.Select(x => x.Object1).Contains(cat.UniqueID))
                             {
-                                catAndCount.Object2 += 1;
-                                added = true;
-                                break;
+                                catCount.Where(x => x.Object1 == cat.UniqueID).First().Object2++;
                             }
-                        }
-                        if (!added)
-                        {
-                            catCount.Add(new ObjectPair<int, int>() { Object1 = category, Object2 = 1 });
+                            else
+                            {
+                                catCount.Add(new ObjectPair<int, int>() { Object1 = cat.UniqueID, Object2 = 1 });
+                            }
+                            if (cat.ParentID == null)
+                            {
+                                hasParent = false;
+                            }
+                            else
+                            {
+                                cat = categoryManager.GetCategory((int)cat.ParentID);
+                            }
                         }
                     }
                     for (int i = 0; i < 4; i++)
                     {
-                        IEnumerable<IObjectPair<int, int>> currTierCounts = catCount.Where(x => categoryManager.IsTier(i, x.Object1));
+                        IEnumerable<IObjectPair<int, int>> currTierCounts = catCount.Where(x => categoryManager.IsTier(i + 1, x.Object1));
                         if (currTierCounts.Count() > 0)
                         {
                             IObjectPair<int, int> biggestCat = currTierCounts.Where(x => x.Object2 == currTierCounts.Max(y => y.Object2)).First();
