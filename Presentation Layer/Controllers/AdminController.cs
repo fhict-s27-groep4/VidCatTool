@@ -108,33 +108,34 @@ namespace VidCat_Tool.Controllers
             return View(new SettingsModel()
             {
                 AlgoritmSettings = videoHandler.GetAlgoritmSettings(),
-                MailSettings = userHandler.GetMailSettings(),
-                NewUser = userHandler.GetNewUserMail(),
-                ResetPassword = userHandler.GetResetpassWordMail()
+                MailSettings = new MailSettings()
+                {
+                    Client = Service_Layer.GlobalSettings.MailSettings.Client.Host,
+                    FromAddress = Service_Layer.GlobalSettings.MailSettings.NoReplyAdress.ToString()
+                },
+                NewUser = new MailContent()
+                {
+                    Content = Service_Layer.GlobalSettings.MailSettings.NewUserContent,
+                    Subject = Service_Layer.GlobalSettings.MailSettings.NewUserSubject
+                },
+                ResetPassword = new MailContent()
+                {
+                    Content = Service_Layer.GlobalSettings.MailSettings.ResetContent,
+                    Subject = Service_Layer.GlobalSettings.MailSettings.ResetSubject
+                }
             });
         }
 
         [HttpPost]
         public IActionResult Settings(SettingsModel model)
         {
-            if (model.AlgoritmSettings != null)
-            {
-                videoHandler.SetAlgoritmSensitiveness(model.AlgoritmSettings);
-            }
-            else if (model.NewUser != null)
-            {
-                userHandler.SetNewUserSubjectAndContent(model.NewUser);
-            }
-            else if (model.ResetPassword != null)
-            {
-                userHandler.SetResetSubjectAndContent(model.ResetPassword);
-            }
-            else if(model.MailSettings != null)
-            {
-                userHandler.SetClient(model.MailSettings);
-            }
-            else { return Settings(); }
-            return Redirect(Url.Action("VideoManagement", "Admin"));
+            Service_Layer.GlobalSettings.MailSettings.SetMailAddress(model.MailSettings.FromAddress);
+            Service_Layer.GlobalSettings.MailSettings.SetResetContent(model.ResetPassword.Content);
+            Service_Layer.GlobalSettings.MailSettings.SetResetSubject(model.ResetPassword.Subject);
+            Service_Layer.GlobalSettings.MailSettings.SetUserContent(model.NewUser.Content);
+            Service_Layer.GlobalSettings.MailSettings.SetUserSubject(model.NewUser.Subject);
+            Service_Layer.GlobalSettings.MailSettings.SetSMTPClient(model.MailSettings.Client);
+            return VideoManagement();
         }
     }
 }
