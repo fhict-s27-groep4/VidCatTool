@@ -148,11 +148,20 @@
                                             </div>
 
                                             @* Category *@
-                                            <div style="padding: 0; float: left; margin-left: 4.5%;">
+                                            <div class="tooltip_hoverbox" style="padding: 0; float: left; margin-left: 4.5%;">
                                                 @if (video.WatchCount > 0 && video.IABCategoryNameAndPercentage != null) {
-                                                <div style="float: left; height: 28px; line-height: 28px; font-size: 16px;">
-                                                    <span><i class="fas fa-tag" style="color: #e91e63;"></i>&nbsp;@video.IABCategoryNameAndPercentage</span>
-                                                </div>
+                                                    <div style="float: left; height: 28px; line-height: 28px; font-size: 16px;">
+                                                        <span><i class="fas fa-tag" style="color: #e91e63;"></i>&nbsp;@video.IABCategoryNameAndPercentage</span>
+                                                    </div>
+
+                                                    <div class="tooltip_resultbox" style="left: 65%; top: -240%; width: 150%; padding: 0;">
+                                                        <div style="margin: 3px 0 0 0; font-size: 12px;">
+                                                            <i class="fas fa-handshake" style="margin: 0 8% 0 2%; color: #e91e63;"></i>@video.IABCategoryNameAndPercentage.First()
+                                                        </div>
+                                                        <div style="margin: 3px 0 3px 0; font-size: 12px;">
+                                                            <i class="fas fa-users" style="margin: 0 8% 0 2%; color: #e91e63;"></i>@video.IABCategoryNameAndPercentage.Last()
+                                                        </div>
+                                                    </div>
                                                 }
                                                 else { <div><i class="fas fa-tag" style="color: #e91e63;"></i>&nbsp;nvt</div>}
                                             </div>
