@@ -48,7 +48,7 @@ namespace Service_Layer.ServiceCollector
             services.AddTransient<IReaderJson, ReaderJson>();
             services.AddTransient<IWriterJson, WriterJson>();
             services.AddTransient<ICalculator, Calculator>();
-
+            
             return services;
         }
     }

@@ -31,28 +31,12 @@ namespace Data_Layer
 
         private void OpenConnection()
         {
-            try
-            {
-                dbConnection.Open();
-            }
-            catch (Exception exception)
-            {
-                Task.Run(() => errorLogger.LogDataBaseError(dbCommand.CommandText, exception.Message, exception.StackTrace, DateTime.Now.ToString()));
-                Console.WriteLine(exception.Message);
-            }
+            dbConnection.Open();
         }
 
         private void CloseConnection()
         {
-            try
-            {
-                dbConnection.Close();
-            }
-            catch (Exception exception)
-            {
-                Task.Run(() => errorLogger.LogDataBaseError(dbCommand.CommandText, exception.Message, exception.StackTrace, DateTime.Now.ToString()));
-                Console.WriteLine(exception.Message);
-            }
+            dbConnection.Close();
         }
 
         public IEnumerable<T> SelectQuery<T>()
@@ -194,5 +178,5 @@ namespace Data_Layer
         }
     }
 
-    
+
 }
