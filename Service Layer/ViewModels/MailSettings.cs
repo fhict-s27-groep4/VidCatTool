@@ -7,7 +7,7 @@ namespace Service_Layer.ViewModels
 {
     public class MailSettings
     {
-        [Required, Display(Name = "Client", Prompt = "Client")]
+        [Required, Display(Name = "SMTP Server", Prompt = "SMTP Server")]
         public string Client { get; set; }
         [Required, Display(Name = "FromAddress", Prompt = "FromAddress")]
         public string FromAddress { get; set; }
