@@ -65,7 +65,7 @@ namespace Service_Layer.RequestHandlers
             {
                 return @"/images" + "\\" + userID + ".png";
             }
-            return "not available";
+            return @"/images/user-placeholder.png";
         }
     }
 }

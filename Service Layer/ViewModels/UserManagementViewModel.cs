@@ -15,6 +15,7 @@ namespace Service_Layer.ViewModels
         }
 
         public ISearchUser User { get; set; }
+        public string PicturePath { get; set; }
         public long RatingCount { get; set; }
         public int ProcentIABDivergent { get; set; }
         public int ProcentPADDivergent { get; set; }

@@ -79,14 +79,7 @@
             <div class="pageTitleAndUser">
                 <div class="pageTitle">@ViewData["Title"]</div>
                 <div class="pageUser">
-                    @if (Context.Session.GetString("ProfilePicture") == "not available")
-                    {
-                        <div>@Context.Session.GetUsernameKey()  <img src="~/images/user-placeholder.png" /></div>
-                    }
-                    else
-                    {
-                        <div>@Context.Session.GetUsernameKey()  <img src="@Html.Raw(Context.Session.GetString("ProfilePicture"))" /></div>
-                    }
+                    <div class="layoutUserImage">@Context.Session.GetUsernameKey()  <img src="@Html.Raw(Context.Session.GetString("ProfilePicture"))" /></div>
                 </div>
             </div>
             <div class="contentcontainer">
