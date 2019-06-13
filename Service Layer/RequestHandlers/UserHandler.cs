@@ -25,8 +25,8 @@ namespace Service_Layer.RequestHandlers
         private readonly IUserStatsRepository userStatsRepository;
         private readonly PictureHandler pictureHandler;
         private readonly SessionHandler sessionHandler;
-        private static SmtpClient client;
-        private static MailAddress fromAddress;
+        private static SmtpClient client = new SmtpClient();
+        private static MailAddress fromAddress = new MailAddress("none");
         private static string resetSubject;
         private static string resetContent;
         private static string newUserSubject;
