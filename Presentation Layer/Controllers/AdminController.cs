@@ -115,14 +115,22 @@ namespace VidCat_Tool.Controllers
         }
 
         [HttpPost]
-        public IActionResult Settings(AlgoritmSettingsModel model)
+        public IActionResult Settings(SettingsModel model)
         {
-            if (ModelState.IsValid)
-            {
-                videoHandler.SetAlgoritmSensitiveness(model);
+                if (model.AlgoritmSettings != null)
+                {
+                    videoHandler.SetAlgoritmSensitiveness(model.AlgoritmSettings);
+                }
+                else if (model.NewUser != null)
+                {
+                    userHandler.SetNewUserSubjectAndContent(model.NewUser);
+                }
+                else if(model.ResetPassword != null)
+                {
+                    userHandler.SetResetSubjectAndContent(model.ResetPassword);
+                }
+                else { return Settings(); }
                 return VideoManagement();
-            }
-            return Settings();
         }
     }
 }

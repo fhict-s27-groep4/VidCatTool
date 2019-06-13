@@ -1,4 +1,4 @@
-﻿@model Service_Layer.ViewModels.AlgoritmSettingsModel;
+﻿@model Service_Layer.ViewModels.SettingsModel;
 
 @{
     ViewData["Title"] = "Settings";
@@ -8,25 +8,54 @@
     <link href="~/css/settings.css" rel="stylesheet" />
 </head>
 <div class="row noMarginRow">
-
-    @* Algorithm Settings *@
-    <div class="dropdown col-sm-6">
-        <button class="btn prim-btn dropdown-toggle setting-btn" onclick="OpenSubMenu('menu1')" type="button" id="dropdownMenuButton">
-            IAB Settings
-        </button>
-        <div class="dropdown-menu setting-menu" id="menu1">
-
+    <form method="post">
+        @* Algorithm Settings *@
+        <div class="col-sm-6">
+            <div class="dropdown">
+                <button class="btn prim-btn dropdown-toggle setting-btn" onclick="OpenSubMenu('menu1')" type="button" id="dropdownMenuButton">
+                    IAB Settings
+                </button>
+                <div class="dropdown-menu setting-menu" id="menu1">
+                    <div class="row">
+                        <p class="col-sm-6 settingHeader">Tier1:</p>
+                        <p class="col-sm-6 settingHeader">Tier2:</p>
+                        <div class="col-sm-6"><input class="form-control" asp-for="AlgoritmSettings.IabToleranceTier1" /></div>
+                        <div class="col-sm-6"><input class="form-control" asp-for="AlgoritmSettings.IabToleranceTier2" /></div>
+                        <p class="col-sm-6 settingHeader">Biggest Percent IAB:</p>
+                        <p class="col-sm-6 settingHeader">Pad Tolerance:</p>
+                        <div class="col-sm-6"><input class="form-control" asp-for="AlgoritmSettings.BiggestPercentIAB" /></div>
+                        <div class="col-sm-6"><input class="form-control" asp-for="AlgoritmSettings.PadTolerance" /></div>
+                        <p class="col-sm-12 settingHeader" id="customSettingHeader">Maximum Ratings:</p>
+                        <div class="col-sm-12"><input class="form-control" asp-for="AlgoritmSettings.MaximumRatings" /></div>
+                        <div class="col-lg-12" style="float: right; margin: 2%;"><input type="submit" value="Settings" class="btn loginButton" /></div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
 
-    <div class="dropdown col-sm-6">
-        <button class="btn prim-btn dropdown-toggle setting-btn" onclick="OpenSubMenu('menu2')" type="button" id="dropdownMenuButton">
-            Email Settings
-        </button>
-        <div class="dropdown-menu setting-menu" id="menu2">
-
+        <div class="col-sm-6">
+            <div class="dropdown">
+                <button class="btn prim-btn dropdown-toggle setting-btn" onclick="OpenSubMenu('menu2')" type="button" id="dropdownMenuButton">
+                    Email Settings
+                </button>
+                <div class="dropdown-menu setting-menu" id="menu2">
+                    <p class="col-sm-6 settingHeader">MailServer:</p>
+                    <p class="col-sm-6 settingHeader">Mail from what address:</p>
+                    <div class="col-sm-6"><input class="form-control" asp-for="MailSettings.Client" /></div>
+                    <div class="col-sm-6"><input class="form-control" asp-for="MailSettings.FromAddress" /></div>
+                    <p class="col-lg-6 settingHeader">Mail subject for new User</p>
+                    <p class="col-lg-6 settingHeader">Mail content for new User</p>
+                    <div class="col-sm-6"><input class="form-control" asp-for="NewUser.Subject" /></div>
+                    <div class="col-sm-6"><input class="form-control" asp-for="NewUser.Content" /></div>
+                    <p class="col-lg-6 settingHeader">Mail subject for Passwordreset</p>
+                    <p class="col-lg-6 settingHeader">Mail content for Passwordreset</p>
+                    <div class="col-sm-6"><input class="form-control" asp-for="ResetPassword.Subject" /></div>
+                    <div class="col-sm-6"><input class="form-control" asp-for="ResetPassword.Content" /></div>
+                    <div class="col-lg-12" style="float: right; margin: 2%;"><input type="submit" value="Settings" class="btn loginButton" /></div>
+                </div>
+            </div>
         </div>
-    </div>
+    </form>
 </div>
 
 

@@ -3,10 +3,20 @@
 }
 
 .setting-btn {
-    width: 100% !important;
+    width: 100%;
 }
 
 .setting-menu {
-    width: 95%;
+    width: 100% !important;
+    box-shadow: none;
     display: none;
+    padding: 8%;
+}
+
+.settingHeader {
+    margin-top: 2%;
+}
+
+#customSettingHeader {
+    text-align: center;
 }
