@@ -116,7 +116,7 @@
                 <div class="videoSearchResults">
                     @foreach (var video in Model.Get)
                     {
-                        <div class="videoSearchItem" style="border: 1px solid #e91e63; margin-top: 1%; margin-bottom: 1%; padding: 1.5%; min-width: 550px; overflow: hidden;">
+                        <div class="videoSearchItem" style="border: 1px solid #e91e63; margin-top: 1%; margin-bottom: 1%; padding: 1.5%; min-width: 550px;">
 
                             @* User Profile Image  !! GRAVATAR & PROFILE PICTURE ADDED LATER !! *@
                             <img height="64" width="64" src="@Html.Raw(video.Thumbnail)" style="float: left; margin: 0 10px 0 0; border: 1px solid #707070;" />
@@ -131,7 +131,7 @@
                                     </div>
 
                                     @* Other Stats *@
-                                    <div style="white-space: nowrap; height: 28px; margin-top: 1%;">
+                                    <div style="white-space: nowrap; height: 28px; margin-top: 1%; overflow: hidden;">
                                         <div>
 
                                             @*----------------------------------------------*@
