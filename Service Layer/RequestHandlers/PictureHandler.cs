@@ -58,12 +58,12 @@ namespace Service_Layer.RequestHandlers
 
         public string GetPictureWithUserID(string userID)
         {
-            string folderPath = @"..\ProfilePictures";
+            string folderPath = @"wwwroot/images";
             DirectoryInfo dir = new DirectoryInfo(folderPath);
             FileInfo[] pictures = dir.GetFiles(userID + "*");
             if(pictures.Count() > 0)
             {
-                return folderPath + "\\" + userID + ".png";
+                return @"/images" + "\\" + userID + ".png";
             }
             return "not available";
         }
