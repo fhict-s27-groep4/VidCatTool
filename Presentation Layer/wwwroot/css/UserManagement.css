@@ -7,7 +7,7 @@
 .horizontal-line {
     height: 1px;
     background-color: rgba(70, 70, 70, 0.25);
-    width: 90%;
+    width: 100%;
     margin-top: 10%;
     margin-bottom: 10%;
 }
@@ -18,22 +18,24 @@ user-filter-box {
     margin: auto;
 }
 
-.user-filter-row {
+.custom-number-input {
     width: 100%;
-    min-height: 28px;
-    max-height: 28px;
-    margin-left: 0px;
-    margin-right: 0px;
+    border: none;
+    outline: none;
+    background: transparent;
+    border-bottom: 1px solid #707070;
 }
 
-.user-filter-contentbox {
-    float: left;
+.stripe {
+    text-align: center;
 }
 
-    /*--------------------------*/
-    /*      "Add User"-Box      */
-    /*--------------------------*/
-
+.col-filter {
+    padding: 1%;
+}
+/*--------------------------*/
+/*      "Add User"-Box      */
+/*--------------------------*/
 .user-adduser-box {
     padding: 5px 0px 5px 0px;
     width: 40%;
@@ -278,4 +280,20 @@ input#Housenumber {
     opacity: 1;
     display: block;
     z-index: 101;
+}
+
+.filterHeader {
+    text-decoration: none;
+    color: #707070;
+}
+
+.userFilterColumn {
+    background-color: #ffffff;
+    border: 1px solid #bdbdbd;
+    padding: 10%;
+}
+
+.filterTitle {
+    color: #e91e63;
+    text-align: center;
 }

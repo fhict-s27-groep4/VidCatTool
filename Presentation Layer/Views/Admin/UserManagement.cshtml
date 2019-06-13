@@ -29,20 +29,20 @@
             @* ------------------------------------------------------------------- *@
 
             <div class="col-sm-3">
-                <div class="userFilterColumn" style="background-color: #ffffff; border: 1px solid #bdbdbd; padding: 5%;">
-                    <h3 class="text-center" style="color: #e91e63">Filters</h3>
+                <div class="userFilterColumn">
+                    <h3 class="filterTitle">Filters</h3>
 
                     <div class="horizontal-line center-block"></div>
 
                     @* Box with Slider for PAD *@
                     <div class="user-filter-box">
-                        <h4 style="text-decoration: none; color: #707070;">Divergent PAD-Score</h4>
+                        <h4 class="filterHeader">Divergent PAD-Score</h4>
                         <input type="range" multiple min="1" max="100" value="70,100" class="slider int-slider" />
                     </div>
 
                     @* Box with Slider for IAB *@
                     <div class="user-filter-box">
-                        <h4 style="text-decoration: none; color: #707070;">Divergent IAB-Score</h4>
+                        <h4 class="filterHeader">Divergent IAB-Score</h4>
                         <input type="range" multiple min="1" max="100" value="70,100" class="slider int-slider" />
                     </div>
 
@@ -50,29 +50,38 @@
 
                     @* Box with 2 input boxes for "Video's watched" *@
                     <div class="user-filter-box">
-                        <h4 style="text-decoration: none; color: #707070;">Videos Watched</h4>
-                        <div class="row user-filter-row">
-                            <div style="margin-left: 5%; margin-right: 5%;">
-
-                                @* Inputbox 1 *@
-                                <div class="user-filter-contentbox" style="width: 25%; overflow: hidden;">
-                                    <input type="number" style="width: 100%; border: none; outline: none; background: transparent; border-bottom: 1px solid #707070;" id="vidFilterCountMin" />
-                                </div>
-                                @* Dash between it *@
-                                <div class="user-filter-contentbox" style="margin-left: 4%; margin-right: 4%; margin-top: 1%;"> - </div>
-                                @* Inputbox 2 *@
-                                <div class="user-filter-contentbox" style="width: 25%; overflow: hidden;">
-                                    <input type="number" style="width: 100%; border: none; outline: none; background: transparent; border-bottom: 1px solid #707070;" id="vidFilterCountMax" />
-                                </div>
-                                @* Text after *@
-                                <div class="user-filter-contentbox" style="margin-left: 4%; margin-top: 1%;">Videos</div>
+                        <h4 class="filterHeader">Videos Watched</h4>
+                        <div class="row noMarginRow">
+                            @* Inputbox 1 *@
+                            <div class="col-sm-4 col-filter">
+                                <input type="number" class="custom-number-input" id="vidFilterCountMin" />
                             </div>
+                            @* Dash between it *@
+                            <div class="col-sm-1 col-filter stripe">-</div>
+                            @* Inputbox 2 *@
+                            <div class="col-sm-4 col-filter">
+                                <input type="number" class="custom-number-input" id="vidFilterCountMax" />
+                            </div>
+                            @* Text after *@
+                            <div class="user-filter-contentbox">Videos</div>
                         </div>
                     </div>
 
                     <div class="horizontal-line center-block"></div>
 
-                    <input type="text" class="form-control" id="lastName" placeholder="Lastname"/>
+                    <div class="user-filter-box">
+                        <h4 class="filterHeader">Search by Firstname</h4>
+                        <input type="text" class="form-control" id="lastName" placeholder="Firstname" />
+                    </div>
+
+                    <div class="horizontal-line center-block"></div>
+                    <div class="user-filter-box">
+                        <h4 class="filterHeader">Search by Lastname</h4>
+                        <input type="text" class="form-control" id="lastName" placeholder="Lastname" />
+                    </div>
+
+
+                    <div class="horizontal-line center-block"></div>
                     <div class="btn prim-btn" id="searchButton" style="margin-left: 30%; width: 40%">Search</div>
 
                 </div>
@@ -412,7 +421,7 @@
         var allusers = document.getElementsByClassName('user-search-item');
 
         for (i = 0; i < allusers.length; i++) {
-            if (allusers[i].getAttribute(dataattribute).toLowerCase() == name.toLowerCase()) {
+            if (allusers[i].getAttribute(dataattribute).toLowerCase().includes(name.toLowerCase())) {
                 allusers[i].style.display = "";
             }
             else {
