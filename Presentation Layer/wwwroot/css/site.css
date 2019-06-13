@@ -538,3 +538,7 @@ body {
     display: block;
     z-index: 101;
 }
+
+.layoutUserImage img {
+    border-radius: 200px;
+}

@@ -13,14 +13,7 @@
 
 <div class="dashboardContent">
     <div class="userImage">
-        @if (Context.Session.GetString("ProfilePicture") == "not available")
-        {
-            <img src="~/images/user-placeholder.png" />
-        }
-        else
-        {
-            <img src="@Html.Raw(Context.Session.GetString("ProfilePicture"))" />
-        }
+        <img src="@Html.Raw(Context.Session.GetString("ProfilePicture"))" />
     </div>
     <div class="row statsContainer" style="height: 1000px; padding: 6%;">
 
