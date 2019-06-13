@@ -65,16 +65,20 @@ namespace Service_Layer.RequestHandlers
                     IList<IObjectPair<int, int>> catCount = new List<IObjectPair<int, int>>();
                     foreach (int category in videoRatings.Select(x => x.CategoryID))
                     {
+                        bool added = false;
                         foreach (IObjectPair<int, int> catAndCount in catCount)
                         {
                             if (catAndCount.Object1 == category)
                             {
                                 catAndCount.Object2 += 1;
+                                added = true;
                                 break;
                             }
-
                         }
-                        catCount.Add(new ObjectPair<int, int>() { Object1 = category, Object2 = 1 });
+                        if (!added)
+                        {
+                            catCount.Add(new ObjectPair<int, int>() { Object1 = category, Object2 = 1 });
+                        }
                     }
                     for (int i = 0; i < 4; i++)
                     {
@@ -89,6 +93,7 @@ namespace Service_Layer.RequestHandlers
                             break;
                         }
                     }
+                    model.IABCategoryNameAndPercentage = iabCategoriesNamesAndAverage;
                 }
                 videos.Add(model);
             }
