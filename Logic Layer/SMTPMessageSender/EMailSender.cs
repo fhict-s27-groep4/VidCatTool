@@ -9,9 +9,9 @@ namespace Logic_Layer.SMTPMessageSender
     public class EMailSender
     {
         private SmtpClient smtpServer;
-        public EMailSender(string client)
+        public EMailSender(SmtpClient client)
         {
-            smtpServer = new SmtpClient(client);
+            smtpServer = client;
         }
         public void Send(IMessageMail _messageMail, MailAddress _fromAddress)
         {
