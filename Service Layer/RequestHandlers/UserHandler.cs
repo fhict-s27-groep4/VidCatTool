@@ -101,8 +101,6 @@ namespace Service_Layer.RequestHandlers
                     userVM.ProcentIABDivergent = -1;
                     userVM.ProcentPADDivergent = -1;
                 }
-                if (userVM.ProcentIABDivergent == 0) userVM.ProcentIABDivergent = 100;
-                if (userVM.ProcentPADDivergent == 0) userVM.ProcentPADDivergent = 100;
                 userVM.PicturePath = pictureHandler.GetPictureWithUserID(user.UserID);
                 usermodels.Add(userVM);
             }
