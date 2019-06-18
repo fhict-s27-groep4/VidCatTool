@@ -157,11 +157,14 @@
 
                                                     @* Tooltip itself *@
                                                     <div class="tooltip_resultbox" style="left: 65%; top: -240%; width: 150%; padding: 0 0 3px 0;">
+                                                        @{ int i = 0; }
                                                         @foreach(var score in video.IABCategoryNameAndPercentage) {
                                                             <div style="margin: 3px 0 0 0">
+                                                                <span style="color: #707070">@i</span>
                                                                 <span style="color: #e91e63">@score.Object2%</span>
-                                                                <span style="color: #707070">@score.Object1</span>
+                                                                <span>@score.Object1</span>
                                                             </div>
+                                                            i++;
                                                         }
                                                         @*<div style="margin: 3px 0 0 0; font-size: 12px;">
                                                             <i class="fas fa-handshake" style="margin: 0 8% 0 2%; color: #e91e63;"></i>@video.IABCategoryNameAndPercentage.First()
@@ -189,9 +192,9 @@
                                                         <span style="float: left; color: #e91e63;"><i class="far fa-laugh-beam"></i></span>
                                                         <div class="progress videoSearch_ProgressBar">
                                                         @{
-                                                            if(average > 60) { <div role="progressbar" class="progress-bar progress-bar-success" style="width: @average%"></div> }
-                                                            else if(average >= 40) { <div role="progressbar" class="progress-bar progress-bar-warning" style="width: @average%"></div> }
-                                                            else { <div role="progressbar" class="progress-bar progress-bar-danger" style="width: @average%"></div> }
+                                                            if(average > 60) { <div role="progressbar" class="progress-bar progress-bar-success" style="width: @Math.Round(average, 0)%"></div> }
+                                                            else if(average >= 40) { <div role="progressbar" class="progress-bar progress-bar-warning" style="width: @Math.Round(average, 0)%"></div> }
+                                                            else { <div role="progressbar" class="progress-bar progress-bar-danger" style="width: @Math.Round(average, 0)%"></div> }
                                                         }
                                                         </div>
 
@@ -225,9 +228,9 @@
                                                     <span style="float: left; color: #e91e63;"><i class="far fa-surprise"></i></span>
                                                     <div class="progress videoSearch_ProgressBar">
                                                         @{
-                                                            if (average > 60) { <div role="progressbar" class="progress-bar progress-bar-success" style="width: @average%"></div> }
-                                                            else if (average >= 40) { <div role="progressbar" class="progress-bar progress-bar-warning" style="width: @average%"></div> }
-                                                            else { <div role="progressbar" class="progress-bar progress-bar-danger" style="width: @average%"></div> }
+                                                            if (average > 60) { <div role="progressbar" class="progress-bar progress-bar-success" style="width: @Math.Round(average, 0)%"></div> }
+                                                            else if (average >= 40) { <div role="progressbar" class="progress-bar progress-bar-warning" style="width: @Math.Round(average, 0)%"></div> }
+                                                            else { <div role="progressbar" class="progress-bar progress-bar-danger" style="width: @Math.Round(average, 0)%"></div> }
                                                         }
                                                     </div>
 
@@ -244,8 +247,7 @@
                                                 }
                                                 else { <div><i class="far fa-surprise" style="color: #e91e63;"></i>&nbsp;nvt</div>}
                                             </div>
-
-
+                                            
                                             @* PAD-Score (Dominance) *@
                                             <div class="col-sm-2" style="padding: 0; height: 28px; line-height: 28px;">
                                                 @if (video.WatchCount > 0 && video.DominanceAverageAndDeviation.Object1 != 0)
