@@ -8,10 +8,23 @@ namespace UnitTests.ServiceLayer.ViewModelTests
 {
     public class AlgoritmSettingsTest
     {
-        SettingsModel model;
+        private SettingsModel model;
+        private MailSettings mail;
+        private AlgoritmSettingsModel algo;
+        private MailContent newuser;
+        private MailContent resetPassword;
         public AlgoritmSettingsTest()
         {
+            mail = new MailSettings();
+            algo = new AlgoritmSettingsModel();
+            newuser = new MailContent();
+            resetPassword = new MailContent();
+
             model = new SettingsModel();
+            model.AlgoritmSettings = algo;
+            model.MailSettings = mail;
+            model.NewUser = newuser;
+            model.ResetPassword = resetPassword;
         }
         [Fact]
         public void CheckGetSetEqualAlgoritmeSettings()
@@ -83,8 +96,8 @@ namespace UnitTests.ServiceLayer.ViewModelTests
             model.ResetPassword.Content = "OWO,content";
             model.ResetPassword.Subject = "Well rip then";
 
-            Assert.NotEqual("OWO,content", model.ResetPassword.Content);
-            Assert.NotEqual("Well rip then", model.ResetPassword.Subject);
+            Assert.NotEqual("UWU,content", model.ResetPassword.Content);
+            Assert.NotEqual("Well then", model.ResetPassword.Subject);
         }
         [Fact]
         public void CheckGetSetNotEqualResetPasswordMailSettings()
