@@ -9,7 +9,7 @@ namespace Service_Layer.ViewModels
     {
         [Required, Display(Name = "SMTP Server", Prompt = "SMTP Server")]
         public string Client { get; set; }
-        [Required, Display(Name = "FromAddress", Prompt = "FromAddress")]
+        [Required, Display(Name = "Address", Prompt = "Address")]
         public string FromAddress { get; set; }
     }
 }

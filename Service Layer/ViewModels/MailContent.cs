@@ -9,7 +9,7 @@ namespace Service_Layer.ViewModels
     {
         [Required, Display(Name = "Subject", Prompt = "Subject")]
         public string Subject { get; set; }
-        [Required, Display(Name = "Content", Prompt = "Content")]
+        [Required, Display(Name = "Content", Prompt = "Content*")]
         public string Content { get; set; }
     }
 }

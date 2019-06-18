@@ -23,3 +23,40 @@
 .Contentbox {
     height: 100px;
 }
+
+.infoText {
+    color: #e91e63;
+    font-style: italic;
+}
+
+.setting-save-btn {
+    width: 30%;
+    margin-left: 35%;
+    margin-right: 35%;
+    padding: 2%;
+}
+
+.btn-save-box {
+    padding-left: 8%;
+    padding-right: 8%;
+}
+
+.mailsToSendSettings {
+    border: 1px solid #e5e5e5;
+    overflow: hidden;
+    padding: 3%;
+}
+
+.mailClientSettings {
+    border: 1px solid #e5e5e5;
+    overflow: hidden;
+    padding: 3%;
+}
+
+.setting-menu h2 {
+    color: #e91e63;
+}
+
+#mmsHeader {
+    margin-top: 5%;
+}
