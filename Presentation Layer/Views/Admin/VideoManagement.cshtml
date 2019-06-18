@@ -152,25 +152,29 @@
                                             <div class="col-sm-2 tooltip_hoverbox" style="padding: 0; height: 28px; line-height: 28px;">
                                                 @if (video.WatchCount > 0 && video.IABCategoryNameAndPercentage.Count() > 0) {
                                                     <div style="font-size: 16px;">
-                                                        <span><i class="fas fa-tag" style="color: #e91e63;"></i>&nbsp;YES!</span>
+                                                        <span>
+                                                            <i class="fas fa-clipboard-check" style="color: #e91e63;"></i>
+                                                            @if (video.Video.Finished == false) { <span style="margin-left: 2px; color: #707070;">Busy</span> }
+                                                            else { <span style="margin-left: 2px;">Finished</span> }
+                                                        </span>
                                                     </div>
 
                                                     @* Tooltip itself *@
-                                                    <div class="tooltip_resultbox" style="left: 10%; top: -480%; width: 150%; padding: 0 0 3px 0;">
+                                                    <div class="tooltip_resultbox" style="left: 12%; top: -440%; bottom: 110%; width: 150%; padding: 0;">
                                                         @{ int i = 1; }
                                                         @foreach(var score in video.IABCategoryNameAndPercentage) {
-                                                            <div style="margin: 3px 0 0 0; font-size: 14px; color: #e91e63;">
+                                                            <div style="font-size: 14px; color: #e91e63;">
                                                                 @if(i == 1) { <i class="fas fa-dice-one"></i> }
                                                                 else if(i == 2) { <i class="fas fa-dice-two"></i> }
                                                                 else if(i == 3) { <i class="fas fa-dice-three"></i> }
                                                                 else if(i == 4) { <i class="fas fa-dice-four"></i> }
                                                                 else if(i == 5) { <i class="fas fa-dice-five"></i> }
                                                                 else { <i class="fas fa-dice-six"></i> }
-                                                                <span style="margin: 0 0 0 2.5px; font-size: 14px;">@score.Object2</span><span>x</span>
-                                                                <span style="margin: 0 0 0 4px; color: #707070;">@score.Object1</span>
+                                                                <span style="margin: 0 0 0 2.5px; font-size: 12px;">@score.Object2</span><span>x</span>
+                                                                <span style="margin: 0 0 0 4px; font-size: 12px; color: #000000;">@score.Object1</span>
                                                             </div>
                                                             i++;
-                                                        }
+                                                        } 
                                                         @*<div style="margin: 3px 0 0 0; font-size: 12px;">
                                                             <i class="fas fa-handshake" style="margin: 0 8% 0 2%; color: #e91e63;"></i>@video.IABCategoryNameAndPercentage.First()
                                                         </div>
@@ -180,7 +184,7 @@
                                                     </div>
 
                                                 }
-                                                else { <div><i class="fas fa-tag" style="color: #e91e63;"></i>&nbsp;nvt</div> }
+                                                else { <div><i class="fas fa-clipboard-check" style="color: #e91e63;"></i><span style="margin-left: 6px; color: #707070;">nvt</span></div> }
                                             </div>
 
                                             @*----------------------------------------------------------------------------------*@
@@ -271,7 +275,7 @@
                                                         }
                                                     </div>
 
-                                                    <div class="tooltip_resultbox" style="left: -50%; top: -265%; width: 150%; padding: 0;">
+                                                    <div class="tooltip_resultbox" style="left: 65%; top: -265%; width: 150%; padding: 0;">
                                                         <div style="margin: 3px 0 0 0; font-size: 12px;">
                                                             <i class="fas fa-balance-scale" style="margin: 0 8% 0 2%; color: #e91e63;"></i>@deviation deviation
                                                         </div>
@@ -288,11 +292,11 @@
 
                                             @*---------------------------------------------------------------*@
 
-                                            <div class="col-sm-1" style="padding: 0; height: 28px; line-height: 28px;">
+                                            @*<div class="col-sm-1" style="padding: 0; height: 28px; line-height: 28px;">
                                                 <div style="float: left; font-size: 16px;">
                                                     <span><i class="fas fa-clipboard-check" style="color: #e91e63;"></i>&nbsp;@video.Video.Finished</span>
                                                 </div>           
-                                            </div>
+                                            </div>*@
 
                                         </div>
                                     </div>
