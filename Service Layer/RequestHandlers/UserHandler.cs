@@ -65,11 +65,14 @@ namespace Service_Layer.RequestHandlers
             {
                 userRepo.AddUser(generatedUserPassPair.Object1);
                 ILoginUser user = userRepo.GetUserByName(generatedUserPassPair.Object1.UserName);
+                if (vm.ProfilePicture != null)
+                {
+                    pictureHandler.PictureCopy(vm.ProfilePicture, user.UserID);
+                }
                 EMailSender eMailer = new EMailSender(GlobalSettings.MailSettings.Client);
                 IMessageSettableMail mail = new MessageMail(new System.Net.Mail.MailMessage());
                 mail.MakeMail(GlobalSettings.MailSettings.NewUserSubject, String.Format(GlobalSettings.MailSettings.NewUserContent, user.UserName, generatedUserPassPair.Object2), user.Email);
                 eMailer.Send(mail, GlobalSettings.MailSettings.NoReplyAdress);
-                pictureHandler.PictureCopy(vm.ProfilePicture, user.UserID);
             }
             catch
             {
