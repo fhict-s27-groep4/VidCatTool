@@ -156,13 +156,19 @@
                                                     </div>
 
                                                     @* Tooltip itself *@
-                                                    <div class="tooltip_resultbox" style="left: 65%; top: -240%; width: 150%; padding: 0;">
-                                                        <div style="margin: 3px 0 0 0; font-size: 12px;">
+                                                    <div class="tooltip_resultbox" style="left: 65%; top: -240%; width: 150%; padding: 0 0 3px 0;">
+                                                        @foreach(var score in video.IABCategoryNameAndPercentage) {
+                                                            <div style="margin: 3px 0 0 0">
+                                                                <span style="color: #e91e63">@score.Object2%</span>
+                                                                <span style="color: #707070">@score.Object1</span>
+                                                            </div>
+                                                        }
+                                                        @*<div style="margin: 3px 0 0 0; font-size: 12px;">
                                                             <i class="fas fa-handshake" style="margin: 0 8% 0 2%; color: #e91e63;"></i>@video.IABCategoryNameAndPercentage.First()
                                                         </div>
                                                         <div style="margin: 3px 0 3px 0; font-size: 12px;">
                                                             <i class="fas fa-users" style="margin: 0 8% 0 2%; color: #e91e63;"></i>@video.IABCategoryNameAndPercentage.Last()
-                                                        </div>
+                                                        </div>*@
                                                     </div>
 
                                                 }

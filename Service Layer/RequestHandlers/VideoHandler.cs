@@ -93,7 +93,7 @@ namespace Service_Layer.RequestHandlers
                         if (currTierCounts.Count() > 0)
                         {
                             IObjectPair<int, int> biggestCat = currTierCounts.Where(x => x.Object2 == currTierCounts.Max(y => y.Object2)).First();
-                            iabCategoriesNamesAndAverage.Add(new ObjectPair<string, int>() { Object1 = categoryManager.GetCategory(biggestCat.Object1).Name, Object2 = (int)Math.Round(biggestCat.Object2 / (double)currTierCounts.Sum(x => x.Object2), MidpointRounding.AwayFromZero) });
+                            iabCategoriesNamesAndAverage.Add(new ObjectPair<string, int>() { Object1 = categoryManager.GetCategory(biggestCat.Object1).Name, Object2 = (int)Math.Round((biggestCat.Object2 / (double)currTierCounts.Sum(x => x.Object2)) * 100, MidpointRounding.AwayFromZero) });
                         }
                         else
                         {
