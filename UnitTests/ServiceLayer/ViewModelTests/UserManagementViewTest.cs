@@ -40,12 +40,14 @@ namespace UnitTests.ServiceLayer.ViewModelTests
             users.UserID = "15";
             users.IsDisabled = false;
             user.User = users;
+            user.PicturePath = "VincentIsokePicture";
 
             Assert.Equal(5, user.ProcentIABDivergent);
             Assert.Equal(6, user.ProcentPADDivergent);
             Assert.Equal(50, user.RatingCount);
             Assert.False(user.User.IsDisabled);
-            Assert.Equal("15", user.User.UserID);            
+            Assert.Equal("15", user.User.UserID);
+            Assert.Equal("VincentIsokePicture", user.PicturePath);
         }
         [Fact]
         public void CheckGetSetNotEqual()
@@ -56,11 +58,13 @@ namespace UnitTests.ServiceLayer.ViewModelTests
             User users = new User();
             users.UserID = "145";
             user.User = users;
+            user.PicturePath = "Maar de rest ook natuurlijk";
 
             Assert.NotEqual(7, user.ProcentPADDivergent);
             Assert.NotEqual(7, user.ProcentIABDivergent);
             Assert.NotEqual(50, user.RatingCount);
             Assert.NotEqual("15", user.User.UserID);
+            Assert.NotEqual("Maar de rest niet natuurlijk", user.PicturePath);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Service_Layer.ViewModels;
+﻿using Microsoft.AspNetCore.Http;
+using Service_Layer.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -25,6 +26,8 @@ namespace UnitTests.ServiceLayer.ViewModelTests
             review.Streetname = "PrinsesBeatrix";
             review.Zip = "5061AG";
             review.City = "Oisterwijk";
+           
+            review.IsAdmin = true;
 
             Assert.Equal("Netherlands", review.Country);
             Assert.Equal("Youdonthavetoknow@gmail.com", review.Email);
@@ -35,6 +38,7 @@ namespace UnitTests.ServiceLayer.ViewModelTests
             Assert.Equal("PrinsesBeatrix", review.Streetname);
             Assert.Equal("5061AG", review.Zip);
             Assert.Equal("Oisterwijk", review.City);
+            Assert.True(review.IsAdmin);
         }
         [Fact]
         public void CheckGetSetNotEqual()
@@ -48,6 +52,7 @@ namespace UnitTests.ServiceLayer.ViewModelTests
             review.Streetname = "PrisnsesBeatrix";
             review.Zip = "5061AGs";
             review.City = "Oisterswijk";
+            review.IsAdmin = false;
 
             Assert.NotEqual("Netherlands", review.Country);
             Assert.NotEqual("Youdonthavetoknow@gmail.com", review.Email);
@@ -58,6 +63,7 @@ namespace UnitTests.ServiceLayer.ViewModelTests
             Assert.NotEqual("PrinsesBeatrix", review.Streetname);
             Assert.NotEqual("5061AG", review.Zip);
             Assert.NotEqual("Oisterwijk", review.City);
+            Assert.False(review.IsAdmin);
         }
     }
 }
