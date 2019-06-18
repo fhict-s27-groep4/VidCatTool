@@ -173,7 +173,7 @@
 
                                             @* PAD-Score (Pleasure) *@
                                             <div class="col-sm-2" style="padding: 0; height: 28px; line-height: 28px;">
-                                                @if (video.WatchCount > 0 && video.PleaureAverageAndDeviation.Object1 != 0 && Double.IsNaN(video.PleaureAverageAndDeviation.Object1) == false)
+                                                @if (video.WatchCount > 0 && video.PleaureAverageAndDeviation.Object1 != 0)
                                                 {
                                                     <div class="tooltip_hoverbox videoSearch_PADScoreBox">                                                        
                                                         @{ 
@@ -208,7 +208,7 @@
 
                                             @* PAD-Score (Arrousal) *@
                                             <div class="col-sm-2" style="padding: 0; height: 28px; line-height: 28px;">
-                                                @if (video.WatchCount > 0 && video.ArrouselAverageAndDeviation.Object1 != 0 && Double.IsNaN(video.ArrouselAverageAndDeviation.Object1) == false)
+                                                @if (video.WatchCount > 0 && video.ArrouselAverageAndDeviation.Object1 != 0)
                                                 {
                                                 <div class="tooltip_hoverbox videoSearch_PADScoreBox">
                                                     
@@ -242,7 +242,7 @@
 
                                             @* PAD-Score (Dominance) *@
                                             <div class="col-sm-2" style="padding: 0; height: 28px; line-height: 28px;">
-                                                @if (video.WatchCount > 0 && video.DominanceAverageAndDeviation.Object1 != 0 && Double.IsNaN(video.DominanceAverageAndDeviation.Object1) == false)
+                                                @if (video.WatchCount > 0 && video.DominanceAverageAndDeviation.Object1 != 0)
                                                 {
                                                 <div class="tooltip_hoverbox videoSearch_PADScoreBox">
                                                     @{ 

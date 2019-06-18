@@ -17,7 +17,7 @@ namespace Logic_Layer.Maths
             IList<double> squareRoots = new List<double>();
             foreach (int score in _scores)
             {
-                squareRoots.Add(Math.Pow((average + score) % score, 2));
+                squareRoots.Add(Math.Pow((score - average), 2));
             }
             return Math.Round(Math.Pow(squareRoots.Average(), 0.5), 1, MidpointRounding.AwayFromZero);
         }
