@@ -27,7 +27,7 @@ namespace Service_Layer.ServiceCollector
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<IJsonAddRepository, JsonAddRepository>();
             services.AddTransient<IUserStatsRepository, UserStatsRepository>();
-            services.AddTransient<IDBContext, MySQLDBContext>();
+            services.AddTransient<IDBContext>(context => new MySQLDBContext(config["ConnectionStrings:MYSQLConnection"]));
 
             services.AddTransient<ILogin, AccountManager>();
             services.AddTransient<IRegister, AccountManager>();
