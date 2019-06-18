@@ -20,9 +20,9 @@ namespace Data_Layer
 
         private readonly string connectionString;
 
-        public MySQLDBContext()
+        public MySQLDBContext(string connectionstring)
         {
-            connectionString = "Server=blackmania.phy.sx;Port=3306;Database=blackman_VidCatTool;Uid=blackman_vidcattooluser;Pwd=]2T5~s&w(JD&";
+            connectionString = connectionstring;
             dbCommand = new MySqlCommand();
             dbConnection = new MySqlConnection(connectionString);
             adapter = new MySqlDataAdapter();
