@@ -16,7 +16,7 @@ namespace Data_Layer.ErrorLog
 
         public void LogDataBaseError(string _query, string _errorMessage, string _callStack, string _dateTime)
         {
-            JObject dbErrors = JObject.Parse(File.ReadAllText(@"..\Data Layer\ErrorLog\DataBaseErrorLog.json"));
+            JObject dbErrors = JObject.Parse(File.ReadAllText(@"DataBaseErrorLog.json"));
             JObject error = new JObject();
             error.Add("query", _query);
             error.Add("errormessage", _errorMessage);
@@ -30,7 +30,7 @@ namespace Data_Layer.ErrorLog
             error.Add("callstack", callstack);
             error.Add("datetime", _dateTime);
             ((JArray)dbErrors["errorlog"]).Add(error);
-            StreamWriter stream = new StreamWriter(@"..\Data Layer\ErrorLog\DataBaseErrorLog.json");
+            StreamWriter stream = new StreamWriter(@"DataBaseErrorLog.json");
             stream.Write(JsonConvert.SerializeObject(dbErrors, Formatting.Indented));
             stream.Close();
         }

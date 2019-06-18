@@ -69,7 +69,10 @@ namespace Service_Layer.RequestHandlers
                 IMessageSettableMail mail = new MessageMail(new System.Net.Mail.MailMessage());
                 mail.MakeMail(GlobalSettings.MailSettings.NewUserSubject, String.Format(GlobalSettings.MailSettings.NewUserContent, user.UserName, generatedUserPassPair.Object2), user.Email);
                 eMailer.Send(mail, GlobalSettings.MailSettings.NoReplyAdress);
-                pictureHandler.PictureCopy(vm.ProfilePicture, user.UserID);
+                if(vm.ProfilePicture  != null)
+                {
+                    pictureHandler.PictureCopy(vm.ProfilePicture, user.UserID);
+                }
             }
             catch
             {

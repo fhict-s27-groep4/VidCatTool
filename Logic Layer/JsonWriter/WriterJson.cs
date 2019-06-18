@@ -133,13 +133,13 @@ namespace Logic_Layer.JsonWriter
 
         public void ExtendJson(string filePath)
         {
-            JObject feed = JObject.Parse(File.ReadAllText(@"..\Logic Layer\JsonReader\VideoFeed.json"));
+            JObject feed = JObject.Parse(File.ReadAllText(@"VideoFeed.json"));
             JObject extend = JObject.Parse(File.ReadAllText(filePath));
             foreach (JObject video in (JArray)extend["playlist"])
             {
                 ((JArray)feed["playlist"]).Add(video);
             }
-            StreamWriter stream = new StreamWriter(@"..\Logic Layer\JsonReader\VideoFeed.json");
+            StreamWriter stream = new StreamWriter(@"VideoFeed.json");
             stream.Write(JsonConvert.SerializeObject(feed, Formatting.Indented));
             stream.Close();
         }

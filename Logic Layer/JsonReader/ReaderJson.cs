@@ -13,15 +13,7 @@ namespace Logic_Layer.JsonReader
         JObject json;
         public ReaderJson()
         {
-            try
-            {
-                json = JObject.Parse(File.ReadAllText(@"..\..\..\..\Logic Layer\JsonReader\VideoFeed.json"));
-            }
-            catch
-            {
-                json = JObject.Parse(File.ReadAllText(@"..\Logic Layer\JsonReader\VideoFeed.json"));
-            }
-
+            json = JObject.Parse(File.ReadAllText(@"VideoFeed.json"));
         }
 
         public string GetVideoUrl(string _mediaID)

@@ -20,7 +20,7 @@ namespace Service_Layer.RequestHandlers
 
         public bool PictureCopy(IFormFile file, string userid)
         {
-            string filePath = @"..\ProfilePictures\" + userid;
+            string filePath = @"wwwroot/images/" + userid;
             switch (file.ContentType)
             {
                 case "image/png":
@@ -58,7 +58,7 @@ namespace Service_Layer.RequestHandlers
 
         public string GetPictureWithUserID(string userID)
         {
-            string folderPath = @"wwwroot/images";
+            string folderPath = @"wwwroot\images";
             DirectoryInfo dir = new DirectoryInfo(folderPath);
             FileInfo[] pictures = dir.GetFiles(userID + "*");
             if(pictures.Count() > 0)
