@@ -19,8 +19,20 @@
 
         @* Introduction message *@
         <div class="col-md-6" style="padding-top: 5%; font-weight: bold;">
+
             <h2 style="color: #707070; margin: 0; display: inline-block; height: auto; width: auto">Welcome back, </h2>
             <h2 style="color: #e91e63; margin: 0; display: inline-block; height: auto; width: auto;"> @Model.User.FirstName @Model.User.LastName</h2>
+            <br />
+            <div style="color: #707070; font-weight: lighter; font-size: 16px; margin-top: 32px; line-height: 26px; letter-spacing: 0.7px;">
+                <span>
+                    You can navigate to another page with the menu on the left.
+                    <br />Review a video, or look at your statistics on the right.
+                    <br />
+                    <br />For questions, mail us at 
+                </span>
+                <span style="color: #e91e63; text-decoration: underline;">RandomAddress@email.com</span>
+            </div>
+
         </div>
 
 
@@ -32,9 +44,9 @@
             <div class="" style="height: auto; border: 1px solid #e91e63; padding: 1%; background-color: #f5f5f5;">
 
                 @* Edit Icon *@
-                <a style="position: absolute; top: 0; right: 0; margin: 2%;">
+                @*<a style="position: absolute; top: 0; right: 0; margin: 2%;">
                     <i style="font-size: 20px; color: #707070;" class="fas fa-pen"></i>
-                </a>
+                </a>*@
 
                 @* Title *@
                 <h3 style="margin: 3% 0 6% 0; text-align: center; text-decoration: underline;">Personal Details</h3>
