@@ -1,3 +1,35 @@
 {
-  "errorlog": []
+  "errorlog": [
+    {
+      "query": "SELECT * FROM User",
+      "errormessage": "Unable to connect to any of the specified MySQL hosts.",
+      "callstack": [
+        {
+          "call": "at MySqlConnector.Core.ServerSession.ConnectAsync(ConnectionSettings cs, ILoadBalancer loadBalancer, IOBehavior ioBehavior, CancellationToken cancellationToken) in C:\\projects\\mysqlconnector\\src\\MySqlConnector\\Core\\ServerSession.cs:line 322"
+        },
+        {
+          "call": "at MySqlConnector.Core.ConnectionPool.GetSessionAsync(MySqlConnection connection, IOBehavior ioBehavior, CancellationToken cancellationToken) in C:\\projects\\mysqlconnector\\src\\MySqlConnector\\Core\\ConnectionPool.cs:line 112"
+        },
+        {
+          "call": "at MySqlConnector.Core.ConnectionPool.GetSessionAsync(MySqlConnection connection, IOBehavior ioBehavior, CancellationToken cancellationToken) in C:\\projects\\mysqlconnector\\src\\MySqlConnector\\Core\\ConnectionPool.cs:line 141"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlConnection.CreateSessionAsync(Nullable`1 ioBehavior, CancellationToken cancellationToken) in C:\\projects\\mysqlconnector\\src\\MySqlConnector\\MySql.Data.MySqlClient\\MySqlConnection.cs:line 431"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlConnection.OpenAsync(Nullable`1 ioBehavior, CancellationToken cancellationToken) in C:\\projects\\mysqlconnector\\src\\MySqlConnector\\MySql.Data.MySqlClient\\MySqlConnection.cs:line 175"
+        },
+        {
+          "call": "at MySql.Data.MySqlClient.MySqlConnection.Open() in C:\\projects\\mysqlconnector\\src\\MySqlConnector\\MySql.Data.MySqlClient\\MySqlConnection.cs:line 161"
+        },
+        {
+          "call": "at Data_Layer.MySQLDBContext.OpenConnection() in C:\\Users\\Niek\\Source\\Repos\\fhict-s27-groep4\\VidCatTool\\Data Layer\\MySQLDBContext.cs:line 34"
+        },
+        {
+          "call": "at Data_Layer.MySQLDBContext.SelectQuery[T]() in C:\\Users\\Niek\\Source\\Repos\\fhict-s27-groep4\\VidCatTool\\Data Layer\\MySQLDBContext.cs:line 56"
+        }
+      ],
+      "datetime": "18/06/2019 12:46:11"
+    }
+  ]
 }
