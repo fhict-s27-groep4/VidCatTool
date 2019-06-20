@@ -13,9 +13,12 @@ namespace Logic_Layer.SMTPMessageSender
         {
             smtpServer = client;
         }
-        public void Send(IMessageMail _messageMail, MailAddress _fromAddress)
+        public void Send(IMessageMail _messageMail, MailAddress _fromAddress, NetworkCredential credentials, bool ssl, int port)
         {
             _messageMail.MailMessage.From = _fromAddress;
+            smtpServer.Credentials = credentials;
+            smtpServer.EnableSsl = ssl;
+            smtpServer.Port = port;
             smtpServer.Send(_messageMail.MailMessage);
         }
     }

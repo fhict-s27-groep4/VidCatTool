@@ -43,8 +43,19 @@
                     <div class="mailClientSettings">
                         <p class="col-sm-6 settingHeader">SMTP Host:</p>
                         <p class="col-sm-6 settingHeader">Mailaddress to use:</p>
-                        <div class="col-sm-6"><input class="form-control" asp-for="MailSettings.Client" /></div>
-                        <div class="col-sm-6"><input class="form-control" asp-for="MailSettings.FromAddress" /></div>
+                        <div class="col-sm-6" id="mailset"><input class="form-control" asp-for="MailSettings.Client" /></div>
+                        <div class="col-sm-6" id="mailset"><input class="form-control" asp-for="MailSettings.FromAddress" /></div>
+                        <div class="col-sm-6" id="mailset"><input class="form-control" placeholder="Username" asp-for="NetworkCredentials.UserName" /></div>
+                        <div class="col-sm-6" id="mailset"><input    placeholder="Password" class="form-control" asp-for="NetworkCredentials.Password" /></div>
+                        <div class="col-sm-6" id="mailset"><input type="text" class="form-control" placeholder="Port" asp-for="Port" /></div>
+                        <fieldset class="col-sm-6">
+                            <div class="checkbox checkbox-primary">
+                                <input id="checkAdmin" type="checkbox" asp-for="EnableSSL" />
+                                <label for="checkAdmin">
+                                    Enable SSL
+                                </label>
+                            </div>
+                        </fieldset>
                     </div>
                     <h2 id="mmsHeader">Mail Message Settings</h2>
                     <div class="mailsToSendSettings">

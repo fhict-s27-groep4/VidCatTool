@@ -72,8 +72,7 @@ namespace Service_Layer.RequestHandlers
                 EMailSender eMailer = new EMailSender(GlobalSettings.MailSettings.Client);
                 IMessageSettableMail mail = new MessageMail(new System.Net.Mail.MailMessage());
                 mail.MakeMail(GlobalSettings.MailSettings.NewUserSubject, String.Format(GlobalSettings.MailSettings.NewUserContent, user.UserName, generatedUserPassPair.Object2), user.Email);
-                eMailer.Send(mail, GlobalSettings.MailSettings.NoReplyAdress);
-                pictureHandler.PictureCopy(vm.ProfilePicture, user.UserID);
+                eMailer.Send(mail, GlobalSettings.MailSettings.NoReplyAdress, GlobalSettings.MailSettings.NetworkCredentials, GlobalSettings.MailSettings.EnableSSL, GlobalSettings.MailSettings.Port);
             }
             catch
             {
@@ -133,7 +132,7 @@ namespace Service_Layer.RequestHandlers
             {
                 IMessageSettableMail mail = new MessageMail(new System.Net.Mail.MailMessage());
                 mail.MakeMail(GlobalSettings.MailSettings.ResetSubject, String.Format(GlobalSettings.MailSettings.ResetContent, generatedPassword), loggedInUser.Email);
-                eMailer.Send(mail, GlobalSettings.MailSettings.NoReplyAdress);
+                eMailer.Send(mail, GlobalSettings.MailSettings.NoReplyAdress, GlobalSettings.MailSettings.NetworkCredentials, GlobalSettings.MailSettings.EnableSSL, GlobalSettings.MailSettings.Port);
             }
             catch { }
         }

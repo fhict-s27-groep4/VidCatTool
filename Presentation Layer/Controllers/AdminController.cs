@@ -122,7 +122,10 @@ namespace VidCat_Tool.Controllers
                 {
                     Content = Service_Layer.GlobalSettings.MailSettings.ResetContent,
                     Subject = Service_Layer.GlobalSettings.MailSettings.ResetSubject
-                }
+                },
+                EnableSSL = Service_Layer.GlobalSettings.MailSettings.EnableSSL,
+                Port = Service_Layer.GlobalSettings.MailSettings.Port,
+                NetworkCredentials = Service_Layer.GlobalSettings.MailSettings.NetworkCredentials
             });
         }
 
@@ -135,6 +138,10 @@ namespace VidCat_Tool.Controllers
             Service_Layer.GlobalSettings.MailSettings.SetUserContent(model.NewUser.Content);
             Service_Layer.GlobalSettings.MailSettings.SetUserSubject(model.NewUser.Subject);
             Service_Layer.GlobalSettings.MailSettings.SetSMTPClient(model.MailSettings.Client);
+            Service_Layer.GlobalSettings.MailSettings.SetSSL(model.EnableSSL);
+            Service_Layer.GlobalSettings.MailSettings.SetPort(model.Port);
+            Service_Layer.GlobalSettings.MailSettings.SetNetworkCredentials(model.NetworkCredentials);
+            
             return Settings();
         }
     }
