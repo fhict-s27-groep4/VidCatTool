@@ -42,7 +42,7 @@ namespace VidCat_Tool.Controllers
                 }
                 else
                 {
-                    ViewBag["FailedAddUserAttempt"] = "An error appeared by creating the user";
+                    ViewBag.FailMessage = "An error appeared by creating the user";
                 }
             }
             return View();
