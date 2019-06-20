@@ -135,7 +135,7 @@ namespace VidCat_Tool.Controllers
             Service_Layer.GlobalSettings.MailSettings.SetUserContent(model.NewUser.Content);
             Service_Layer.GlobalSettings.MailSettings.SetUserSubject(model.NewUser.Subject);
             Service_Layer.GlobalSettings.MailSettings.SetSMTPClient(model.MailSettings.Client);
-            return VideoManagement();
+            return Settings();
         }
     }
 }
